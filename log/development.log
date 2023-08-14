@@ -2435,3 +2435,42 @@ Processing by Api::V1::SummaryTransactionsController#index as HTML
 Completed 200 OK in 1748ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 517)
 
 
+Started GET "/" for 127.0.0.1 at 2023-08-14 11:45:54 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.2ms | Allocations: 694)
+Completed 200 OK in 158ms (Views: 37.4ms | ActiveRecord: 0.0ms | Allocations: 7941)
+
+
+Started GET "/api/v1/login_details" for 127.0.0.1 at 2023-08-14 11:46:15 +0530
+Processing by Api::V1::LoginDetailsController#index as HTML
+Completed 200 OK in 1532ms (Views: 1.7ms | ActiveRecord: 0.0ms | Allocations: 957)
+
+
+Started GET "/" for 127.0.0.1 at 2023-08-14 12:26:38 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 3.2ms | Allocations: 522)
+Completed 200 OK in 38ms (Views: 10.9ms | ActiveRecord: 0.0ms | Allocations: 4560)
+
+
+Started GET "/api/v1/login_details" for 127.0.0.1 at 2023-08-14 12:26:56 +0530
+Processing by Api::V1::LoginDetailsController#index as HTML
+Completed 200 OK in 994ms (Views: 1.6ms | ActiveRecord: 0.0ms | Allocations: 852)
+
+
+Started GET "/api/v1/login_details" for 127.0.0.1 at 2023-08-14 12:27:17 +0530
+Processing by Api::V1::LoginDetailsController#index as HTML
+Completed 200 OK in 1027ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 546)
+
+
+Started GET "/api/v1/login_details" for 127.0.0.1 at 2023-08-14 12:27:21 +0530
+Processing by Api::V1::LoginDetailsController#index as HTML
+Completed 200 OK in 1085ms (Views: 1.4ms | ActiveRecord: 0.0ms | Allocations: 546)
+
+
+Started GET "/api/v1/login_details" for 127.0.0.1 at 2023-08-14 12:27:27 +0530
+Processing by Api::V1::LoginDetailsController#index as HTML
+Completed 200 OK in 1064ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 545)
+
+
