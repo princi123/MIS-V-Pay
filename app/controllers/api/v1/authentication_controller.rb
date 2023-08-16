@@ -1,13 +1,19 @@
 class Api::V1::AuthenticationController < ApplicationController
-    skip_before_action :authenticate_request
+  before_action :authorize_request, except: :login
 
   def login
-    user_details = LoginDetailsService.get_user_details(params[:p_emp_id])
-    if user_details&.authenticate(params[:p_emp_id])
-      token = jwt_encode(p_emp_id: user_details.id)
-      render json: { token: token }, status: :ok
+    user_details = LoginDetailsService.get_user_details(params[:p_emp_id], params[:p_auth_token])
+    
+    if user_details&.authenticate(params[:password])
+      token = JsonWebToken.encode(params[:p_emp_id])
+      time = Time.now + 24.hours.to_i
+      render json: {
+        token: token,
+        exp: time.strftime("%m-%d-%Y %H:%M"),
+        user_details: user_details
+      }, status: :ok
     else
-      render json: { error: "Unauthorized" }, status: :unauthorized
+      render json: { error: 'unauthorized' }, status: :unauthorized
     end
   end
 end

@@ -1,7 +1,7 @@
 require 'oci8'
 class Api::V1::LoginDetailsController < ApplicationController
-  skip_before_action :authenticate_request, only: [:create]
-  before_action :set_user_details, only: [:show, :destroy]
+  before_action :authorize_request, except: :create
+  before_action :find_user, except: %i[create index]
 
   def index
     user_details = LoginDetailsService.get_user_details
@@ -14,5 +14,6 @@ class Api::V1::LoginDetailsController < ApplicationController
     user_details = LoginDetailsService.get_user_details(emp_id, auth_token)  
     render json: user_details, status: :ok
   end
+  
 
 end

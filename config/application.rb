@@ -11,6 +11,8 @@ module MisvpayProject
     config.load_defaults 7.0
     config.autoload_paths += %W(#{config.root}/app/services)
     config.api_only = true
+    config.autoload_paths << Rails.root.join('lib')
+
   end
 
 end
