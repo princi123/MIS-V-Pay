@@ -19,7 +19,7 @@ const SideBar = ({isOpen}) => {
         <>
          <div className={`sidebar ${isOpen ? 'open' : ''}`}>
             <div className="col-md-2 w-100" style={{marginLeft:"5px",marginBottom:"5px"}} >
-                <div className="card" id="main-side-card-active">
+                <div className="card card_active" id="main-side-card-active">
                     <Link className="side-link" >
                         <div className="side-home">
                             <img src={home} alt="home"  className=" side-img p-1" /> Home
@@ -31,20 +31,20 @@ const SideBar = ({isOpen}) => {
                 <div className="accordion accordion-flush" id="accordionFlushExample">
                     <div className="accordion-item">
                         <h2 id="flush-headingOne">
-                            <button className="accordion-button collapsed  accordion-button1 "  data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            <button className="accordion-button accordion-button1 card_active collapsed p-0 px-3 py-1 "  data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                 <Link className="side-link" >
                                     <div className="side-home">
-                                        <img src={Retails} alt="home"  width="2%" height="2%" className=" side-img p-1" /> Retail
+                                        <img src={Retails} alt="home"  width="12%" height="12%" className=" side-img p-1" /> Retail
                                     </div>
                                 </Link>
                             </button>
                         </h2>
                         <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div className="accordion-body">
+                            <div className="accordion-body p-0">
                                 <div className="accordion accordion-flush" id="subAccordion">
                                     <div className="accordion-item">
                                         <h2 className="accordion-header" id="sub-accordion-headingOne">
-                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sub-accordion-collapseOne" aria-expanded="false" aria-controls="sub-accordion-collapseOne">
+                                            <button className=" collapsed m-2 p-0 sales-retails" type="button" data-bs-toggle="collapse" data-bs-target="#sub-accordion-collapseOne" aria-expanded="false" aria-controls="sub-accordion-collapseOne">
                                             <img src={Retails} alt="home"  width="2%" height="2%" className=" side-img p-1" />
                                             Sales/Redemption/Net/
                                                 SIP Sales Reports
@@ -52,10 +52,11 @@ const SideBar = ({isOpen}) => {
                                             </button>
                                         </h2>
                                         <div id="sub-accordion-collapseOne" className="accordion-collapse collapse" aria-labelledby="sub-accordion-headingOne" data-bs-parent="#subAccordion">
-                                            <div className="accordion-body">
-                                                <button className="btn btn-info w-100" >Transaction Summary Reports</button>
-                                                <button className="btn btn-info w-100">Transaction Amount Summary </button>
-                                                <button className="btn btn-info w-100">ARN Transaction Reports</button>
+                                            <div className="accordion-body p-0 text-center">
+                                                <button className="  "  >Transaction Summary Reports</button>
+
+                                                <button className="">Transaction Amount Summary </button>
+                                                <button style={{marginLeft:"24px",marginRight:"29px"}} >ARN Transaction Reports</button>
                                               
                                             </div>
                                         </div>

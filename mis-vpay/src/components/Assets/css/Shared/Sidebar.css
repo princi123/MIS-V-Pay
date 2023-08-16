@@ -14,7 +14,7 @@
     font-weight: bold;
     padding-left: 5px;
 }
-#main-side-card-active{
+#main-side-card-active, .card_active{
     background-color: #352d94;
     border-radius: 5px;
     margin-top: 5px;
@@ -30,7 +30,7 @@
     padding-left:"8px";
 }
 .accordion-button1{
-    background-color:#352d94;
+    background-color:white;
     border-radius: 10%;
     margin-top: 5px;
     width: 100%;
@@ -46,4 +46,13 @@
 .sidebar.open 
 {
  width: 250px;
+ }
+ .sales-retails{
+    border-radius: 10px;
+    background-color: #EE8B3A;
+    color: white;
+    padding: 2px 2px 2px 2px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
  }
