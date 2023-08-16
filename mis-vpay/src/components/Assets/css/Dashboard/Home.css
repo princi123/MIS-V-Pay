@@ -1,0 +1,18 @@
+.marquee-p{
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 8px;
+}
+.home-main{
+    background-color: #dee2e6;
+    height: 100vh;
+}
+.acc-main{
+    background-color: #352d94;
+    color: white;
+}
+#PieChart-card{
+    width: 25%;
+    height: 25%;
+}
