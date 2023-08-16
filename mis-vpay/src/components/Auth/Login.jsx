@@ -4,7 +4,7 @@ import leftimage from "../Assets/images/utilogin.png";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [user_details, setUserDetails]= useState([]);
+  const [user_details, setUserDetails] = useState([]);
   const [p_emp_id, setEmpID] = useState(" ");
   const [password, setPassword] = useState("");
   const navigate = useNavigate("");
@@ -32,20 +32,17 @@ const Login = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  };
-  
-useEffect(()=> {
-    fetch   ("http://127.0.0.1:3000/api/v1/login_details", {  p_emp_id, password })
-      .then((response) => {
-        if (response.status === 200) {
-          window.location.href = "/Home";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-    });
-},[]) 
+    };
 
+    // useEffect(() => {
+    //     try {
+    //         const response =  fetch("http://127.0.0.1:3000/api/v1/login_details");
+    //         const data =  response.json();
+    //         setUserDetails(data);
+    //     } catch (error) {
+    //         console.error("Error fetching user details:", error);
+    //     }
+    // }, []);
 
   return (
     <>
@@ -71,7 +68,9 @@ useEffect(()=> {
                       className="form-control "
                       placeholder="Please Enter your valid Employee ID"
                       value={p_emp_id}
-                      onChange={(e)=>{setEmpID(e.target.value)}}
+                      onChange={(e) => {
+                        setEmpID(e.target.value);
+                      }}
                     />
                   </div>
                   <div className="mb-3">
@@ -84,7 +83,9 @@ useEffect(()=> {
                       id="exampleInputPassword1"
                       placeholder="Please Enter your Password"
                       value={password}
-                      onChange={(e)=>{setPassword(e.target.value)}}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
                     />
                   </div>
                   <div className="mb-3 form-check">

@@ -5,11 +5,24 @@ class LoginDetailsService
     cursor.bind_param(':p_emp_id', p_emp_id, String)  
     cursor.bind_param(':p_auth_token', p_auth_token, String)  
     cursor.bind_param(':get_user_login_details', nil, OCI8::Cursor)  
-    cursor.exec
-    user_login_details = cursor[':get_user_login_details']
-    cursor.close
-    conn.logoff
+    user_details = []
 
-    user_login_details
+    begin
+      cursor.exec
+      result_cursor = cursor[':get_user_login_details']
+      while row = result_cursor.fetch 
+        user_details << { p_emp_id: row[1], p_auth_token: row[2] }
+        binding.break
+      end
+
+      result_cursor.close
+    rescue StandardError => e
+      puts "Error while fetching data: #{e.message}"
+    ensure
+      cursor.close
+      conn.logoff
+    end
+
+    return user_details
   end
 end
