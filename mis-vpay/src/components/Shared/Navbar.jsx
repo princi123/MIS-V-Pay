@@ -9,7 +9,7 @@ import logout from "../Assets/images/logout icon.png";
 
 
 
-const Navbar = () => {
+const Navbar = ({ onToggle }) => {
 
     return (
         <>
@@ -17,12 +17,17 @@ const Navbar = () => {
                 <div className="container-fluid " id="nav-card">
                    <div className="col-md-12"> 
                      <div className="row">
-                    <div className="col-md-2" id="nav-card">
-                        <img src={logo} alt="logo" />
-                        <button className="btn-hamburger">
-                            <img src={hambuger} alt="logo" />
-                        </button>
-                    </div>
+                     <div className="col-md-2" id="nav-card">
+
+<img src={logo} alt="logo" />
+
+<button className="btn-hamburger openbtn" onClick={onToggle}>
+
+    <img src={hambuger} alt="logo" />
+
+</button>
+
+</div>
                     <div className="col-md-2" >
                         <h5 className="nav-h4">Welcome, Admin</h5>
                         <p>Quarter <span>:</span><strong><span>2023-24 Q1</span></strong></p>

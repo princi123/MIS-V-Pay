@@ -13,11 +13,12 @@ import statistics from "../Assets/images/Statistics Report icon.png";
 import stragies from "../Assets/images/Strategic Alliance icon.png";
 import Channel from "../Assets/images/Channel Wise Sales icon.png";
 
-const SideBar = () => {
+const SideBar = ({isOpen}) => {
 
  return (
         <>
-            <div className="col-md-2" style={{marginLeft:"5px",marginBottom:"5px"}} >
+         <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+            <div className="col-md-2 w-100" style={{marginLeft:"5px",marginBottom:"5px"}} >
                 <div className="card" id="main-side-card-active">
                     <Link className="side-link" >
                         <div className="side-home">
@@ -30,7 +31,7 @@ const SideBar = () => {
                 <div className="accordion accordion-flush" id="accordionFlushExample">
                     <div className="accordion-item">
                         <h2 id="flush-headingOne">
-                            <button className="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            <button className="accordion-button collapsed  accordion-button1 "  data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                 <Link className="side-link" >
                                     <div className="side-home">
                                         <img src={Retails} alt="home"  width="2%" height="2%" className=" side-img p-1" /> Retail
@@ -44,15 +45,18 @@ const SideBar = () => {
                                     <div className="accordion-item">
                                         <h2 className="accordion-header" id="sub-accordion-headingOne">
                                             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sub-accordion-collapseOne" aria-expanded="false" aria-controls="sub-accordion-collapseOne">
-                                                Sub Accordion
+                                            <img src={Retails} alt="home"  width="2%" height="2%" className=" side-img p-1" />
+                                            Sales/Redemption/Net/
+                                                SIP Sales Reports
+                                            
                                             </button>
                                         </h2>
                                         <div id="sub-accordion-collapseOne" className="accordion-collapse collapse" aria-labelledby="sub-accordion-headingOne" data-bs-parent="#subAccordion">
                                             <div className="accordion-body">
-                                                <button >Action</button>
-                                                <button>Action</button>
-                                                <button>Action</button>
-                                                <button>Action</button>
+                                                <button className="btn btn-info w-100" >Transaction Summary Reports</button>
+                                                <button className="btn btn-info w-100">Transaction Amount Summary </button>
+                                                <button className="btn btn-info w-100">ARN Transaction Reports</button>
+                                              
                                             </div>
                                         </div>
                                     </div>
@@ -151,6 +155,7 @@ const SideBar = () => {
 
 
             </div>
+         </div>   
         </>
     )
 

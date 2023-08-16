@@ -1,11 +1,7 @@
 import React from 'react';
-
 import CanvasJSReact from '@canvasjs/react-charts';
 
- 
-
 const CanvasJS = CanvasJSReact.CanvasJS;
-
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
  
@@ -13,15 +9,6 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
  
 
 const PieChartComponent = () => {
-
- 
-
- 
-
- 
-
-   
-
       const options = {
 
     animationEnabled: true,
@@ -65,9 +52,7 @@ const PieChartComponent = () => {
     }]
 
   };
-
- 
-
+  
   return (
 
     <div>
