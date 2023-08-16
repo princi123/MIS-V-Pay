@@ -1,0 +1,31 @@
+.side-home{
+  font-weight: bold;
+  border-radius: 5px;
+}
+.side-link{
+    margin: 4px 4px 4px 4px;
+    border-radius: 5px;
+    font-size: large;
+    color:#636466;
+}
+.btn-btn-home{
+    background-color: #352d94;
+    color: white;
+    font-weight: bold;
+    padding-left: 5px;
+}
+#main-side-card-active{
+    background-color: #352d94;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 4px;
+}
+#main-side-card{
+    background-color:white;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.side-img{
+    padding-right: "8px";
+    padding-left:"8px";
+}
