@@ -1,0 +1,30 @@
+
+  .dropdown-menu {
+    position: absolute;
+    display: none; 
+  }
+  
+  .custom-dropdown.active .dropdown-menu {
+    display: block; 
+  }
+  /* Apply your styling to the component elements here */
+.custom-dropdown {
+    position: relative;
+    /* Add any other styling properties you need */
+  }
+  
+  .custom-dropdown.active .dropdown-menu {
+    display: block; /* Show the dropdown when active */
+  }
+  
+  
+  .dropdown-menu {
+    display: none; /* Hide the dropdown menu by default */
+    /* Add styling for the dropdown menu */
+  }
+  
+  /* Add any other styling you need */
+  .BgcolorOrange {
+    background-color: #EE8B3A;
+   
+}

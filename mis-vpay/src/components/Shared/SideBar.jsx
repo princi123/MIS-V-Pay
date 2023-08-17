@@ -53,10 +53,9 @@ const SideBar = ({isOpen}) => {
                                         </h2>
                                         <div id="sub-accordion-collapseOne" className="accordion-collapse collapse" aria-labelledby="sub-accordion-headingOne" data-bs-parent="#subAccordion">
                                             <div className="accordion-body">
-                                                <button className="btn btn-info w-100" >Transaction Summary Reports</button>
-                                                <button className="btn btn-info w-100">Transaction Amount Summary </button>
-                                                <button className="btn btn-info w-100">ARN Transaction Reports</button>
-                                              
+                                                <Link to="/Transcation"  >Transaction Summary Reports</Link>
+                                                <Link to="/Table" className="btn btn-info ">Transaction Amount Summary </Link>
+                                                <button className="btn btn-info w-100">ARN Transaction Reports</button>                                              
                                             </div>
                                         </div>
                                     </div>
