@@ -7,7 +7,7 @@
     border-radius: 5px;
     font-size: large;
     color:#636466;
-    
+    list-style: none;
 }
 .btn-btn-home{
     background-color: #352d94;
@@ -20,11 +20,13 @@
     border-radius: 5px;
     margin-top: 6px;
     margin-bottom: 4px;
+    margin-right: 10px
 }
 #main-side-card{
     background-color:white;
     border-radius: 5px;
     margin-top: 6px;
+    margin-right: 10px;
 }
 .side-img{
     padding-right: "8px";

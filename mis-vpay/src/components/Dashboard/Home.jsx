@@ -17,7 +17,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="container-fluid p-0 home-main" >
+            <div className="container-fluid p-0 home-main " >
             <Navbar onToggle={toggleSidebar} />
              <div className=" d-flex">
 
