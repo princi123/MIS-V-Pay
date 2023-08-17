@@ -2,47 +2,48 @@ import React, { useEffect, useState } from "react";
 import "../Assets/css/Auth/Login.css";
 import leftimage from "../Assets/images/utilogin.png";
 import { useNavigate } from "react-router-dom";
+import { setAuthTokenCookie, getAuthTokenCookie } from "./Cookie";
 
 const Login = () => {
-  const [user_details, setUserDetails] = useState([]);
-  const [p_emp_id, setEmpID] = useState(" ");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate("");
-  const handleLogin = (e) => {
-    e.preventDefault();
-    fetch("http://127.0.0.1:3000/api/v1/login_details", {
-      method: "POST",
-      body: JSON.stringify({ p_emp_id, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+    const [p_emp_id, setEmpID] = useState(" ");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    // const [cookies, setCookie] = useCookies([token]);
+  
+    const handleLogin = (e) => {
+      e.preventDefault();
+      fetch("api/v1/login_details", {
+        method: "POST",
+        body: JSON.stringify({ p_emp_id, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+            console.log(data)
+            if (Array.isArray(data) && data.length > 0) {
+                const empId = data[0].p_emp_id;
+                const token = data[0].p_auth_token;
+          console.log("Token from API:", token);
+          setAuthTokenCookie(empId, token);
+          console.log("Cookie value:", getAuthTokenCookie());
+          setEmpID("");
+          setPassword("");
+          navigate("/Home");
+        } else {
+            console.error("Invalid API response format");
         }
-        return response.json();
-      })
-      .then((data) => {
-        setUserDetails([...user_details, data]);
-        setEmpID("");
-        setPassword("");
-        navigate("/Home");
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
     };
-
-    // useEffect(() => {
-    //     try {
-    //         const response =  fetch("http://127.0.0.1:3000/api/v1/login_details");
-    //         const data =  response.json();
-    //         setUserDetails(data);
-    //     } catch (error) {
-    //         console.error("Error fetching user details:", error);
-    //     }
-    // }, []);
 
   return (
     <>
