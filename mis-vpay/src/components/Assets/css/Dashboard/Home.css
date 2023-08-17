@@ -6,13 +6,47 @@
 }
 .home-main{
     background-color: #dee2e6;
-    height: 100vh;
+    height: 100%;
+    margin-bottom: 0px;
 }
 .acc-main{
     background-color: #352d94;
     color: white;
 }
 #PieChart-card{
-    width: 25%;
-    height: 25%;
+   display: flex;
+    margin-top: 10px ;
+}
+#piechart-row{
+    margin: 0px;
+}
+.accordion-button:not(.collapsed)::after
+{
+    background-image: none;
+}
+.accordion-button::after{
+    background-image: none;
+}
+.accordion-button:not(.collapsed){
+    background-color: #352d94;
+    border: none;
+}
+.mis-heading{
+  color: #EE8B3A;
+  font-size:"16px";
+  font-weight:1000;
+}
+.dashboard-full {
+
+    width: 100%;
+    
+    transition: margin-left 0.5s ease-in-out;
+}
+
+.dashboard-closed {
+
+    width: calc(100% - 17%); /* Adjust the width based on your sidebar's width */
+
+    transition: width 0.3s ease-in-out;
+     
 }
