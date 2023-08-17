@@ -9,11 +9,11 @@ class Api::V1::LoginDetailsController < ApplicationController
   end
 
   def create
-    binding.break
     auth_token = JsonWebToken.encode(p_emp_id)  
     user_details = LoginDetailsService.get_user_details(p_emp_id, auth_token)  
     render json: user_details, status: :ok
   end
+
 
   private
   def p_emp_id
