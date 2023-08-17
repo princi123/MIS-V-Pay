@@ -1,0 +1,43 @@
+.gray-color{
+    color: rgb(140, 140, 142);;
+
+}
+.theader{
+    color: #352D94;
+}
+  
+.textlink:hover {
+    color: #ffc107;
+  }
+  .textlink {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #005FB7;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap; 
+    overflow: hidden;   
+    text-overflow: ellipsis;
+  }
+  .tablehead {
+    background-color: #283593; /* Indigo-800 background color */
+    color: #ffffff; /* White text color */
+  }
+  .bgcolorBlue {
+    background-color: #352d94;
+}
+.text-white {
+  color: #fff !important;
+}
+
+  .tablehead th {
+    border: none; /* Remove borders for header cells */
+  }
+
+  .tablehead th img {
+    vertical-align: middle; /* Adjust image alignment */
+  }
+  .bg{
+    background-color: #1a2057;
+  }

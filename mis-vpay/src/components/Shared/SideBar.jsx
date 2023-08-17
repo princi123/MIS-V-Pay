@@ -26,17 +26,14 @@ const SideBar = ({isOpen}) => {
                         </div>
                     </Link>
                 </div>
-
                 {/* Code For Second */}
                 <div className="accordion accordion-flush" id="accordionFlushExample">
                     <div className="accordion-item">
                         <h2 id="flush-headingOne">
                             <button className="accordion-button collapsed p-0  py-1 side-link " id="main-side-card" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                
-                                    <div className="side-home w-100">
-                                        <img src={Retails} alt="home"  width="12%" height="12%" className=" side-img p-1" /> Retail
-                                    </div>
-                               
+                              <div className="side-home w-100">
+                                <img src={Retails} alt="home"  width="12%" height="12%" className=" side-img p-1" /> Retail
+                              </div>
                             </button>
                         </h2>
                         <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -51,20 +48,17 @@ const SideBar = ({isOpen}) => {
                                         </h2>
                                         <div id="sub-accordion-collapseOne" className="accordion-collapse collapse" aria-labelledby="sub-accordion-headingOne" data-bs-parent="#subAccordion">
                                             <div className="accordion-body p-0 text-center">
-                                                <Link to="" className="sub-accor-active">Transaction Summary Reports</Link>
+                                                <Link to="/Transcation" className="sub-accor-active">Transaction Summary Reports</Link>
                                                 <button className="sub-accor">Transaction Amount Summary </button>
                                                 <button  className="sub-accor"style={{marginLeft:"24px",marginRight:"29px"}} >ARN Transaction Reports</button>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
                 {/* Code For Second Ended */}
                 
                 <div className="card" id="main-side-card">
@@ -110,7 +104,6 @@ const SideBar = ({isOpen}) => {
                         </div>
                     </Link>
                 </div>
-
                 <div className="card" id="main-side-card">
                     <Link className="side-link" >
                         <div className="side-home">
@@ -119,7 +112,6 @@ const SideBar = ({isOpen}) => {
                         </div>
                     </Link>
                 </div>
-
                 <div className="card" id="main-side-card">
                     <Link className="side-link" >
                         <div className="side-home">
@@ -128,7 +120,6 @@ const SideBar = ({isOpen}) => {
                         </div>
                     </Link>
                 </div>
-
                 <div className="card" id="main-side-card">
                     <Link className="side-link" >
                         <div className="side-home">
@@ -137,25 +128,16 @@ const SideBar = ({isOpen}) => {
                         </div>
                     </Link>
                 </div>
-
                 <div className="card" id="main-side-card">
                     <Link className="side-link" >
                         <div className="side-home">
-                         
-                     PRM Sales Management
-    
-      
+                          PRM Sales Management
                         </div>
                     </Link>
                 </div>
-
-
-
             </div>
          </div>   
         </>
     )
-
-
 }
 export default SideBar;
