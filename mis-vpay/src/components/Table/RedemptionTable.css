@@ -1,0 +1,14 @@
+.head {
+    display: flex;
+    align-items: center;
+  }
+
+  .head h4,
+  .head h5 {
+    margin: 0;
+  }
+
+  .gray-color {
+    color: gray;
+    margin-left: 20px;
+  }
