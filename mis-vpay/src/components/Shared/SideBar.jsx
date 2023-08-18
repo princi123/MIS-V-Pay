@@ -20,7 +20,7 @@ const SideBar = ({isOpen}) => {
          <div className={`sidebar ${isOpen ? 'open' : ''}`}>
             <div className="col-md-2 w-100" style={{marginLeft:"5px",marginBottom:"5px"}} >
                 <div className="card card_active" id="main-side-card-active">
-                    <Link className="side-link" >
+                    <Link className="side-link"to >
                         <div className="side-home">
                             <img src={home} alt="home"  className=" side-img p-1" /> Home
                         </div>

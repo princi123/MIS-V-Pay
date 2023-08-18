@@ -13,7 +13,7 @@ import SalesTable from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
 import Schema from "./Schema";
 const Retail_Treansation = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [hide, setHide] = useState(false);
 
   const toggleSidebar = () => {
