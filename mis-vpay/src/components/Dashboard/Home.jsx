@@ -9,7 +9,7 @@ import overall from "../Assets/images/overall survey.png";
 import overall2 from "../Assets/images/Overall Zone survey.png";
 const Home = () => {
 
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(true);
     const toggleSidebar = () => 
     {
     setSidebarOpen(!sidebarOpen);
@@ -17,7 +17,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="container-fluid p-0 home-main" >
+            <div className="container-fluid p-0 home-main " >
             <Navbar onToggle={toggleSidebar} />
              <div className=" d-flex">
 
@@ -41,7 +41,7 @@ const Home = () => {
                                 <div class="accordion " id="accordionExample">
                                     <div className="accordion-item acc-main">
                                         <h2 className="accordion-header acc-main " id="headingOne">
-                                            <div className="">
+                                            <div >
                                             <button className="accordion-button acc-main" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                                <div className="mis-heading">
                                                MIS Updates
