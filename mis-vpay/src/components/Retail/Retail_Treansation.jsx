@@ -11,6 +11,7 @@ import Navbar from "../Shared/Navbar";
 import { Link } from "react-router-dom";
 import SalesTable from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
+import Schema from "./Schema";
 const Retail_Treansation = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hide, setHide] = useState(false);
@@ -31,7 +32,7 @@ const Retail_Treansation = () => {
         <div
           className={` ${sidebarOpen ? "dashboard-closed" : "dashboard-full"}`}
         >
-          <div className="bg-white card m-4">
+          <div className="bg-white card m-4 radius " >
             <div className="col-lg-12  ">
               <div className=" rounded-lg p-3">
                 <button
@@ -99,18 +100,7 @@ const Retail_Treansation = () => {
                     </div>
                     <Filter />
                     <DropDown />
-                    <div className="form-group col-md-2 mt-3">
-                      <label className="form-lables">
-                        <b> Scheme</b>
-                      </label>
-                      <select
-                        name=""
-                        id="ab"
-                        className="form-select form-control mt-2"
-                      >
-                        <option value="">grid 9 </option>
-                      </select>
-                    </div>
+                    <Schema />
                     <div className="col-md-5" />
                     <div className="col-md-2 mt-5">
                       <p className="rcorners">
@@ -123,7 +113,7 @@ const Retail_Treansation = () => {
 
                     <div className="col-md-1 mt-5">
                       <button
-                        className="btn  BgcolorOrange "
+                        className="btn  Bgcolor "
                         onClick={togglehide}
                       >
                         <b className="colorwhite"> Search</b>

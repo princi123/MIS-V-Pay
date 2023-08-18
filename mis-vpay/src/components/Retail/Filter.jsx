@@ -35,38 +35,41 @@ const Filter = () => {
             className="form-control dropdown-toggle mt-2"
             onClick={handleToggleDropdown}
           >
-            Select Column
+            Select Table
           </button>
         <div className="dropdown-menu">
           <div>
             <input
+             className='m-1'
               type="checkbox"
               id="salesCheckbox"
               name="tables"
               value="Sales"
               onChange={() => handleTableSelection("Sales")}
             />
-            <label htmlFor="salesCheckbox">Sales</label>
+            <label htmlFor="salesCheckbox " className='m-2'>Sales</label>
           </div>
           <div>
             <input
+             className='m-1'
               type="checkbox"
               id="redemptionCheckbox"
               name="tables"
               value="Redemption"
               onChange={() => handleTableSelection("Redemption")}
             />
-            <label htmlFor="redemptionCheckbox">Redemption</label>
+            <label htmlFor="redemptionCheckbox" className='m-2'>Redemption</label>
           </div>
           <div>
             <input
+            className='m-1'
               type="checkbox"
               id="netSalesCheckbox"
               name="tables"
               value="Net Sales"
               onChange={() => handleTableSelection("Net Sales")}
             />
-            <label htmlFor="netSalesCheckbox">Net Sales</label>
+            <label htmlFor="netSalesCheckbox"className='m-2'>Net Sales</label>
           </div>
           <div>
             <button

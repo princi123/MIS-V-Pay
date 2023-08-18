@@ -5,4 +5,11 @@
 .form-lables{
   font-size: 15px;
   font-weight: bold;
+  margin-right: 4px;
+}
+.radius{
+  border-radius: 10px;
+}
+.Bgcolor{
+   background-color: #EE8B3A;
 }
