@@ -24,7 +24,7 @@ const Retail_Treansation = () => {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid p-0 home-main ">
       <Navbar onToggle={toggleSidebar} />
       <div className="d-flex">
         <SideBar isOpen={sidebarOpen} />
