@@ -33,8 +33,10 @@
 }
 .mis-heading{
   color: #EE8B3A;
-  font-size:"16px";
-  font-weight:1000;
+  font-size:"12px";
+  font-weight:bold;
+  border: transparent;
+  outline: 0;
 }
 .dashboard-full {
 

@@ -7,7 +7,20 @@
     border-radius: 5px;
     font-size: large;
     color:#636466;
-    list-style: none;
+    text-decoration: none;
+}
+.side-link-active{
+    margin: 4px 4px 4px 4px;
+    border-radius: 5px;
+    font-size: large;
+    color:white;
+    text-decoration: none;
+}
+.side-link-active:hover{
+    margin: 4px 4px 4px 4px;
+    border-radius: 5px;
+    font-size: large;
+    color:white;
 }
 .btn-btn-home{
     background-color: #352d94;
@@ -27,6 +40,18 @@
     border-radius: 5px;
     margin-top: 6px;
     margin-right: 10px;
+    outline: 0;
+    border: 1px solid;
+    border-color: #6364667a;
+    margin-left: 2px;
+}
+#main-side-c{
+    background-color:white;
+    border-radius: 5px;
+    outline: 0;
+    border: 1px solid;
+    border-color: #6364667a;
+    width: 96%;
 }
 .side-img{
     padding-right: "8px";
@@ -44,6 +69,12 @@
 .sidebar.open 
 {
  width: 250px;
+ height: 90vh;
+ background-color: white;
+ }
+ .sidebar.closed 
+{
+ display: none;
  }
  .sales-retails{
     border-radius: 10px;
@@ -54,7 +85,7 @@
     font-size: 14px;
     margin-right: 10px;
  }
- .sub-accor{
+ #sub-accor{
     background-color: white;
     color: #636466;
     padding-left: 20px;
@@ -68,15 +99,16 @@
 
    
  }
- .sub-accor-active{
+ #sub-accor-active{
     background-color: #352d94;
     color: #ffffffb5;
     padding-left: 20px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     font-size: 12px;
     font-weight: bold;
     padding-right: 20px;
     border-radius: 5px;
     border-color: #352d94;
+    text-decoration: none;
  }
