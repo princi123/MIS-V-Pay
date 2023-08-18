@@ -1,6 +1,4 @@
 import React,{useState}from "react";
-import SubRedemptionTable from "./SubRedemptionTable";
-import SubNetSalesTable from "./SubNetSalesTable";
 import "./SubSalesTable.css";
 import TableRowWithCollapse from "./TableRowWithCollapse";
 
@@ -107,8 +105,7 @@ const SubSalesTable = () => {
               </tr>
         </tbody>
       </table>
-      <SubRedemptionTable/>
-      <SubNetSalesTable/>
+      
     </div>
   );
 };

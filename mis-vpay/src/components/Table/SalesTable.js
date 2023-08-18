@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SalesTable.css";
 import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
@@ -8,6 +8,7 @@ import SideBar from "../Shared/SideBar";
 
 const SalesTable = () => {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [transaction_summary_report, setTransactionSummaryReport]= useState([]);
 
   const handleButtonClick = () => {
     setIsButtonClicked((prevState) => !prevState);
@@ -17,6 +18,31 @@ const SalesTable = () => {
   {
   setSidebarOpen(!sidebarOpen);
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:3000/api/v1/summary_transactions");
+        const data = await response.json();
+        setTransactionSummaryReport(data);
+      } catch (error) {
+        console.error("Error fetching transaction summary report:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const eastZoneData = transaction_summary_report.find(entry => entry.ZONE === "EAST");
+  const E_ARN_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "E-ARN");
+  const FINTECH_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "FINTECH");
+  const GULF_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "GULF");
+  const NOMAPPING_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "NO MAPPING");
+  const north_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "NORTH");
+  const NO_MAPPING_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "NO_MAPPING");
+  const SOUTH_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "SOUTH");
+  const WEST_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "WEST");
+  const WRONG_INVPIN_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "WRONG_INVPIN");
 
   return (
     <>
@@ -44,8 +70,8 @@ const SalesTable = () => {
         <div className="col-md-12">
           <table className="table small border">
             <tbody>
+
               <tr className="bgcolorBlue text-white ">
-                <th scope="col">S no.</th>
                 <th scope="col">ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /><img src="/mis_vpay/assets/images/table2icon.png" alt="" /></th>
                 <th scope="col">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
                 <th scope="col">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
@@ -55,20 +81,21 @@ const SalesTable = () => {
                 <th scope="col">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
                 <th scope="col">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
               </tr>
-              <tr className="accordion-toggle collapsed" id="accordion1" data-mdb-toggle="collapse" data-mdb-parent="#accordion1" href="#collapseOne" aria-controls="collapseOne">
-
-                <td>1.</td>
+              {eastZoneData && (
+              <tr>
                 <td>
-                  <button onClick={handleButtonClick} className="textlink"><b>EAST</b></button>
+                  <button className="textlink" onClick={handleButtonClick} >
+                    <b>{eastZoneData.ZONE }</b></button>
                 </td>
-                <td>102.45</td>
-                <td>18.54</td>
-                <td>1.05</td>
-                <td>62.47</td>
-                <td>37.6</td>
-                <td>657.39</td>
-                <td>879.5</td>
+                <td>{eastZoneData.SEQUITY}</td>
+                <td>{eastZoneData.SHYBRID}</td>
+                <td>{eastZoneData.SARBITRAGE}</td>
+                <td>{eastZoneData.SPASSIVE}</td>
+                <td>{eastZoneData.SFIXED_INCOME}</td>
+                <td>{eastZoneData.SCASH}</td>
+                <td>{eastZoneData.STOTAL}</td>
               </tr>
+              )}
               {isButtonClicked && (
                 <tr>
                   <td colSpan="9">
@@ -76,141 +103,142 @@ const SalesTable = () => {
                   </td>
                 </tr>
               )}
+              {E_ARN_ZoneData && (
               <tr>
-                <td>2.</td>
                 <td><button className="textlink">
-                  <b>E-ARN</b>
+                  <b>{E_ARN_ZoneData.ZONE}</b>
                 </button></td>
-                <td>50445.55</td>
-                <td>8400.66</td>
-                <td>851.86</td>
-                <td>8701.79</td>
-                <td>49287.18</td>
-                <td>39089.01</td>
-                <td>156776.05</td>
-              </tr>
+                <td>{E_ARN_ZoneData.SEQUITY}</td>
+                <td>{E_ARN_ZoneData.SHYBRID}</td>
+                <td>{E_ARN_ZoneData.SARBITRAGE}</td>
+                <td>{E_ARN_ZoneData.SPASSIVE}</td>
+                <td>{E_ARN_ZoneData.SFIXED_INCOME}</td>
+                <td>{E_ARN_ZoneData.SCASH}</td>
+                <td>{E_ARN_ZoneData.STOTAL}</td>
+              </tr>)}
+              {FINTECH_ZoneData && (
               <tr>
-                <td>3.</td>
                 <td>
                   <button className="textlink">
-                    <b>FINTECH</b>
+                    <b>{FINTECH_ZoneData.ZONE}</b>
                   </button></td>
-                <td>5242.13</td>
-                <td>148.11</td>
-                <td>444.02</td>
-                <td>35828.14</td>
-                <td>3598.07</td>
-                <td>8394.81</td>
-                <td>53655.27</td>
-              </tr>
+                <td>{FINTECH_ZoneData.SEQUITY}</td>
+                <td>{FINTECH_ZoneData.SHYBRID}</td>
+                <td>{FINTECH_ZoneData.SARBITRAGE}</td>
+                <td>{FINTECH_ZoneData.SPASSIVE}</td>
+                <td>{FINTECH_ZoneData.SFIXED_INCOME}</td>
+                <td>{FINTECH_ZoneData.SCASH}</td>
+                <td>{FINTECH_ZoneData.STOTAL}</td>
+              </tr>)}
+              {GULF_ZoneData && (
               <tr>
-                <td>4.</td>
                 <td>
                   <button className="textlink">
-                    <b>GULF</b>
-                  </button></td>
-                <td>50445.55</td>
-                <td>8400.66</td>
-                <td>851.86</td>
-                <td>8701.79</td>
-                <td>49287.18</td>
-                <td>39089.01</td>
-                <td>156776.05</td>
-              </tr>
+                    <b>{GULF_ZoneData.ZONE}</b>
+                  </button>
+                </td>
+                <td>{GULF_ZoneData.SEQUITY}</td>
+                <td>{GULF_ZoneData.SHYBRID}</td>
+                <td>{GULF_ZoneData.SARBITRAGE}</td>
+                <td>{GULF_ZoneData.SPASSIVE}</td>
+                <td>{GULF_ZoneData.SFIXED_INCOME}</td>
+                <td>{GULF_ZoneData.SCASH}</td>
+                <td>{GULF_ZoneData.STOTAL}</td>
+              </tr>)}
+              {NOMAPPING_ZoneData && (
               <tr >
-                <td>5.</td>
                 <td>
                   <button className="textlink">
-                    <b>NORTH</b>
-                  </button></td>
-                <td>5242.13</td>
-                <td>148.11</td>
-                <td>444.02</td>
-                <td>35828.14</td>
-                <td>3598.07</td>
-                <td>8394.81</td>
-                <td>53655.27</td>
-              </tr>
+                    <b>{NOMAPPING_ZoneData.ZONE}</b>
+                  </button>
+                </td>
+                <td>{NOMAPPING_ZoneData.SEQUITY}</td>
+                <td>{NOMAPPING_ZoneData.SHYBRID}</td>
+                <td>{NOMAPPING_ZoneData.SARBITRAGE}</td>
+                <td>{NOMAPPING_ZoneData.SPASSIVE}</td>
+                <td>{NOMAPPING_ZoneData.SFIXED_INCOME}</td>
+                <td>{NOMAPPING_ZoneData.SCASH}</td>
+                <td>{NOMAPPING_ZoneData.STOTAL}</td>
+              </tr>)}
+              {north_ZoneData && (
               <tr>
-                <td>6.</td>
                 <td>
                   <button className="textlink">
-                    <b>NORTH</b>
+                    <b>{north_ZoneData.ZONE}</b>
                   </button></td>
-                <td>50445.55</td>
-                <td>8400.66</td>
-                <td>851.86</td>
-                <td>8701.79</td>
-                <td>49287.18</td>
-                <td>39089.01</td>
-                <td>156776.05</td>
-              </tr>
+                <td>{north_ZoneData.SEQUITY}</td>
+                <td>{north_ZoneData.SHYBRID}</td>
+                <td>{north_ZoneData.SARBITRAGE}</td>
+                <td>{north_ZoneData.SPASSIVE}</td>
+                <td>{north_ZoneData.SFIXED_INCOME}</td>
+                <td>{north_ZoneData.SCASH}</td>
+                <td>{north_ZoneData.STOTAL}</td>
+              </tr>)}
+              {NO_MAPPING_ZoneData && (
               <tr>
-                <td>7.</td>
                 <td>
                   <button className="textlink">
-                    <b>NO MAPPING</b>
+                    <b>{NO_MAPPING_ZoneData.ZONE}</b>
                   </button></td>
-                <td>5242.13</td>
-                <td>148.11</td>
-                <td>444.02</td>
-                <td>35828.14</td>
-                <td>3598.07</td>
-                <td>8394.81</td>
-                <td>53655.27</td>
-              </tr>
+                <td>{NO_MAPPING_ZoneData.SEQUITY}</td>
+                <td>{NO_MAPPING_ZoneData.SHYBRID}</td>
+                <td>{NO_MAPPING_ZoneData.SARBITRAGE}</td>
+                <td>{NO_MAPPING_ZoneData.SPASSIVE}</td>
+                <td>{NO_MAPPING_ZoneData.SFIXED_INCOME}</td>
+                <td>{NO_MAPPING_ZoneData.SCASH}</td>
+                <td>{NO_MAPPING_ZoneData.STOTAL}</td>
+              </tr>)}
+              {SOUTH_ZoneData &&(
               <tr>
-                <td>8.</td>
                 <td>
                   <button className="textlink">
-                    <b>SOUTH</b>
+                    <b>{SOUTH_ZoneData.ZONE}</b>
                   </button></td>
-                <td>50445.55</td>
-                <td>8400.66</td>
-                <td>851.86</td>
-                <td>8701.79</td>
-                <td>49287.18</td>
-                <td>39089.01</td>
-                <td>156776.05</td>
-              </tr>
+                <td>{SOUTH_ZoneData.SEQUITY}</td>
+                <td>{SOUTH_ZoneData.SHYBRID}</td>
+                <td>{SOUTH_ZoneData.SARBITRAGE}</td>
+                <td>{SOUTH_ZoneData.SPASSIVE}</td>
+                <td>{SOUTH_ZoneData.SFIXED_INCOME}</td>
+                <td>{SOUTH_ZoneData.SCASH}</td>
+                <td>{SOUTH_ZoneData.STOTAL}</td>
+              </tr>)}
+                {WEST_ZoneData && (
               <tr>
-                <td>9.</td>
                 <td>
                   <button className="textlink">
-                    <b>WEST</b>
+                    <b>{WEST_ZoneData.ZONE}</b>
                   </button></td>
-                <td>5242.13</td>
-                <td>148.11</td>
-                <td>444.02</td>
-                <td>35828.14</td>
-                <td>3598.07</td>
-                <td>8394.81</td>
-                <td>53655.27</td>
-              </tr>
-              <tr>
-                <td>10.</td>
+                <td>{WEST_ZoneData.SEQUITY}</td>
+                <td>{WEST_ZoneData.SHYBRID}</td>
+                <td>{WEST_ZoneData.SARBITRAGE}</td>
+                <td>{WEST_ZoneData.SPASSIVE}</td>
+                <td>{WEST_ZoneData.SFIXED_INCOME}</td>
+                <td>{WEST_ZoneData.SCASH}</td>
+                <td>{WEST_ZoneData.STOTAL}</td>
+              </tr>)}
+              {WRONG_INVPIN_ZoneData && (
+                <tr>
                 <td>
                   <button className="textlink">
-                    <b>WRONG INVPIN</b>
+                    <b>{WRONG_INVPIN_ZoneData.ZONE}</b>
                   </button></td>
-                <td>50445.55</td>
-                <td>8400.66</td>
-                <td>851.86</td>
-                <td>8701.79</td>
-                <td>49287.18</td>
-                <td>39089.01</td>
-                <td>156776.05</td>
-              </tr>
-              <tr className="">
+                <td>{WRONG_INVPIN_ZoneData.SEQUITY}</td>
+                <td>{WRONG_INVPIN_ZoneData.SHYBRID}</td>
+                <td>{WRONG_INVPIN_ZoneData.SARBITRAGE}</td>
+                <td>{WRONG_INVPIN_ZoneData.SPASSIVE}</td>
+                <td>{WRONG_INVPIN_ZoneData.SFIXED_INCOME}</td>
+                <td>{WRONG_INVPIN_ZoneData.SCASH}</td>
+                <td>{WRONG_INVPIN_ZoneData.STOTAL}</td>
+              </tr>)}
+              <tr className="bgcolorBlue text-white">
                 <td>Total</td>
-                <td />
-                <td>50445.55</td>
-                <td>8400.66</td>
-                <td>851.86</td>
-                <td>8701.79</td>
-                <td>49287.18</td>
-                <td>39089.01</td>
-                <td>156776.05</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
               </tr>
 
             </tbody>
