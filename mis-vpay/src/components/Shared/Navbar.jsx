@@ -13,7 +13,7 @@ const Navbar = ({ onToggle }) => {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-light bg-white" >
+            <nav className="navbar navbar-expand-lg navbar-light bg-white p-0" >
                 <div className="container-fluid " id="nav-card">
                    <div className="col-md-12"> 
                      <div className="row">
@@ -28,12 +28,12 @@ const Navbar = ({ onToggle }) => {
 </button>
 
 </div>
-                    <div className="col-md-2" >
+                    <div className="col-md-2 pt-1" >
                         <h5 className="nav-h4">Welcome, Admin</h5>
                         <p>Quarter <span>:</span><strong><span>2023-24 Q1</span></strong></p>
                     </div>
                     <div className="col-md-2" >
-                        <div id="third-nav">
+                        <div id="third-nav" className="pt-1">
                             <div >
                             <p className="nav-para" >Channel <span>:</span><strong>All</strong></p>   
                             </div>
