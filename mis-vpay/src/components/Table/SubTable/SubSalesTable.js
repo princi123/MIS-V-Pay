@@ -9,7 +9,7 @@ const SubSalesTable = () => {
       setIsAnchorClicked((prevState) => !prevState);
     };
   return (
-    <div className="new-component container-fluid">
+    <div className="new-component">
       <div className="row mt-2 bg-white">
        <div className="head">
           <h4><b className="black-color">Sales</b></h4>

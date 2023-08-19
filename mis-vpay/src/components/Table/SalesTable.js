@@ -3,8 +3,6 @@ import "./SalesTable.css";
 import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
-import Navbar from "../Shared/Navbar";
-import SideBar from "../Shared/SideBar";
 
 const SalesTable = () => {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
@@ -25,6 +23,7 @@ const SalesTable = () => {
         const response = await fetch("http://127.0.0.1:3000/api/v1/summary_transactions");
         const data = await response.json();
         setTransactionSummaryReport(data);
+
       } catch (error) {
         console.error("Error fetching transaction summary report:", error);
       }
@@ -47,9 +46,7 @@ const SalesTable = () => {
   return (
     <>
     <div className="container-fluid">
-    
     <div className="d-flex">
-    
      <div >
       <div >
       <div className="row mt-4 mr-4 ">
@@ -71,15 +68,15 @@ const SalesTable = () => {
           <table className="table small border">
             <tbody>
 
-              <tr className="bgcolorBlue text-white ">
+              <tr className="bgcolorBlue text-white">
                 <th scope="col">ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /><img src="/mis_vpay/assets/images/table2icon.png" alt="" /></th>
-                <th scope="col">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                <th scope="col">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                <th scope="col">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                <th scope="col">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                <th scope="col">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                <th scope="col">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                <th scope="col">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                <th className="text-end" scope="col">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                <th className="text-end" scope="col">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                <th className="text-end" scope="col">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                <th className="text-end" scope="col">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                <th className="text-end" scope="col">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                <th className="text-end" scope="col">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                <th className="text-end" scope="col">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
               </tr>
               {eastZoneData && (
               <tr>
@@ -87,13 +84,13 @@ const SalesTable = () => {
                   <button className="textlink" onClick={handleButtonClick} >
                     <b>{eastZoneData.ZONE }</b></button>
                 </td>
-                <td>{eastZoneData.SEQUITY}</td>
-                <td>{eastZoneData.SHYBRID}</td>
-                <td>{eastZoneData.SARBITRAGE}</td>
-                <td>{eastZoneData.SPASSIVE}</td>
-                <td>{eastZoneData.SFIXED_INCOME}</td>
-                <td>{eastZoneData.SCASH}</td>
-                <td>{eastZoneData.STOTAL}</td>
+                <td className="text-end">{eastZoneData.SEQUITY}</td>
+                <td className="text-end">{eastZoneData.SHYBRID}</td>
+                <td className="text-end">{eastZoneData.SARBITRAGE}</td>
+                <td className="text-end">{eastZoneData.SPASSIVE}</td>
+                <td className="text-end">{eastZoneData.SFIXED_INCOME}</td>
+                <td className="text-end">{eastZoneData.SCASH}</td>
+                <td className="text-end">{eastZoneData.STOTAL}</td>
               </tr>
               )}
               {isButtonClicked && (
@@ -108,13 +105,13 @@ const SalesTable = () => {
                 <td><button className="textlink">
                   <b>{E_ARN_ZoneData.ZONE}</b>
                 </button></td>
-                <td>{E_ARN_ZoneData.SEQUITY}</td>
-                <td>{E_ARN_ZoneData.SHYBRID}</td>
-                <td>{E_ARN_ZoneData.SARBITRAGE}</td>
-                <td>{E_ARN_ZoneData.SPASSIVE}</td>
-                <td>{E_ARN_ZoneData.SFIXED_INCOME}</td>
-                <td>{E_ARN_ZoneData.SCASH}</td>
-                <td>{E_ARN_ZoneData.STOTAL}</td>
+                <td className="text-end">{E_ARN_ZoneData.SEQUITY}</td>
+                <td className="text-end">{E_ARN_ZoneData.SHYBRID}</td>
+                <td className="text-end">{E_ARN_ZoneData.SARBITRAGE}</td>
+                <td className="text-end">{E_ARN_ZoneData.SPASSIVE}</td>
+                <td className="text-end">{E_ARN_ZoneData.SFIXED_INCOME}</td>
+                <td className="text-end">{E_ARN_ZoneData.SCASH}</td>
+                <td className="text-end">{E_ARN_ZoneData.STOTAL}</td>
               </tr>)}
               {FINTECH_ZoneData && (
               <tr>
@@ -122,13 +119,13 @@ const SalesTable = () => {
                   <button className="textlink">
                     <b>{FINTECH_ZoneData.ZONE}</b>
                   </button></td>
-                <td>{FINTECH_ZoneData.SEQUITY}</td>
-                <td>{FINTECH_ZoneData.SHYBRID}</td>
-                <td>{FINTECH_ZoneData.SARBITRAGE}</td>
-                <td>{FINTECH_ZoneData.SPASSIVE}</td>
-                <td>{FINTECH_ZoneData.SFIXED_INCOME}</td>
-                <td>{FINTECH_ZoneData.SCASH}</td>
-                <td>{FINTECH_ZoneData.STOTAL}</td>
+                <td className="text-end">{FINTECH_ZoneData.SEQUITY}</td>
+                <td className="text-end">{FINTECH_ZoneData.SHYBRID}</td>
+                <td className="text-end">{FINTECH_ZoneData.SARBITRAGE}</td>
+                <td className="text-end">{FINTECH_ZoneData.SPASSIVE}</td>
+                <td className="text-end">{FINTECH_ZoneData.SFIXED_INCOME}</td>
+                <td className="text-end">{FINTECH_ZoneData.SCASH}</td>
+                <td className="text-end">{FINTECH_ZoneData.STOTAL}</td>
               </tr>)}
               {GULF_ZoneData && (
               <tr>
@@ -137,13 +134,13 @@ const SalesTable = () => {
                     <b>{GULF_ZoneData.ZONE}</b>
                   </button>
                 </td>
-                <td>{GULF_ZoneData.SEQUITY}</td>
-                <td>{GULF_ZoneData.SHYBRID}</td>
-                <td>{GULF_ZoneData.SARBITRAGE}</td>
-                <td>{GULF_ZoneData.SPASSIVE}</td>
-                <td>{GULF_ZoneData.SFIXED_INCOME}</td>
-                <td>{GULF_ZoneData.SCASH}</td>
-                <td>{GULF_ZoneData.STOTAL}</td>
+                <td className="text-end">{GULF_ZoneData.SEQUITY}</td>
+                <td className="text-end">{GULF_ZoneData.SHYBRID}</td>
+                <td className="text-end">{GULF_ZoneData.SARBITRAGE}</td>
+                <td className="text-end">{GULF_ZoneData.SPASSIVE}</td>
+                <td className="text-end">{GULF_ZoneData.SFIXED_INCOME}</td>
+                <td className="text-end">{GULF_ZoneData.SCASH}</td>
+                <td className="text-end">{GULF_ZoneData.STOTAL}</td>
               </tr>)}
               {NOMAPPING_ZoneData && (
               <tr >
@@ -152,13 +149,13 @@ const SalesTable = () => {
                     <b>{NOMAPPING_ZoneData.ZONE}</b>
                   </button>
                 </td>
-                <td>{NOMAPPING_ZoneData.SEQUITY}</td>
-                <td>{NOMAPPING_ZoneData.SHYBRID}</td>
-                <td>{NOMAPPING_ZoneData.SARBITRAGE}</td>
-                <td>{NOMAPPING_ZoneData.SPASSIVE}</td>
-                <td>{NOMAPPING_ZoneData.SFIXED_INCOME}</td>
-                <td>{NOMAPPING_ZoneData.SCASH}</td>
-                <td>{NOMAPPING_ZoneData.STOTAL}</td>
+                <td className="text-end">{NOMAPPING_ZoneData.SEQUITY}</td>
+                <td className="text-end">{NOMAPPING_ZoneData.SHYBRID}</td>
+                <td className="text-end">{NOMAPPING_ZoneData.SARBITRAGE}</td>
+                <td className="text-end">{NOMAPPING_ZoneData.SPASSIVE}</td>
+                <td className="text-end">{NOMAPPING_ZoneData.SFIXED_INCOME}</td>
+                <td className="text-end">{NOMAPPING_ZoneData.SCASH}</td>
+                <td className="text-end">{NOMAPPING_ZoneData.STOTAL}</td>
               </tr>)}
               {north_ZoneData && (
               <tr>
@@ -166,13 +163,13 @@ const SalesTable = () => {
                   <button className="textlink">
                     <b>{north_ZoneData.ZONE}</b>
                   </button></td>
-                <td>{north_ZoneData.SEQUITY}</td>
-                <td>{north_ZoneData.SHYBRID}</td>
-                <td>{north_ZoneData.SARBITRAGE}</td>
-                <td>{north_ZoneData.SPASSIVE}</td>
-                <td>{north_ZoneData.SFIXED_INCOME}</td>
-                <td>{north_ZoneData.SCASH}</td>
-                <td>{north_ZoneData.STOTAL}</td>
+                <td className="text-end">{north_ZoneData.SEQUITY}</td>
+                <td className="text-end">{north_ZoneData.SHYBRID}</td>
+                <td className="text-end">{north_ZoneData.SARBITRAGE}</td>
+                <td className="text-end">{north_ZoneData.SPASSIVE}</td>
+                <td className="text-end">{north_ZoneData.SFIXED_INCOME}</td>
+                <td className="text-end">{north_ZoneData.SCASH}</td>
+                <td className="text-end">{north_ZoneData.STOTAL}</td>
               </tr>)}
               {NO_MAPPING_ZoneData && (
               <tr>
@@ -180,13 +177,13 @@ const SalesTable = () => {
                   <button className="textlink">
                     <b>{NO_MAPPING_ZoneData.ZONE}</b>
                   </button></td>
-                <td>{NO_MAPPING_ZoneData.SEQUITY}</td>
-                <td>{NO_MAPPING_ZoneData.SHYBRID}</td>
-                <td>{NO_MAPPING_ZoneData.SARBITRAGE}</td>
-                <td>{NO_MAPPING_ZoneData.SPASSIVE}</td>
-                <td>{NO_MAPPING_ZoneData.SFIXED_INCOME}</td>
-                <td>{NO_MAPPING_ZoneData.SCASH}</td>
-                <td>{NO_MAPPING_ZoneData.STOTAL}</td>
+                <td className="text-end">{NO_MAPPING_ZoneData.SEQUITY}</td>
+                <td className="text-end">{NO_MAPPING_ZoneData.SHYBRID}</td>
+                <td className="text-end">{NO_MAPPING_ZoneData.SARBITRAGE}</td>
+                <td className="text-end">{NO_MAPPING_ZoneData.SPASSIVE}</td>
+                <td className="text-end">{NO_MAPPING_ZoneData.SFIXED_INCOME}</td>
+                <td className="text-end">{NO_MAPPING_ZoneData.SCASH}</td>
+                <td className="text-end">{NO_MAPPING_ZoneData.STOTAL}</td>
               </tr>)}
               {SOUTH_ZoneData &&(
               <tr>
@@ -194,13 +191,13 @@ const SalesTable = () => {
                   <button className="textlink">
                     <b>{SOUTH_ZoneData.ZONE}</b>
                   </button></td>
-                <td>{SOUTH_ZoneData.SEQUITY}</td>
-                <td>{SOUTH_ZoneData.SHYBRID}</td>
-                <td>{SOUTH_ZoneData.SARBITRAGE}</td>
-                <td>{SOUTH_ZoneData.SPASSIVE}</td>
-                <td>{SOUTH_ZoneData.SFIXED_INCOME}</td>
-                <td>{SOUTH_ZoneData.SCASH}</td>
-                <td>{SOUTH_ZoneData.STOTAL}</td>
+                <td className="text-end">{SOUTH_ZoneData.SEQUITY}</td>
+                <td className="text-end">{SOUTH_ZoneData.SHYBRID}</td>
+                <td className="text-end">{SOUTH_ZoneData.SARBITRAGE}</td>
+                <td className="text-end">{SOUTH_ZoneData.SPASSIVE}</td>
+                <td className="text-end">{SOUTH_ZoneData.SFIXED_INCOME}</td>
+                <td className="text-end">{SOUTH_ZoneData.SCASH}</td>
+                <td className="text-end">{SOUTH_ZoneData.STOTAL}</td>
               </tr>)}
                 {WEST_ZoneData && (
               <tr>
@@ -208,13 +205,13 @@ const SalesTable = () => {
                   <button className="textlink">
                     <b>{WEST_ZoneData.ZONE}</b>
                   </button></td>
-                <td>{WEST_ZoneData.SEQUITY}</td>
-                <td>{WEST_ZoneData.SHYBRID}</td>
-                <td>{WEST_ZoneData.SARBITRAGE}</td>
-                <td>{WEST_ZoneData.SPASSIVE}</td>
-                <td>{WEST_ZoneData.SFIXED_INCOME}</td>
-                <td>{WEST_ZoneData.SCASH}</td>
-                <td>{WEST_ZoneData.STOTAL}</td>
+                <td className="text-end">{WEST_ZoneData.SEQUITY}</td>
+                <td className="text-end">{WEST_ZoneData.SHYBRID}</td>
+                <td className="text-end">{WEST_ZoneData.SARBITRAGE}</td>
+                <td className="text-end">{WEST_ZoneData.SPASSIVE}</td>
+                <td className="text-end">{WEST_ZoneData.SFIXED_INCOME}</td>
+                <td className="text-end">{WEST_ZoneData.SCASH}</td>
+                <td className="text-end">{WEST_ZoneData.STOTAL}</td>
               </tr>)}
               {WRONG_INVPIN_ZoneData && (
                 <tr>
@@ -222,13 +219,13 @@ const SalesTable = () => {
                   <button className="textlink">
                     <b>{WRONG_INVPIN_ZoneData.ZONE}</b>
                   </button></td>
-                <td>{WRONG_INVPIN_ZoneData.SEQUITY}</td>
-                <td>{WRONG_INVPIN_ZoneData.SHYBRID}</td>
-                <td>{WRONG_INVPIN_ZoneData.SARBITRAGE}</td>
-                <td>{WRONG_INVPIN_ZoneData.SPASSIVE}</td>
-                <td>{WRONG_INVPIN_ZoneData.SFIXED_INCOME}</td>
-                <td>{WRONG_INVPIN_ZoneData.SCASH}</td>
-                <td>{WRONG_INVPIN_ZoneData.STOTAL}</td>
+                <td className="text-end">{WRONG_INVPIN_ZoneData.SEQUITY}</td>
+                <td className="text-end">{WRONG_INVPIN_ZoneData.SHYBRID}</td>
+                <td className="text-end">{WRONG_INVPIN_ZoneData.SARBITRAGE}</td>
+                <td className="text-end">{WRONG_INVPIN_ZoneData.SPASSIVE}</td>
+                <td className="text-end">{WRONG_INVPIN_ZoneData.SFIXED_INCOME}</td>
+                <td className="text-end">{WRONG_INVPIN_ZoneData.SCASH}</td>
+                <td className="text-end">{WRONG_INVPIN_ZoneData.STOTAL}</td>
               </tr>)}
               <tr className="bgcolorBlue text-white">
                 <td>Total</td>
@@ -243,8 +240,11 @@ const SalesTable = () => {
 
             </tbody>
           </table>
-          <RedemptionTable />
-          <NetSalesTable />
+          <RedemptionTable eastZone={eastZoneData} EARN_ZONE= {E_ARN_ZoneData} FINTECH_ZONE= {FINTECH_ZoneData} GULF_ZONE={GULF_ZoneData} NOMAPPING_ZONE={NOMAPPING_ZoneData} 
+          NORTH_ZONE= {north_ZoneData} NO_MAPPING={NO_MAPPING_ZoneData} SOUTH_ZONE={SOUTH_ZoneData}  WEST_ZONE={WEST_ZoneData} WRONG_INVPIN_ZONE={WRONG_INVPIN_ZoneData}/>
+
+          <NetSalesTable eastZone={eastZoneData} EARN_ZONE= {E_ARN_ZoneData} FINTECH_ZONE= {FINTECH_ZoneData} GULF_ZONE={GULF_ZoneData} NOMAPPING_ZONE={NOMAPPING_ZoneData} 
+          NORTH_ZONE= {north_ZoneData} NO_MAPPING={NO_MAPPING_ZoneData} SOUTH_ZONE={SOUTH_ZoneData}  WEST_ZONE={WEST_ZoneData} WRONG_INVPIN_ZONE={WRONG_INVPIN_ZoneData}/>
         </div>
       </div>
       </div>

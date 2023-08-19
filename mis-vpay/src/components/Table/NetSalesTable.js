@@ -1,37 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SubNetSalesTable from "./SubTable/SubNetSalesTable";
 
-const NetSalesTable = () => {
+const NetSalesTable = ({eastZone, EARN_ZONE, FINTECH_ZONE, GULF_ZONE, NOMAPPING_ZONE,NORTH_ZONE, NO_MAPPING, SOUTH_ZONE,  WEST_ZONE, WRONG_INVPIN_ZONE}) => {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [transaction_summary_report, setTransactionSummaryReport]= useState([]);
+
 
   const handleButtonClick = () => {
     setIsButtonClicked((prevState) => !prevState);
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:3000/api/v1/summary_transactions");
-        const data = await response.json();
-        setTransactionSummaryReport(data);
-      } catch (error) {
-        console.error("Error fetching transaction summary report:", error);
-      }
-    };
 
-    fetchData();
-  }, []);
-
-  const eastZoneData = transaction_summary_report.find(entry => entry.ZONE === "EAST");
-  const E_ARN_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "E-ARN");
-  const FINTECH_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "FINTECH");
-  const GULF_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "GULF");
-  const NOMAPPING_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "NO MAPPING");
-  const north_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "NORTH");
-  const NO_MAPPING_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "NO_MAPPING");
-  const SOUTH_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "SOUTH");
-  const WEST_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "WEST");
-  const WRONG_INVPIN_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "WRONG_INVPIN");
   return (
     <div className="new-component">
       <div className="head">
@@ -44,29 +21,29 @@ const NetSalesTable = () => {
           <tbody>
             <tr className="bgcolorBlue text-white">
               <th scope="col">ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /><img src="/mis_vpay/assets/images/table2icon.png" alt="" /></th>
-              <th scope="col">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-              <th scope="col">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-              <th scope="col">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-              <th scope="col">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              <th scope="col" className="text-end">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+              <th scope="col" className="text-end">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+              <th scope="col" className="text-end">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+              <th scope="col" className="text-end">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
               </th>
-              <th scope="col">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              <th scope="col" className="text-end">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
               </th>
-              <th scope="col">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-              <th scope="col">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+              <th scope="col" className="text-end">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+              <th scope="col" className="text-end">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
             </tr>
-            {eastZoneData && (
+            {eastZone && (
             <tr>
               <td>
                 <button className="textlink" onClick={handleButtonClick}>
-                <b>{eastZoneData.ZONE }</b>
+                <b>{eastZone.ZONE }</b>
                 </button></td>
-                <td>{eastZoneData.NEQUITY}</td>
-                <td>{eastZoneData.NHYBRID}</td>
-                <td>{eastZoneData.NARBITRAGE}</td>
-                <td>{eastZoneData.NPASSIVE}</td>
-                <td>{eastZoneData.NFIXED_INCOME}</td>
-                <td>{eastZoneData.NCASH}</td>
-                <td>{eastZoneData.NTOTAL}</td>
+                <td className="text-end">{eastZone.NEQUITY}</td>
+                <td className="text-end">{eastZone.NHYBRID}</td>
+                <td className="text-end">{eastZone.NARBITRAGE}</td>
+                <td className="text-end">{eastZone.NPASSIVE}</td>
+                <td className="text-end">{eastZone.NFIXED_INCOME}</td>
+                <td className="text-end">{eastZone.NCASH}</td>
+                <td className="text-end">{eastZone.NTOTAL}</td>
             </tr>)}
             {isButtonClicked && (
                 <tr>
@@ -75,132 +52,132 @@ const NetSalesTable = () => {
                   </td>
                 </tr>
               )}
-            {E_ARN_ZoneData && (
+            {EARN_ZONE && (
               <tr>
                 <td><button className="textlink">
-                  <b>{E_ARN_ZoneData.ZONE}</b>
+                  <b>{EARN_ZONE.ZONE}</b>
                 </button></td>
-                <td>{E_ARN_ZoneData.NEQUITY}</td>
-                <td>{E_ARN_ZoneData.NHYBRID}</td>
-                <td>{E_ARN_ZoneData.NARBITRAGE}</td>
-                <td>{E_ARN_ZoneData.NPASSIVE}</td>
-                <td>{E_ARN_ZoneData.NFIXED_INCOME}</td>
-                <td>{E_ARN_ZoneData.NCASH}</td>
-                <td>{E_ARN_ZoneData.NTOTAL}</td>
+                <td className="text-end">{EARN_ZONE.NEQUITY}</td>
+                <td className="text-end">{EARN_ZONE.NHYBRID}</td>
+                <td className="text-end">{EARN_ZONE.NARBITRAGE}</td>
+                <td className="text-end">{EARN_ZONE.NPASSIVE}</td>
+                <td className="text-end">{EARN_ZONE.NFIXED_INCOME}</td>
+                <td className="text-end">{EARN_ZONE.NCASH}</td>
+                <td className="text-end">{EARN_ZONE.NTOTAL}</td>
               </tr>)}
-              {FINTECH_ZoneData && (
+              {FINTECH_ZONE && (
               <tr>
                 <td>
                   <button className="textlink">
-                    <b>{FINTECH_ZoneData.ZONE}</b>
+                    <b>{FINTECH_ZONE.ZONE}</b>
                   </button></td>
-                <td>{FINTECH_ZoneData.NEQUITY}</td>
-                <td>{FINTECH_ZoneData.NHYBRID}</td>
-                <td>{FINTECH_ZoneData.NARBITRAGE}</td>
-                <td>{FINTECH_ZoneData.NPASSIVE}</td>
-                <td>{FINTECH_ZoneData.NFIXED_INCOME}</td>
-                <td>{FINTECH_ZoneData.NCASH}</td>
-                <td>{FINTECH_ZoneData.NTOTAL}</td>
+                <td className="text-end">{FINTECH_ZONE.NEQUITY}</td>
+                <td className="text-end">{FINTECH_ZONE.NHYBRID}</td>
+                <td className="text-end">{FINTECH_ZONE.NARBITRAGE}</td>
+                <td className="text-end">{FINTECH_ZONE.NPASSIVE}</td>
+                <td className="text-end">{FINTECH_ZONE.NFIXED_INCOME}</td>
+                <td className="text-end">{FINTECH_ZONE.NCASH}</td>
+                <td className="text-end">{FINTECH_ZONE.NTOTAL}</td>
               </tr>)}
-              {GULF_ZoneData && (
+              {GULF_ZONE && (
               <tr>
                 <td>
                   <button className="textlink">
-                    <b>{GULF_ZoneData.ZONE}</b>
+                    <b>{GULF_ZONE.ZONE}</b>
                   </button>
                 </td>
-                <td>{GULF_ZoneData.NEQUITY}</td>
-                <td>{GULF_ZoneData.NHYBRID}</td>
-                <td>{GULF_ZoneData.NARBITRAGE}</td>
-                <td>{GULF_ZoneData.NPASSIVE}</td>
-                <td>{GULF_ZoneData.NFIXED_INCOME}</td>
-                <td>{GULF_ZoneData.NCASH}</td>
-                <td>{GULF_ZoneData.NTOTAL}</td>
+                <td className="text-end">{GULF_ZONE.NEQUITY}</td>
+                <td className="text-end">{GULF_ZONE.NHYBRID}</td>
+                <td className="text-end">{GULF_ZONE.NARBITRAGE}</td>
+                <td className="text-end">{GULF_ZONE.NPASSIVE}</td>
+                <td className="text-end">{GULF_ZONE.NFIXED_INCOME}</td>
+                <td className="text-end">{GULF_ZONE.NCASH}</td>
+                <td className="text-end">{GULF_ZONE.NTOTAL}</td>
               </tr>)}
-              {NOMAPPING_ZoneData && (
+              {NOMAPPING_ZONE && (
               <tr >
                 <td>
                   <button className="textlink">
-                    <b>{NOMAPPING_ZoneData.ZONE}</b>
+                    <b>{NOMAPPING_ZONE.ZONE}</b>
                   </button>
                 </td>
-                <td>{NOMAPPING_ZoneData.NEQUITY}</td>
-                <td>{NOMAPPING_ZoneData.NHYBRID}</td>
-                <td>{NOMAPPING_ZoneData.NARBITRAGE}</td>
-                <td>{NOMAPPING_ZoneData.NPASSIVE}</td>
-                <td>{NOMAPPING_ZoneData.NFIXED_INCOME}</td>
-                <td>{NOMAPPING_ZoneData.NCASH}</td>
-                <td>{NOMAPPING_ZoneData.NTOTAL}</td>
+                <td className="text-end">{NOMAPPING_ZONE.NEQUITY}</td>
+                <td className="text-end">{NOMAPPING_ZONE.NHYBRID}</td>
+                <td className="text-end">{NOMAPPING_ZONE.NARBITRAGE}</td>
+                <td className="text-end">{NOMAPPING_ZONE.NPASSIVE}</td>
+                <td className="text-end">{NOMAPPING_ZONE.NFIXED_INCOME}</td>
+                <td className="text-end">{NOMAPPING_ZONE.NCASH}</td>
+                <td className="text-end">{NOMAPPING_ZONE.NTOTAL}</td>
               </tr>)}
-              {north_ZoneData && (
+              {NORTH_ZONE && (
               <tr>
                 <td>
                   <button className="textlink">
-                    <b>{north_ZoneData.ZONE}</b>
+                    <b>{NORTH_ZONE.ZONE}</b>
                   </button></td>
-                <td>{north_ZoneData.NEQUITY}</td>
-                <td>{north_ZoneData.NHYBRID}</td>
-                <td>{north_ZoneData.NARBITRAGE}</td>
-                <td>{north_ZoneData.NPASSIVE}</td>
-                <td>{north_ZoneData.NFIXED_INCOME}</td>
-                <td>{north_ZoneData.NCASH}</td>
-                <td>{north_ZoneData.NTOTAL}</td>
+                <td className="text-end">{NORTH_ZONE.NEQUITY}</td>
+                <td className="text-end">{NORTH_ZONE.NHYBRID}</td>
+                <td className="text-end">{NORTH_ZONE.NARBITRAGE}</td>
+                <td className="text-end">{NORTH_ZONE.NPASSIVE}</td>
+                <td className="text-end">{NORTH_ZONE.NFIXED_INCOME}</td>
+                <td className="text-end">{NORTH_ZONE.NCASH}</td>
+                <td className="text-end">{NORTH_ZONE.NTOTAL}</td>
               </tr>)}
-              {NO_MAPPING_ZoneData && (
+              {NO_MAPPING && (
               <tr>
                 <td>
                   <button className="textlink">
-                    <b>{NO_MAPPING_ZoneData.ZONE}</b>
+                    <b>{NO_MAPPING.ZONE}</b>
                   </button></td>
-                <td>{NO_MAPPING_ZoneData.NEQUITY}</td>
-                <td>{NO_MAPPING_ZoneData.NHYBRID}</td>
-                <td>{NO_MAPPING_ZoneData.NARBITRAGE}</td>
-                <td>{NO_MAPPING_ZoneData.NPASSIVE}</td>
-                <td>{NO_MAPPING_ZoneData.NFIXED_INCOME}</td>
-                <td>{NO_MAPPING_ZoneData.NCASH}</td>
-                <td>{NO_MAPPING_ZoneData.NTOTAL}</td>
+                <td className="text-end">{NO_MAPPING.NEQUITY}</td>
+                <td className="text-end">{NO_MAPPING.NHYBRID}</td>
+                <td className="text-end">{NO_MAPPING.NARBITRAGE}</td>
+                <td className="text-end">{NO_MAPPING.NPASSIVE}</td>
+                <td className="text-end">{NO_MAPPING.NFIXED_INCOME}</td>
+                <td className="text-end">{NO_MAPPING.NCASH}</td>
+                <td className="text-end">{NO_MAPPING.NTOTAL}</td>
               </tr>)}
-              {SOUTH_ZoneData &&(
+              {SOUTH_ZONE &&(
               <tr>
                 <td>
                   <button className="textlink">
-                    <b>{SOUTH_ZoneData.ZONE}</b>
+                    <b>{SOUTH_ZONE.ZONE}</b>
                   </button></td>
-                <td>{SOUTH_ZoneData.NEQUITY}</td>
-                <td>{SOUTH_ZoneData.NHYBRID}</td>
-                <td>{SOUTH_ZoneData.NARBITRAGE}</td>
-                <td>{SOUTH_ZoneData.NPASSIVE}</td>
-                <td>{SOUTH_ZoneData.NFIXED_INCOME}</td>
-                <td>{SOUTH_ZoneData.NCASH}</td>
-                <td>{SOUTH_ZoneData.NTOTAL}</td>
+                <td className="text-end">{SOUTH_ZONE.NEQUITY}</td>
+                <td className="text-end">{SOUTH_ZONE.NHYBRID}</td>
+                <td className="text-end">{SOUTH_ZONE.NARBITRAGE}</td>
+                <td className="text-end">{SOUTH_ZONE.NPASSIVE}</td>
+                <td className="text-end">{SOUTH_ZONE.NFIXED_INCOME}</td>
+                <td className="text-end">{SOUTH_ZONE.NCASH}</td>
+                <td className="text-end">{SOUTH_ZONE.NTOTAL}</td>
               </tr>)}
-                {WEST_ZoneData && (
+                {WEST_ZONE && (
               <tr>
                 <td>
                   <button className="textlink">
-                    <b>{WEST_ZoneData.ZONE}</b>
+                    <b>{WEST_ZONE.ZONE}</b>
                   </button></td>
-                <td>{WEST_ZoneData.NEQUITY}</td>
-                <td>{WEST_ZoneData.NHYBRID}</td>
-                <td>{WEST_ZoneData.NARBITRAGE}</td>
-                <td>{WEST_ZoneData.NPASSIVE}</td>
-                <td>{WEST_ZoneData.NFIXED_INCOME}</td>
-                <td>{WEST_ZoneData.NCASH}</td>
-                <td>{WEST_ZoneData.NTOTAL}</td>
+                <td className="text-end">{WEST_ZONE.NEQUITY}</td>
+                <td className="text-end">{WEST_ZONE.NHYBRID}</td>
+                <td className="text-end">{WEST_ZONE.NARBITRAGE}</td>
+                <td className="text-end">{WEST_ZONE.NPASSIVE}</td>
+                <td className="text-end">{WEST_ZONE.NFIXED_INCOME}</td>
+                <td className="text-end">{WEST_ZONE.NCASH}</td>
+                <td className="text-end">{WEST_ZONE.NTOTAL}</td>
               </tr>)}
-              {WRONG_INVPIN_ZoneData && (
+              {WRONG_INVPIN_ZONE && (
                 <tr>
                 <td>
                   <button className="textlink">
-                    <b>{WRONG_INVPIN_ZoneData.ZONE}</b>
+                    <b>{WRONG_INVPIN_ZONE.ZONE}</b>
                   </button></td>
-                <td>{WRONG_INVPIN_ZoneData.NEQUITY}</td>
-                <td>{WRONG_INVPIN_ZoneData.NHYBRID}</td>
-                <td>{WRONG_INVPIN_ZoneData.NARBITRAGE}</td>
-                <td>{WRONG_INVPIN_ZoneData.NPASSIVE}</td>
-                <td>{WRONG_INVPIN_ZoneData.NFIXED_INCOME}</td>
-                <td>{WRONG_INVPIN_ZoneData.NCASH}</td>
-                <td>{WRONG_INVPIN_ZoneData.NTOTAL}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.NEQUITY}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.NHYBRID}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.NARBITRAGE}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.NPASSIVE}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.NFIXED_INCOME}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.NCASH}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.NTOTAL}</td>
               </tr>)}
               <tr className="bgcolorBlue text-white">
                 <td>Total</td>
