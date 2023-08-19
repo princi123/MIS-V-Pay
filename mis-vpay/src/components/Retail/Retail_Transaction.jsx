@@ -11,7 +11,7 @@ import Navbar from "../Shared/Navbar";
 import { Link } from "react-router-dom";
 import SalesTable from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
-import ScheduleModal from "./ScheduleModal";
+import ScheduleModal from "../Shared/Modal/ScheduleModal";
 const Retail_Transaction = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hide, setHide] = useState(false);
