@@ -33,3 +33,4 @@ const WeeklyModal = () => {
   )
 }
 export default WeeklyModal;
+
