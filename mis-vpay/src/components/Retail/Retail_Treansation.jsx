@@ -11,6 +11,7 @@ import Navbar from "../Shared/Navbar";
 import { Link } from "react-router-dom";
 import SalesTable from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
+import ScheduleModal from "../Shared/Modal/ScheduleModal"
 const Retail_Treansation = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hide, setHide] = useState(false);
@@ -117,7 +118,7 @@ const Retail_Treansation = () => {
                         <img src={excel} alt="excelicon" /> |{" "}
                         <img src={pdf} alt="pdficon" />|{" "}
                         <img src={msg} alt="msgicon" /> |{" "}
-                        <img id="myImg" src={calender} alt="calendericon" />
+                        <img id="myImg" src={calender} alt="calendericon" data-bs-toggle="modal" data-bs-target="#scheduleModal"/>
                       </p>
                     </div>
 
@@ -133,7 +134,7 @@ const Retail_Treansation = () => {
                 </div>
               </div>
             </div>
-
+            <ScheduleModal/>
             <div className="Table">{hide ? <SalesTable /> : ""}</div>
           </div>
         </div>
