@@ -25,3 +25,4 @@ const DailyModal = () => {
   )
 }
 export default DailyModal;
+
