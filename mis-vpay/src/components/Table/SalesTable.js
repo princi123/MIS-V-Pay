@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "./SalesTable.css";
 import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
 
-const SalesTable = () => {
+const SalesTable = ({transaction_summary_report}) => {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [transaction_summary_report, setTransactionSummaryReport]= useState([]);
 
   const handleButtonClick = () => {
     setIsButtonClicked((prevState) => !prevState);
@@ -16,21 +15,6 @@ const SalesTable = () => {
   {
   setSidebarOpen(!sidebarOpen);
   }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:3000/api/v1/summary_transactions");
-        const data = await response.json();
-        setTransactionSummaryReport(data);
-
-      } catch (error) {
-        console.error("Error fetching transaction summary report:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const eastZoneData = transaction_summary_report.find(entry => entry.ZONE === "EAST");
   const E_ARN_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "E-ARN");
@@ -42,6 +26,7 @@ const SalesTable = () => {
   const SOUTH_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "SOUTH");
   const WEST_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "WEST");
   const WRONG_INVPIN_ZoneData = transaction_summary_report.find(entry => entry.ZONE === "WRONG_INVPIN");
+
 
   return (
     <>
