@@ -6,10 +6,20 @@ import bell from "../Assets/images/bell.svg";
 import Navi from "../Assets/images/navigation.svg";
 import Profile from "../Assets/images/profile.svg";
 import logout from "../Assets/images/logout icon.png";
+import { useNavigate } from "react-router-dom";
+import { removeEmpIdCookie, removeAuthTokenCookie } from "../Auth/Cookie";
 
 
 
 const Navbar = ({ onToggle }) => {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+      removeEmpIdCookie();
+      removeAuthTokenCookie();
+      navigate("/");
+    };
+  
 
     return (
         <>
@@ -62,7 +72,7 @@ const Navbar = ({ onToggle }) => {
                             </li>
                         </ul>
                       <div className="col-md-2" >  
-                        <button className="text-center btn-logout" >
+                        <button className="text-center btn-logout" onClick={handleLogout}>
                               <img src={logout} alt="logout" />     
                         </button>
                       <strong>Logout</strong>  
