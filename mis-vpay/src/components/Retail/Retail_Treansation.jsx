@@ -10,7 +10,9 @@ import SideBar from "../Shared/SideBar";
 import Navbar from "../Shared/Navbar";
 import SalesTable from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
-import ScheduleModal from "../Shared/Modal/ScheduleModal"
+import ScheduleModal from "../Shared/Modal/ScheduleModal";
+import Loading from "./Loading";
+
 const Retail_Treansation = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hide, setHide] = useState(false);
@@ -20,6 +22,7 @@ const Retail_Treansation = () => {
   const [select_type, setSelectType] = useState("");
   const [assetClass, setAssetClass] = useState();
   const [transaction_summary_report, setTransactionSummaryReport] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +40,7 @@ const Retail_Treansation = () => {
   }, []);
 
   const fetchTransactionSummary = async () => {
+     setLoading(true);
     try {
       const formattedStartDate = startDate.split("-").reverse().join("/");
       const formattedEndDate = endDate.split("-").reverse().join("/");
@@ -53,6 +57,7 @@ const Retail_Treansation = () => {
       );
       const data = await response.json();
       setTransactionSummaryReport(data);
+      setLoading(false)
     } catch (error) {
       console.error("error fetching transaction summary data", error);
     }
@@ -146,6 +151,7 @@ const Retail_Treansation = () => {
                         value={select_type}
                         onChange={(e) => setSelectType(e.target.value)}
                       >
+                         <option> Choose Select Type </option>
                         <option value="netsales" >NET SALES </option>
                         <option value="grosssales">GROSS SALES </option>
                       </select>
@@ -161,6 +167,7 @@ const Retail_Treansation = () => {
                         id="ab"
                         className="form-select form-control mt-2"
                       >
+                        <option>Choose Scheme</option>
                         {scheme_details.map((scheme) => (
                           <option value="" key={scheme.SCHEME}>
                             {scheme.SCHEME}
@@ -192,7 +199,15 @@ const Retail_Treansation = () => {
             </div>
 
             <ScheduleModal />
-            <div className="Table">{hide ? <SalesTable transaction_summary_report={transaction_summary_report} /> : ""}</div>
+            <div className="Table">
+              {loading ? (
+                <div className="text-center mt-4">
+                  <i className="fas fa-spinner fa-spin fa-2x"></i> <Loading/>
+                </div>
+              ) : (
+                hide && <SalesTable transaction_summary_report={transaction_summary_report} />
+              )}
+            </div>
           </div>
         </div>
       </div>
