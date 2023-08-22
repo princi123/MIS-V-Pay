@@ -1,7 +1,13 @@
-import React from "react";
+import React, {useState } from "react";
 import "./RedemptionTable.css";
+import SubRedemptionTable from "./SubTable/SubRedemptionTable";
 
-const RedemptionTable = () => {
+const RedemptionTable = ({eastZone, EARN_ZONE, FINTECH_ZONE, GULF_ZONE, NOMAPPING_ZONE,NORTH_ZONE, NO_MAPPING, SOUTH_ZONE,  WEST_ZONE, WRONG_INVPIN_ZONE}) => {
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const handleButtonClick = () => {
+    setIsButtonClicked((prevState) => !prevState);
+  };
+
   return (
     <div>
       <div className="head">
@@ -13,173 +19,179 @@ const RedemptionTable = () => {
         <table className="table small border">
           <tbody>
             <tr className="bgcolorBlue text-white">
-              <th scope="col">S no.</th>
               <th scope="col">ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /><img src="/mis_vpay/assets/images/table2icon.png" alt="" /></th>
-              <th scope="col">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-              <th scope="col">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-              <th scope="col">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-              <th scope="col">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              <th className="text-end" scope="col">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+              <th className="text-end"scope="col">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+              <th className="text-end"scope="col">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+              <th className="text-end"scope="col">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
               </th>
-              <th scope="col">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              <th className="text-end"scope="col">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
               </th>
-              <th scope="col">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-              <th scope="col">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+              <th className="text-end"scope="col">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+              <th className="text-end"scope="col">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
             </tr>
+            {eastZone && (
             <tr>
-              <td>1.</td>
               <td>
-                <button className="textlink">
-                  <b>EAST</b>
+                <button className="textlink" onClick={handleButtonClick}>
+                <b>{eastZone.ZONE }</b>
                 </button></td>
-              <td>102.45</td>
-              <td>18.54</td>
-              <td>1.05</td>
-              <td>62.47</td>
-              <td>37.6</td>
-              <td>657.39</td>
-              <td>879.5</td>
-            </tr>
-            <tr><td>2.</td>
-              <td>
-                <button className="textlink">
-                  <b>E-ARN</b>
+                <td className="text-end">{eastZone.REQUITY}</td>
+                <td className="text-end">{eastZone.RHYBRID}</td>
+                <td className="text-end">{eastZone.RARBITRAGE}</td>
+                <td className="text-end">{eastZone.RPASSIVE}</td>
+                <td className="text-end">{eastZone.RFIXED_INCOME}</td>
+                <td className="text-end">{eastZone.RCASH}</td>
+                <td className="text-end">{eastZone.RTOTAL}</td>
+            </tr>)}
+            {isButtonClicked && (
+                <tr>
+                  <td colSpan="9">
+                    <SubRedemptionTable/>
+                  </td>
+                </tr>
+              )}
+            {EARN_ZONE && (
+              <tr>
+                <td><button className="textlink">
+                  <b>{EARN_ZONE.ZONE}</b>
                 </button></td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-            <tr>
-              <td>3.</td>
-              <td>
-                <button className="textlink">
-                  <b>FINTECH</b>
-                </button></td>
-              <td>5242.13</td>
-              <td>148.11</td>
-              <td>444.02</td>
-              <td>35828.14</td>
-              <td>3598.07</td>
-              <td>8394.81</td>
-              <td>53655.27</td>
-            </tr>
-            <tr>
-              <td>4.</td>
-              <td>
-                <button className="textlink">
-                  <b>GULF</b>
-                </button></td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-            <tr>
-              <td>5.</td>
-              <td>
-                <button className="textlink">
-                  <b>NORTH</b>
-                </button></td>
-              <td>5242.13</td>
-              <td>148.11</td>
-              <td>444.02</td>
-              <td>35828.14</td>
-              <td>3598.07</td>
-              <td>8394.81</td>
-              <td>53655.27</td>
-            </tr>
-            <tr>
-              <td>6.</td>
-              <td>
-                <button className="textlink">
-                  <b>NORTH</b>
-                </button></td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-            <tr>
-              <td>7.</td>
-              <td>
-                <button className="textlink">
-                  <b>NO MAPPING</b>
-                </button></td>
-              <td>5242.13</td>
-              <td>148.11</td>
-              <td>444.02</td>
-              <td>35828.14</td>
-              <td>3598.07</td>
-              <td>8394.81</td>
-              <td>53655.27</td>
-            </tr>
-            <tr>
-              <td>8.</td>
-              <td>
-                <button className="textlink">
-                  <b>SOUTH</b>
-                </button></td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-            <tr>
-              <td>9.</td>
-              <td>
-                <button className="textlink">
-                  <b>WEST</b>
-                </button></td>
-              <td>5242.13</td>
-              <td>148.11</td>
-              <td>444.02</td>
-              <td>35828.14</td>
-              <td>3598.07</td>
-              <td>8394.81</td>
-              <td>53655.27</td>
-            </tr>
-            <tr>
-              <td>10.</td>
-              <td>
-                <button className="textlink">
-                  <b>WRONG INVPIN</b>
-                </button></td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-            <tr className="bgcolorBlue text-white">
-              <td>Total</td>
-              <td />
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
+                <td className="text-end">{EARN_ZONE.REQUITY}</td>
+                <td className="text-end">{EARN_ZONE.RHYBRID}</td>
+                <td className="text-end">{EARN_ZONE.RARBITRAGE}</td>
+                <td className="text-end">{EARN_ZONE.RPASSIVE}</td>
+                <td className="text-end">{EARN_ZONE.RFIXED_INCOME}</td>
+                <td className="text-end">{EARN_ZONE.RCASH}</td>
+                <td className="text-end">{EARN_ZONE.RTOTAL}</td>
+              </tr>)}
+              {FINTECH_ZONE && (
+              <tr>
+                <td>
+                  <button className="textlink">
+                    <b>{FINTECH_ZONE.ZONE}</b>
+                  </button></td>
+                <td className="text-end">{FINTECH_ZONE.REQUITY}</td>
+                <td className="text-end">{FINTECH_ZONE.RHYBRID}</td>
+                <td className="text-end">{FINTECH_ZONE.RARBITRAGE}</td>
+                <td className="text-end">{FINTECH_ZONE.RPASSIVE}</td>
+                <td className="text-end">{FINTECH_ZONE.RFIXED_INCOME}</td>
+                <td className="text-end">{FINTECH_ZONE.RCASH}</td>
+                <td className="text-end">{FINTECH_ZONE.RTOTAL}</td>
+              </tr>)}
+              {GULF_ZONE && (
+              <tr>
+                <td>
+                  <button className="textlink">
+                    <b>{GULF_ZONE.ZONE}</b>
+                  </button>
+                </td>
+                <td className="text-end">{GULF_ZONE.REQUITY}</td>
+                <td className="text-end">{GULF_ZONE.RHYBRID}</td>
+                <td className="text-end">{GULF_ZONE.RARBITRAGE}</td>
+                <td className="text-end">{GULF_ZONE.RPASSIVE}</td>
+                <td className="text-end">{GULF_ZONE.RFIXED_INCOME}</td>
+                <td className="text-end">{GULF_ZONE.RCASH}</td>
+                <td className="text-end">{GULF_ZONE.RTOTAL}</td>
+              </tr>)}
+              {NOMAPPING_ZONE && (
+              <tr >
+                <td>
+                  <button className="textlink">
+                    <b>{NOMAPPING_ZONE.ZONE}</b>
+                  </button>
+                </td>
+                <td className="text-end">{NOMAPPING_ZONE.REQUITY}</td>
+                <td className="text-end">{NOMAPPING_ZONE.RHYBRID}</td>
+                <td className="text-end">{NOMAPPING_ZONE.RARBITRAGE}</td>
+                <td className="text-end">{NOMAPPING_ZONE.RPASSIVE}</td>
+                <td className="text-end">{NOMAPPING_ZONE.RFIXED_INCOME}</td>
+                <td className="text-end">{NOMAPPING_ZONE.RCASH}</td>
+                <td className="text-end">{NOMAPPING_ZONE.RTOTAL}</td>
+              </tr>)}
+              {NORTH_ZONE && (
+              <tr>
+                <td>
+                  <button className="textlink">
+                    <b>{NORTH_ZONE.ZONE}</b>
+                  </button></td>
+                <td className="text-end">{NORTH_ZONE.REQUITY}</td>
+                <td className="text-end">{NORTH_ZONE.RHYBRID}</td>
+                <td className="text-end">{NORTH_ZONE.RARBITRAGE}</td>
+                <td className="text-end">{NORTH_ZONE.RPASSIVE}</td>
+                <td className="text-end">{NORTH_ZONE.RFIXED_INCOME}</td>
+                <td className="text-end">{NORTH_ZONE.RCASH}</td>
+                <td className="text-end">{NORTH_ZONE.RTOTAL}</td>
+              </tr>)}
+              {NO_MAPPING && (
+              <tr>
+                <td>
+                  <button className="textlink">
+                    <b>{NO_MAPPING.ZONE}</b>
+                  </button></td>
+                <td className="text-end">{NO_MAPPING.REQUITY}</td>
+                <td className="text-end">{NO_MAPPING.RHYBRID}</td>
+                <td className="text-end">{NO_MAPPING.RARBITRAGE}</td>
+                <td className="text-end">{NO_MAPPING.RPASSIVE}</td>
+                <td className="text-end">{NO_MAPPING.RFIXED_INCOME}</td>
+                <td className="text-end">{NO_MAPPING.RCASH}</td>
+                <td className="text-end">{NO_MAPPING.RTOTAL}</td>
+              </tr>)}
+              {SOUTH_ZONE &&(
+              <tr>
+                <td>
+                  <button className="textlink">
+                    <b>{SOUTH_ZONE.ZONE}</b>
+                  </button></td>
+                <td className="text-end">{SOUTH_ZONE.REQUITY}</td>
+                <td className="text-end">{SOUTH_ZONE.RHYBRID}</td>
+                <td className="text-end">{SOUTH_ZONE.RARBITRAGE}</td>
+                <td className="text-end">{SOUTH_ZONE.RPASSIVE}</td>
+                <td className="text-end">{SOUTH_ZONE.RFIXED_INCOME}</td>
+                <td className="text-end">{SOUTH_ZONE.RCASH}</td>
+                <td className="text-end">{SOUTH_ZONE.RTOTAL}</td>
+              </tr>)}
+                {WEST_ZONE && (
+              <tr>
+                <td>
+                  <button className="textlink">
+                    <b>{WEST_ZONE.ZONE}</b>
+                  </button></td>
+                <td className="text-end">{WEST_ZONE.REQUITY}</td>
+                <td className="text-end">{WEST_ZONE.RHYBRID}</td>
+                <td className="text-end">{WEST_ZONE.RARBITRAGE}</td>
+                <td className="text-end">{WEST_ZONE.RPASSIVE}</td>
+                <td className="text-end">{WEST_ZONE.RFIXED_INCOME}</td>
+                <td className="text-end">{WEST_ZONE.RCASH}</td>
+                <td className="text-end">{WEST_ZONE.RTOTAL}</td>
+              </tr>)}
+              {WRONG_INVPIN_ZONE && (
+                <tr>
+                <td>
+                  <button className="textlink">
+                    <b>{WRONG_INVPIN_ZONE.ZONE}</b>
+                  </button></td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.REQUITY}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.RHYBRID}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.RARBITRAGE}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.RPASSIVE}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.RFIXED_INCOME}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.RCASH}</td>
+                <td className="text-end">{WRONG_INVPIN_ZONE.RTOTAL}</td>
+              </tr>)}
+              <tr className="bgcolorBlue text-white">
+                <td>Total</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+              </tr>
           </tbody>
         </table>
       </div>
     </div>
   );
 };
-
 export default RedemptionTable;

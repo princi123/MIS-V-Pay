@@ -1,17 +1,19 @@
 require 'oci8'
+
 class SummaryTransactionService
-  def self.get_transaction_summary_report
+  def self.get_transaction_summary_report(start_date, end_date, asset_class, select_type, employee_code)
     conn = OCI8.new('MISVPAY', 'MISVPAY@123', '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=103.12.1.155)(PORT=1521))(CONNECT_DATA=(SID=xe)))')
-    sql = 'BEGIN sp_misvapay_get_transaction_summary_report(:p_startDate, :p_endDate, :p_assetClass, :p_selectType, :p_employeeCode, :get_all_data); END;'
+    select_column = (select_type == 'grosssales') ? 'grosssales' : 'netsales'
+    procedure_name = 'sp_misvapay_get_transaction_summary_reports'
     
-    cursor = conn.parse(sql)
+    cursor = conn.parse("BEGIN #{procedure_name}(:p_startDate, :p_endDate, :p_assetClass, :p_selectType, :p_employeeCode, :get_all_data); END;")
     
-    cursor.bind_param(':p_startDate', '01/04/2023', String) 
-    cursor.bind_param(':p_endDate', '30/09/2023', String)
-    cursor.bind_param(':p_assetClass', 1, Integer)
-    cursor.bind_param(':p_selectType', 1, Integer)
-    cursor.bind_param(':p_employeeCode', '2941', String)
-    cursor.bind_param(':get_all_data', nil, OCI8::Cursor) 
+    cursor.bind_param(':p_startDate', start_date, String)
+    cursor.bind_param(':p_endDate', end_date, String)
+    cursor.bind_param(':p_assetClass', asset_class, String)
+    cursor.bind_param(':p_selectType', select_type, String)
+    cursor.bind_param(':p_employeeCode', employee_code, String)
+    cursor.bind_param(':get_all_data', nil, OCI8::Cursor)
     
     cursor.exec
     
