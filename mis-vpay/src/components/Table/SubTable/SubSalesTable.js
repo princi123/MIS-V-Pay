@@ -1,6 +1,4 @@
 import React,{useState}from "react";
-import SubRedemptionTable from "./SubRedemptionTable";
-import SubNetSalesTable from "./SubNetSalesTable";
 import "./SubSalesTable.css";
 import TableRowWithCollapse from "./TableRowWithCollapse";
 
@@ -11,7 +9,7 @@ const SubSalesTable = () => {
       setIsAnchorClicked((prevState) => !prevState);
     };
   return (
-    <div className="new-component container-fluid">
+    <div className="new-component">
       <div className="row mt-2 bg-white">
        <div className="head">
           <h4><b className="black-color">Sales</b></h4>
@@ -107,8 +105,7 @@ const SubSalesTable = () => {
               </tr>
         </tbody>
       </table>
-      <SubRedemptionTable/>
-      <SubNetSalesTable/>
+      
     </div>
   );
 };

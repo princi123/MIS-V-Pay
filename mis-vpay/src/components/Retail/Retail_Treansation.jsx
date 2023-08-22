@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Retail.css";
 import DropDown from "./DropDown";
 import Filter from "./Filter";
@@ -8,20 +8,63 @@ import msg from "../Assets/images/msg_icon.png";
 import calender from "../Assets/images/date-time_icon.png";
 import SideBar from "../Shared/SideBar";
 import Navbar from "../Shared/Navbar";
-import { Link } from "react-router-dom";
 import SalesTable from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
 import ScheduleModal from "../Shared/Modal/ScheduleModal"
 const Retail_Treansation = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hide, setHide] = useState(false);
+  const [scheme_details, setSchemeDetails] = useState([]);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [select_type, setSelectType] = useState("");
+  const [assetClass, setAssetClass] = useState();
+  const [transaction_summary_report, setTransactionSummaryReport] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:3000/api/v1/scheme_details"
+        );
+        const data = await response.json();
+        setSchemeDetails(data);
+      } catch (error) {
+        console.error("error fetching scheme details", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const fetchTransactionSummary = async () => {
+    try {
+      const formattedStartDate = startDate.split("-").reverse().join("/");
+      const formattedEndDate = endDate.split("-").reverse().join("/");
+
+      const queryParams = new URLSearchParams({
+        start_date: formattedStartDate,
+        end_date: formattedEndDate,
+        asset_class: 1,
+        select_type: select_type,
+        employee_code: 2941,
+      });
+      const response = await fetch(
+        `http://127.0.0.1:3000/api/v1/summary_transactions?${queryParams}`
+      );
+      const data = await response.json();
+      setTransactionSummaryReport(data);
+    } catch (error) {
+      console.error("error fetching transaction summary data", error);
+    }
+  };
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
   const togglehide = () => {
-    setHide(!hide);
+    fetchTransactionSummary();
+    setHide(true);
   };
 
   return (
@@ -49,13 +92,16 @@ const Retail_Treansation = () => {
                       <div className="col-md-6">
                         <label className="form-lables gap-2">
                           <b> Start Date </b>
-                        </label>{""}
+                        </label>
+                        {""}
                         <img src={datetime} alt="datetime" />
                       </div>
                       <input
                         type="date"
                         className="form-control mt-2"
                         placeholder="Project Start Date"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
                       />
                     </div>
                     <div className="form-group col-md-3">
@@ -67,6 +113,8 @@ const Retail_Treansation = () => {
                         type="date"
                         className="form-control mt-2"
                         placeholder="Project End Date"
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
                       />
                     </div>
                     <div className="form-group col-md-2">
@@ -77,6 +125,8 @@ const Retail_Treansation = () => {
                         name=""
                         id="ab"
                         className="form-select form-control mt-2"
+                        value={assetClass}
+                        onChange={(e) => setAssetClass(e.target.value)}
                       >
                         <option value="">All </option>
                         <option value="">Arbitrage </option>
@@ -93,9 +143,11 @@ const Retail_Treansation = () => {
                         name=""
                         id="ab"
                         className="form-select form-control mt-2"
+                        value={select_type}
+                        onChange={(e) => setSelectType(e.target.value)}
                       >
-                        <option value="">Net sales </option>
-                        <option value="">SIP Gross sales </option>
+                        <option value="netsales" >NET SALES </option>
+                        <option value="grosssales">GROSS SALES </option>
                       </select>
                     </div>
                     <Filter />
@@ -109,7 +161,11 @@ const Retail_Treansation = () => {
                         id="ab"
                         className="form-select form-control mt-2"
                       >
-                        <option value="">grid 9 </option>
+                        {scheme_details.map((scheme) => (
+                          <option value="" key={scheme.SCHEME}>
+                            {scheme.SCHEME}
+                          </option>
+                        ))}
                       </select>
                     </div>
                     <div className="col-md-5" />
@@ -118,7 +174,7 @@ const Retail_Treansation = () => {
                         <img src={excel} alt="excelicon" /> |{" "}
                         <img src={pdf} alt="pdficon" />|{" "}
                         <img src={msg} alt="msgicon" /> |{" "}
-                        <img id="myImg" src={calender} alt="calendericon" data-bs-toggle="modal" data-bs-target="#scheduleModal"/>
+                        <img id="myImg" src={calender} alt="calendericon" data-bs-toggle="modal" data-bs-target="#scheduleModal" />
                       </p>
                     </div>
 
@@ -134,8 +190,9 @@ const Retail_Treansation = () => {
                 </div>
               </div>
             </div>
-            <ScheduleModal/>
-            <div className="Table">{hide ? <SalesTable /> : ""}</div>
+
+            <ScheduleModal />
+            <div className="Table">{hide ? <SalesTable transaction_summary_report={transaction_summary_report} /> : ""}</div>
           </div>
         </div>
       </div>

@@ -21,8 +21,8 @@
     text-overflow: ellipsis;
   }
   .tablehead {
-    background-color: #283593; /* Indigo-800 background color */
-    color: #ffffff; /* White text color */
+    background-color: #283593;
+    color: #ffffff;
   }
   .bgcolorBlue {
     background-color: #352d94;
@@ -31,13 +31,3 @@
   color: #fff !important;
 }
 
-  .tablehead th {
-    border: none; /* Remove borders for header cells */
-  }
-
-  .tablehead th img {
-    vertical-align: middle; /* Adjust image alignment */
-  }
-  .bg{
-    background-color: #1a2057;
-  }
