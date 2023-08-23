@@ -6,6 +6,7 @@ import {
   setEmpIdCookie,
   setAuthTokenCookie,
 } from "./Cookie";
+import { API_LOGIN } from "../../Constant/apiConstant";
 
 
 const Login = () => {
@@ -15,7 +16,7 @@ const Login = () => {
   
     const handleLogin = (e) => {
       e.preventDefault();
-      fetch("api/v1/login_details", {
+      fetch(API_LOGIN.DATA, {
         method: "POST",
         body: JSON.stringify({ p_emp_id, password }),
         headers: {

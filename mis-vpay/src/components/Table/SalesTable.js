@@ -3,10 +3,10 @@ import "./SalesTable.css";
 import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
+import Api from "../Retail/Api";
 
 const SalesTable = ({ transaction_summary_report }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
-
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
       setClickedIndex(-1); 
@@ -79,12 +79,12 @@ const SalesTable = ({ transaction_summary_report }) => {
                               {summary.SFIXED_INCOME}
                             </td>
                             <td className="text-end">{summary.SCASH}</td>
-                            <td className="text-end">{summary.STOTAL}</td>
+                            <td className="text-end color-biege">{summary.STOTAL}</td>
                           </tr>
                           {clickedIndex === index && (
                             <tr key={`subtable-${index}`}>
                               <td colSpan="8">
-                                <SubSalesTable />
+                                <SubSalesTable  />
                               </td>
                             </tr>
                           )}
