@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { API_REGION } from "../../../Constant/apiConstant";
+import { API_REGION } from "../../../../Constant/apiConstant";
 
 const RegionApi = (queryParams) => {
-    const[transaction_summary_report_region, setTransactionSummaryReportRegion] = useState([]);
+  const[transaction_summary_report_region, setTransactionSummaryReportRegion] = useState([]);
 
   useEffect(() => {
     const fetchTransactionData = async () => {

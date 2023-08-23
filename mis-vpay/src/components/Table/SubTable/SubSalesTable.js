@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./SubSalesTable.css";
 import TableRowWithCollapse from "./TableRowWithCollapse";
-import RegionApi from "./RegionApi";
+import RegionApi from "./Api/RegionApi";
 
 const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
 
   const formattedStartDate = startDate.split("-").reverse().join("/");
   const formattedEndDate = endDate.split("-").reverse().join("/");
+  
   const queryParams = new URLSearchParams({
     start_date: formattedStartDate,
     end_date: formattedEndDate,
