@@ -58,7 +58,7 @@ const RedemptionTable = ({ transaction_summary_report }) => {
                   <td className="text-end">{summary.RPASSIVE}</td>
                   <td className="text-end">{summary.RFIXED_INCOME}</td>
                   <td className="text-end">{summary.RCASH}</td>
-                  <td className="text-end">{summary.RTOTAL}</td>
+                  <td className="text-end" id="table"><b>{summary.RTOTAL}</b></td>
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>

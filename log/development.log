@@ -2474,3 +2474,751 @@ Processing by Api::V1::LoginDetailsController#index as HTML
 Completed 200 OK in 1064ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 545)
 
 
+Started GET "/" for 127.0.0.1 at 2023-08-23 13:00:04 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 41.9ms | Allocations: 766)
+Completed 200 OK in 284ms (Views: 96.7ms | ActiveRecord: 0.0ms | Allocations: 8472)
+
+
+Started POST "/api/v1/login_details" for ::1 at 2023-08-23 13:01:50 +0530
+Processing by Api::V1::LoginDetailsController#create as */*
+  Parameters: {"p_emp_id"=>" ", "password"=>"[FILTERED]", "login_detail"=>{"p_emp_id"=>" ", "password"=>"[FILTERED]"}}
+Completed 200 OK in 1260ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 1109)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-23 13:01:56 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1060ms (Views: 5.7ms | ActiveRecord: 0.0ms | Allocations: 4254)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-23 13:01:57 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1051ms (Views: 5.6ms | ActiveRecord: 0.0ms | Allocations: 3970)
+
+
+Started GET "/api/v1/summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=grosssales&employee_code=2941" for ::1 at 2023-08-23 13:02:13 +0530
+Processing by Api::V1::SummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"grosssales", "employee_code"=>"2941"}
+Completed 200 OK in 1123ms (Views: 6.3ms | ActiveRecord: 0.0ms | Allocations: 5506)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:14 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:14 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:17 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:17 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/api/v1/summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941" for ::1 at 2023-08-23 13:02:25 +0530
+Processing by Api::V1::SummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941"}
+Completed 200 OK in 2231ms (Views: 4.2ms | ActiveRecord: 0.0ms | Allocations: 3976)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:27 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:27 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:31 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:31 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:32 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:33 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:35 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:35 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:38 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:38 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:40 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:40 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:41 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:42 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:44 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:44 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:02:46 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:02:46 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:03:07 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:03:07 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:03:09 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:03:09 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:03:10 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:03:10 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:03:12 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:03:12 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:03:16 +0530
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:03:16 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:03:18 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:03:18 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:03:21 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:03:21 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:03:24 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:03:24 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:03:29 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:03:29 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:56:04 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:56:04 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:56:07 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:56:07 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:56:09 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:56:09 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:56:09 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:56:09 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-23 13:58:57 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1116ms (Views: 3.9ms | ActiveRecord: 0.0ms | Allocations: 3950)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-23 13:58:58 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1051ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 3945)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-23 13:59:02 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1068ms (Views: 2.2ms | ActiveRecord: 0.0ms | Allocations: 3945)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-23 13:59:03 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1108ms (Views: 1.3ms | ActiveRecord: 0.0ms | Allocations: 3956)
+
+
+Started GET "/api/v1/summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941" for ::1 at 2023-08-23 13:59:27 +0530
+Processing by Api::V1::SummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941"}
+Completed 200 OK in 2835ms (Views: 4.3ms | ActiveRecord: 0.0ms | Allocations: 4001)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 13:59:30 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 13:59:30 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-23 14:02:21 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1077ms (Views: 5.1ms | ActiveRecord: 0.0ms | Allocations: 3946)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-23 14:02:22 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1023ms (Views: 5.5ms | ActiveRecord: 0.0ms | Allocations: 3948)
+
+
+Started GET "/api/v1/summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941" for ::1 at 2023-08-23 14:02:36 +0530
+Processing by Api::V1::SummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941"}
+Completed 200 OK in 1196ms (Views: 4.9ms | ActiveRecord: 0.0ms | Allocations: 3971)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:02:38 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:02:38 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/api/v1/summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=grosssales&employee_code=2941" for ::1 at 2023-08-23 14:03:33 +0530
+Processing by Api::V1::SummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"grosssales", "employee_code"=>"2941"}
+Completed 200 OK in 2004ms (Views: 5.7ms | ActiveRecord: 0.0ms | Allocations: 5128)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:03:35 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:03:35 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:04:56 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:04:56 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:03 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:03 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:04 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:05 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:06 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:06 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:07 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:08 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:09 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:09 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:10 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:10 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:12 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:12 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:12 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:13 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:14 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:14 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:14 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:15 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:16 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:16 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:16 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:17 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:21 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:21 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:26 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:27 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:29 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:29 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:32 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:32 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:38 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:38 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:39 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:52 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:52 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:54 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:05:58 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:05:58 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:06:00 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:06:20 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:06:20 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:06:23 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:06:23 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:06:38 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:06:38 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:06:40 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:06:40 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:06:41 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:06:41 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:06:45 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:06:45 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:06:47 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:06:47 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:17 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:18 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:20 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:21 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:22 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:23 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:24 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:24 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:30 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:30 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:41 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:10:41 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:56 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:10:56 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:10:58 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:10:58 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/" for 127.0.0.1 at 2023-08-23 14:20:24 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 3.4ms | Allocations: 594)
+Completed 200 OK in 40ms (Views: 13.6ms | ActiveRecord: 0.0ms | Allocations: 5091)
+
+
+Started POST "/api/v1/login_details" for ::1 at 2023-08-23 14:22:32 +0530
+Processing by Api::V1::LoginDetailsController#create as */*
+  Parameters: {"p_emp_id"=>" ", "password"=>"[FILTERED]", "login_detail"=>{"p_emp_id"=>" ", "password"=>"[FILTERED]"}}
+Completed 200 OK in 1609ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 933)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-23 14:22:38 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1130ms (Views: 6.5ms | ActiveRecord: 0.0ms | Allocations: 4144)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-23 14:22:39 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1139ms (Views: 6.2ms | ActiveRecord: 0.0ms | Allocations: 3945)
+
+
+Started GET "/api/v1/summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=grosssales&employee_code=2941" for ::1 at 2023-08-23 14:22:51 +0530
+Processing by Api::V1::SummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"grosssales", "employee_code"=>"2941"}
+Completed 200 OK in 1056ms (Views: 7.1ms | ActiveRecord: 0.0ms | Allocations: 5343)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:22:52 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:22:52 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:22:55 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:22:55 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:22:57 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:23:02 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:23:02 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:23:04 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:23:20 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:23:20 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:23:21 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:23:21 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:23:22 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:23:22 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:23:24 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:23:24 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:23:29 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:24:12 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:24:25 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:24:25 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:24:26 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:24:26 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:25:18 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:25:18 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:25:19 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:25:19 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:27:44 +0530
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:27:44 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:28:20 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/table2icon.png" for 127.0.0.1 at 2023-08-23 14:28:21 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/table2icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:28:23 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-23 14:28:38 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  

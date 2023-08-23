@@ -9,9 +9,9 @@ const SalesTable = ({ transaction_summary_report }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
-      setClickedIndex(-1); 
+      setClickedIndex(-1);
     } else {
-      setClickedIndex(index); 
+      setClickedIndex(index);
     }
   };
   return (
@@ -48,16 +48,16 @@ const SalesTable = ({ transaction_summary_report }) => {
                 <div className="col-md-12">
                   <table className="table small border">
                     <thead>
-                    <tr className="bgcolorBlue text-white">
-                      <th scope="col">ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /><img src="/mis_vpay/assets/images/table2icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                  </tr>
+                      <tr className="bgcolorBlue text-white">
+                        <th scope="col">ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /><img src="/mis_vpay/assets/images/table2icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                      </tr>
                     </thead>
                     <tbody>
                       {transaction_summary_report.map((summary, index) => (
@@ -75,16 +75,14 @@ const SalesTable = ({ transaction_summary_report }) => {
                             <td className="text-end">{summary.SHYBRID}</td>
                             <td className="text-end">{summary.SARBITRAGE}</td>
                             <td className="text-end">{summary.SPASSIVE}</td>
-                            <td className="text-end">
-                              {summary.SFIXED_INCOME}
-                            </td>
+                            <td className="text-end">{summary.SFIXED_INCOME}</td>
                             <td className="text-end">{summary.SCASH}</td>
-                            <td className="text-end color-biege">{summary.STOTAL}</td>
+                            <td className="text-end"id="table"><b>{summary.STOTAL}</b></td>
                           </tr>
                           {clickedIndex === index && (
                             <tr key={`subtable-${index}`}>
                               <td colSpan="8">
-                                <SubSalesTable  />
+                                <SubSalesTable />
                               </td>
                             </tr>
                           )}
