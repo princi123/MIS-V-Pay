@@ -19,8 +19,7 @@ const Retail_Treansation = () => {
   const [scheme_details, setSchemeDetails] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const {hide,startDate, endDate,assetClass, select_type,transaction_summary_report,loading,
-    togglehide,setAssetClass,setEndDate,setHide,setLoading,setSelectType,setStartDate , 
-    transaction_summary_report_region}= Api();
+    togglehide,setAssetClass,setEndDate,setSelectType,setStartDate}= Api();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -174,7 +173,13 @@ const Retail_Treansation = () => {
                   <i className="fas fa-spinner fa-spin fa-2x"></i> <Loading/>
                 </div>
               ) : (
-                hide && <SalesTable transaction_summary_report={transaction_summary_report}/>
+                hide && <SalesTable
+                transaction_summary_report={transaction_summary_report}
+                startDate={startDate}
+                endDate={endDate}
+                assetClass={assetClass}
+                select_type={select_type}
+              />
               )}
             </div>
           </div>

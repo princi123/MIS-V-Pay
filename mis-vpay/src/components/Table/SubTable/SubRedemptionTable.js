@@ -1,12 +1,31 @@
 import React,{useState} from "react";
 import "./SubRedemptionTable.css";
 import TableRowWithCollapse from "./TableRowWithCollapse";
-const SubRedemptionTable = () => {
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
+import RegionApi from "./RegionApi";
+const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass }) => {
+  const [clickedIndex, setClickedIndex] = useState(-1);
 
-  const handleButtonClick = () => {
-    setIsButtonClicked((prevState) => !prevState);
+  const formattedStartDate = startDate.split("-").reverse().join("/");
+  const formattedEndDate = endDate.split("-").reverse().join("/");
+  const queryParams = new URLSearchParams({
+    start_date: formattedStartDate,
+    end_date: formattedEndDate,
+    asset_class: assetClass,
+    select_type: select_type,
+    employee_code: 2941,
+    p_zone: pzone,
+  });
+
+  const transaction_summary_report_region = RegionApi(queryParams);
+
+  const handleButtonClick = (index) => {
+    if (index === clickedIndex) {
+      setClickedIndex(-1);
+    } else {
+      setClickedIndex(index); 
+    }
   };
+
   return (
     <div className="new-component container-fluid p-0">
       <div className="row mt-2 bg-white">
@@ -22,41 +41,39 @@ const SubRedemptionTable = () => {
       </div>
 
       <table className="table" style={{ backgroundColor: "white" }}>
-        <tbody>
-          <tr className="colorwhite BgcolorOrange">
-            <th scope="col">S no.</th>
-
+        <thead>
+        <tr className="colorwhite BgcolorOrange">
             <th scope="col">
-              ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              REGION <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
               <img src="/mis_vpay/assets/images/table2icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col"className="text-end">
               Equity{" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col"className="text-end">
               Hybrid{" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col"className="text-end">
               Arbitrage{" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col"className="text-end">
               Passive(ex-Debt){" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col"className="text-end">
               Fixed Income{" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col" className="text-end">
               Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
@@ -65,130 +82,37 @@ const SubRedemptionTable = () => {
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
           </tr>
-
-          <tr className="zonerowone">
-            <td>A.</td>
-
-            <td>
-              <button className="textlink" onClick={handleButtonClick}>
-                <b>Bihar</b>
-              </button>
-            </td>
-
-            <td>102.45</td>
-
-            <td>18.54</td>
-
-            <td>1.05</td>
-
-            <td>62.47</td>
-
-            <td>37.6</td>
-
-            <td>657.39</td>
-
-            <td>879.5</td>
-          </tr>
-
-          {isButtonClicked && (
-            <tr>
-              <td colSpan="9" className="p-0">
-                <TableRowWithCollapse />
-              </td>
-            </tr>
-          )}
-
-          <tr className="zonerowtwo">
-            <td>B.</td>
-
-            <td>
-              <button className="textlink">
-                <b>B & ND Kolkata</b>
-              </button>
-            </td>
-
-            <td>50445.55</td>
-
-            <td>8400.66</td>
-
-            <td>851.86</td>
-
-            <td>8701.79</td>
-
-            <td>49287.18</td>
-
-            <td>39089.01</td>
-
-            <td>156776.05</td>
-          </tr>
-
-          <tr className="zonerowone">
-            <td>C.</td>
-
-            <td>
-              <button className="textlink">
-                <b>North East</b>
-              </button>
-            </td>
-
-            <td>102.45</td>
-
-            <td>18.54</td>
-
-            <td>1.05</td>
-
-            <td>62.47</td>
-
-            <td>37.6</td>
-
-            <td>657.39</td>
-
-            <td>879.5</td>
-          </tr>
-
-          <tr className="zonerowtwo">
-            <td>D.</td>
-
-            <td>
-              <button className="textlink">
-                <b>Tamilnadu & Kerala</b>
-              </button>
-            </td>
-
-            <td>50445.55</td>
-
-            <td>8400.66</td>
-
-            <td>851.86</td>
-
-            <td>8701.79</td>
-
-            <td>49287.18</td>
-
-            <td>39089.01</td>
-
-            <td>156776.05</td>
-          </tr>
-
-          <tr className="colorwhite BgcolorOrange">
-            <td>Total</td>
-
-            <td />
-
-            <td>50445.55</td>
-
-            <td>8400.66</td>
-
-            <td>851.86</td>
-
-            <td>8701.79</td>
-
-            <td>49287.18</td>
-
-            <td>39089.01</td>
-
-            <td>156776.05</td>
-          </tr>
+        </thead>
+        <tbody>
+          
+        {transaction_summary_report_region.map((summary, index) => (
+            <React.Fragment key={index}>
+              <tr>
+                <td>
+                  <button
+                    className="textlink"
+                    onClick={() => handleButtonClick(index)}
+                  >
+                    <b>{summary.REGION}</b>
+                  </button>
+                </td>
+                <td className="text-end">{summary.REQUITY}</td>
+                <td className="text-end">{summary.RHYBRID}</td>
+                <td className="text-end">{summary.RARBITRAGE}</td>
+                <td className="text-end">{summary.RPASSIVE}</td>
+                <td className="text-end">{summary.RFIXED_INCOME}</td>
+                <td className="text-end">{summary.RCASH}</td>
+                <td className="text-end">{summary.RTOTAL}</td>
+              </tr>
+              {clickedIndex === index && (
+                <tr key={`subtable-${index}`}>
+                <td colSpan="8">
+                  {clickedIndex === index && <TableRowWithCollapse />}
+                </td>
+              </tr>
+              )}
+            </React.Fragment>
+          ))}
         </tbody>
       </table>
     </div>

@@ -13,3 +13,7 @@ export const API_SCHEME_DETAILS = {
     DATA: `${API}/scheme_details`,
 };
 
+export const API_REGION = {
+    DATA: (queryParams) => `${API}/region_summary_transactions?${queryParams}`,
+};
+

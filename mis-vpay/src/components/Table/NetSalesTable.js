@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SubNetSalesTable from "./SubTable/SubNetSalesTable";
 
-const NetSalesTable = ({ transaction_summary_report }) => {
+const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
 
   const handleButtonClick = (index) => {
@@ -58,7 +58,13 @@ const NetSalesTable = ({ transaction_summary_report }) => {
                   {clickedIndex === index && (
                     <tr key={`subtable-${index}`}>
                       <td colSpan="8">
-                        <SubNetSalesTable />
+                        <SubNetSalesTable 
+                          pzone={summary.ZONE}
+                          startDate={startDate}  
+                          endDate={endDate}       
+                          assetClass={assetClass} 
+                          select_type={select_type} 
+                        />
                       </td>
                     </tr>
                   )}

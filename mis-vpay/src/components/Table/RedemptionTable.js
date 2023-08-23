@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import "./RedemptionTable.css";
 import SubRedemptionTable from "./SubTable/SubRedemptionTable";
 
-const RedemptionTable = ({ transaction_summary_report }) => {
+const RedemptionTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
-  
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
       setClickedIndex(-1); 
@@ -63,7 +62,13 @@ const RedemptionTable = ({ transaction_summary_report }) => {
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
                     <td colSpan="8">
-                      <SubRedemptionTable />
+                      <SubRedemptionTable 
+                        pzone={summary.ZONE}
+                        startDate={startDate}  
+                        endDate={endDate}       
+                        assetClass={assetClass} 
+                        select_type={select_type} 
+                      />
                     </td>
                   </tr>
                 )}

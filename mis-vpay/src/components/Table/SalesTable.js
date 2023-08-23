@@ -3,15 +3,14 @@ import "./SalesTable.css";
 import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
-import Api from "../Retail/Api";
 
-const SalesTable = ({ transaction_summary_report }) => {
+const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
-      setClickedIndex(-1); 
+      setClickedIndex(-1);
     } else {
-      setClickedIndex(index); 
+      setClickedIndex(index);
     }
   };
   return (
@@ -48,16 +47,16 @@ const SalesTable = ({ transaction_summary_report }) => {
                 <div className="col-md-12">
                   <table className="table small border">
                     <thead>
-                    <tr className="bgcolorBlue text-white">
-                      <th scope="col">ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /><img src="/mis_vpay/assets/images/table2icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                      <th scope="col" className="text-end">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                  </tr>
+                      <tr className="bgcolorBlue text-white">
+                        <th scope="col">ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /><img src="/mis_vpay/assets/images/table2icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col" className="text-end">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                      </tr>
                     </thead>
                     <tbody>
                       {transaction_summary_report.map((summary, index) => (
@@ -84,7 +83,11 @@ const SalesTable = ({ transaction_summary_report }) => {
                           {clickedIndex === index && (
                             <tr key={`subtable-${index}`}>
                               <td colSpan="8">
-                                <SubSalesTable  />
+                                <SubSalesTable pzone={summary.ZONE}
+                                  startDate={startDate}  
+                                  endDate={endDate}       
+                                  assetClass={assetClass} 
+                                  select_type={select_type} />
                               </td>
                             </tr>
                           )}
@@ -92,8 +95,8 @@ const SalesTable = ({ transaction_summary_report }) => {
                       ))}
                     </tbody>
                   </table>
-                  <RedemptionTable transaction_summary_report={transaction_summary_report} />
-                  <NetSalesTable transaction_summary_report={transaction_summary_report} />
+                  <RedemptionTable transaction_summary_report={transaction_summary_report} startDate={startDate} endDate={endDate} assetClass={assetClass}  select_type={select_type} />
+                  <NetSalesTable transaction_summary_report={transaction_summary_report} startDate={startDate} endDate={endDate} assetClass={assetClass} select_type={select_type} />
                 </div>
               </div>
             </div>
