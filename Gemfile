@@ -19,6 +19,8 @@ gem  "activerecord-oracle_enhanced-adapter"
 
 gem "bootsnap", require: false
 
+gem 'ruby-oci8'
+
 
 
 group :development, :test do

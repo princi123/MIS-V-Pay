@@ -56,9 +56,9 @@ const Navbar = ({ onToggle }) => {
                     <div className="col-md-3 " id="nav-fourth">
                         <button className="quarter">Select Quarter <span><i class="bi-arrow-down-square"></i></span></button>
 
-                        <button type="button" class="btn btn-group" id="nav-sixth">
-                            <img src={bell} alt="bell" width="15%" height="15%" />
-                            {/* <span className="ribbon">9</span> */}
+                        <button  className="btn-group bellbutton" id="nav-sixth">
+                            <img src={bell} alt="bell" width="18%" height="18%" />
+                            <span className="ribbon">9</span>
                         </button>
                     </div>
                       <div className="col-md-3" id="nav-fifth">
