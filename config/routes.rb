@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :login_details
       resources :summary_transactions
       resources :scheme_details 
+      resources :region_summary_transactions
     end
   end
 end
