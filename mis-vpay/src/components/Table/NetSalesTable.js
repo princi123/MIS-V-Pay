@@ -53,7 +53,7 @@ const NetSalesTable = ({ transaction_summary_report }) => {
                     <td className="text-end">{summary.NPASSIVE}</td>
                     <td className="text-end">{summary.NFIXED_INCOME}</td>
                     <td className="text-end">{summary.NCASH}</td>
-                    <td className="text-end">{summary.NTOTAL}</td>
+                    <td className="text-end" id="total">{summary.NTOTAL}</td>
                   </tr>
                   {clickedIndex === index && (
                     <tr key={`subtable-${index}`}>
