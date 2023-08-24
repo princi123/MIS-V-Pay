@@ -171,7 +171,7 @@ const TableRowWithNetSales = () => {
               <td>156776.05</td>
             </tr>
 
-            <tr className="">
+            <tr className="colorwhite BgcolorOrange">
               <td>Total</td>
 
               <td />
