@@ -14,6 +14,7 @@ import ScheduleModal from "../Shared/Modal/ScheduleModal";
 import Loading from "./Loading";
 import Api from "./Api";
 import { API_SCHEME_DETAILS } from "../../Constant/apiConstant";
+import { ToastContainer } from "react-toastify";
 
 const Retail_Transaction = () => {
   const [scheme_details, setSchemeDetails] = useState([]);
@@ -52,6 +53,19 @@ const Retail_Transaction = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
       <div className="container-fluid p-0 home-main ">
         <Navbar onToggle={toggleSidebar} />
         <div className="d-flex">
