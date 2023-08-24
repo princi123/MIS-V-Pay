@@ -52,7 +52,7 @@ const SideBar = ({isOpen}) => {
                                         </h2>
                                         <div id="sub-accordion-collapseOne" className="accordion-collapse collapse" aria-labelledby="sub-accordion-headingOne" data-bs-parent="#subAccordion">
                                             <div className="accordion-body p-0 text-center">
-                                                <Link to="/Transcation" id="sub-accor-active"> <span className={`sidebar ${isOpen ? '' : 'closed'}`}>Transaction Summary Reports</span></Link>
+                                                <Link to="/Transaction" id="sub-accor-active"> <span className={`sidebar ${isOpen ? '' : 'closed'}`}>Transaction Summary Reports</span></Link>
                                                 <button  className="mt-2 p-0 pb-2 pt-2"  id="sub-accor" ><span className={`sidebar ${isOpen ? '' : 'closed'}`} style={{marginLeft:"21px",marginRight:"11px"}}>Transaction Amount Summary</span> </button>
                                                 <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`}>ARN Transaction Reports</span></button>
                                             </div>
