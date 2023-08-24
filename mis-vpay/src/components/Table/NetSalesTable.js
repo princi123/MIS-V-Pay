@@ -15,8 +15,12 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
   return (
     <div className="new-component">
       <div className="head">
-        <h4><b>NET SALES</b></h4>
-        <h5><b className="gray-color">(In Lakhs)</b></h5>
+        <h4>
+          <b>NET SALES</b>
+        </h4>
+        <h5>
+          <b className="gray-color">(In Lakhs)</b>
+        </h5>
       </div>
 
       <div className="col-md-3" />
@@ -24,53 +28,65 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
         <table className="table small border">
           <thead>
             <tr className="bgcolorBlue text-white">
-                <th scope="col">ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /><img src="/mis_vpay/assets/images/table2icon.png" alt="" /></th>
-                <th scope="col" className="text-end">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                <th scope="col" className="text-end">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                <th scope="col" className="text-end">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                <th scope="col" className="text-end">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-                </th>
-                <th scope="col" className="text-end">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-                </th>
-                <th scope="col" className="text-end">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                <th scope="col" className="text-end">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-              </tr>
+              <th scope="col">ZONE</th>
+              <th scope="col" className="text-end">
+                Equity
+              </th>
+              <th scope="col" className="text-end">
+                Hybrid
+              </th>
+              <th scope="col" className="text-end">
+                Arbitrage
+              </th>
+              <th scope="col" className="text-end">
+                Passive(ex-Debt)
+              </th>
+              <th scope="col" className="text-end">
+                Fixed Income
+              </th>
+              <th scope="col" className="text-end">
+                Cash{" "}
+              </th>
+              <th scope="col" className="text-end">Total</th>
+            </tr>
           </thead>
           <tbody>
             {transaction_summary_report.map((summary, index) => (
-                <React.Fragment key={index}>
-                  <tr>
-                    <td>
-                      <button
-                        className="textlink"
-                        onClick={() => handleButtonClick(index)}
-                      >
-                        <b>{summary.ZONE}</b>
-                      </button>
+              <React.Fragment key={index}>
+                <tr>
+                  <td>
+                    <button
+                      className="textlink"
+                      onClick={() => handleButtonClick(index)}
+                    >
+                      <b>{summary.ZONE}</b>
+                    </button>
+                  </td>
+                  <td className="text-end">{summary.NEQUITY}</td>
+                  <td className="text-end">{summary.NHYBRID}</td>
+                  <td className="text-end">{summary.NARBITRAGE}</td>
+                  <td className="text-end">{summary.NPASSIVE}</td>
+                  <td className="text-end">{summary.NFIXED_INCOME}</td>
+                  <td className="text-end">{summary.NCASH}</td>
+                  <td className="text-end" id="total">
+                    {summary.NTOTAL}
+                  </td>
+                </tr>
+                {clickedIndex === index && (
+                  <tr key={`subtable-${index}`}>
+                    <td colSpan="8">
+                      <SubNetSalesTable
+                        pzone={summary.ZONE}
+                        startDate={startDate}
+                        endDate={endDate}
+                        assetClass={assetClass}
+                        select_type={select_type}
+                      />
                     </td>
-                    <td className="text-end">{summary.NEQUITY}</td>
-                    <td className="text-end">{summary.NHYBRID}</td>
-                    <td className="text-end">{summary.NARBITRAGE}</td>
-                    <td className="text-end">{summary.NPASSIVE}</td>
-                    <td className="text-end">{summary.NFIXED_INCOME}</td>
-                    <td className="text-end">{summary.NCASH}</td>
-                    <td className="text-end" id="total">{summary.NTOTAL}</td>
                   </tr>
-                  {clickedIndex === index && (
-                    <tr key={`subtable-${index}`}>
-                      <td colSpan="8">
-                        <SubNetSalesTable 
-                          pzone={summary.ZONE}
-                          startDate={startDate}  
-                          endDate={endDate}       
-                          assetClass={assetClass} 
-                          select_type={select_type} 
-                        />
-                      </td>
-                    </tr>
-                  )}
-                </React.Fragment>
-              ))}
+                )}
+              </React.Fragment>
+            ))}
           </tbody>
         </table>
       </div>
