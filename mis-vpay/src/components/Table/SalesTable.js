@@ -79,7 +79,7 @@ const SalesTable = ({ transaction_summary_report }) => {
                               {summary.SFIXED_INCOME}
                             </td>
                             <td className="text-end">{summary.SCASH}</td>
-                            <td className="text-end color-biege">{summary.STOTAL}</td>
+                            <td className="text-end color-biege" id="total">{summary.STOTAL}</td>
                           </tr>
                           {clickedIndex === index && (
                             <tr key={`subtable-${index}`}>
