@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import "./SubRedemptionTable.css";
-import TableRowWithCollapse from "./TableRowWithCollapse";
 import RegionApi from "./Api/RegionApi";
+import TableRowWithNetSales from "./UFC/TableRowWithNetSales";
 
 
 const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }) => {
@@ -90,7 +90,7 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }
                       className="textlink"
                       onClick={() => handleButtonClick(index)}
                     >
-                      <b>{summary.REGION}</b>
+                      <b>{summary.REGION_NAME}</b>
                     </button>
                   </td>
                   <td className="text-end">{summary.NEQUITY}</td>
@@ -104,7 +104,7 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
                   <td colSpan="8">
-                    {clickedIndex === index && <TableRowWithCollapse />}
+                    {clickedIndex === index && <TableRowWithNetSales/>}
                   </td>
                 </tr>
                 )}

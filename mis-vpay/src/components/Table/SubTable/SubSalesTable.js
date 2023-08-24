@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import "./SubSalesTable.css";
-import TableRowWithCollapse from "./TableRowWithCollapse";
 import RegionApi from "./Api/RegionApi";
+import TableRowWithCollapse from "./UFC/TableRowWithCollapse";
 
 const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
@@ -94,7 +94,7 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }) =
                     className="textlink"
                     onClick={() => handleButtonClick(index)}
                   >
-                    <b>{summary.REGION}</b>
+                    <b>{summary.REGION_NAME}</b>
                   </button>
                 </td>
                 <td className="text-end">{summary.SEQUITY}</td>
@@ -108,7 +108,12 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }) =
               {clickedIndex === index && (
                 <tr key={`subtable-${index}`}>
                 <td colSpan="8">
-                  {clickedIndex === index && <TableRowWithCollapse />}
+                  {clickedIndex === index && <TableRowWithCollapse region_name={summary.REGION_NAME}
+                  startDate={startDate}  
+                  endDate={endDate}       
+                  assetClass={assetClass} 
+                  select_type={select_type}
+                  />}
                 </td>
               </tr>
               )}
