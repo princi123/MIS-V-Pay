@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useMemo} from "react";
 import "./SubRedemptionTable.css";
 import RegionApi from "./Api/RegionApi";
 import TableRowWithNetSales from "./UFC/TableRowWithNetSales";
@@ -7,17 +7,18 @@ import TableRowWithNetSales from "./UFC/TableRowWithNetSales";
 const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
 
-  const formattedStartDate = startDate.split("-").reverse().join("/");
-  const formattedEndDate = endDate.split("-").reverse().join("/");
-
-  const queryParams = new URLSearchParams({
-    start_date: formattedStartDate,
-    end_date: formattedEndDate,
-    asset_class: assetClass,
-    select_type: select_type,
-    employee_code: 2941,
-    p_zone: pzone,
-  });
+  const queryParams = useMemo(() => {
+    const formattedStartDate = startDate.split("-").reverse().join("/");
+    const formattedEndDate = endDate.split("-").reverse().join("/");
+    return new URLSearchParams({
+      start_date: formattedStartDate,
+      end_date: formattedEndDate,
+      asset_class: assetClass,
+      select_type: select_type,
+      employee_code: 2941,
+      p_zone: pzone,
+    });
+  }, [startDate, endDate, assetClass, select_type, pzone]);
 
   const transaction_summary_report_region = RegionApi(queryParams);
 
@@ -39,50 +40,19 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }
 
       <table className="table" style={{ backgroundColor: "white" }}>
           <thead>
-          <tr className="colorwhite BgcolorOrange">
-              <th scope="col">
-                REGION <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-                <img src="/mis_vpay/assets/images/table2icon.png" alt="" />
-              </th>
-
-              <th scope="col"className="text-end">
-                Equity{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col"className="text-end">
-                Hybrid{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col"className="text-end">
-                Arbitrage{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col"className="text-end">
-                Passive(ex-Debt){" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col"className="text-end">
-                Fixed Income{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col" className="text-end">
-                Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col">
-                Total{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
+            <tr className="colorwhite BgcolorOrange">
+              <th scope="col">REGION</th>
+              <th scope="col"className="text-end">Equity</th>
+              <th scope="col"className="text-end">Hybrid</th>
+              <th scope="col"className="text-end">Arbitrage</th>
+              <th scope="col"className="text-end">Passive(ex-Debt)</th>
+              <th scope="col"className="text-end">Fixed Income</th>
+              <th scope="col" className="text-end">Cash </th>
+              <th scope="col" className="text-end">Total</th>
             </tr>
           </thead>
-          <tbody>
-            
-          {transaction_summary_report_region.map((summary, index) => (
+          <tbody>           
+            {transaction_summary_report_region.map((summary, index) => (
               <React.Fragment key={index}>
                 <tr>
                   <td>
@@ -104,7 +74,14 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
                   <td colSpan="8">
-                    {clickedIndex === index && <TableRowWithNetSales/>}
+                    {clickedIndex === index && <TableRowWithNetSales
+                      region_name={summary.REGION_NAME}
+                      startDate={startDate}  
+                      endDate={endDate}       
+                      assetClass={assetClass} 
+                      select_type={select_type}
+                      pzone={pzone}
+                    />}
                   </td>
                 </tr>
                 )}

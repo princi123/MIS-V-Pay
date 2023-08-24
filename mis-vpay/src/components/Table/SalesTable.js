@@ -48,14 +48,26 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                   <table className="table small border">
                     <thead>
                       <tr className="bgcolorBlue text-white">
-                        <th scope="col">ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /><img src="/mis_vpay/assets/images/table2icon.png" alt="" /></th>
-                        <th scope="col" className="text-end">Equity <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                        <th scope="col" className="text-end">Hybrid <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                        <th scope="col" className="text-end">Arbitrage <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                        <th scope="col" className="text-end">Passive(ex-Debt) <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                        <th scope="col" className="text-end">Fixed Income <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                        <th scope="col" className="text-end">Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
-                        <th scope="col" className="text-end">Total <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" /></th>
+                        <th scope="col">ZONE</th>
+                        <th scope="col" className="text-end">
+                          Equity
+                        </th>
+                        <th scope="col" className="text-end">
+                          Hybrid
+                        </th>
+                        <th scope="col" className="text-end">
+                          Arbitrage
+                        </th>
+                        <th scope="col" className="text-end">
+                          Passive(ex-Debt)
+                        </th>
+                        <th scope="col" className="text-end">
+                          Fixed Income
+                        </th>
+                        <th scope="col" className="text-end">
+                          Cash{" "}
+                        </th>
+                        <th scope="col" className="text-end">Total</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -78,16 +90,20 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                               {summary.SFIXED_INCOME}
                             </td>
                             <td className="text-end">{summary.SCASH}</td>
-                            <td className="text-end color-biege" id="total">{summary.STOTAL}</td>
+                            <td className="text-end color-biege" id="total">
+                              {summary.STOTAL}
+                            </td>
                           </tr>
                           {clickedIndex === index && (
                             <tr key={`subtable-${index}`}>
                               <td colSpan="8">
-                                <SubSalesTable pzone={summary.ZONE}
-                                  startDate={startDate}  
-                                  endDate={endDate}       
-                                  assetClass={assetClass} 
-                                  select_type={select_type} />
+                                <SubSalesTable
+                                  pzone={summary.ZONE}
+                                  startDate={startDate}
+                                  endDate={endDate}
+                                  assetClass={assetClass}
+                                  select_type={select_type}
+                                />
                               </td>
                             </tr>
                           )}
@@ -95,8 +111,20 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                       ))}
                     </tbody>
                   </table>
-                  <RedemptionTable transaction_summary_report={transaction_summary_report} startDate={startDate} endDate={endDate} assetClass={assetClass}  select_type={select_type} />
-                  <NetSalesTable transaction_summary_report={transaction_summary_report} startDate={startDate} endDate={endDate} assetClass={assetClass} select_type={select_type} />
+                  <RedemptionTable
+                    transaction_summary_report={transaction_summary_report}
+                    startDate={startDate}
+                    endDate={endDate}
+                    assetClass={assetClass}
+                    select_type={select_type}
+                  />
+                  <NetSalesTable
+                    transaction_summary_report={transaction_summary_report}
+                    startDate={startDate}
+                    endDate={endDate}
+                    assetClass={assetClass}
+                    select_type={select_type}
+                  />
                 </div>
               </div>
             </div>
