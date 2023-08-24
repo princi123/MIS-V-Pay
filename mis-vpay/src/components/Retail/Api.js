@@ -1,6 +1,7 @@
 import  {  useState } from "react";
 import { API_SUMMARY_TRANSACTION } from "../../Constant/apiConstant";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Api = () => {
   const [hide, setHide] = useState(false);
   const [startDate, setStartDate] = useState();
@@ -23,16 +24,24 @@ const Api = () => {
         select_type: select_type,
         employee_code: 2941,
       });
+      if(startDate>endDate)
+      {
+       toast.error("Start Date must be Greater Than Start Date")
+       setLoading(false);
+      }      
+      else{
       const response = await fetch(
         API_SUMMARY_TRANSACTION.DATA(queryParams)
       );
       const data = await response.json();
       setTransactionSummaryReport(data);
       setLoading(false)
+      }
     } catch (error) {
       console.error("error fetching transaction summary data", error);
     }
   };
+
 
   const togglehide = () => {
     fetchTransactionSummary();
