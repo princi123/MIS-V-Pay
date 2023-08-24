@@ -1,6 +1,6 @@
 import React from "react";
 
-const TableRowWithCollapse = () => {
+const TableRowWithNetSales = () => {
   return (
     <>
       <div className="new-component container-fluid p-0">
@@ -201,4 +201,4 @@ const TableRowWithCollapse = () => {
   );
 };
 
-export default TableRowWithCollapse;
+export default TableRowWithNetSales;

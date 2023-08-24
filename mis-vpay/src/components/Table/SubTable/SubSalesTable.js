@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 import "./SubSalesTable.css";
-import TableRowWithCollapse from "./TableRowWithCollapse";
+import RegionApi from "./Api/RegionApi";
+import TableRowWithCollapse from "./UFC/TableRowWithCollapse";
 
-const SubSalesTable = () => {
+const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
+
+  const formattedStartDate = startDate.split("-").reverse().join("/");
+  const formattedEndDate = endDate.split("-").reverse().join("/");
   
+  const queryParams = new URLSearchParams({
+    start_date: formattedStartDate,
+    end_date: formattedEndDate,
+    asset_class: assetClass,
+    select_type: select_type,
+    employee_code: 2941,
+    p_zone: pzone,
+  });
+
+  const transaction_summary_report_region = RegionApi(queryParams);
+ 
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
       setClickedIndex(-1);
@@ -31,47 +46,47 @@ const SubSalesTable = () => {
         <thead>
           <tr className="colorwhite BgcolorOrange">
             <th scope="col">
-              ZONE <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              REGION <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
               <img src="/mis_vpay/assets/images/table2icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col" className="text-end">
               Equity{" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col" className="text-end">
               Hybrid{" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col" className="text-end">
               Arbitrage{" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col" className="text-end">
               Passive(ex-Debt){" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col" className="text-end">
               Fixed Income{" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col" className="text-end">
               Cash <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
 
-            <th scope="col">
+            <th scope="col" className="text-end">
               Total{" "}
               <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
             </th>
           </tr>
         </thead>
         <tbody>
-          {/* {transaction_summary_report_region.map((summary, index) => (
+          {transaction_summary_report_region.map((summary, index) => (
             <React.Fragment key={index}>
               <tr>
                 <td>
@@ -79,28 +94,31 @@ const SubSalesTable = () => {
                     className="textlink"
                     onClick={() => handleButtonClick(index)}
                   >
-                    <b>{summary.ZONE}</b>
+                    <b>{summary.REGION_NAME}</b>
                   </button>
                 </td>
                 <td className="text-end">{summary.SEQUITY}</td>
                 <td className="text-end">{summary.SHYBRID}</td>
                 <td className="text-end">{summary.SARBITRAGE}</td>
                 <td className="text-end">{summary.SPASSIVE}</td>
-                <td className="text-end">
-                  {summary.SFIXED_INCOME}
-                </td>
+                <td className="text-end">{summary.SFIXED_INCOME}</td>
                 <td className="text-end">{summary.SCASH}</td>
                 <td className="text-end">{summary.STOTAL}</td>
               </tr>
               {clickedIndex === index && (
                 <tr key={`subtable-${index}`}>
                 <td colSpan="8">
-                  {clickedIndex === index && <TableRowWithCollapse />}
+                  {clickedIndex === index && <TableRowWithCollapse region_name={summary.REGION_NAME}
+                  startDate={startDate}  
+                  endDate={endDate}       
+                  assetClass={assetClass} 
+                  select_type={select_type}
+                  />}
                 </td>
               </tr>
               )}
             </React.Fragment>
-          ))} */}
+          ))}
         </tbody>
       </table>
     </div>

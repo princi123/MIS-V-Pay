@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import  {  useState } from "react";
 import { API_SUMMARY_TRANSACTION } from "../../Constant/apiConstant";
 
 const Api = () => {
   const [hide, setHide] = useState(false);
   const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const [endDate, setEndDate] = useState()
   const [select_type, setSelectType] = useState("");
   const [assetClass, setAssetClass] = useState();
   const [transaction_summary_report, setTransactionSummaryReport] = useState([]);

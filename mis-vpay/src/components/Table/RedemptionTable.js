@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import "./RedemptionTable.css";
 import SubRedemptionTable from "./SubTable/SubRedemptionTable";
 
-const RedemptionTable = ({ transaction_summary_report }) => {
+const RedemptionTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
-  
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
       setClickedIndex(-1); 
@@ -16,13 +15,10 @@ const RedemptionTable = ({ transaction_summary_report }) => {
   return (
     <div>
       <div className="head">
-        <h4>
-          <b>REDEMPTION</b>
-        </h4>
-        <h5>
-          <b className="gray-color">(In Lakhs)</b>
-        </h5>
+        <h4><b>REDEMPTION</b></h4>
+        <h5><b className="gray-color">(In Lakhs)</b></h5>
       </div>
+
       <div className="col-md-3" />
       <div className="col-md-12">
         <table className="table small border">
@@ -60,18 +56,24 @@ const RedemptionTable = ({ transaction_summary_report }) => {
                   <td className="text-end">{summary.RCASH}</td>
                   <td className="text-end" id="total">{summary.RTOTAL}</td>
                 </tr>
-                {clickedIndex === index && (
-                  <tr key={`subtable-${index}`}>
-                    <td colSpan="8">
-                      <SubRedemptionTable />
-                    </td>
-                  </tr>
-                )}
-              </React.Fragment>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                  {clickedIndex === index && (
+                    <tr key={`subtable-${index}`}>
+                      <td colSpan="8">
+                        <SubRedemptionTable 
+                          pzone={summary.ZONE}
+                          startDate={startDate}  
+                          endDate={endDate}       
+                          assetClass={assetClass} 
+                          select_type={select_type} 
+                        />
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              ))}
+            </tbody>
+          </table>
+        </div>
     </div>
   );
 };
