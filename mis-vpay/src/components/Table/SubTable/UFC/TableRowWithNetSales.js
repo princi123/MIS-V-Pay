@@ -1,199 +1,76 @@
-import React from "react";
+import React,{useMemo} from "react";
+import UfcApi from "../Api/UfcApi";
 
-const TableRowWithNetSales = () => {
+const TableRowWithNetSales = ({ pzone, startDate, endDate, select_type,region_name }) => {
+  
+  const queryParams = useMemo(() => {
+    const formattedStartDate = startDate.split("-").reverse().join("/");
+    const formattedEndDate = endDate.split("-").reverse().join("/");
+    return new URLSearchParams({
+      start_date: formattedStartDate,
+      end_date: formattedEndDate,
+      asset_class: 1,
+      select_type: select_type,
+      employee_code: 2941,
+      p_zone: pzone,
+      region_name: region_name
+
+    });
+  }, [startDate, endDate, region_name, select_type, pzone]);
+  const transaction_summary_report_ufc = UfcApi(queryParams);
+
   return (
     <>
       <div className="new-component container-fluid p-0">
         <table className="table" style={{ backgroundColor: "white" }}>
           <thead>
             <tr className="">
-              <th scope="col">S no.</th>
-
               <th scope="col">UFC code</th>
-
               <th scope="col">UFC</th>
-
-              <th scope="col">
-                Region{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              <th scope="col" className="text-end">
+                Equity
               </th>
-
-              <th scope="col">
-                Equity{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              <th scope="col" className="text-end">
+                Hybrid
               </th>
-
-              <th scope="col">
-                Hybrid{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              <th scope="col" className="text-end">
+                Arbitrage
               </th>
-
-              <th scope="col">
-                Arbitrage{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              <th scope="col" className="text-end">
+                Passive(ex-Debt)
               </th>
-
-              <th scope="col">
-                Passive(ex-Debt){" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
+              <th scope="col" className="text-end">
+                Fixed Income
               </th>
-
-              <th scope="col">
-                Fixed Income{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col">
+              <th scope="col" className="text-end">
                 Cash{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
               </th>
-
-              <th scope="col">
-                Total{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
+              <th scope="col"  className="text-end">Total</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr style={{ backgroundColor: "#DADADA" }}>
-              {" "}
-              <td>1.</td>
-              <td>
-                <button className="textlink">
-                  <b>203</b>
-                </button>
-              </td>
-              <td>
-                <button className="textlink">
-                  <b>PATNA</b>
-                </button>
-              </td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-
-            <tr style={{ backgroundColor: "#C5C5C5" }}>
-              {" "}
-              <td>2.</td>
-              <td>
-                <button className="textlink">
-                  <b>431</b>
-                </button>
-              </td>
-              <td>
-                <button className="textlink">
-                  <b>BHAGALPUR</b>
-                </button>
-              </td>
-              <td>102.45</td>
-              <td>18.54</td>
-              <td>1.05</td>
-              <td>1.05</td>
-              <td>62.47</td>
-              <td>37.6</td>
-              <td>657.39</td>
-              <td>879.5</td>
-            </tr>
-
-            <tr style={{ backgroundColor: "#DADADA" }}>
-              {" "}
-              <td>3.</td>
-              <td>
-                <button className="textlink">
-                  <b>442</b>
-                </button>
-              </td>
-              <td>
-                <button className="textlink">
-                  <b>GAYA</b>
-                </button>
-              </td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-
-            <tr style={{ backgroundColor: "#C5C5C5" }}>
-              {" "}
-              <td>4.</td>
-              <td>
-                <button className="textlink">
-                  <b>445</b>
-                </button>
-              </td>
-              <td>
-                <button className="textlink">
-                  <b>DARBHANGA</b>
-                </button>
-              </td>
-              <td>102.45</td>
-              <td>18.54</td>
-              <td>1.05</td>
-              <td>1.05</td>
-              <td>62.47</td>
-              <td>37.6</td>
-              <td>657.39</td>
-              <td>879.5</td>
-            </tr>
-
-            <tr style={{ backgroundColor: "#DADADA" }}>
-              {" "}
-              <td>5.</td>
-              <td>
-                <button className="textlink">
-                  <b>446</b>
-                </button>
-              </td>
-              <td>
-                <button className="textlink">
-                  <b>MUZAFFARPUR</b>
-                </button>
-              </td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-
-            <tr className="colorwhite BgcolorOrange">
-              <td>Total</td>
-
-              <td />
-
-              <td />
-
-              <td>50445.55</td>
-
-              <td>8400.66</td>
-
-              <td>851.86</td>
-
-              <td>8701.79</td>
-
-              <td>49287.18</td>
-
-              <td>39089.01</td>
-
-              <td>39089.01</td>
-
-              <td>156776.05</td>
-            </tr>
+            {transaction_summary_report_ufc.map((ufc) => (
+              <tr style={{ backgroundColor: "#DADADA" }}>
+                <td>
+                  <button className="textlink">
+                    <b>{ufc.UFC_CODE}</b>
+                  </button>
+                </td>
+                <td>
+                  <button className="textlink">
+                    <b>{ufc.UFC_NAME}</b>
+                  </button>
+                </td>
+                <td className="text-end">{ufc.NEQUITY}</td>
+                <td className="text-end">{ufc.NHYBRID}</td>
+                <td className="text-end">{ufc.NARBITRAGE}</td>
+                <td className="text-end">{ufc.NPASSIVE}</td>
+                <td className="text-end">{ufc.NFIXED_INCOME}</td>
+                <td className="text-end">{ufc.NCASH}</td>
+                <td className="text-end">{ufc.NTOTAL}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
