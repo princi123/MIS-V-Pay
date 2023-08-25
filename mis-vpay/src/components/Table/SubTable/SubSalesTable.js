@@ -49,7 +49,7 @@ const SubSalesTable = ({
         </div>
       </div>
 
-      <table className="table" style={{ backgroundColor: "white" }}>
+      <table className="mt-3 table" style={{ backgroundColor: "white",border:"2px solid",borderColor:"#EE8B3A" }}>
         <thead>
           <tr className="colorwhite BgcolorOrange">
             <th scope="col">REGION</th>
@@ -76,11 +76,11 @@ const SubSalesTable = ({
             </th>
           </tr>
         </thead>
-        <tbody style={{ backgroundColor: "#DDD" }}>
+        <tbody  style={{ backgroundColor: "#DADADA" }}>
           {Array.isArray(transaction_summary_report_region) ? (
             transaction_summary_report_region.map((summary, index) => (
               <React.Fragment key={index}>
-                <tr >
+                <tr>
                   <td>
                     <button
                       className="textlink"
@@ -95,7 +95,7 @@ const SubSalesTable = ({
                   <td className="text-end">{summary.SPASSIVE}</td>
                   <td className="text-end">{summary.SFIXED_INCOME}</td>
                   <td className="text-end">{summary.SCASH}</td>
-                  <td className="text-end" id="total">{summary.STOTAL}</td>
+                  <td className="text-end"><b>{summary.STOTAL}</b></td>
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>

@@ -25,7 +25,7 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
 
       <div className="col-md-3" />
       <div className="col-md-12">
-        <table className="table small border">
+        <table className="mt-3 table small border">
           <thead>
             <tr className="bgcolorBlue text-white">
               <th scope="col">ZONE</th>

@@ -200,9 +200,10 @@ const Retail_Transaction = ({headers}) => {
                   </div>
                 </div>
               </div>
+              <ScheduleModal />
               {hide && (
                 <>
-              <ScheduleModal />
+              
               <div className="Table">
                 {loading ? (
                   <div className="text-center mt-4">

@@ -38,9 +38,9 @@ const TableRowWithCollapseNetSales = ({
 
   return (
     <>
-      <div className="new-component container-fluid p-0">
-        <table className="table" style={{ backgroundColor: "white" }}>
-          <thead style={{ backgroundColor: "#768780bf" }}>
+      <div className="new-component container-fluid ">
+        <table className="mt-3 table" >
+          <thead style={{ backgroundColor: "#4C6072",color:"white" }}>
             <tr className="">
               <th scope="col">UFC code</th>
               <th scope="col">UFC</th>
@@ -81,7 +81,7 @@ const TableRowWithCollapseNetSales = ({
                     </button>
                   </td>
 
-                  <td className="text-end">{ufc.UFC_NAME}</td>
+                  <td>{ufc.UFC_NAME}</td>
                   <td className="text-end">{ufc.NEQUITY}</td>
                   <td className="text-end">{ufc.NHYBRID}</td>
                   <td className="text-end">{ufc.NARBITRAGE}</td>

@@ -26,9 +26,9 @@ const TableRowWithRedemption = ({
   const transaction_summary_report_rm = RmApi(queryParams);
   return (
     <>
-      <div className="new-component container-fluid p-0">
-      <table className="table" style={{ backgroundColor: "#2530b170" }} >
-          <thead >
+      <div className="new-component container-fluid ">
+      <table className="mt-3 table"  >
+          <thead style={{ backgroundColor: "rgb(58 94 147 / 98%)",color:"white" }} >
             <tr className="">
               <th scope="col">UFC Code</th>
               <th scope="col">UFC NAME</th>
@@ -62,7 +62,7 @@ const TableRowWithRedemption = ({
                     <b>{rm.RMCODE}</b>
                   </button>
                 </td>
-                <td className="text-end">{rm.RMNAME}</td>
+                <td >{rm.RMNAME}</td>
                 <td className="text-end">{rm.FUNCROLE}</td>
                 <td className="text-end">{rm.REQUITY}</td>
                 <td className="text-end">{rm.RHYBRID}</td>
