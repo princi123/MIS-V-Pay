@@ -7,6 +7,7 @@ import {
   setAuthTokenCookie,
 } from "./Cookie";
 import { API_LOGIN } from "../../Constant/apiConstant";
+import Api from "../Retail/Api";
 
 
 const Login = () => {
@@ -33,13 +34,22 @@ const Login = () => {
           if (Array.isArray(data) && data.length > 0) {
             const empId = data[0].p_emp_id;
             const token = data[0].p_auth_token;
-            
+  
             setEmpIdCookie(empId);
             setAuthTokenCookie(token);
-        
+  
+            const headers = {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+              emp_id: empId,
+            };
+  
             setEmpID("");
             setPassword("");
             navigate("/Home");
+            // Render the Api component and pass headers as a prop
+            console.log("kk");
+            return <Api headers={headers} />;
           } else {
             console.error("Invalid API response format");
           }
