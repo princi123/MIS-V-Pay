@@ -14,7 +14,8 @@ import ScheduleModal from "../Shared/Modal/ScheduleModal";
 import Loading from "./Loading";
 import Api from "./Api";
 import { API_SCHEME_DETAILS } from "../../Constant/apiConstant";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
 
 const Retail_Transaction = ({headers}) => {
   const [scheme_details, setSchemeDetails] = useState([]);
@@ -49,6 +50,24 @@ const Retail_Transaction = ({headers}) => {
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  const handleStartDateChange = (e) => {
+    const newStartDate = e.target.value;
+    if (newStartDate > endDate) {
+      toast.error("Start date should be less than end date");
+    } else {
+      setStartDate(newStartDate);
+    }
+  };
+
+  const handleEndDateChange = (e) => {
+    const newEndDate = e.target.value;
+    if (newEndDate < startDate) {
+      toast.error("End date should be greater than start date");
+    } else {
+      setEndDate(newEndDate);
+    }
   };
 
   return (
@@ -101,7 +120,7 @@ const Retail_Transaction = ({headers}) => {
                           className="form-control mt-2"
                           placeholder="Project End Date"
                           value={startDate}
-                          onChange={(e) => setStartDate(e.target.value)}
+                          onChange={handleStartDateChange}
                         />
                       </div>
                       <div className="form-group col-md-3">
@@ -117,7 +136,7 @@ const Retail_Transaction = ({headers}) => {
                           className="form-control mt-2"
                           placeholder="Project End Date"
                           value={endDate}
-                          onChange={(e) => setEndDate(e.target.value)}
+                          onChange={handleEndDateChange} 
                         />
                       </div>
                       {/* <div className="form-group col-md-2">

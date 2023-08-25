@@ -56,7 +56,7 @@ const Api = ({headers}) => {
       await fetchTransactionSummary();
       setHide(true);
     } catch (error) {
-      setHide(false); // Don't load tables on error
+      setHide(false); 
       console.log(hide,"hide")
       toast.error("Please fill all the fields");
     }
