@@ -31,8 +31,8 @@ const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type,region_na
   return (
     <>
       <div className="new-component container-fluid p-0">
-        <table className="table" style={{ backgroundColor: "white" }}>
-          <thead>
+        <table className="table" >
+          <thead style={{ backgroundColor: "#768780bf" }}>
             <tr className="">
               <th scope="col">UFC code</th>
               <th scope="col">UFC</th>
@@ -42,15 +42,15 @@ const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type,region_na
               <th scope="col"className="text-end">Passive(ex-Debt)</th>
               <th scope="col"className="text-end">Fixed Income</th>
               <th scope="col" className="text-end">Cash </th>
-              <th scope="col"className="text-end">Total</th>
+              <th scope="col"className="text-end" >Total</th>
             </tr>
           </thead>
 
-          <tbody>
+          <tbody style={{ backgroundColor: "#8080805c" }}>
             {transaction_summary_report_ufc.map((ufc,index)=>(
                 
                 <React.Fragment key={index}>
-                <tr style={{ backgroundColor: "#DADADA" }}>
+                <tr >
                   <td>
                     <button
                       className="textlink"
@@ -59,20 +59,27 @@ const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type,region_na
                       <b>{ufc.UFC_CODE}</b>
                     </button>
                   </td>
-                  <td className="text-end">{ufc.UFC_NAME}</td>
+                  <td>{ufc.UFC_NAME}</td>
                   <td className="text-end">{ufc.SEQUITY}</td>
                   <td className="text-end">{ufc.SHYBRID}</td>
                   <td className="text-end">{ufc.SARBITRAGE}</td> 
                   <td className="text-end">{ufc.SPASSIVE}</td> 
                   <td className="text-end">{ufc.SFIXED_INCOME}</td> 
                   <td className="text-end">{ufc.SCASH}</td>
-                  <td className="text-end">{ufc.STOTAL}</td>  
+                  <td className="text-end"style={{ backgroundColor: "#8080805c" }} ><b>{ufc.STOTAL}</b></td>  
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
-                  <td colSpan="8">
+                  <td colSpan="9" className="p-0">
                     {clickedIndex === index && 
-                    <TableRowWithSales/>
+                      <TableRowWithSales
+                        startDate={startDate}
+                        endDate={endDate}
+                        select_type={select_type}
+                        pzone={pzone}
+                        region_name={region_name}
+                        ufc_code={ufc.UFC_CODE}
+                      />                     
                     }
                   </td>
                 </tr>

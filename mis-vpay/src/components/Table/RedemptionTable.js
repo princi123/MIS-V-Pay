@@ -80,7 +80,7 @@ const RedemptionTable = ({
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
-                    <td colSpan="8">
+                    <td colSpan="8" className="p-0">
                       <SubRedemptionTable
                         pzone={summary.ZONE}
                         startDate={startDate}

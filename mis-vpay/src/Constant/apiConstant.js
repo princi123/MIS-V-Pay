@@ -21,3 +21,7 @@ export const API_UFC = {
     DATA: (queryParams) => `${API}/ufc_summary_transactions?${queryParams}`,
 };
 
+export const API_RM = {
+    DATA: (queryParams) => `${API}/rm_summary_transactions?${queryParams}`,
+};
+

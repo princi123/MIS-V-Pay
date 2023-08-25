@@ -1,200 +1,78 @@
-import React from "react";
+import React, { useMemo } from "react";
+import RmApi from "../Api/RmApi";
 
-const TableRowWithRedemption = () => {
+const TableRowWithRedemption = ({
+  pzone,
+  startDate,
+  endDate,
+  select_type,
+  region_name,
+  ufc_code,
+}) => {
+  const queryParams = useMemo(() => {
+    const formattedStartDate = startDate.split("-").reverse().join("/");
+    const formattedEndDate = endDate.split("-").reverse().join("/");
+    return new URLSearchParams({
+      start_date: formattedStartDate,
+      end_date: formattedEndDate,
+      asset_class: 1,
+      select_type: select_type,
+      employee_code: 2941,
+      p_zone: pzone,
+      region_name: region_name,
+      ufc_code: ufc_code,
+    });
+  }, [startDate, endDate, region_name, select_type, pzone, ufc_code]);
+  const transaction_summary_report_rm = RmApi(queryParams);
   return (
     <>
       <div className="new-component container-fluid p-0">
-        <table className="table" style={{ backgroundColor: "white" }}>
-          <thead>
+      <table className="table" style={{ backgroundColor: "#2530b170" }} >
+          <thead >
             <tr className="">
+              <th scope="col">UFC Code</th>
               <th scope="col">UFC NAME</th>
-
               <th scope="col">RM CODE</th>
-
               <th scope="col">RM NAME</th>
               <th scope="col">FUNCROLE</th>
-              <th scope="col">
-                Region{" "}
-             
-              </th>
-
-              <th scope="col">
-                Equity{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col">
-                Hybrid{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col">
-                Arbitrage{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col">
-                Passive(ex-Debt){" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col">
-                Fixed Income{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col">
-                Cash{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
-
-              <th scope="col">
-                Total{" "}
-                <img src="/mis_vpay/assets/images/up-down_icon.png" alt="" />
-              </th>
+              <th scope="col"className="text-end">Equity</th>
+              <th scope="col"className="text-end">Hybrid</th>
+              <th scope="col"className="text-end">Arbitrage</th>
+              <th scope="col"className="text-end">Passive(ex-Debt)</th>
+              <th scope="col"className="text-end">Fixed Income</th>
+              <th scope="col"className="text-end">Cash</th>
+              <th scope="col"className="text-end">Total</th>
             </tr>
           </thead>
-
           <tbody>
-            <tr style={{ backgroundColor: "#DADADA" }}>
-             
-              <td>1.</td>
-              <td>
-                <button className="textlink">
-                  <b>203</b>
-                </button>
-              </td>
-              <td>
-                <button className="textlink">
-                  <b>PATNA</b>
-                </button>
-              </td>
-              <td>null</td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-
-            <tr style={{ backgroundColor: "#C5C5C5" }}>
-            <td>1.</td>
-              <td>
-                <button className="textlink">
-                  <b>203</b>
-                </button>
-              </td>
-              <td>
-                <button className="textlink">
-                  <b>PATNA</b>
-                </button>
-              </td>
-              <td>null</td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-
-            <tr style={{ backgroundColor: "#DADADA" }}>
-            <td>1.</td>
-              <td>
-                <button className="textlink">
-                  <b>203</b>
-                </button>
-              </td>
-              <td>
-                <button className="textlink">
-                  <b>PATNA</b>
-                </button>
-              </td>
-              <td>null</td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-
-            <tr style={{ backgroundColor: "#C5C5C5" }}>
-            <td>1.</td>
-              <td>
-                <button className="textlink">
-                  <b>203</b>
-                </button>
-              </td>
-              <td>
-                <button className="textlink">
-                  <b>PATNA</b>
-                </button>
-              </td>
-              <td>null</td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-
-            <tr style={{ backgroundColor: "#DADADA" }}>
-            <td>1.</td>
-              <td>
-                <button className="textlink">
-                  <b>203</b>
-                </button>
-              </td>
-              <td>
-                <button className="textlink">
-                  <b>PATNA</b>
-                </button>
-              </td>
-              <td>null</td>
-              <td>50445.55</td>
-              <td>8400.66</td>
-              <td>851.86</td>
-              <td>851.86</td>
-              <td>8701.79</td>
-              <td>49287.18</td>
-              <td>39089.01</td>
-              <td>156776.05</td>
-            </tr>
-
-            <tr className="colorwhite BgcolorOrange">
-              <td>Total</td>
-
-              <td />
-
-              <td />
-
-              <td>50445.55</td>
-
-              <td>8400.66</td>
-
-              <td>851.86</td>
-
-              <td>8701.79</td>
-
-              <td>49287.18</td>
-
-              <td>39089.01</td>
-
-              <td>39089.01</td>
-
-              <td>156776.05</td>
-            </tr>
+            {transaction_summary_report_rm.map((rm) => (
+              <tr style={{ backgroundColor: "#dee2e69c" }}>
+                <td>
+                  <button className="textlink">
+                    <b>{rm.UFC_CODE}</b>
+                  </button>
+                </td>
+                <td>
+                  <button className="textlink">
+                    <b>{rm.UFC_NAME}</b>
+                  </button>
+                </td>
+                <td>
+                  <button className="textlink">
+                    <b>{rm.RMCODE}</b>
+                  </button>
+                </td>
+                <td className="text-end">{rm.RMNAME}</td>
+                <td className="text-end">{rm.FUNCROLE}</td>
+                <td className="text-end">{rm.REQUITY}</td>
+                <td className="text-end">{rm.RHYBRID}</td>
+                <td className="text-end">{rm.RARBITRAGE}</td>
+                <td className="text-end">{rm.RPASSIVE}</td>
+                <td className="text-end">{rm.RFIXED_INCOME}</td>
+                <td className="text-end">{rm.RCASH}</td>  
+                <td className="text-end"><b>{rm.RTOTAL}</b></td>                            
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
