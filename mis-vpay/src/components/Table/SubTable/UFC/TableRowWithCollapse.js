@@ -1,5 +1,6 @@
-import React,{useMemo} from "react";
+import React,{useMemo,useState} from "react";
 import UfcApi from "../Api/UfcApi";
+import TableRowWithSales from "../RMWISE/TableRowWithSales";
 
 const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type,region_name }) => {
   const queryParams = useMemo(() => {
@@ -17,7 +18,16 @@ const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type,region_na
     });
   }, [startDate, endDate, region_name, select_type, pzone]);
   const transaction_summary_report_ufc = UfcApi(queryParams);
-
+  
+  const [clickedIndex, setClickedIndex] = useState(-1);
+  const handleButtonClick = (index) => {
+    if (index === clickedIndex) {
+      setClickedIndex(-1);
+    } else {
+      setClickedIndex(index); 
+    }
+  };
+ 
   return (
     <>
       <div className="new-component container-fluid p-0">
@@ -37,26 +47,37 @@ const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type,region_na
           </thead>
 
           <tbody>
-            {transaction_summary_report_ufc.map((ufc)=>(
-                 <tr style={{ backgroundColor: "#DADADA" }}>
+            {transaction_summary_report_ufc.map((ufc,index)=>(
+                
+                <React.Fragment key={index}>
+                <tr style={{ backgroundColor: "#DADADA" }}>
                   <td>
-                    <button className="textlink">
+                    <button
+                      className="textlink"
+                      onClick={() => handleButtonClick(index)}
+                    >
                       <b>{ufc.UFC_CODE}</b>
                     </button>
                   </td>
-                  <td>
-                    <button className="textlink">
-                      <b>{ufc.UFC_NAME}</b>
-                    </button>
-                  </td>
+                  <td className="text-end">{ufc.UFC_NAME}</td>
                   <td className="text-end">{ufc.SEQUITY}</td>
                   <td className="text-end">{ufc.SHYBRID}</td>
                   <td className="text-end">{ufc.SARBITRAGE}</td> 
                   <td className="text-end">{ufc.SPASSIVE}</td> 
                   <td className="text-end">{ufc.SFIXED_INCOME}</td> 
                   <td className="text-end">{ufc.SCASH}</td>
-                  <td className="text-end">{ufc.STOTAL}</td>     
-               </tr>
+                  <td className="text-end">{ufc.STOTAL}</td>  
+                </tr>
+                {clickedIndex === index && (
+                  <tr key={`subtable-${index}`}>
+                  <td colSpan="8">
+                    {clickedIndex === index && 
+                    <TableRowWithSales/>
+                    }
+                  </td>
+                </tr>
+                )}
+              </React.Fragment>
             ))}
           </tbody>
         </table>
