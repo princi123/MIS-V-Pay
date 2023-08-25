@@ -70,7 +70,7 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                         <th scope="col" className="text-end">Total</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                       {transaction_summary_report.map((summary, index) => (
                         <React.Fragment key={index}>
                           <tr>
