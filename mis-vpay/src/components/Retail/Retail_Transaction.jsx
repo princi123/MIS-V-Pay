@@ -16,7 +16,7 @@ import Api from "./Api";
 import { API_SCHEME_DETAILS } from "../../Constant/apiConstant";
 import { ToastContainer } from "react-toastify";
 
-const Retail_Transaction = () => {
+const Retail_Transaction = ({headers}) => {
   const [scheme_details, setSchemeDetails] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const {
@@ -32,7 +32,7 @@ const Retail_Transaction = () => {
     setEndDate,
     setSelectType,
     setStartDate,
-  } = Api();
+  } = Api({headers});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +54,7 @@ const Retail_Transaction = () => {
   return (
     <>
       <ToastContainer
-        position="top-center"
+        position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -63,7 +63,7 @@ const Retail_Transaction = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="colored"
       />
 
       <div className="container-fluid p-0 home-main ">
@@ -200,7 +200,8 @@ const Retail_Transaction = () => {
                   </div>
                 </div>
               </div>
-
+              {hide && (
+                <>
               <ScheduleModal />
               <div className="Table">
                 {loading ? (
@@ -208,7 +209,7 @@ const Retail_Transaction = () => {
                     <i className="fas fa-spinner fa-spin fa-2x"></i> <Loading />
                   </div>
                 ) : (
-                  hide && (
+                  
                     <SalesTable
                       transaction_summary_report={transaction_summary_report}
                       startDate={startDate}
@@ -216,13 +217,15 @@ const Retail_Transaction = () => {
                       assetClass={assetClass}
                       select_type={select_type}
                     />
-                  )
+                  
                 )}
               </div>
+              </>
+                  )}
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+          </div>
     </>
   );
 };
