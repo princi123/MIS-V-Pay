@@ -74,7 +74,7 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
-                    <td colSpan="8">
+                    <td colSpan="8" className="p-0">
                       <SubNetSalesTable
                         pzone={summary.ZONE}
                         startDate={startDate}

@@ -1,7 +1,7 @@
 import React,{useState,useMemo} from "react";
 import "./SubRedemptionTable.css";
 import RegionApi from "./Api/RegionApi";
-import TableRowWithNetSales from "./UFC/TableRowWithNetSales";
+import TableRowWithCollapseNetSales from "./UFC/TableRowWithCollapseNetSales";
 
 
 const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }) => {
@@ -51,7 +51,7 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }
               <th scope="col" className="text-end">Total</th>
             </tr>
           </thead>
-          <tbody>           
+          <tbody style={{ backgroundColor: "#DDD" }}>           
             {transaction_summary_report_region.map((summary, index) => (
               <React.Fragment key={index}>
                 <tr>
@@ -69,12 +69,12 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }
                   <td className="text-end">{summary.NPASSIVE}</td>
                   <td className="text-end">{summary.NFIXED_INCOME}</td>
                   <td className="text-end">{summary.NCASH}</td>
-                  <td className="text-end">{summary.NTOTAL}</td>
+                  <td className="text-end" id="total">{summary.NTOTAL}</td>
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
-                  <td colSpan="8">
-                    {clickedIndex === index && <TableRowWithNetSales
+                  <td colSpan="8" className="p-0">
+                    {clickedIndex === index && <TableRowWithCollapseNetSales
                       region_name={summary.REGION_NAME}
                       startDate={startDate}  
                       endDate={endDate}       

@@ -51,7 +51,7 @@ const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass
               <th scope="col" className="text-end">Total</th>
             </tr>
           </thead>
-        <tbody>
+        <tbody style={{ backgroundColor: "#DDD" }}>
           
         {transaction_summary_report_region.map((summary, index) => (
             <React.Fragment key={index}>
@@ -70,11 +70,11 @@ const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass
                 <td className="text-end">{summary.RPASSIVE}</td>
                 <td className="text-end">{summary.RFIXED_INCOME}</td>
                 <td className="text-end">{summary.RCASH}</td>
-                <td className="text-end">{summary.RTOTAL}</td>
+                <td className="text-end" id="total">{summary.RTOTAL}</td>
               </tr>
               {clickedIndex === index && (
                 <tr key={`subtable-${index}`}>
-                <td colSpan="8">
+                <td colSpan="8" className="p-0">
                   {clickedIndex === index && <TableRowWithCollapseRedemption 
                     region_name={summary.REGION_NAME}
                     startDate={startDate}  

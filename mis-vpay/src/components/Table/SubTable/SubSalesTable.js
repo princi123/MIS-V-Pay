@@ -76,11 +76,11 @@ const SubSalesTable = ({
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style={{ backgroundColor: "#DDD" }}>
           {Array.isArray(transaction_summary_report_region) ? (
             transaction_summary_report_region.map((summary, index) => (
               <React.Fragment key={index}>
-                <tr>
+                <tr >
                   <td>
                     <button
                       className="textlink"
@@ -95,11 +95,11 @@ const SubSalesTable = ({
                   <td className="text-end">{summary.SPASSIVE}</td>
                   <td className="text-end">{summary.SFIXED_INCOME}</td>
                   <td className="text-end">{summary.SCASH}</td>
-                  <td className="text-end">{summary.STOTAL}</td>
+                  <td className="text-end" id="total">{summary.STOTAL}</td>
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
-                    <td colSpan="8">
+                    <td colSpan="8" className="p-0">
                       {clickedIndex === index && (
                         <TableRowWithCollapse
                           region_name={summary.REGION_NAME}

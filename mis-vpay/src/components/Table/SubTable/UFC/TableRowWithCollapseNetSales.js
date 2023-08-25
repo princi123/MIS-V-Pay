@@ -1,16 +1,14 @@
 import React, { useMemo, useState } from "react";
 import UfcApi from "../Api/UfcApi";
-import TableRowWithRedemption from "../RMWISE/TableRowWithRedemption";
+import TableRowWithNetSales from "../RMWISE/TableRowWithNetSales";
 
-const TableRowWithCollapseRedemption = ({
+const TableRowWithCollapseNetSales = ({
   pzone,
   startDate,
   endDate,
   select_type,
   region_name,
 }) => {
-  const [clickedIndex, setClickedIndex] = useState(-1);
-
   const queryParams = useMemo(() => {
     const formattedStartDate = startDate.split("-").reverse().join("/");
     const formattedEndDate = endDate.split("-").reverse().join("/");
@@ -28,6 +26,8 @@ const TableRowWithCollapseRedemption = ({
 
   const transaction_summary_report_ufc = UfcApi(queryParams);
 
+  const [clickedIndex, setClickedIndex] = useState(-1);
+
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
       setClickedIndex(-1);
@@ -39,7 +39,7 @@ const TableRowWithCollapseRedemption = ({
   return (
     <>
       <div className="new-component container-fluid p-0">
-        <table className="table" >
+        <table className="table" style={{ backgroundColor: "white" }}>
           <thead style={{ backgroundColor: "#768780bf" }}>
             <tr className="">
               <th scope="col">UFC code</th>
@@ -80,26 +80,27 @@ const TableRowWithCollapseRedemption = ({
                       <b>{ufc.UFC_CODE}</b>
                     </button>
                   </td>
-                  <td >{ufc.UFC_NAME}</td>
-                  <td className="text-end">{ufc.REQUITY}</td>
-                  <td className="text-end">{ufc.RHYBRID}</td>
-                  <td className="text-end">{ufc.RARBITRAGE}</td>
-                  <td className="text-end">{ufc.RPASSIVE}</td>
-                  <td className="text-end">{ufc.RFIXED_INCOME}</td>
-                  <td className="text-end">{ufc.RCASH}</td>
-                  <td className="text-end" style={{ backgroundColor: "#8080805c" }}><b>{ufc.RTOTAL}</b></td>
+
+                  <td className="text-end">{ufc.UFC_NAME}</td>
+                  <td className="text-end">{ufc.NEQUITY}</td>
+                  <td className="text-end">{ufc.NHYBRID}</td>
+                  <td className="text-end">{ufc.NARBITRAGE}</td>
+                  <td className="text-end">{ufc.NPASSIVE}</td>
+                  <td className="text-end">{ufc.NFIXED_INCOME}</td>
+                  <td className="text-end">{ufc.NCASH}</td>
+                  <td className="text-end" style={{ backgroundColor: "#8080805c" }}><b>{ufc.NTOTAL}</b></td>
                 </tr>
+
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
                     <td colSpan="9" className="p-0">
-                      {clickedIndex === index && <TableRowWithRedemption 
-                         startDate={startDate}
-                         endDate={endDate}
-                         select_type={select_type}
-                         pzone={pzone}
-                         region_name={region_name}
-                         ufc_code={ufc.UFC_CODE}
-                      />}
+                      {clickedIndex === index && <TableRowWithNetSales
+                        startDate={startDate}
+                        endDate={endDate}
+                        select_type={select_type}
+                        pzone={pzone}
+                        region_name={region_name}
+                        ufc_code={ufc.UFC_CODE}/>}
                     </td>
                   </tr>
                 )}
@@ -112,4 +113,4 @@ const TableRowWithCollapseRedemption = ({
   );
 };
 
-export default TableRowWithCollapseRedemption;
+export default TableRowWithCollapseNetSales;
