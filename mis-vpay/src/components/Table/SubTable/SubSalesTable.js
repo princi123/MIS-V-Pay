@@ -1,5 +1,5 @@
 import React, { useState,useMemo } from "react";
-import "./SubSalesTable.css";
+import "../SubTable/SubtableCSS/SubSalesTable.css";
 import RegionApi from "./Api/RegionApi";
 import TableRowWithCollapse from "./UFC/TableRowWithCollapse";
 

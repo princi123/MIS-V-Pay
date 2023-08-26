@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SalesTable.css";
+import "./css/SalesTable.css";
 import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";

@@ -7,7 +7,7 @@ import {
   setAuthTokenCookie,
 } from "./Cookie";
 import { API_LOGIN } from "../../Constant/apiConstant";
-import Api from "../Retail/Api";
+import Api from "../Retail/Retail Api/Api";
 
 
 const Login = () => {
