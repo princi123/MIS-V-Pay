@@ -1,5 +1,6 @@
-import React,{useMemo} from "react";
+import React,{useMemo,useState} from "react";
 import UfcApi from "../Api/UfcApi";
+import TableRowWithRedemption from "../RMWISE/TableRowWithRedemption";
 
 const TableRowWithCollapseRedemption = ({ pzone, startDate, endDate, select_type,region_name }) => {
   const queryParams = useMemo(() => {
@@ -17,6 +18,16 @@ const TableRowWithCollapseRedemption = ({ pzone, startDate, endDate, select_type
     });
   }, [startDate, endDate, region_name, select_type, pzone]);
   const transaction_summary_report_ufc = UfcApi(queryParams);
+
+  const [clickedIndex, setClickedIndex] = useState(-1);
+  const handleButtonClick = (index) => {
+    if (index === clickedIndex) {
+      setClickedIndex(-1);
+    } else {
+      setClickedIndex(index); 
+    }
+  };
+ 
 
   return (
     <>
@@ -37,26 +48,36 @@ const TableRowWithCollapseRedemption = ({ pzone, startDate, endDate, select_type
           </thead>
 
           <tbody>
-            {transaction_summary_report_ufc.map((ufc) => (
-              <tr style={{ backgroundColor: "#DADADA" }}>
-                <td>
-                  <button className="textlink">
-                    <b>{ufc.UFC_CODE}</b>
-                  </button>
-                </td>
-                <td>
-                  <button className="textlink">
-                    <b>{ufc.UFC_NAME}</b>
-                  </button>
-                </td>
-                <td className="text-end">{ufc.REQUITY}</td>
+            {transaction_summary_report_ufc.map((ufc,index) => (
+               <React.Fragment key={index}>
+               <tr style={{ backgroundColor: "#DADADA" }}>
+                 <td>
+                   <button
+                     className="textlink"
+                     onClick={() => handleButtonClick(index)}
+                   >
+                      <b>{ufc.UFC_CODE}</b>
+                   </button>
+                 </td>
+                 <td className="text-end">{ufc.UFC_NAME}</td>
+                 <td className="text-end">{ufc.REQUITY}</td>
                 <td className="text-end">{ufc.RHYBRID}</td>
                 <td className="text-end">{ufc.RARBITRAGE}</td>
                 <td className="text-end">{ufc.RPASSIVE}</td>
                 <td className="text-end">{ufc.RFIXED_INCOME}</td>
                 <td className="text-end">{ufc.RCASH}</td>
-                <td className="text-end">{ufc.RTOTAL}</td>
-              </tr>
+                <td className="text-end">{ufc.RTOTAL}</td> 
+               </tr>
+               {clickedIndex === index && (
+                 <tr key={`subtable-${index}`}>
+                 <td colSpan="8">
+                   {clickedIndex === index && 
+                   <TableRowWithRedemption/>
+                   }
+                 </td>
+               </tr>
+               )}
+             </React.Fragment>
             ))}
           </tbody>
         </table>

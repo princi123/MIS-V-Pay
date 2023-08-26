@@ -1,5 +1,6 @@
-import React,{useMemo} from "react";
+import React,{useMemo,useState} from "react";
 import UfcApi from "../Api/UfcApi";
+import RMTableRowWithNetSales from "../RMWISE/RMTableRowWithNetSales";
 
 const TableRowWithNetSales = ({ pzone, startDate, endDate, select_type,region_name }) => {
   
@@ -18,6 +19,16 @@ const TableRowWithNetSales = ({ pzone, startDate, endDate, select_type,region_na
     });
   }, [startDate, endDate, region_name, select_type, pzone]);
   const transaction_summary_report_ufc = UfcApi(queryParams);
+  
+
+  const [clickedIndex, setClickedIndex] = useState(-1);
+  const handleButtonClick = (index) => {
+    if (index === clickedIndex) {
+      setClickedIndex(-1);
+    } else {
+      setClickedIndex(index); 
+    }
+  };
 
   return (
     <>
@@ -50,26 +61,36 @@ const TableRowWithNetSales = ({ pzone, startDate, endDate, select_type,region_na
           </thead>
 
           <tbody>
-            {transaction_summary_report_ufc.map((ufc) => (
-              <tr style={{ backgroundColor: "#DADADA" }}>
-                <td>
-                  <button className="textlink">
-                    <b>{ufc.UFC_CODE}</b>
-                  </button>
-                </td>
-                <td>
-                  <button className="textlink">
-                    <b>{ufc.UFC_NAME}</b>
-                  </button>
-                </td>
-                <td className="text-end">{ufc.NEQUITY}</td>
+            {transaction_summary_report_ufc.map((ufc,index) => (
+               <React.Fragment key={index}>
+               <tr style={{ backgroundColor: "#DADADA" }}>
+                 <td>
+                   <button
+                     className="textlink"
+                     onClick={() => handleButtonClick(index)}
+                   >
+                      <b>{ufc.UFC_CODE}</b>
+                   </button>
+                 </td>
+                 <td className="text-end">{ufc.UFC_NAME}</td>
+                 <td className="text-end">{ufc.NEQUITY}</td>
                 <td className="text-end">{ufc.NHYBRID}</td>
                 <td className="text-end">{ufc.NARBITRAGE}</td>
                 <td className="text-end">{ufc.NPASSIVE}</td>
                 <td className="text-end">{ufc.NFIXED_INCOME}</td>
                 <td className="text-end">{ufc.NCASH}</td>
                 <td className="text-end">{ufc.NTOTAL}</td>
-              </tr>
+               </tr>
+               {clickedIndex === index && (
+                 <tr key={`subtable-${index}`}>
+                 <td colSpan="8">
+                   {clickedIndex === index && 
+                    <RMTableRowWithNetSales/>
+                   }
+                 </td>
+               </tr>
+               )}
+             </React.Fragment>
             ))}
           </tbody>
         </table>

@@ -2474,3 +2474,409 @@ Processing by Api::V1::LoginDetailsController#index as HTML
 Completed 200 OK in 1064ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 545)
 
 
+Started GET "/" for 127.0.0.1 at 2023-08-24 18:08:26 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 41.2ms | Allocations: 814)
+Completed 200 OK in 260ms (Views: 96.4ms | ActiveRecord: 0.0ms | Allocations: 8841)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-24 18:09:08 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1213ms (Views: 5.2ms | ActiveRecord: 0.0ms | Allocations: 4459)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-24 18:09:09 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1912ms (Views: 1.5ms | ActiveRecord: 0.0ms | Allocations: 3948)
+
+
+Started GET "/api/v1/summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941" for ::1 at 2023-08-24 18:09:22 +0530
+Processing by Api::V1::SummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941"}
+Completed 200 OK in 3421ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 4444)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-24 18:09:27 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1340ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 2623)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-24 18:09:29 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1370ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 2203)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:09:30 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1252ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 2626)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:09:32 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1328ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 2187)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:30:51 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1641ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 2168)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:32:16 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1031ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 2167)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:35:23 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1032ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 2167)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:35:24 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 948ms (Views: 2.3ms | ActiveRecord: 0.0ms | Allocations: 2164)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:38:09 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 873ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 2164)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:38:10 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 908ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 2164)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:38:13 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 927ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 2185)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:38:18 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 931ms (Views: 2.3ms | ActiveRecord: 0.0ms | Allocations: 2164)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:38:19 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1259ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 2168)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:38:32 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1222ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 2169)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-24 18:38:33 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 881ms (Views: 1.3ms | ActiveRecord: 0.0ms | Allocations: 2164)
+
+
+Started GET "/" for 127.0.0.1 at 2023-08-25 10:39:11 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 53.3ms | Allocations: 642)
+Completed 200 OK in 267ms (Views: 102.2ms | ActiveRecord: 0.0ms | Allocations: 5459)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-25 10:41:17 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1071ms (Views: 6.8ms | ActiveRecord: 0.0ms | Allocations: 4337)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-25 10:41:19 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1896ms (Views: 2.1ms | ActiveRecord: 0.0ms | Allocations: 3948)
+
+
+Started GET "/api/v1/summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941" for ::1 at 2023-08-25 10:41:29 +0530
+Processing by Api::V1::SummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941"}
+Completed 200 OK in 2087ms (Views: 7.1ms | ActiveRecord: 0.0ms | Allocations: 4276)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 10:41:33 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1090ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 2448)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 10:41:34 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1100ms (Views: 1.5ms | ActiveRecord: 0.0ms | Allocations: 2199)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 10:41:36 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1211ms (Views: 20.0ms | ActiveRecord: 0.0ms | Allocations: 2420)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 10:41:37 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 963ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 2187)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 10:41:38 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 10:41:48 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1506ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 2222)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 10:41:50 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 2022ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 2200)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 10:41:52 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 997ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 2167)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 10:41:53 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1739ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 2185)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 10:41:55 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 10:42:15 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 10:43:50 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1044ms (Views: 1.5ms | ActiveRecord: 0.0ms | Allocations: 2166)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 10:43:51 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 971ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 2167)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 10:43:52 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 10:47:02 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 2913ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 2203)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 10:47:05 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1123ms (Views: 4.9ms | ActiveRecord: 0.0ms | Allocations: 2222)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 10:47:07 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1021ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 2166)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 10:47:08 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 979ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 2167)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:03:08 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1596ms (Views: 2.6ms | ActiveRecord: 0.0ms | Allocations: 2176)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:07:51 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1197ms (Views: 3.4ms | ActiveRecord: 0.0ms | Allocations: 2167)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:07:52 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 972ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 2187)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 11:07:56 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 11:07:58 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 11:09:20 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 11:10:22 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1429ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 2201)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 11:10:23 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:10:24 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1049ms (Views: 2.0ms | ActiveRecord: 0.0ms | Allocations: 3832)
+
+
+Completed 200 OK in 931ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 3682)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:10:25 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 983ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 2167)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 11:10:27 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 11:17:58 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1620ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 2219)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 11:18:00 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1184ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 2200)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:18:01 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 866ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 2169)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:18:02 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 934ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 2164)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-25 11:19:31 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1102ms (Views: 1.7ms | ActiveRecord: 0.0ms | Allocations: 3948)
+
+
+Started GET "/api/v1/scheme_details" for ::1 at 2023-08-25 11:19:32 +0530
+Processing by Api::V1::SchemeDetailsController#index as */*
+Completed 200 OK in 1050ms (Views: 6.0ms | ActiveRecord: 0.0ms | Allocations: 3948)
+
+
+Started GET "/api/v1/summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941" for ::1 at 2023-08-25 11:19:40 +0530
+Processing by Api::V1::SummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941"}
+Completed 200 OK in 1804ms (Views: 1.9ms | ActiveRecord: 0.0ms | Allocations: 3997)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 11:19:50 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1113ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 2201)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 11:19:52 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1032ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 2199)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:19:53 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 979ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 2166)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:19:54 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1002ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 2167)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 11:19:56 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 11:22:10 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Completed 200 OK in 1102ms (Views: 3.8ms | ActiveRecord: 0.0ms | Allocations: 2199)
+
+
+Started GET "/api/v1/region_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=undefined&select_type=netsales&employee_code=2941&p_zone=EAST" for ::1 at 2023-08-25 11:22:12 +0530
+Processing by Api::V1::RegionSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"undefined", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST"}
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:22:12 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1163ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 3827)
+
+
+Completed 200 OK in 1266ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 4573)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:22:14 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1086ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 2164)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 11:22:15 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:22:54 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 1012ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 2167)
+
+
+Started GET "/api/v1/ufc_summary_transactions?start_date=01%2F04%2F2023&end_date=30%2F09%2F2023&asset_class=1&select_type=netsales&employee_code=2941&p_zone=EAST&region_name=BIHR" for ::1 at 2023-08-25 11:22:55 +0530
+Processing by Api::V1::UfcSummaryTransactionsController#index as */*
+  Parameters: {"start_date"=>"01/04/2023", "end_date"=>"30/09/2023", "asset_class"=>"1", "select_type"=>"netsales", "employee_code"=>"2941", "p_zone"=>"EAST", "region_name"=>"BIHR"}
+Completed 200 OK in 967ms (Views: 2.6ms | ActiveRecord: 0.0ms | Allocations: 2164)
+
+
+Started GET "/mis_vpay/assets/images/up-down_icon.png" for 127.0.0.1 at 2023-08-25 11:22:58 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/mis_vpay/assets/images/up-down_icon.png"):
+  

@@ -1,6 +1,6 @@
 import React from "react";
 
-const TableRowWithNetSales = () => {
+const RMTableRowWithNetSales = () => {
   return (
     <>
       <div className="new-component container-fluid p-0">
@@ -202,4 +202,4 @@ const TableRowWithNetSales = () => {
   );
 };
 
-export default TableRowWithNetSales;
+export default RMTableRowWithNetSales;
