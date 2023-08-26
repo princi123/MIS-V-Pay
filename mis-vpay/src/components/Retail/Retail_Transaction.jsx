@@ -16,7 +16,6 @@ import Api from "./Api";
 import { API_SCHEME_DETAILS } from "../../Constant/apiConstant";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; 
-
 const Retail_Transaction = ({headers}) => {
   const [scheme_details, setSchemeDetails] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -136,7 +135,7 @@ const Retail_Transaction = ({headers}) => {
                           className="form-control mt-2"
                           placeholder="Project End Date"
                           value={endDate}
-                          onChange={handleEndDateChange} 
+                          onChange={handleEndDateChange}
                         />
                       </div>
                       {/* <div className="form-group col-md-2">
