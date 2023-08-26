@@ -1,0 +1,17 @@
+.export{
+    background-color: #EE8B3A;
+}
+
+.headtable{
+    line-height: 2;
+    line-height: 0.6px;
+}
+.forright{
+    text-align: right
+}
+
+.total{
+    background-color: #EE8B3A;
+    color: white;
+    line-height: 0.5;
+}

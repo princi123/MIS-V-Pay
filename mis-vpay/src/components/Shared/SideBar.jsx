@@ -41,20 +41,47 @@ const SideBar = ({isOpen}) => {
                         </h2>
                         <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div className="accordion-body p-0">
-                                <div className="accordion accordion-flush" id="subAccordion">
+                                <div className="accordion accordion-flush" id="subAccordion1">
                                     <div className="accordion-item">
-                                        <h2 className="" id="sub-accordion-headingOne" style={{backgroundColor:"#EE8B3A",marginLeft:"5px",marginRight:"10px",borderRadius:"5px"}} >
-                                          <button className=" collapsed m-2 p-0 sales-retails border-0" type="button" data-bs-toggle="collapse" data-bs-target="#sub-accordion-collapseOne" aria-expanded="false" aria-controls="sub-accordion-collapseOne">
+                                        <h2 className="" id="sub-accordion-heading1" style={{backgroundColor:"#EE8B3A",marginLeft:"5px",marginRight:"10px",borderRadius:"5px"}} >
+                                          <button className=" collapsed m-2 p-0 sales-retails border-0" type="button" data-bs-toggle="collapse" data-bs-target="#sub-accordion-collapse" aria-expanded="false" aria-controls="sub-accordion-collapseOne">
                                             <span className={`sidebar ${isOpen ? '' : 'closed'}`}>
                                             Sales/Redemption/Net/ SIP Sales Reports
                                             </span>
                                           </button>
                                         </h2>
-                                        <div id="sub-accordion-collapseOne" className="accordion-collapse collapse" aria-labelledby="sub-accordion-headingOne" data-bs-parent="#subAccordion">
+                                        <div id="sub-accordion-collapse" className="accordion-collapse collapse" aria-labelledby="sub-accordion-heading1" data-bs-parent="#subAccordion1">
                                             <div className="accordion-body p-0 text-center">
                                                 <Link to="/Transaction" id="sub-accor-active"> <span className={`sidebar ${isOpen ? '' : 'closed'}`}>Transaction Summary Reports</span></Link>
                                                 <button  className="mt-2 p-0 pb-2 pt-2"  id="sub-accor" ><span className={`sidebar ${isOpen ? '' : 'closed'}`} style={{marginLeft:"21px",marginRight:"11px"}}>Transaction Amount Summary</span> </button>
                                                 <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`}>ARN Transaction Reports</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div className="accordion-body p-0">
+                                <div className="accordion accordion-flush" id="subAccordion">
+                                    <div className="accordion-item">
+                                        <h2 className="" id="sub-accordion-headingOne" style={{backgroundColor:"#EE8B3A",marginLeft:"5px",marginRight:"10px",borderRadius:"5px"}} >
+                                          <button className=" collapsed m-2 p-0 sales-retails border-0" type="button" data-bs-toggle="collapse" data-bs-target="#sub-accordion-collapseOne" aria-expanded="false" aria-controls="sub-accordion-collapseOne">
+                                            <span className={`m-3 sidebar ${isOpen ? '' : 'closed'}`}>
+                                            AUM/KRA Based Reports
+                                            </span>
+                                          </button>
+                                        </h2>
+                                        <div id="sub-accordion-collapseOne" className="accordion-collapse collapse" aria-labelledby="sub-accordion-headingOne" data-bs-parent="#subAccordion">
+                                            <div className="accordion-body p-0 text-center">
+                                                <Link to="/Aum" > <span className={`sidebar ${isOpen ? '' : 'closed'}`} style={{backgroundColor:"#352d94",color:"white",paddingLeft:"4px",paddingTop:"12px",paddingBottom:"10px",fontSize:"12px",fontWeight:"bold",paddingRight:"5px",borderRadius:"5px",borderColor:"white",textDecoration:"none"}}>CH/ZH/RH/CM/RM Performance Report</span></Link>
+                                                <button  className="mt-2 p-0 pb-2 pt-2"  id="sub-accor" ><span className={`sidebar ${isOpen ? '' : 'closed'}`} style={{marginLeft:"61px",marginRight:"59px"}}>Detail View Report</span> </button>
+                                                <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`} >ARM Wise Report</span></button>
+                                                  <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`} >Scheme Wise Report</span></button>
+                                                    <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`}>Direct RM Business</span></button>
+                                                      <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`}>Direct RIA Business</span></button>
+                                                        <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`}>Multicity ARMWise Scheme Report </span></button>
+                                                          
                                             </div>
                                         </div>
                                     </div>
