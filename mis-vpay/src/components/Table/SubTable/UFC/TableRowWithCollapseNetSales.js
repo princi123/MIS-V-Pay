@@ -7,7 +7,7 @@ const TableRowWithCollapseNetSales = ({
   startDate,
   endDate,
   select_type,
-  region_name,
+  region_name,formatNumberToIndianFormat
 }) => {
   const queryParams = useMemo(() => {
     const formattedStartDate = startDate.split("-").reverse().join("/");
@@ -82,13 +82,16 @@ const TableRowWithCollapseNetSales = ({
                   </td>
 
                   <td>{ufc.UFC_NAME}</td>
-                  <td className="text-end">{ufc.NEQUITY}</td>
-                  <td className="text-end">{ufc.NHYBRID}</td>
-                  <td className="text-end">{ufc.NARBITRAGE}</td>
-                  <td className="text-end">{ufc.NPASSIVE}</td>
-                  <td className="text-end">{ufc.NFIXED_INCOME}</td>
-                  <td className="text-end">{ufc.NCASH}</td>
-                  <td className="text-end" style={{ backgroundColor: "#8080805c" }}><b>{ufc.NTOTAL}</b></td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NEQUITY))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NHYBRID))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NARBITRAGE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NPASSIVE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NFIXED_INCOME))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NCASH))}</td>
+                  <td className="text-end" style={{ backgroundColor: "#8080805c" }}>
+                    <b>{formatNumberToIndianFormat(parseFloat(ufc.NTOTAL))}</b>
+                  </td>
+
                 </tr>
 
                 {clickedIndex === index && (
@@ -100,7 +103,9 @@ const TableRowWithCollapseNetSales = ({
                         select_type={select_type}
                         pzone={pzone}
                         region_name={region_name}
-                        ufc_code={ufc.UFC_CODE}/>}
+                        ufc_code={ufc.UFC_CODE}
+                        formatNumberToIndianFormat={formatNumberToIndianFormat}
+                        />}
                     </td>
                   </tr>
                 )}

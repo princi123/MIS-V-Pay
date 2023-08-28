@@ -7,7 +7,7 @@ const TableRowWithSales = ({
   endDate,
   select_type,
   region_name,
-  ufc_code,
+  ufc_code,formatNumberToIndianFormat
 }) => {
   const queryParams = useMemo(() => {
     const formattedStartDate = startDate.split("-").reverse().join("/");
@@ -64,13 +64,13 @@ const TableRowWithSales = ({
                 </td>
                 <td>{rm.RMNAME}</td>
                 <td>{rm.FUNCROLE}</td>
-                <td className="text-end">{rm.SEQUITY}</td>
-                <td className="text-end">{rm.SHYBRID}</td>
-                <td className="text-end">{rm.SARBITRAGE}</td>
-                <td className="text-end">{rm.SPASSIVE}</td>
-                <td className="text-end">{rm.SFIXED_INCOME}</td>
-                <td className="text-end">{rm.SCASH}</td>  
-                <td className="text-end"><b>{rm.STOTAL}</b></td>                            
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.SEQUITY))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.SHYBRID))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.SARBITRAGE))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.SPASSIVE))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.SFIXED_INCOME))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.SCASH))}</td>
+                <td className="text-end"><b>{formatNumberToIndianFormat(parseFloat(rm.STOTAL))}</b></td>               
               </tr>
             ))}
           </tbody>

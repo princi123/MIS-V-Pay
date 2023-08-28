@@ -7,7 +7,7 @@ const TableRowWithRedemption = ({
   endDate,
   select_type,
   region_name,
-  ufc_code,
+  ufc_code,formatNumberToIndianFormat
 }) => {
   const queryParams = useMemo(() => {
     const formattedStartDate = startDate.split("-").reverse().join("/");
@@ -64,13 +64,13 @@ const TableRowWithRedemption = ({
                 </td>
                 <td >{rm.RMNAME}</td>
                 <td className="text-end">{rm.FUNCROLE}</td>
-                <td className="text-end">{rm.REQUITY}</td>
-                <td className="text-end">{rm.RHYBRID}</td>
-                <td className="text-end">{rm.RARBITRAGE}</td>
-                <td className="text-end">{rm.RPASSIVE}</td>
-                <td className="text-end">{rm.RFIXED_INCOME}</td>
-                <td className="text-end">{rm.RCASH}</td>  
-                <td className="text-end"><b>{rm.RTOTAL}</b></td>                            
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.REQUITY))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.RHYBRID))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.RARBITRAGE))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.RPASSIVE))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.RFIXED_INCOME))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(rm.RCASH))}</td>
+                <td className="text-end"><b>{formatNumberToIndianFormat(parseFloat(rm.RTOTAL))}</b></td>                        
               </tr>
             ))}
           </tbody>

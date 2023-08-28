@@ -8,6 +8,7 @@ const RedemptionTable = ({
   endDate,
   select_type,
   assetClass,
+  formatNumberToIndianFormat
 }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const handleButtonClick = (index) => {
@@ -68,15 +69,16 @@ const RedemptionTable = ({
                       <b>{summary.ZONE}</b>
                     </button>
                   </td>
-                  <td className="text-end">{summary.REQUITY}</td>
-                  <td className="text-end">{summary.RHYBRID}</td>
-                  <td className="text-end">{summary.RARBITRAGE}</td>
-                  <td className="text-end">{summary.RPASSIVE}</td>
-                  <td className="text-end">{summary.RFIXED_INCOME}</td>
-                  <td className="text-end">{summary.RCASH}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.REQUITY))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RHYBRID))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RARBITRAGE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RPASSIVE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RFIXED_INCOME))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RCASH))}</td>
                   <td className="text-end" id="total">
-                    {summary.RTOTAL}
+                    {formatNumberToIndianFormat(parseFloat(summary.RTOTAL))}
                   </td>
+
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
@@ -87,6 +89,7 @@ const RedemptionTable = ({
                         endDate={endDate}
                         assetClass={assetClass}
                         select_type={select_type}
+                        formatNumberToIndianFormat={formatNumberToIndianFormat}
                       />
                     </td>
                   </tr>

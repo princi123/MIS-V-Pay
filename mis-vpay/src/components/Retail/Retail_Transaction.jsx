@@ -32,7 +32,7 @@ const Retail_Transaction = ({headers}) => {
     setAssetClass,
     setEndDate,
     setSelectType,
-    setStartDate,
+    setStartDate,formatNumberToIndianFormat,
   } = Api({headers});
 
   useEffect(() => {
@@ -236,6 +236,7 @@ const Retail_Transaction = ({headers}) => {
                       endDate={endDate}
                       assetClass={assetClass}
                       select_type={select_type}
+                      formatNumberToIndianFormat={formatNumberToIndianFormat}
                     />
                   
                 )}

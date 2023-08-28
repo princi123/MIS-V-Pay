@@ -2,7 +2,7 @@ import React,{useState,useMemo} from "react";
 import "./SubRedemptionTable.css";
 import RegionApi from "./Api/RegionApi";
 import TableRowWithCollapseRedemption from "./UFC/TableRowWithCollapseRedemption";
-const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass }) => {
+const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
 
   const queryParams = useMemo(() => {
@@ -64,13 +64,15 @@ const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass
                     <b>{summary.REGION_NAME}</b>
                   </button>
                 </td>
-                <td className="text-end">{summary.REQUITY}</td>
-                <td className="text-end">{summary.RHYBRID}</td>
-                <td className="text-end">{summary.RARBITRAGE}</td>
-                <td className="text-end">{summary.RPASSIVE}</td>
-                <td className="text-end">{summary.RFIXED_INCOME}</td>
-                <td className="text-end">{summary.RCASH}</td>
-                <td className="text-end" id="total">{summary.RTOTAL}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.REQUITY))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RHYBRID))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RARBITRAGE))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RPASSIVE))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RFIXED_INCOME))}</td>
+                <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RCASH))}</td>
+                <td className="text-end" id="total">
+                  {formatNumberToIndianFormat(parseFloat(summary.RTOTAL))}
+                </td>
               </tr>
               {clickedIndex === index && (
                 <tr key={`subtable-${index}`}>
@@ -82,6 +84,7 @@ const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass
                     assetClass={assetClass} 
                     select_type={select_type}
                     pzone={pzone}
+                    formatNumberToIndianFormat={formatNumberToIndianFormat}
                   />}
                 </td>
               </tr>
