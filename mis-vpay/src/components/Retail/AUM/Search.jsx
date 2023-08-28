@@ -40,7 +40,7 @@ const Search=()=> {
           >
 
    
-   <div className="bg-white card " style={{borderRadius:"10px"}}>
+   <div className="bg-white card m-4" style={{borderRadius:"10px"}}>
     <div className="col-md-12">
         <div className="headline pt-4" style={{paddingLeft:"20px"}}>
         <b >Daily Retail RH CH RM Zone Wise Performance</b>
