@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SubNetSalesTable from "./SubTable/SubNetSalesTable";
 
-const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass }) => {
+const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
 
   const handleButtonClick = (index) => {
@@ -62,15 +62,16 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
                       <b>{summary.ZONE}</b>
                     </button>
                   </td>
-                  <td className="text-end">{summary.NEQUITY}</td>
-                  <td className="text-end">{summary.NHYBRID}</td>
-                  <td className="text-end">{summary.NARBITRAGE}</td>
-                  <td className="text-end">{summary.NPASSIVE}</td>
-                  <td className="text-end">{summary.NFIXED_INCOME}</td>
-                  <td className="text-end">{summary.NCASH}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NEQUITY))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NHYBRID))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NARBITRAGE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NPASSIVE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NFIXED_INCOME))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NCASH))}</td>
                   <td className="text-end" id="total">
-                    {summary.NTOTAL}
+                    {formatNumberToIndianFormat(parseFloat(summary.NTOTAL))}
                   </td>
+
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
@@ -81,6 +82,7 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
                         endDate={endDate}
                         assetClass={assetClass}
                         select_type={select_type}
+                        formatNumberToIndianFormat={formatNumberToIndianFormat}
                       />
                     </td>
                   </tr>

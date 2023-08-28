@@ -4,7 +4,7 @@ import RegionApi from "./Api/RegionApi";
 import TableRowWithCollapseNetSales from "./UFC/TableRowWithCollapseNetSales";
 
 
-const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }) => {
+const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
 
   const queryParams = useMemo(() => {
@@ -63,13 +63,15 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }
                       <b>{summary.REGION_NAME}</b>
                     </button>
                   </td>
-                  <td className="text-end">{summary.NEQUITY}</td>
-                  <td className="text-end">{summary.NHYBRID}</td>
-                  <td className="text-end">{summary.NARBITRAGE}</td>
-                  <td className="text-end">{summary.NPASSIVE}</td>
-                  <td className="text-end">{summary.NFIXED_INCOME}</td>
-                  <td className="text-end">{summary.NCASH}</td>
-                  <td className="text-end" id="total">{summary.NTOTAL}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NEQUITY))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NHYBRID))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NARBITRAGE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NPASSIVE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NFIXED_INCOME))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NCASH))}</td>
+                  <td className="text-end" id="total">
+                    {formatNumberToIndianFormat(parseFloat(summary.NTOTAL))}
+                  </td>
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
@@ -81,6 +83,7 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass }
                       assetClass={assetClass} 
                       select_type={select_type}
                       pzone={pzone}
+                      formatNumberToIndianFormat={formatNumberToIndianFormat}
                     />}
                   </td>
                 </tr>

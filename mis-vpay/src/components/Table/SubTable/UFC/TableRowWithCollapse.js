@@ -2,7 +2,7 @@ import React,{useMemo,useState} from "react";
 import UfcApi from "../Api/UfcApi";
 import TableRowWithSales from "../RMWISE/TableRowWithSales";
 
-const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type,region_name }) => {
+const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type,region_name,formatNumberToIndianFormat }) => {
   const queryParams = useMemo(() => {
     const formattedStartDate = startDate.split("-").reverse().join("/");
     const formattedEndDate = endDate.split("-").reverse().join("/");
@@ -60,13 +60,16 @@ const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type,region_na
                     </button>
                   </td>
                   <td>{ufc.UFC_NAME}</td>
-                  <td className="text-end">{ufc.SEQUITY}</td>
-                  <td className="text-end">{ufc.SHYBRID}</td>
-                  <td className="text-end">{ufc.SARBITRAGE}</td> 
-                  <td className="text-end">{ufc.SPASSIVE}</td> 
-                  <td className="text-end">{ufc.SFIXED_INCOME}</td> 
-                  <td className="text-end">{ufc.SCASH}</td>
-                  <td className="text-end"style={{ backgroundColor: "#8080805c" }} ><b>{ufc.STOTAL}</b></td>  
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.SEQUITY))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.SHYBRID))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.SARBITRAGE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.SPASSIVE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.SFIXED_INCOME))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.SCASH))}</td>
+                  <td className="text-end" style={{ backgroundColor: "#8080805c" }}>
+                    <b>{formatNumberToIndianFormat(parseFloat(ufc.STOTAL))}</b>
+                  </td>
+
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
@@ -79,6 +82,7 @@ const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type,region_na
                         pzone={pzone}
                         region_name={region_name}
                         ufc_code={ufc.UFC_CODE}
+                        formatNumberToIndianFormat={formatNumberToIndianFormat}
                       />                     
                     }
                   </td>
