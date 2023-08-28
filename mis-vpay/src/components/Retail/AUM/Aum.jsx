@@ -149,7 +149,7 @@ const Aum = () => {
 
   return (
     <>
-      <div className="container-fluid p-0">
+      <div className="container-fluid ">
         <div className="card" style={{paddingLeft:"10px"}}>
          <div className=" d-flex" style={{paddingLeft:"10px",paddingBottom:"10px"}}>
          <div className="col-md-3 d-flex">
@@ -176,71 +176,17 @@ const Aum = () => {
                   </p>
                 </div>
          </div>
-          <div className="col-md-12 d-flex justify-content-center"></div>
-          <table className="table table-bordered table-striped">
-            <thead className="Aum-Head headtable ">
-              <tr className="mid ">
-                <th rowSpan="2" className="headtbl">
-                  Sr.No
-                </th>
-                <th rowSpan="2" className="headtbl">
-                  Zone
-                </th>
-                <th rowSpan="2" className="headtbl">
-                  Total AUM
-                </th>
-                <th colSpan="6">AUM</th>
-              </tr>
-              <tr>
-                <th className="forright ">Equity</th>
-                <th className="forright">Hybrid</th>
-                <th className="forright">Arbitrage</th>
-                <th className="forright">Passive</th>
-                <th className="forright">Fixed Income</th>
-                <th className="forright">Cash</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((item) => (
-               
-                  <tr key={item.SrNo}>
-                    <td>{item.SrNo}</td>
-                    <td>{item.Zone}</td>
-                    <td className="forright">{item.TotalAUM}</td>
-                    <td className="forright">{item.AUM.Equity}</td>
-                    <td className="forright">{item.AUM.Hybrid}</td>
-                    <td className="forright">{item.AUM.Arbitrage}</td>
-                    <td className="forright">{item.AUM.Passive}</td>
-                    <td className="forright">{item.AUM["Fixed Income"]}</td>
-                    <td className="forright">{item.AUM.Cash}</td>
-                  </tr>
-                
-              ))}
-              
-               <tr className="total">
-                <td colSpan={2} className="forright">
-                  Total
-                </td>
-                <td className="forright">2000</td>
-                <td className="forright">2000</td>
-                <td className="forright">2000</td>
-                <td className="forright">20000</td>
-                <td className="forright">21000</td>
-                <td className="forright">20000</td>
-                <td className="forright">200000</td>
-              </tr>
-               
-            </tbody>
-          </table>
+          
+          
         </div>
         <div className="col-md-12 d-flex justify-content-center"></div>
         <table className="table table-bordered table-striped">
-          <thead className="Aum-Head headtable">
+          <thead className="Aum-Head">
             <tr className="mid">
-              <th rowSpan="4" className="headtbl">
+              <th rowSpan="4" className="headtbl" style={{lineHeight:"4"}}>
                 Zone
               </th>
-              <th rowSpan="2" className="headtbl">
+              <th rowSpan="2" className="headtbl" style={{lineHeight:"4"}}>
                 Total AUM
               </th>
               <th colSpan="6">AUM</th>
