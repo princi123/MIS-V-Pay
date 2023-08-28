@@ -40,15 +40,15 @@ const Search=()=> {
           >
 
    
-   <div className="bg-white card " style={{borderRadius:"10px"}}>
+   <div className="bg-white card borrad ">
     <div className="col-md-12">
-        <div className="headline pt-4" style={{paddingLeft:"20px"}}>
+        <div className="headline pt-4 padl" >
         <b >Daily Retail RH CH RM Zone Wise Performance</b>
         </div>
       <div className="d-flex justify-content-center mb-5 mt-5">
         <div className="col-md-8 d-flex"> 
          <div className="col-md-6 ">
-         <label style={{paddingLeft:"10px"}}> <b>Select Period</b></label>
+         <label className="lab"> <b>Select Period</b></label>
         <select className="form-select m-2" >
           <option value="">Select an option</option>
           <option value="option1">Option 1</option>
@@ -56,9 +56,9 @@ const Search=()=> {
           <option value="option3">Option 3</option>
         </select>
         </div>
-        <div  style={{marginLeft:"10px",marginTop:"19px",padding:"10px 10px 10px 10px"}}>
-        <button className="BgcolorOrange btn" style={{marginRight:"5px",padding:"11px"}} >Search</button>
-        <button className="BgcolorOrange btn "style={{marginRight:"5px",padding:"11px"}} >Export</button> 
+        <div  className="butons" >
+        <button className="BgcolorOrange btn marrpad">Search</button>
+        <button className="BgcolorOrange btn  marrpad " >Export</button> 
         </div>
         </div>
       </div>

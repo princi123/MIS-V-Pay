@@ -18,6 +18,61 @@ const data = [
       Cash: 50000,
     },
   },
+  {
+    SrNo: 1,
+    Zone: "Zone A",
+    Region: "Bihar",
+    TotalAUM: 1000000,
+    AUM: {
+      Equity: 400000,
+      Hybrid: 200000,
+      Arbitrage: 100000,
+      Passive: 150000,
+      "Fixed Income": 100000,
+      Cash: 50000,
+    },
+  },
+  {
+    SrNo: 1,
+    Zone: "Zone A",
+    Region: "Bihar",
+    TotalAUM: 1000000,
+    AUM: {
+      Equity: 400000,
+      Hybrid: 200000,
+      Arbitrage: 100000,
+      Passive: 150000,
+      "Fixed Income": 100000,
+      Cash: 50000,
+    },
+  },
+  {
+    SrNo: 1,
+    Zone: "Zone A",
+    Region: "Bihar",
+    TotalAUM: 1000000,
+    AUM: {
+      Equity: 400000,
+      Hybrid: 200000,
+      Arbitrage: 100000,
+      Passive: 150000,
+      "Fixed Income": 100000,
+      Cash: 50000,
+    },
+  },{
+    SrNo: 1,
+    Zone: "Zone A",
+    Region: "Bihar",
+    TotalAUM: 1000000,
+    AUM: {
+      Equity: 400000,
+      Hybrid: 200000,
+      Arbitrage: 100000,
+      Passive: 150000,
+      "Fixed Income": 100000,
+      Cash: 50000,
+    },
+  },
   // Add more data entries as needed
 ];
 
@@ -55,7 +110,7 @@ const  RetailZhReport=()=> {
           <b>Rs. in Lakhs</b>
         </p>
         <table className="table table-bordered table-striped">
-          <thead className="BgcolorOrange headtable">
+          <thead className="Bg headtable">
             <tr className="mid ">
               <th rowSpan="2"className="headtable">Sr.No</th>
               <th rowSpan="2" className="headtable">Zone</th>
@@ -86,22 +141,22 @@ const  RetailZhReport=()=> {
                     <td className="forright">{item.AUM["Fixed Income"]}</td>
                     <td className="forright">{item.AUM.Cash}</td>
 
-                </tr><tr className="total">
-                        
-                        <td colSpan="2" className="forright">Total</td>
-                        <td></td>
-                        <td className="forright">{item.TotalAUM}</td>
-                        <td className="forright">{item.AUM.Equity}</td>
-                        <td className="forright">{item.AUM.Hybrid}</td>
-                        <td className="forright">{item.AUM.Arbitrage}</td>
-                        <td className="forright">{item.AUM.Passive}</td>
-                        <td className="forright">{item.AUM["Fixed Income"]}</td>
-                        <td className="forright">{item.AUM.Cash}</td>
-
-                    </tr></>
+                </tr></>
               
               
             ))}
+             <tr className="total">
+                <td colSpan={2} className="forright">
+                  Total
+                </td>
+                <td   colSpan={2} className="forright">2000</td>
+                <td  className="forright">2000</td>
+                <td className="forright">2000</td>
+                <td className="forright">20000</td>
+                <td className="forright">21000</td>
+                <td className="forright">20000</td>
+                <td className="forright">200000</td>
+              </tr>
             
           </tbody>
         </table>
