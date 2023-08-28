@@ -19,7 +19,6 @@ function App() {
         <Route path='/Aum' element={<Search/>}/>
         <Route path='/RetailZoneReport' element={<RetailZhReport/>}/>
         <Route path='/Aumreport' element={<AumReport/>}/>
-
       </Routes>
     </BrowserRouter>  
       

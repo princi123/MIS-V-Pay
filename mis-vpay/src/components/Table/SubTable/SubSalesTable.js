@@ -8,7 +8,7 @@ const SubSalesTable = ({
   startDate,
   endDate,
   select_type,
-  assetClass,
+  assetClass,formatNumberToIndianFormat,
 }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
 
@@ -89,13 +89,15 @@ const SubSalesTable = ({
                       <b>{summary.REGION_NAME}</b>
                     </button>
                   </td>
-                  <td className="text-end">{summary.SEQUITY}</td>
-                  <td className="text-end">{summary.SHYBRID}</td>
-                  <td className="text-end">{summary.SARBITRAGE}</td>
-                  <td className="text-end">{summary.SPASSIVE}</td>
-                  <td className="text-end">{summary.SFIXED_INCOME}</td>
-                  <td className="text-end">{summary.SCASH}</td>
-                  <td className="text-end"><b>{summary.STOTAL}</b></td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SEQUITY))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SHYBRID))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SARBITRAGE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SPASSIVE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SFIXED_INCOME))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SCASH))}</td>
+                  <td className="text-end color-biege" id="total">
+                    {formatNumberToIndianFormat(parseFloat(summary.STOTAL))}
+                  </td>
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
@@ -108,6 +110,7 @@ const SubSalesTable = ({
                           assetClass={assetClass}
                           select_type={select_type}
                           pzone={pzone}
+                          formatNumberToIndianFormat={formatNumberToIndianFormat}
                         /> 
                       )}
                     </td>

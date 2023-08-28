@@ -51,21 +51,29 @@ const Api = ({headers}) => {
     }
   };
 
-
   const togglehide = async () => {
     try {
       await fetchTransactionSummary();
       setHide(true);
     } catch (error) {
-      setHide(false); // Don't load tables on error
+      setHide(false); 
       console.log(hide,"hide")
       toast.error("Please fill all the fields");
     }
   };
+  const formatNumberToIndianFormat = (number) => {
+    if (typeof number !== "number") {
+      return number;
+    }
+  
+    const parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  };
 
   return{
     hide,startDate, endDate, select_type,assetClass,transaction_summary_report,loading,
-    togglehide,setAssetClass,setEndDate,setHide,setLoading,setSelectType,setStartDate
+    togglehide,setAssetClass,setEndDate,setHide,setLoading,setSelectType,setStartDate,formatNumberToIndianFormat
   }
   
 }

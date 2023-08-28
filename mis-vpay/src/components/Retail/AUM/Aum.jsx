@@ -148,44 +148,45 @@ const Aum = () => {
   ];
 
   return (
-    <div className="container-fluid p-0 home-main">
-      <div className="card" style={{ paddingLeft: "10px" }}>
-        <div
-          className="d-flex"
-          style={{ paddingLeft: "10px", paddingBottom: "10px" }}
-        >
-          <div className="col-md-3 d-flex">
-            <h4>
-              <b>SALES</b>
-            </h4>
-            <h5>
-              <b className="gray-color">(In Lakhs)</b>
-            </h5>
-          </div>
-          <div className="col-md-2 list-group">
-            <p className="theader">
-              <b>All India Region Wise</b>
-            </p>
-          </div>
-          <div className="col-md-2">
-            <p className="theader">
-              <b>All India UFC Wise</b>
-            </p>
-          </div>
-          <div className="col-md-2">
-            <p className="theader">
-              <b>All India RM Wise</b>
-            </p>
-          </div>
+    <>
+      <div className="container-fluid ">
+        <div className="card" style={{paddingLeft:"10px"}}>
+         <div className=" d-flex" style={{paddingLeft:"10px",paddingBottom:"10px"}}>
+         <div className="col-md-3 d-flex">
+                  <h4>
+                    <b>SALES</b>
+                  </h4>
+                  <h5>
+                    <b className="gray-color">(In Lakhs)</b>
+                  </h5>
+                </div>
+                <div className="col-md-2 list-group">
+                  <p className="theader">
+                    <b>All India Region Wise</b>
+                  </p>
+                </div>
+                <div className="col-md-2">
+                  <p className="theader">
+                    <b>All India UFC Wise </b>
+                  </p>
+                </div>
+                <div className="col-md-2">
+                  <p className="theader">
+                    <b>All India RM Wise </b>
+                  </p>
+                </div>
+         </div>
+          
+          
         </div>
         <div className="col-md-12 d-flex justify-content-center"></div>
         <table className="table table-bordered table-striped">
-          <thead className="Aum-Head headtable">
+          <thead className="Aum-Head">
             <tr className="mid">
-              <th rowSpan="4" className="headtbl">
+              <th rowSpan="4" className="headtbl" style={{lineHeight:"4"}}>
                 Zone
               </th>
-              <th rowSpan="2" className="headtbl">
+              <th rowSpan="2" className="headtbl" style={{lineHeight:"4"}}>
                 Total AUM
               </th>
               <th colSpan="6">AUM</th>
@@ -237,7 +238,8 @@ const Aum = () => {
           </tbody>
         </table>
       </div>
-    </div>
+   
+  </>
   );
 };
 

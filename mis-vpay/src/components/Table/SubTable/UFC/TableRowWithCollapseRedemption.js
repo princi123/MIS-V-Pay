@@ -7,7 +7,7 @@ const TableRowWithCollapseRedemption = ({
   startDate,
   endDate,
   select_type,
-  region_name,
+  region_name,formatNumberToIndianFormat
 }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
 
@@ -81,13 +81,16 @@ const TableRowWithCollapseRedemption = ({
                     </button>
                   </td>
                   <td >{ufc.UFC_NAME}</td>
-                  <td className="text-end">{ufc.REQUITY}</td>
-                  <td className="text-end">{ufc.RHYBRID}</td>
-                  <td className="text-end">{ufc.RARBITRAGE}</td>
-                  <td className="text-end">{ufc.RPASSIVE}</td>
-                  <td className="text-end">{ufc.RFIXED_INCOME}</td>
-                  <td className="text-end">{ufc.RCASH}</td>
-                  <td className="text-end" style={{ backgroundColor: "#8080805c" }}><b>{ufc.RTOTAL}</b></td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.REQUITY))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.RHYBRID))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.RARBITRAGE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.RPASSIVE))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.RFIXED_INCOME))}</td>
+                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.RCASH))}</td>
+                  <td className="text-end" style={{ backgroundColor: "#8080805c" }}>
+                    <b>{formatNumberToIndianFormat(parseFloat(ufc.RTOTAL))}</b>
+                  </td>
+
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
@@ -99,6 +102,7 @@ const TableRowWithCollapseRedemption = ({
                          pzone={pzone}
                          region_name={region_name}
                          ufc_code={ufc.UFC_CODE}
+                         formatNumberToIndianFormat={formatNumberToIndianFormat}
                       />}
                     </td>
                   </tr>
