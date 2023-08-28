@@ -38,7 +38,7 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass,f
         </div>
       </div>
 
-      <table className="mt-3 table" style={{ backgroundColor: "white",border:"2px solid",borderColor:"#EE8B3A" }}>
+      <table className="mt-3 table" style={{ backgroundColor: "white",border:"2px solid",borderColor:"#EE8B3A" ,borderBottomColor : "white" }}>
           <thead>
             <tr className="colorwhite BgcolorOrange">
               <th scope="col">REGION</th>
