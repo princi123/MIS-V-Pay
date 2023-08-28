@@ -3,9 +3,14 @@
 }
 
 .headtable{
-    line-height: 2;
-    line-height: 0.6px;
+    line-height: 4;
+ 
 }
+.headline{
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
 .forright{
     text-align: right
 }
