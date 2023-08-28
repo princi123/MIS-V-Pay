@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Retail.css";
 import DropDown from "./DropDown";
 import Filter from "./Filter";
@@ -12,13 +12,12 @@ import SalesTable from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
 import ScheduleModal from "../Shared/Modal/ScheduleModal";
 import Loading from "./Loading";
-import Api from "./Api";
-import { API_SCHEME_DETAILS } from "../../Constant/apiConstant";
+import Api from "./RetailApi/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SchemeApi from "./RetailApi/SchemeApi";
 
-const Retail_Transaction = ({headers}) => {
-  const [scheme_details, setSchemeDetails] = useState([]);
+const Retail_Transaction = ({ headers }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const {
     hide,
@@ -32,21 +31,10 @@ const Retail_Transaction = ({headers}) => {
     setAssetClass,
     setEndDate,
     setSelectType,
-    setStartDate,formatNumberToIndianFormat,
-  } = Api({headers});
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(API_SCHEME_DETAILS.DATA);
-        const data = await response.json();
-        setSchemeDetails(data);
-      } catch (error) {
-        console.error("error fetching scheme details", error);
-      }
-    };
-    fetchData();
-  }, []);
+    setStartDate,
+    formatNumberToIndianFormat,
+  } = Api({ headers });
+  const { scheme_details } = SchemeApi();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -222,31 +210,29 @@ const Retail_Transaction = ({headers}) => {
               <ScheduleModal />
               {hide && (
                 <>
-              
-              <div className="Table">
-                {loading ? (
-                  <div className="text-center mt-4">
-                    <i className="fas fa-spinner fa-spin fa-2x"></i> <Loading />
+                  <div className="Table">
+                    {loading ? (
+                      <div className="text-center mt-4">
+                        <i className="fas fa-spinner fa-spin fa-2x"></i>{" "}
+                        <Loading />
+                      </div>
+                    ) : (
+                      <SalesTable
+                        transaction_summary_report={transaction_summary_report}
+                        startDate={startDate}
+                        endDate={endDate}
+                        assetClass={assetClass}
+                        select_type={select_type}
+                        formatNumberToIndianFormat={formatNumberToIndianFormat}
+                      />
+                    )}
                   </div>
-                ) : (
-                  
-                    <SalesTable
-                      transaction_summary_report={transaction_summary_report}
-                      startDate={startDate}
-                      endDate={endDate}
-                      assetClass={assetClass}
-                      select_type={select_type}
-                      formatNumberToIndianFormat={formatNumberToIndianFormat}
-                    />
-                  
-                )}
-              </div>
-              </>
-                  )}
+                </>
+              )}
             </div>
           </div>
-          </div>
-          </div>
+        </div>
+      </div>
     </>
   );
 };

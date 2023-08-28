@@ -1,5 +1,5 @@
 import React,{useState,useMemo} from "react";
-import "./SubRedemptionTable.css";
+import "./SubTable-CSS/SubRedemptionTable.css";
 import RegionApi from "./Api/RegionApi";
 import TableRowWithCollapseRedemption from "./UFC/TableRowWithCollapseRedemption";
 const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {

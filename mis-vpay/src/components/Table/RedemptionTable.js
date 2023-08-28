@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./RedemptionTable.css";
+import "./Table-CSS/RedemptionTable.css";
 import SubRedemptionTable from "./SubTable/SubRedemptionTable";
 
 const RedemptionTable = ({
