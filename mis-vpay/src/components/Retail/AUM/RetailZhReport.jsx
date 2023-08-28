@@ -1,6 +1,8 @@
-import React from "react";
+import React,{useState} from "react";
 import "./RetailZhReport.css"
 import { Link } from "react-router-dom";
+import SideBar from "../../Shared/SideBar";
+import Navbar from "../../Shared/Navbar";
 const data = [
   {
     SrNo: 1,
@@ -19,11 +21,27 @@ const data = [
   // Add more data entries as needed
 ];
 
+
+
 const  RetailZhReport=()=> {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
   return (
     <div>
      
       <div className="container-fluid p-0">
+      <Navbar onToggle={toggleSidebar} />
+        <div className="d-flex">
+          <SideBar isOpen={sidebarOpen} />
+          <div
+            className={` ${
+              sidebarOpen ? "dashboard-closed" : "dashboard-full"
+            }`}
+          >
       <p className="headline ">Retail ZH/RH/RM Region Report  </p>
       <div className="col-md-12 col-md-12 d-flex justify-content-center ">
           <div className="card w-25 mt-2">
@@ -59,7 +77,7 @@ const  RetailZhReport=()=> {
               <><tr key={item.SrNo}>
                     <td>{item.SrNo}</td>
                     <td>{item.Zone}</td>
-                    <td><Link to="#">{item.Region}</Link></td>
+                    <td><Link to="/Aumreport">{item.Region}</Link></td>
                     <td className="forright">{item.TotalAUM}</td>
                     <td className="forright">{item.AUM.Equity}</td>
                     <td className="forright">{item.AUM.Hybrid}</td>
@@ -88,6 +106,8 @@ const  RetailZhReport=()=> {
           </tbody>
         </table>
       </div>
+    </div>
+    </div>
     </div>
   );
 }
