@@ -1,5 +1,4 @@
 import React from "react";
-import HeadModal from "./HeadModal";
 import FooterModal from "./FooterModal";
 import "../Modal/ScheduleModal.css";
 
@@ -46,7 +45,6 @@ const MonthlyModal = () => {
               <label htmlFor><b>Select Date</b>
               </label>
               <input class="form-control" type="date" />
-
             </div>
             <div className="col-md-4">
               <label htmlFor><b>Select Time</b>

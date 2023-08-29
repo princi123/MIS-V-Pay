@@ -109,8 +109,8 @@ const Login = () => {
                   </div>
                   <div className="text-center">
                     <button
-                      className="btn btn-primary"
-                      id="btn-login"
+                      className="btn w-100"
+                      id="button-login"
                       onClick={handleLogin}
                     >
                       Login

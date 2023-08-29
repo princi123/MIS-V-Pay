@@ -32,4 +32,3 @@ const FooterModal = () => {
   )
 }
 export default FooterModal;
-

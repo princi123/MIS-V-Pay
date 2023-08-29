@@ -1,5 +1,4 @@
 import React from "react";
-import ScheduleModal from "./ScheduleModal";
 import HeadModal from "./HeadModal";
 import FooterModal from "./FooterModal";
 import "../Modal/ScheduleModal.css";
@@ -11,7 +10,7 @@ const DailyModal = () => {
       <div className="modal-body">
         <div className="card mt-4 modalcard">
           <HeadModal />
-          <div className=" row mt-4 m-3 mb-0">
+          <div className=" row m-3 mb-0">
             <div className="col-md-3 dailyrecur">
               <span>Recur every :</span>
             </div>

@@ -37,11 +37,12 @@
 .query{
     margin-top: 120px;
 }
-#btn-login{
+#button-login{
     width: 90%;
     font-weight: bold;
     margin-top: 20px;
-    background-color: #005cbf;
+    background-color: #04306a !important;
+    color: white;
 }
 .query-p{
     color: rgba(128, 128, 128, 0.737);
