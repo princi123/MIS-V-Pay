@@ -36,7 +36,7 @@ const SideBar = ({ isOpen }) => {
             <div className="accordion-item">
               <h2
                 id="flush-headingOne"
-                style={{ paddingLeft: "-1px", paddingRight: "5px" }}
+                style={{ paddingLeft: "-1px", paddingRight: "5px" ,marginTop : "-2px", marginBottom : "-4px" }}
               >
                 <button
                   className=" collapsed p-0  py-1 side-link  "
@@ -70,7 +70,7 @@ const SideBar = ({ isOpen }) => {
                   <div className="accordion accordion-flush" id="subAccordion1">
                     <div className="accordion-item">
                       <h2
-                        className=""
+                        className="mt-1"
                         id="sub-accordion-heading1"
                         style={{
                           backgroundColor: "#EE8B3A",
