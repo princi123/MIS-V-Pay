@@ -107,43 +107,41 @@ const RetailZhReport = () => {
               sidebarOpen ? "dashboard-closed" : "dashboard-full"
             }`}
           >
-            
             <div className="card p-2 m-4">
-              <h5 className="headline p-2"><b>RETAIL ZH/RH/RM REGION REPORT </b></h5>
+              <h5 className="headline p-2">
+                <b>RETAIL ZH/RH/RM REGION REPORT </b>
+              </h5>
               <div className="col-md-12 col-md-12 d-flex justify-content-end">
                 <button className="btn bg-info export">Export</button>
               </div>
               <br />
               <div style={{ paddingLeft: "10px" }}>
-              <div
-                className=" d-flex"
-                style={{ paddingLeft: "10px"}}
-              >
-                <div className="col-md-3 d-flex">
-                  <h4>
-                    <b>SALES</b>
-                  </h4>
-                  <h5>
-                    <b className="gray-color">(In Lakhs)</b>
-                  </h5>
-                </div>
-                <div className="col-md-2 list-group">
-                  <p className="theader">
-                    <b>All India Region Wise</b>
-                  </p>
-                </div>
-                <div className="col-md-2">
-                  <p className="theader">
-                    <b>All India UFC Wise </b>
-                  </p>
-                </div>
-                <div className="col-md-2">
-                  <p className="theader">
-                    <b>All India RM Wise </b>
-                  </p>
+                <div className=" d-flex" style={{ paddingLeft: "10px" }}>
+                  <div className="col-md-3 d-flex">
+                    <h4>
+                      <b>SALES</b>
+                    </h4>
+                    <h5>
+                      <b className="gray-color">(In Lakhs)</b>
+                    </h5>
+                  </div>
+                  <div className="col-md-2 list-group">
+                    <p className="theader">
+                      <b>All India Region Wise</b>
+                    </p>
+                  </div>
+                  <div className="col-md-2">
+                    <p className="theader">
+                      <b>All India UFC Wise </b>
+                    </p>
+                  </div>
+                  <div className="col-md-2">
+                    <p className="theader">
+                      <b>All India RM Wise </b>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
               <table className="table table-bordered ">
                 <thead className="bgcolorBlue text-white mainhead">
                   <tr className="mid ">
@@ -206,4 +204,3 @@ const RetailZhReport = () => {
   );
 };
 export default RetailZhReport;
-
