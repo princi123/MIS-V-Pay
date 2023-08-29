@@ -34,8 +34,7 @@ const SideBar = ({ isOpen }) => {
           {/* Code For Second */}
           <div className="accordion accordion-flush" id="accordionFlushExample">
             <div className="accordion-item">
-              <h2
-                id="flush-headingOne"
+              <h2 id="flush-headingOne"
                 style={{ paddingLeft: "-1px", paddingRight: "5px" ,marginTop : "-2px", marginBottom : "-4px" }}
               >
                 <button
