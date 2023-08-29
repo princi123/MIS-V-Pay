@@ -14,8 +14,7 @@ const Api = ({headers}) => {
   const [loading, setLoading] = useState(false);
   const navigate =useNavigate();
   const fetchTransactionSummary = async () => {
-     setLoading(true);
-    
+     
     try {
       const formattedStartDate = startDate.split("-").reverse().join("/");
       const formattedEndDate = endDate.split("-").reverse().join("/");
@@ -31,9 +30,12 @@ const Api = ({headers}) => {
       {
        toast.error("End Date must be Greater Than Start Date")
        setLoading(false);
-       console.log(hide,"hide")
+       
       }      
       else{
+     
+        setLoading(true);
+      
       const response = await fetch(
         API_SUMMARY_TRANSACTION.DATA(queryParams),
         {
@@ -44,6 +46,8 @@ const Api = ({headers}) => {
       const data = await response.json();
       setTransactionSummaryReport(data);
       setLoading(false)
+      setHide(true)
+    
       }
     } catch (error) {
       console.error("error fetching transaction summary data", error);
@@ -54,10 +58,13 @@ const Api = ({headers}) => {
   const togglehide = async () => {
     try {
       await fetchTransactionSummary();
+
       setHide(true);
     } catch (error) {
-      setHide(false); 
-      console.log(hide,"hide")
+      setHide(false);
+
+      console.log(hide, "hide");
+
       toast.error("Please fill all the fields");
     }
   };
