@@ -208,15 +208,15 @@ const Retail_Transaction = ({ headers }) => {
                 </div>
               </div>
               <ScheduleModal />
-              {hide && (
-                <>
-                  <div className="Table">
-                    {loading ? (
-                      <div className="text-center mt-4">
-                        <i className="fas fa-spinner fa-spin fa-2x"></i>{" "}
-                        <Loading />
-                      </div>
-                    ) : (
+              <>
+                <div className="Table">
+                  {loading ? (
+                    <div className="text-center mt-4">
+                      <i className="fas fa-spinner fa-spin fa-2x"></i>{" "}
+                      <Loading />
+                    </div>
+                  ) : (
+                    hide && (
                       <SalesTable
                         transaction_summary_report={transaction_summary_report}
                         startDate={startDate}
@@ -225,10 +225,10 @@ const Retail_Transaction = ({ headers }) => {
                         select_type={select_type}
                         formatNumberToIndianFormat={formatNumberToIndianFormat}
                       />
-                    )}
-                  </div>
-                </>
-              )}
+                    )
+                  )}
+                </div>
+              </>
             </div>
           </div>
         </div>
