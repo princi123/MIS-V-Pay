@@ -74,13 +74,13 @@ const SideBar = ({isOpen}) => {
                                         </h2>
                                         <div id="sub-accordion-collapseOne" className="accordion-collapse collapse" aria-labelledby="sub-accordion-headingOne" data-bs-parent="#subAccordion">
                                             <div className="accordion-body p-0 text-center">
-                                                <Link to="/Aum" > <span className={`sidebar ${isOpen ? '' : 'closed'}`} style={{backgroundColor:"#352d94",color:"white",paddingLeft:"4px",paddingTop:"12px",paddingBottom:"10px",fontSize:"12px",fontWeight:"bold",paddingRight:"5px",borderRadius:"5px",borderColor:"white",textDecoration:"none"}}>CH/ZH/RH/CM/RM Performance Report</span></Link>
+                                                <Link to="/Aum" className="text-decoration-none" > <span className={`sidebar ${isOpen ? '' : 'closed'}`} style={{backgroundColor:"#352d94",color:"white",paddingTop:"12px",paddingBottom:"10px",fontSize:"11px",fontWeight:"bold",borderRadius:"5px",borderColor:"white",paddingRight: "9px" ,paddingLeft : "8px"}}>CH/ZH/RH/CM/RM Performance Report</span></Link>
                                                 <button  className="mt-2 p-0 pb-2 pt-2"  id="sub-accor" ><span className={`sidebar ${isOpen ? '' : 'closed'}`} style={{marginLeft:"61px",marginRight:"59px"}}>Detail View Report</span> </button>
-                                                <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`} >ARM Wise Report</span></button>
-                                                  <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`} >Scheme Wise Report</span></button>
-                                                    <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`}>Direct RM Business</span></button>
-                                                      <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`}>Direct RIA Business</span></button>
-                                                        <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`}>Multicity ARMWise Scheme Report </span></button>
+                                                <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`} style={{marginLeft:"41px",marginRight:"39px"}} >ARM Wise Report</span></button>
+                                                  <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`}style={{marginLeft:"39px",marginRight:"25px"}} >Scheme Wise Report</span></button>
+                                                    <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`} style={{marginLeft:"35px",marginRight:"38px"}}>Direct RM Business</span></button>
+                                                      <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`} style={{marginLeft:"41px",marginRight:"39px"}}>Direct RIA Business</span></button>
+                                                        <button id="sub-accor"><span className={`sidebar ${isOpen ? '' : 'closed'}`}style={{marginLeft:"-15px"}}>Multicity ARMWise Scheme Report </span></button>
                                                           
                                             </div>
                                         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../Assets/css/Auth/Login.css";
-import leftimage from "../Assets/images/utilogin.png";
+import leftimage from "../Assets/images/utiloginfinal.png";
 import { useNavigate } from "react-router-dom";
 import {
   setEmpIdCookie,
