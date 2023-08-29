@@ -31,7 +31,7 @@ const SideBar = ({isOpen}) => {
                 {/* Code For Second */}
                 <div className="accordion accordion-flush" id="accordionFlushExample">
                     <div className="accordion-item">
-                        <h2 id="flush-headingOne" style={{paddingLeft:"-1px",paddingRight:"5px"}}>
+                        <h2 id="flush-headingOne" style={{paddingLeft:"-1px",paddingRight:"5px",marginTop:"-2px",marginBottom:"-4px"}}>
                             <button className=" collapsed p-0  py-1 side-link  " id="main-side-c" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                               <div className=" mt-1 side-home text-start w-100">
                                 <img src={Retails} alt="home"  width="12%" height="12%" className=" side-img p-1" /> 
