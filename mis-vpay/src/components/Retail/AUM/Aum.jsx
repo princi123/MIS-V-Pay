@@ -150,9 +150,9 @@ const Aum = () => {
   return (
     <>
       <div className="container-fluid ">
-        <div className="card" style={{paddingLeft:"10px"}}>
+        <div  style={{paddingLeft:"10px"}}>
          <div className=" d-flex" style={{paddingLeft:"10px",paddingBottom:"10px"}}>
-         <div className="col-md-3 d-flex">
+          <div className="col-md-3 d-flex">
                   <h4>
                     <b>SALES</b>
                   </h4>

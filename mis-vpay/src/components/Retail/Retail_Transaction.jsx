@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "./Retail.css";
-import DropDown from "./DropDown";
-import Filter from "./Filter";
 import excel from "../Assets/images/excel_icon.png";
 import pdf from "../Assets/images/pdf_icon.png";
 import msg from "../Assets/images/msg_icon.png";
 import calender from "../Assets/images/date-time_icon.png";
-import SideBar from "../Shared/SideBar";
+import SideBar from "../Shared/SideBar/SideBar";
 import Navbar from "../Shared/Navbar";
 import SalesTable from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
