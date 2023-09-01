@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../Assets/css/Shared/Sidebar.css";
-import home from "../Assets/images/home.svg";
-import Retails from "../Assets/images/retail.svg";
-import mapping from "../Assets/images/mapping icon.png";
-import Retails_bank from "../Assets/images/Retail Bank icon.png";
-import Named_inst from "../Assets/images/Named Inst icon.png";
-import Digital_Team from "../Assets/images/Digital Team icon.png";
-import Manager_user from "../Assets/images/manage user.png";
-import Service_request from "../Assets/images/Service request icon.png";
-import statistics from "../Assets/images/Statistics Report icon.png";
-import stragies from "../Assets/images/Strategic Alliance icon.png";
-import Channel from "../Assets/images/Channel Wise Sales icon.png";
+import "../../Assets/css/Shared/Sidebar.css";
+import SubSecondBar from "./SubSecondBar";
+import SubThirdBar from "./SubThirdBar";
+import home from "../../Assets/images/home.svg";
+import Retails from "../../Assets/images/retail.svg";
+import mapping from "../../Assets/images/mapping icon.png";
 
 const SideBar = ({ isOpen }) => {
   return (
@@ -36,7 +30,12 @@ const SideBar = ({ isOpen }) => {
             <div className="accordion-item">
               <h2
                 id="flush-headingOne"
-                style={{ paddingLeft: "-1px", paddingRight: "5px" ,marginTop : "-2px", marginBottom : "-4px" }}
+                style={{
+                  paddingLeft: "-1px",
+                  paddingRight: "5px",
+                  marginTop: "-2px",
+                  marginBottom: "-4px",
+                }}
               >
                 <button
                   className=" collapsed p-0  py-1 side-link  "
@@ -276,101 +275,8 @@ const SideBar = ({ isOpen }) => {
               </div>
             </Link>
           </div>
-          <div className="card" id="main-side-card">
-            <Link className="side-link">
-              <div className="side-home">
-                <img src={Retails_bank} alt="home" className=" side-img p-1" />{" "}
-                <span className={`sidebar ${isOpen ? "" : "closed"}`}>
-                  Retail Bank
-                </span>
-              </div>
-            </Link>
-          </div>
-          <div className="card" id="main-side-card">
-            <Link className="side-link">
-              <div className="side-home">
-                <img src={Named_inst} alt="home" className=" side-img p-1" />{" "}
-                <span className={`sidebar ${isOpen ? "" : "closed"}`}>
-                  Named Inst
-                </span>
-              </div>
-            </Link>
-          </div>
-          <div className="card" id="main-side-card">
-            <Link className="side-link">
-              <div className="side-home">
-                <img src={Digital_Team} alt="home" className=" side-img p-1" />{" "}
-                <span className={`sidebar ${isOpen ? "" : "closed"}`}>
-                  Digital Team
-                </span>
-              </div>
-            </Link>
-          </div>
-          <div className="card" id="main-side-card">
-            <Link className="side-link">
-              <div className="side-home">
-                <img src={Manager_user} alt="home" className=" side-img p-1" />
-                <span className={`sidebar ${isOpen ? "" : "closed"}`}>
-                  {" "}
-                  Manager User
-                </span>
-              </div>
-            </Link>
-          </div>
-          <div className="card" id="main-side-card">
-            <Link className="side-link">
-              <div className="side-home">
-                <img
-                  src={Service_request}
-                  alt="home"
-                  className=" side-img p-1"
-                />
-                <span className={`sidebar ${isOpen ? "" : "closed"}`}>
-                  Service Request
-                </span>
-              </div>
-            </Link>
-          </div>
-          <div className="card" id="main-side-card">
-            <Link className="side-link">
-              <div className="side-home">
-                <img src={statistics} alt="home" className=" side-img p-1" />{" "}
-                <span className={`sidebar ${isOpen ? "" : "closed"}`}>
-                  Statistics Report
-                </span>
-              </div>
-            </Link>
-          </div>
-          <div className="card" id="main-side-card">
-            <Link className="side-link">
-              <div className="side-home">
-                <img src={stragies} alt="home" className=" side-img p-1" />
-                <span className={`sidebar ${isOpen ? "" : "closed"}`}>
-                  Strategic Alliance
-                </span>
-              </div>
-            </Link>
-          </div>
-          <div className="card" id="main-side-card">
-            <Link className="side-link">
-              <div className="side-home">
-                <img src={Channel} alt="home" className=" side-img p-1" />
-                <span className={`sidebar ${isOpen ? "" : "closed"}`}>
-                  Channel Wise Sales
-                </span>
-              </div>
-            </Link>
-          </div>
-          <div className="card" id="main-side-card">
-            <Link className="side-link">
-              <div className="side-home">
-                <span className={`sidebar ${isOpen ? "" : "closed"}`}>
-                  {" "}
-                  PRM Sales Management
-                </span>
-              </div>
-            </Link>
-          </div>
+          <SubSecondBar isOpen={isOpen} />
+          <SubThirdBar isOpen={isOpen} />
         </div>
       </div>
     </>

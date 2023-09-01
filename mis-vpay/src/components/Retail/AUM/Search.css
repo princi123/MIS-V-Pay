@@ -1,10 +1,9 @@
-
 .border{
     padding: 20px;
 }
-
 .BgcolorOrange{
     line-height: 1;
+    background-color: #EE8B3A;
 }
 #searchbox{
     border-top-width: 20px;
