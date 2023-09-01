@@ -2,62 +2,56 @@ import React, { useEffect, useState } from "react";
 import "../Assets/css/Auth/Login.css";
 import leftimage from "../Assets/images/utiloginfinal.png";
 import { useNavigate } from "react-router-dom";
-import {
-  setEmpIdCookie,
-  setAuthTokenCookie,
-} from "./Cookie";
+import { setEmpIdCookie, setAuthTokenCookie } from "./Cookie";
 import { API_LOGIN } from "../../Constant/apiConstant";
 import Api from "../Retail/RetailApi/Api";
 
-
 const Login = () => {
-    const [p_emp_id, setEmpID] = useState(" ");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-  
-    const handleLogin = (e) => {
-      e.preventDefault();
-      fetch(API_LOGIN.DATA, {
-        method: "POST",
-        body: JSON.stringify({ p_emp_id, password }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+  const [p_emp_id, setEmpID] = useState(" ");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    fetch(API_LOGIN.DATA, {
+      method: "POST",
+      body: JSON.stringify({ p_emp_id, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          if (Array.isArray(data) && data.length > 0) {
-            const empId = data[0].p_emp_id;
-            const token = data[0].p_auth_token;
-  
-            setEmpIdCookie(empId);
-            setAuthTokenCookie(token);
-  
-            const headers = {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-              emp_id: empId,
-            };
-  
-            setEmpID("");
-            setPassword("");
-            navigate("/Home");
-            // Render the Api component and pass headers as a prop
-            console.log("kk");
-            return <Api headers={headers} />;
-          } else {
-            console.error("Invalid API response format");
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
-    };
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const empId = data[0].p_emp_id;
+          const token = data[0].p_auth_token;
+
+          setEmpIdCookie(empId);
+          setAuthTokenCookie(token);
+
+          const headers = {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            emp_id: empId,
+          };
+
+          setEmpID("");
+          setPassword("");
+          navigate("/Home");
+          return <Api headers={headers} />;
+        } else {
+          console.error("Invalid API response format");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
 
   return (
     <>
