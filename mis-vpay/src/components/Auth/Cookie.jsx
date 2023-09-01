@@ -14,7 +14,6 @@ export const removeEmpIdCookie = () => {
 };
 
 export const setAuthTokenCookie = (token) => {
-  // const cookieValue = JSON.stringify({ token });
   const trimmedToken = token.trim();
   Cookies.set("authToken", trimmedToken, { expires: 1 }); 
 };
