@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./Filter.css";
-import filter from  "../Assets/images/table_icon.png"
+import filter from "../Assets/images/table_icon.png";
 const Filter = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTables, setSelectedTables] = useState([]);
 
   const handleToggleDropdown = () => {
-    setIsOpen(prevIsOpen => !prevIsOpen);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   const handleTableSelection = (tableName) => {
-    setSelectedTables(prevSelectedTables => {
+    setSelectedTables((prevSelectedTables) => {
       if (prevSelectedTables.includes(tableName)) {
-        return prevSelectedTables.filter(table => table !== tableName);
+        return prevSelectedTables.filter((table) => table !== tableName);
       } else {
         return [...prevSelectedTables, tableName];
       }
@@ -21,7 +21,6 @@ const Filter = () => {
 
   const closeTab = () => {
     console.log("Selected tables:", selectedTables);
-  
   };
 
   return (
@@ -30,13 +29,13 @@ const Filter = () => {
         <img src={filter} alt="filter" />
         <b> Select Table</b>
       </label>
-      <div className={`custom-dropdown ${isOpen ? 'active' : ''}`}>
-      <button
-            className="form-control dropdown-toggle mt-2"
-            onClick={handleToggleDropdown}
-          >
-            Select Column
-          </button>
+      <div className={`custom-dropdown ${isOpen ? "active" : ""}`}>
+        <button
+          className="form-control dropdown-toggle mt-2"
+          onClick={handleToggleDropdown}
+        >
+          Select Column
+        </button>
         <div className="dropdown-menu">
           <div>
             <input
@@ -70,8 +69,7 @@ const Filter = () => {
           </div>
           <div>
             <button
-              className="btn BgcolorOrange text-white"
-              style={{ marginLeft: "6rem" }}
+              className="btn BgcolorOrange text-white mrgl"
               onClick={closeTab}
             >
               OK
