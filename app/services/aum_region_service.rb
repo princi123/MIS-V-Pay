@@ -23,4 +23,3 @@ class AumRegionService
      aum_region_report
   end
 end
-  
