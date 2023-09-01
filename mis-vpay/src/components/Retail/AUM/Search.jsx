@@ -7,6 +7,11 @@ import Aum from "./Aum";
 const Search = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+  // Replace 'fetchDataFromApi' with the actual function to fetch data from your API.
 
   const fetchDataFromApi = async () => {
     try {
