@@ -25,3 +25,11 @@ export const API_RM = {
     DATA: (queryParams) => `${API}/rm_summary_transactions?${queryParams}`,
 };
 
+export const API_AUM_Region = {
+    DATA:  `${API}/aum_regions`,
+};
+
+export const API_AUM_period = {
+    DATA: `${API}/aum`,
+};
+

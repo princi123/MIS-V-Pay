@@ -149,6 +149,7 @@ const Aum = () => {
 
   return (
     <>
+     
       <div className="container-fluid ">
         <div  style={{paddingLeft:"10px"}}>
          <div className=" d-flex" style={{paddingLeft:"10px",paddingBottom:"10px"}}>
