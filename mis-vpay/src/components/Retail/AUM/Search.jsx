@@ -3,6 +3,7 @@ import "../AUM/Search.css";
 import Navbar from '../../Shared/Navbar';
 import SideBar from '../../Shared/SideBar';
 import Aum from "./Aum";
+import Button from "../../Shared/Button";
 
 const Search=()=> {
   const [selectedOption, setSelectedOption] = useState("");
@@ -26,6 +27,10 @@ const Search=()=> {
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
+
+  const sesss=()=>{
+    console.log("fg")
+  }
 
   return (
    
@@ -57,7 +62,7 @@ const Search=()=> {
         </select>
         </div>
         <div  style={{marginLeft:"10px",marginTop:"19px",padding:"10px 10px 10px 10px"}}>
-        <button className="BgcolorOrange btn" style={{marginRight:"5px",padding:"11px"}} >Search</button>
+        <Button className="BgcolorOrange btn"  style={{marginRight:"5px",padding:"11px"}} onClick={sesss}>Search</Button>
         <button className="BgcolorOrange btn "style={{marginRight:"5px",padding:"11px"}} >Export</button> 
         </div>
         </div>
@@ -73,3 +78,4 @@ const Search=()=> {
 }
 
 export default Search;
+

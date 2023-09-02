@@ -16,6 +16,7 @@ import Api from "./RetailApi/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchemeApi from "./RetailApi/SchemeApi";
+import Button from "../Shared/Button";
 
 const Retail_Transaction = ({ headers }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -196,12 +197,12 @@ const Retail_Transaction = ({ headers }) => {
                       </div>
 
                       <div className="col-md-1 " style={{ marginTop: "31px" }}>
-                        <button
-                          className="btn  BgcolorOrange "
+                        <Button
+                         
                           onClick={togglehide}
                         >
                           <b className="colorwhite"> Search</b>
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -238,3 +239,4 @@ const Retail_Transaction = ({ headers }) => {
 };
 
 export default Retail_Transaction;
+
