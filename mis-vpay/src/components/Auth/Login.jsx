@@ -4,7 +4,7 @@ import leftimage from "../Assets/images/utiloginfinal.png";
 import { useNavigate } from "react-router-dom";
 import { setEmpIdCookie, setAuthTokenCookie } from "./Cookie";
 import { API_LOGIN } from "../../Constant/apiConstant";
-import Api from "../Retail/RetailApi/Api";
+import Api from "../../Constant/apiConstant";
 
 const Login = () => {
   const [p_emp_id, setEmpID] = useState(" ");
@@ -13,45 +13,45 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch(API_LOGIN.DATA, {
-      method: "POST",
-      body: JSON.stringify({ p_emp_id, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          const empId = data[0].p_emp_id;
-          const token = data[0].p_auth_token;
+    Api.post(API_LOGIN.DATA, { p_emp_id, password })
+    .then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        const contentType = response.headers.get('content-type');
+        console.log('Content-Type:', contentType); 
 
-          setEmpIdCookie(empId);
-          setAuthTokenCookie(token);
-
-          const headers = {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-            emp_id: empId,
-          };
-
-          setEmpID("");
-          setPassword("");
-          navigate("/Home");
-          return <Api headers={headers} />;
+        if (contentType && contentType.includes('application/json')) {
+          return response.data; 
         } else {
-          console.error("Invalid API response format");
+          console.error('Response is not in JSON format');
+          throw new Error('Response is not in JSON format');
         }
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+      } else {
+        console.error(`Network response was not ok (${response.status})`);
+        throw new Error(`Network response was not ok (${response.status})`);
+      }
+    })
+    .then((data) => {
+      if (Array.isArray(data) && data.length > 0) {
+        const empId = data[0].p_emp_id;
+        const token = data[0].p_auth_token;
+
+        localStorage.setItem('emp_id', empId);
+        localStorage.setItem('token', token);
+
+        setEmpIdCookie(empId);
+        setAuthTokenCookie(token);
+
+        setEmpID('');
+        setPassword('');
+        navigate('/Home');
+      } else {
+        console.error('Invalid API response format');
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+};
 
   return (
     <>
