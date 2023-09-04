@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./AumReport.css";
 import Navbar from "../../Shared/Navbar";
-import SideBar from "../../Shared/SideBar/SideBar";
+import SideBar from "../../Shared/SideBar";
 
 const AumReport = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -225,8 +225,7 @@ const AumReport = () => {
           <div
             className={` ${
               sidebarOpen ? "dashboard-closed" : "dashboard-full"
-            }`}
-          >
+            }`}>
             <div className="card mt-4 m-3" style={{ borderRadius: "10px" }}>
               <div className="headline pt-4">
                 <h4>
@@ -238,7 +237,6 @@ const AumReport = () => {
                   <button className="btn btn-info">Export</button>
                 </div>
               </div>
-
               <div className="container-fluid ">
                 <div className=" mt-3" style={{ paddingLeft: "10px" }}>
                   <div

@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import "../AUM/Search.css";
 import Navbar from "../../Shared/Navbar";
-import SideBar from "../../Shared/SideBar/SideBar";
+import SideBar from "../../Shared/SideBar";
 import Aum from "./Aum";
 
 const Search = () => {
@@ -12,15 +12,19 @@ const Search = () => {
     setSidebarOpen(!sidebarOpen);
   };
   // Replace 'fetchDataFromApi' with the actual function to fetch data from your API.
+
   const fetchDataFromApi = async () => {
     try {
-      // Simulating fetching data from API.
       const response = await fetch("your_api_endpoint_here");
       const data = await response.json();
       setSearchResults(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+  };
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
   };
 
   return (
@@ -38,6 +42,7 @@ const Search = () => {
                 <div className="col-md-8 d-flex">
                   <div className="col-md-6 ">
                     <label style={{ paddingLeft: "10px" }}>
+                      {" "}
                       <b>Select Period</b>
                     </label>
                     <select className="form-select m-2">
@@ -52,12 +57,11 @@ const Search = () => {
                       marginLeft: "10px",
                       marginTop: "19px",
                       padding: "10px 10px 10px 10px",
-                    }}
-                  >
+                    }}>
                     <button className="BgcolorOrange btn" style={{ marginRight: "5px", padding: "11px" }}>
                       Search
                     </button>
-                    <button className="BgcolorOrange btn " style={{ marginRight: "5px", padding: "11px" }} >
+                    <button className="BgcolorOrange btn" style={{ marginRight: "5px", padding: "11px" }}>
                       Export
                     </button>
                   </div>
