@@ -29,7 +29,6 @@ const RedemptionTable = ({
           <b className="gray-color">(In Lakhs)</b>
         </h5>
       </div>
-
       <div className="col-md-3" />
       <div className="col-md-12">
         <table className="mt-3 table small border">
@@ -78,7 +77,6 @@ const RedemptionTable = ({
                   <td className="text-end" id="total">
                     {formatNumberToIndianFormat(parseFloat(summary.RTOTAL))}
                   </td>
-
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
@@ -103,3 +101,4 @@ const RedemptionTable = ({
   );
 };
 export default RedemptionTable;
+
