@@ -42,7 +42,7 @@ const Home = () => {
                           type="button"
                           data-bs-toggle="collapse"
                           data-bs-target="#collapseOne"
-                          aria-expanded="true"
+                          aria-expanded="false"
                           aria-controls="collapseOne"
                         >
                           <div className="mis-heading">MIS Updates</div>
@@ -51,7 +51,7 @@ const Home = () => {
                     </h2>
                     <div
                       id="collapseOne"
-                      className="accordion-collapse collapse show acc-main"
+                      className="accordion-collapse collapse acc-main"
                       aria-labelledby="headingOne"
                       data-bs-parent="#accordionExample"
                     >

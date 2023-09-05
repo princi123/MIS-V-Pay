@@ -66,7 +66,7 @@ const Navbar = ({ onToggle }) => {
               </div>
               <div className="col-md-3" id="nav-fifth">
                 <ul className="list-unstyled m-0">
-                  <li id="nav-admin">
+                  <li id="nav-admin" className="gap-2">
                     <img
                       src={Profile}
                       alt="..."
@@ -74,7 +74,7 @@ const Navbar = ({ onToggle }) => {
                       height="25%"
                       className="mt-4"
                     />
-                    <div className="m-2 w-100">
+                    <div className="mt-3 w-100">
                       <h5 className="nav-heading">Role : Admin</h5>
                       <p>21 June 2023, 16:40</p>
                     </div>

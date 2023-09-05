@@ -7,7 +7,8 @@ import Aum from "./Aum";
 const Search = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
