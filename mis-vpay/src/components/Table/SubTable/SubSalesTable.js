@@ -1,7 +1,8 @@
-import React, { useState,useMemo } from "react";
+import React, { useState,useMemo, useEffect } from "react";
 import "./SubTable-CSS/SubSalesTable.css";
 import RegionApi from "./Api/RegionApi";
 import TableRowWithCollapse from "./UFC/TableRowWithCollapse";
+import { useSalesData } from "./SalesDataContext";
 
 const SubSalesTable = ({
   pzone,
@@ -11,6 +12,7 @@ const SubSalesTable = ({
   assetClass,formatNumberToIndianFormat
 }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
+  const { setSubSalesData } = useSalesData();
   const queryParams = useMemo(() => {
     const formattedStartDate = startDate.split("-").reverse().join("/");
     const formattedEndDate = endDate.split("-").reverse().join("/");
@@ -33,6 +35,15 @@ const SubSalesTable = ({
       setClickedIndex(index);
     }
   };
+  useEffect(() => {
+    setSubSalesData({
+      pzone,
+      startDate,
+      endDate,
+      select_type,
+      assetClass,
+    });
+  }, [pzone, startDate, endDate, select_type, assetClass, setSubSalesData]);
 
   return (
     <div className="new-component container-fluid p-0">

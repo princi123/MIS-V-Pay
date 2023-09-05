@@ -17,10 +17,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchemeApi from "./RetailApi/SchemeApi";
 import { ExportToCSV } from "./RetailApi/ExportToCSV";
+import { useSalesData } from "../Table/SubTable/SalesDataContext";
 
 const Retail_Transaction = ({ headers }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const fileName = "Zone";
+  const { subSalesData } = useSalesData();
+  // const fileName = "Zone";
   const {
     hide,
     startDate,
@@ -61,7 +63,8 @@ const Retail_Transaction = ({ headers }) => {
   };
 
   const handleExcelButtonClick = () => {
-    ExportToCSV(transaction_summary_report, "Zone_wise_Report");
+    console.log(subSalesData,"subdata")
+    ExportToCSV(subSalesData, "Region_wise_Report")
   };
 
   return (

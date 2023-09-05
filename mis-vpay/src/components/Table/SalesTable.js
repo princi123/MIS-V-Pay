@@ -3,7 +3,14 @@ import "./Table-CSS/SalesTable.css";
 import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
-const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {
+const SalesTable = ({
+  transaction_summary_report,
+  startDate,
+  endDate,
+  select_type,
+  assetClass,
+  formatNumberToIndianFormat,
+}) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
@@ -66,10 +73,12 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                         <th scope="col" className="text-end">
                           Cash{" "}
                         </th>
-                        <th scope="col" className="text-end">Total</th>
+                        <th scope="col" className="text-end">
+                          Total
+                        </th>
                       </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                       {transaction_summary_report.map((summary, index) => (
                         <React.Fragment key={index}>
                           <tr>
@@ -81,14 +90,40 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                                 <b>{summary.ZONE}</b>
                               </button>
                             </td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SEQUITY))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SHYBRID))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SARBITRAGE))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SPASSIVE))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SFIXED_INCOME))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SCASH))}</td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SEQUITY)
+                              )}
+                            </td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SHYBRID)
+                              )}
+                            </td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SARBITRAGE)
+                              )}
+                            </td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SPASSIVE)
+                              )}
+                            </td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SFIXED_INCOME)
+                              )}
+                            </td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SCASH)
+                              )}
+                            </td>
                             <td className="text-end color-biege" id="total">
-                              {formatNumberToIndianFormat(parseFloat(summary.STOTAL))}
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.STOTAL)
+                              )}
                             </td>
                           </tr>
                           {clickedIndex === index && (
@@ -100,7 +135,9 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                                   endDate={endDate}
                                   assetClass={assetClass}
                                   select_type={select_type}
-                                  formatNumberToIndianFormat={formatNumberToIndianFormat}
+                                  formatNumberToIndianFormat={
+                                    formatNumberToIndianFormat
+                                  }
                                 />
                               </td>
                             </tr>
