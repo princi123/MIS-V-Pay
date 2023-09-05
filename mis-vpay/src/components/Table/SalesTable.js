@@ -135,5 +135,5 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
     </>
   );
 };
-
 export default SalesTable;
+

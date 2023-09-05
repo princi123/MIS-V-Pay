@@ -1,18 +1,21 @@
 import { React, useState } from "react";
 import "../AUM/Search.css";
-import Navbar from '../../Shared/Navbar';
-import SideBar from '../../Shared/SideBar';
+import Navbar from "../../Shared/Navbar";
+import SideBar from "../../Shared/SideBar";
 import Aum from "./Aum";
 import Button from "../../Shared/Button";
 
-const Search=()=> {
+const Search = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
   // Replace 'fetchDataFromApi' with the actual function to fetch data from your API.
+
   const fetchDataFromApi = async () => {
     try {
-      // Simulating fetching data from API.
       const response = await fetch("your_api_endpoint_here");
       const data = await response.json();
       setSearchResults(data);
@@ -20,10 +23,7 @@ const Search=()=> {
       console.error("Error fetching data:", error);
     }
   };
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -33,8 +33,8 @@ const Search=()=> {
   }
 
   return (
-   
     <div className="container-fluid p-0 home-main ">
+
      <Navbar onToggle={toggleSidebar} />
         <div className="d-flex">
           <SideBar isOpen={sidebarOpen} />
@@ -64,18 +64,19 @@ const Search=()=> {
         <div  style={{marginLeft:"10px",marginTop:"19px",padding:"10px 10px 10px 10px"}}>
         <Button className="BgcolorOrange btn"  style={{marginRight:"5px",padding:"11px"}} onClick={sesss}>Search</Button>
         <Button className="BgcolorOrange btn "style={{marginRight:"5px",padding:"11px"}} >Export</Button> 
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <Aum />
+          </div>
+
         </div>
-        </div>
       </div>
-      
-    </div>
-    <Aum/>
-      </div>
-      </div>
-    </div>   
     </div>
   );
-}
+};
 
 export default Search;
 

@@ -1,240 +1,231 @@
-import React, { useState } from 'react'
-import "./AumReport.css"
+import React, { useState } from "react";
+import "./AumReport.css";
 import Navbar from "../../Shared/Navbar";
+
 import SideBar from "../../Shared/SideBar"
 import Button from '../../Shared/Button';
 
+
 const AumReport = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
-    };
-    const data = [
-        {
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+  const data = [
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC001",
+      UFC: "UFC One",
+      RMCode: "RM001",
+      RMName: "John Doe",
+      TotalAUM: 1000000,
+      AUM: {
+        Equity: 400000,
+        Hybrid: 200000,
+        Arbitrage: 100000,
+        Passive: 150000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+    {
+      Zone: "EAST",
+      Region: "NORTH EAST",
+      UFCCode: "UFC002",
+      UFC: "UFC Two",
+      RMCode: "RM002",
+      RMName: "Jane hvf mh",
+      TotalAUM: 800000,
+      AUM: {
+        Equity: 300000,
+        Hybrid: 150000,
+        Arbitrage: 80000,
+        Passive: 120000,
+        "Fixed Income": 100000,
+        Cash: 50000,
+      },
+    },
+  ];
 
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC001',
-            UFC: 'UFC One',
-            RMCode: 'RM001',
-            RMName: 'John Doe',
-            TotalAUM: 1000000,
-            AUM: {
-                Equity: 400000,
-                Hybrid: 200000,
-                Arbitrage: 100000,
-                Passive: 150000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
+  return (
+    <>
+      <div className="container-fluid p-0 home-main">
+        <Navbar onToggle={toggleSidebar} />
+        <div className="d-flex">
+         
 
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
-
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
-
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
-
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
-
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
-
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
-
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
-
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
-
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
-
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-        {
-
-            Zone: 'EAST',
-            Region: 'NORTH EAST',
-            UFCCode: 'UFC002',
-            UFC: 'UFC Two',
-            RMCode: 'RM002',
-            RMName: 'Jane hvf mh',
-            TotalAUM: 800000,
-            AUM: {
-                Equity: 300000,
-                Hybrid: 150000,
-                Arbitrage: 80000,
-                Passive: 120000,
-                'Fixed Income': 100000,
-                Cash: 50000,
-            },
-        },
-
-    ];
-
-    return (
-        <>
-            <div className="container-fluid p-0 home-main">
-                <Navbar onToggle={toggleSidebar} />
-                <div className="d-flex">
                     <SideBar isOpen={sidebarOpen} />
                     <div
                         className={` ${sidebarOpen ? "dashboard-closed" : "dashboard-full"
@@ -322,12 +313,11 @@ const AumReport = () => {
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default AumReport
-
+export default AumReport;
