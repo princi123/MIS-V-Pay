@@ -14,6 +14,8 @@ import Api from "./RetailApi/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchemeApi from "./RetailApi/SchemeApi";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 const Retail_Transaction = ({ headers }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -54,6 +56,31 @@ const Retail_Transaction = ({ headers }) => {
     } else {
       setEndDate(newEndDate);
     }
+  };
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    const salesTable = document.getElementById("salesTable");
+
+    const convertToCanvas = (htmlContent) => {
+      return html2canvas(htmlContent);
+    };
+
+    convertToCanvas(salesTable)
+      .then((canvas) => {
+        try {
+          const imgData = canvas.toDataURL("image/png");
+          doc.addImage(imgData, "PNG", 10, 10, 180, 0);
+          doc.save("sales_report.pdf");
+        } catch (error) {
+          console.error("Error adding image to PDF:", error);
+          toast.error("Error generating PDF. Please try again later.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error converting to canvas:", error);
+        toast.error("Error generating PDF. Please try again later.");
+      });
   };
 
   return (
@@ -171,7 +198,7 @@ const Retail_Transaction = ({ headers }) => {
                         className="form-select form-control mt-2"
                       >
                         {scheme_details.map((scheme) => (
-                          <option value="" key={scheme.SCHEME}>
+                         <option value="" key={scheme.SCHEME}>
                             {scheme.SCHEME}
                           </option>
                         ))}
@@ -181,7 +208,7 @@ const Retail_Transaction = ({ headers }) => {
                       <div className="col-md-2 " style={{ marginTop: "30px" }}>
                         <p className="rcorners">
                           <img src={excel} alt="excelicon" /> |{" "}
-                          <img src={pdf} alt="pdficon" />|{" "}
+                          <img src={pdf} alt="pdficon"  onClick={generatePDF} style={{ cursor: 'pointer' }}/>|{" "}
                           <img src={msg} alt="msgicon" /> |{" "}
                           <img
                             id="myImg"
@@ -189,6 +216,7 @@ const Retail_Transaction = ({ headers }) => {
                             alt="calendericon"
                             data-bs-toggle="modal"
                             data-bs-target="#scheduleModal"
+                            style={{ cursor: 'pointer' }}
                           />
                         </p>
                       </div>
@@ -207,7 +235,7 @@ const Retail_Transaction = ({ headers }) => {
               </div>
               <ScheduleModal />
               <>
-                <div className="Table">
+                <div className="Table" id="salesTable">
                   {loading ? (
                     <div className="text-center mt-4">
                       <i className="fas fa-spinner fa-spin fa-2x"></i>{" "}
