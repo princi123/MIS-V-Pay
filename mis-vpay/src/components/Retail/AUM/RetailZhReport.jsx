@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./RetailZhReport.css";
 import { Link } from "react-router-dom";
-import SideBar from "../../Shared/SideBar";
+import SideBar from "../../Shared/SideBar/SideBar";
 import Navbar from "../../Shared/Navbar";
 const data = [
   {
@@ -203,4 +203,5 @@ const RetailZhReport = () => {
     </div>
   );
 };
+
 export default RetailZhReport;

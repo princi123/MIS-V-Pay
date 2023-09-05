@@ -17,8 +17,8 @@ const Login = () => {
       method: "POST",
       body: JSON.stringify({ p_emp_id, password }),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     })
       .then((response) => {
         if (!response.ok) {
@@ -37,14 +37,11 @@ const Login = () => {
           const headers = {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-            emp_id: empId
+            emp_id: empId,
           };
-
           setEmpID("");
           setPassword("");
           navigate("/Home");
-          // Render the Api component and pass headers as a prop
-          console.log("kk");
           return <Api headers={headers} />;
         } else {
           console.error("Invalid API response format");
