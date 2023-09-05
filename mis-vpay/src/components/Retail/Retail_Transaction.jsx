@@ -60,6 +60,10 @@ const Retail_Transaction = ({ headers }) => {
     }
   };
 
+  const handleExcelButtonClick = () => {
+    ExportToCSV(transaction_summary_report, "Zone_wise_Report");
+  };
+
   return (
     <>
       <ToastContainer
@@ -184,8 +188,10 @@ const Retail_Transaction = ({ headers }) => {
                       <div />
                       <div className="col-md-2 " style={{ marginTop: "30px" }}>
                         <p className="rcorners">
-                        <ExportToCSV apiData={transaction_summary_report} fileName={fileName} />|{" "}
-                          <img src={pdf} alt="pdficon" />|{" "}
+                          <button onClick={handleExcelButtonClick} className="border-0">
+                            <img src={excel} alt="excelicon" />
+                          </button>
+                          | <img src={pdf} alt="pdficon" />|{" "}
                           <img src={msg} alt="msgicon" /> |{" "}
                           <img
                             id="myImg"
