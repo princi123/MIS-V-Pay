@@ -16,9 +16,11 @@ import Api from "./RetailApi/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchemeApi from "./RetailApi/SchemeApi";
+import { ExportToCSV } from "./RetailApi/ExportToCSV";
 
 const Retail_Transaction = ({ headers }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const fileName = "Zone";
   const {
     hide,
     startDate,
@@ -182,7 +184,7 @@ const Retail_Transaction = ({ headers }) => {
                       <div />
                       <div className="col-md-2 " style={{ marginTop: "30px" }}>
                         <p className="rcorners">
-                          <img src={excel} alt="excelicon" /> |{" "}
+                        <ExportToCSV apiData={transaction_summary_report} fileName={fileName} />|{" "}
                           <img src={pdf} alt="pdficon" />|{" "}
                           <img src={msg} alt="msgicon" /> |{" "}
                           <img

@@ -3,7 +3,6 @@ import "./Table-CSS/SalesTable.css";
 import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
-
 const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const handleButtonClick = (index) => {

@@ -8,10 +8,9 @@ const SubSalesTable = ({
   startDate,
   endDate,
   select_type,
-  assetClass,formatNumberToIndianFormat,
+  assetClass,formatNumberToIndianFormat
 }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
-
   const queryParams = useMemo(() => {
     const formattedStartDate = startDate.split("-").reverse().join("/");
     const formattedEndDate = endDate.split("-").reverse().join("/");
