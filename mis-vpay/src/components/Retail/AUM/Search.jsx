@@ -63,7 +63,7 @@ const Search=()=> {
         </div>
         <div  style={{marginLeft:"10px",marginTop:"19px",padding:"10px 10px 10px 10px"}}>
         <Button className="BgcolorOrange btn"  style={{marginRight:"5px",padding:"11px"}} onClick={sesss}>Search</Button>
-        <button className="BgcolorOrange btn "style={{marginRight:"5px",padding:"11px"}} >Export</button> 
+        <Button className="BgcolorOrange btn "style={{marginRight:"5px",padding:"11px"}} >Export</Button> 
         </div>
         </div>
       </div>

@@ -200,8 +200,9 @@ const Retail_Transaction = ({ headers }) => {
                         <Button
                          
                           onClick={togglehide}
+                          className={"BgcolorOrange border-0 btn"}
                         >
-                          <b className="colorwhite"> Search</b>
+                          <b> Search</b>
                         </Button>
                       </div>
                     </div>

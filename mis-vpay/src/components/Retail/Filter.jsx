@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Filter.css";
 import filter from "../Assets/images/table_icon.png";
+import Button from "../Shared/Button";
 const Filter = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTables, setSelectedTables] = useState([]);
@@ -30,12 +31,12 @@ const Filter = () => {
         <b> Select Table</b>
       </label>
       <div className={`custom-dropdown ${isOpen ? "active" : ""}`}>
-        <button
+        <Button
           className="form-control dropdown-toggle mt-2"
           onClick={handleToggleDropdown}
         >
           Select Column
-        </button>
+        </Button>
         <div className="dropdown-menu">
           <div>
             <input
@@ -68,12 +69,12 @@ const Filter = () => {
             <label htmlFor="netSalesCheckbox">Net Sales</label>
           </div>
           <div>
-            <button
+            <Button
               className="btn BgcolorOrange text-white mrgl"
               onClick={closeTab}
             >
               OK
-            </button>
+            </Button>
           </div>
         </div>
       </div>

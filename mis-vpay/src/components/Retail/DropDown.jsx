@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./DropDown.css";
+import Button from "../Shared/Button";
 
 const DropDown = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -15,12 +16,12 @@ const DropDown = () => {
       </label>
       <div className="dropdown">
         <div className="custom-dropdown">
-          <button
+          <Button
             className="form-control dropdown-toggle  mt-2"
             onClick={toggleDropdown}
           >
             Select Column
-          </button>
+          </Button>
           <div
             className="dropdown-content"
             id="checkboxContainer"

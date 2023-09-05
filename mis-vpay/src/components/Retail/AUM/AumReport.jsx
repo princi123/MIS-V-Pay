@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./AumReport.css"
 import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar"
+import Button from '../../Shared/Button';
 
 const AumReport = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -246,7 +247,7 @@ const AumReport = () => {
                             <div className='col-md-12 d-flex mt-3 justify-content-end p-2'>
 
                                 <div className="d-flex">
-                                    <button className='btn btn-info'>Export</button>
+                                    <Button className='btn btn-info'>Export</Button>
                                 </div>
                             </div>
                     
