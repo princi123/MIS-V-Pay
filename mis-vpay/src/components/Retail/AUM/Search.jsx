@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import "../AUM/Search.css";
 import Navbar from "../../Shared/Navbar";
-import SideBar from "../../Shared/SideBar/SideBar";
+import SideBar from "../../Shared/SideBar";
 import Aum from "./Aum";
 import { useAUMApi } from "../RetailApi/AUM_Api";
 import { usePeriodApi } from "../RetailApi/AUM_Api";
 
 
-const Search = (props) => {
+const Search = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hide, setHide] = useState(false);
   const aumDetails = useAUMApi();
   const aumPeriod = usePeriodApi();
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
 
   const SearchOnClick = (e) => {
     console.log(aumDetails)
     console.log(aumPeriod)
    
     setHide(true);
+  };
+ 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
   };
 
   return (
@@ -39,6 +39,7 @@ const Search = (props) => {
                 <div className="col-md-8 d-flex">
                   <div className="col-md-6">
                     <label style={{ paddingLeft: "10px" }}>
+                      {" "}
                       <b>Select Period</b>
                     </label>
                     <select className="form-select m-2">
@@ -53,16 +54,11 @@ const Search = (props) => {
                       marginLeft: "10px",
                       marginTop: "19px",
                       padding: "10px 10px 10px 10px",
-                    }}
-                  >
-                    <button
-                      className="BgcolorOrange btn"
-                      onClick={(e)=>SearchOnClick(e)}
-                      style={{ marginRight: "5px", padding: "11px" }}
-                    >
+                    }}>
+                    <button className="BgcolorOrange btn" style={{ marginRight: "5px", padding: "11px" }}>
                       Search
                     </button>
-                    <button className="BgcolorOrange btn " style={{ marginRight: "5px", padding: "11px" }}>
+                    <button className="BgcolorOrange btn" style={{ marginRight: "5px", padding: "11px" }}>
                       Export
                     </button>
                   </div>
