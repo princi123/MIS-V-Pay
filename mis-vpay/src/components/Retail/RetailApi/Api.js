@@ -13,6 +13,9 @@ const Api = ({headers}) => {
   const [transaction_summary_report, setTransactionSummaryReport] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate =useNavigate();
+
+
+
   const fetchTransactionSummary = async () => {
      
     try {
@@ -55,32 +58,32 @@ const Api = ({headers}) => {
     }
   };
 
-  const togglehide = async () => {
-    try {
-      await fetchTransactionSummary();
+  // const togglehide = async () => {
+  //   try {
+  //     await fetchTransactionSummary();
 
-      setHide(true);
-    } catch (error) {
-      setHide(false);
+  //     setHide(true);
+  //   } catch (error) {
+  //     setHide(false);
 
-      console.log(hide, "hide");
+  //     console.log(hide, "hide");
 
-      toast.error("Please fill all the fields");
-    }
-  };
-  const formatNumberToIndianFormat = (number) => {
-    if (typeof number !== "number") {
-      return number;
-    }
+  //     toast.error("Please fill all the fields");
+  //   }
+  // };
+  // const formatNumberToIndianFormat = (number) => {
+  //   if (typeof number !== "number") {
+  //     return number;
+  //   }
   
-    const parts = number.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join(".");
-  };
+  //   const parts = number.toString().split(".");
+  //   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  //   return parts.join(".");
+  // };
 
   return{
     hide,startDate, endDate, select_type,assetClass,transaction_summary_report,loading,
-    togglehide,setAssetClass,setEndDate,setHide,setLoading,setSelectType,setStartDate,formatNumberToIndianFormat
+    setAssetClass,setEndDate,setHide,setLoading,setSelectType,setStartDate
   }
   
 }

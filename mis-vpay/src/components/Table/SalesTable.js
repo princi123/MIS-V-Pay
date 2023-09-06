@@ -4,7 +4,7 @@ import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
 
-const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {
+export const SalesTable = ({ transaction_summary_report }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
@@ -13,6 +13,7 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
       setClickedIndex(index);
     }
   };
+  console.log(transaction_summary_report,"2121")
   return (
     <>
       <div className="container-fluid">
@@ -82,17 +83,17 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                                 <b>{summary.ZONE}</b>
                               </button>
                             </td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SEQUITY))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SHYBRID))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SARBITRAGE))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SPASSIVE))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SFIXED_INCOME))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SCASH))}</td>
+                            <td className="text-end">{parseFloat(summary.SEQUITY)}</td>
+                            <td className="text-end">{parseFloat(summary.SHYBRID)}</td>
+                            <td className="text-end">{parseFloat(summary.SARBITRAGE)}</td>
+                            <td className="text-end">{parseFloat(summary.SPASSIVE)}</td>
+                            <td className="text-end">{parseFloat(summary.SFIXED_INCOME)}</td>
+                            <td className="text-end">{parseFloat(summary.SCASH)}</td>
                             <td className="text-end color-biege" id="total">
-                              {formatNumberToIndianFormat(parseFloat(summary.STOTAL))}
+                              {parseFloat(summary.STOTAL)}
                             </td>
                           </tr>
-                          {clickedIndex === index && (
+                          {/* {clickedIndex === index && (
                             <tr key={`subtable-${index}`}>
                               <td colSpan="8" className="p-0">
                                 <SubSalesTable
@@ -105,12 +106,12 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                                 />
                               </td>
                             </tr>
-                          )}
+                          )} */}
                         </React.Fragment>
                       ))}
                     </tbody>
                   </table>
-                  <RedemptionTable
+                  {/* <RedemptionTable
                     transaction_summary_report={transaction_summary_report}
                     startDate={startDate}
                     endDate={endDate}
@@ -125,7 +126,7 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                     assetClass={assetClass}
                     select_type={select_type}
                     formatNumberToIndianFormat={formatNumberToIndianFormat}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
@@ -135,5 +136,5 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
     </>
   );
 };
-export default SalesTable;
+
 

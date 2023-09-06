@@ -6,7 +6,7 @@ import msg from "../Assets/images/msg_icon.png";
 import calender from "../Assets/images/date-time_icon.png";
 import SideBar from "../Shared/SideBar/SideBar";
 import Navbar from "../Shared/Navbar";
-import SalesTable from "../Table/SalesTable";
+import {SalesTable} from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
 import ScheduleModal from "../Shared/Modal/ScheduleModal";
 import Loading from "./Loading";
@@ -14,28 +14,57 @@ import Api from "./RetailApi/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchemeApi from "./RetailApi/SchemeApi";
+import { ApiRetail } from "./RetailApi/ApiRetail";
+import { API_SUMMARY_TRANSACTION } from "../../Constant/apiConstant";
+import RegionApi from "../Table/SubTable/Api/RegionApi";
 
-const Retail_Transaction = ({ headers }) => {
+const Retail_Transaction = ({}) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const {
-    hide,
-    startDate,
-    endDate,
-    assetClass,
-    select_type,
-    transaction_summary_report,
-    loading,
-    togglehide,
-    setAssetClass,
-    setEndDate,
-    setSelectType,
-    setStartDate,
-    formatNumberToIndianFormat,
-  } = Api({ headers });
-  const { scheme_details } = SchemeApi();
-
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [select_type, setSelectType] = useState("");
+  const [assetClass, setAssetClass] = useState();
+   const [transaction_summary_report, setTransactionSummaryReport] = useState([]);
+   const [zone,setZone]=useState("");
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  const fetchTransactionSummary = async () => {
+    console.log(startDate, "4");
+    console.log(endDate, "4");
+    console.log(select_type, "4");
+    try {
+      const formattedStartDate = startDate.split("-").reverse().join("/");
+      const formattedEndDate = endDate.split("-").reverse().join("/");
+
+      const queryParams = new URLSearchParams({
+        start_date: formattedStartDate,
+        end_date: formattedEndDate,
+        asset_class: 1,
+        select_type: select_type,
+        employee_code: 2941,
+      });
+      if (startDate > endDate) {
+        //    toast.error("End Date must be Greater Than Start Date")
+        //    setLoading(false);
+      } else {
+        const response = await fetch(
+          API_SUMMARY_TRANSACTION.DATA(queryParams),
+          {
+            method: "GET",
+          }
+        );
+        const data = await response.json();
+        console.log(transaction_summary_report, "sasa");
+        setZone(data.ZONE);
+        console.log(zone,"zone");
+        setTransactionSummaryReport(data);
+      }
+    } catch (error) {
+      console.error("error fetching transaction summary data", error);
+      throw new Error("Error fetching transaction summary data");
+    }
   };
 
   const handleStartDateChange = (e) => {
@@ -54,6 +83,16 @@ const Retail_Transaction = ({ headers }) => {
     } else {
       setEndDate(newEndDate);
     }
+  };
+
+  const handleSearch = () => {
+    setStartDate(startDate);
+    setEndDate(endDate);
+    setSelectType(select_type);
+    console.log(startDate);
+    console.log(endDate);
+    console.log(select_type);
+    fetchTransactionSummary();
   };
 
   return (
@@ -196,7 +235,7 @@ const Retail_Transaction = ({ headers }) => {
                       <div className="col-md-1 " style={{ marginTop: "31px" }}>
                         <button
                           className="btn  BgcolorOrange "
-                          onClick={togglehide}
+                          onClick={handleSearch}
                         >
                           <b className="colorwhite"> Search</b>
                         </button>
@@ -206,27 +245,9 @@ const Retail_Transaction = ({ headers }) => {
                 </div>
               </div>
               <ScheduleModal />
-              <>
-                <div className="Table">
-                  {loading ? (
-                    <div className="text-center mt-4">
-                      <i className="fas fa-spinner fa-spin fa-2x"></i>{" "}
-                      <Loading />
-                    </div>
-                  ) : (
-                    hide && (
-                      <SalesTable
-                        transaction_summary_report={transaction_summary_report}
-                        startDate={startDate}
-                        endDate={endDate}
-                        assetClass={assetClass}
-                        select_type={select_type}
-                        formatNumberToIndianFormat={formatNumberToIndianFormat}
-                      />
-                    )
-                  )}
-                </div>
-              </>
+           
+              <SalesTable transaction_summary_report={transaction_summary_report}/>
+
             </div>
           </div>
         </div>
