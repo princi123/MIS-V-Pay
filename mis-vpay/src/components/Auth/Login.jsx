@@ -9,8 +9,8 @@ import Api from "../Retail/RetailApi/Api";
 const Login = () => {
   const [p_emp_id, setEmpID] = useState(" ");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
   const handleLogin = (e) => {
     e.preventDefault();
     fetch(API_LOGIN.DATA, {
@@ -39,7 +39,6 @@ const Login = () => {
             Authorization: `Bearer ${token}`,
             emp_id: empId,
           };
-
           setEmpID("");
           setPassword("");
           navigate("/Home");
@@ -69,46 +68,51 @@ const Login = () => {
               <div className="main-form">
                 <form>
                   <div className="mb-3">
-                    <label className="form-label" id="label-text">
-                      Employee ID <span className="required-span">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control "
-                      placeholder="Please Enter your valid Employee ID"
-                      value={p_emp_id}
-                      onChange={(e) => {
+                      <label className="form-label" id="label-text">
+                         Employee ID <span className="required-span">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control "
+                        placeholder="Please Enter your valid Employee ID"
+                        value={p_emp_id}
+                        onChange={(e) => {
                         setEmpID(e.target.value);
-                      }}
-                    />
+                        }}
+                      />
                   </div>
                   <div className="mb-3">
-                    <label className="form-label" id="label-text">
-                      Password <span className="required-span">*</span>
-                    </label>
-                    <input
-                      type="password"
-                      className="form-control "
-                      id="exampleInputPassword1"
-                      placeholder="Please Enter your Password"
-                      value={password}
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                      }}
-                    />
+                        <label className="form-label" id="label-text">
+                           Password <span className="required-span">*</span>
+                       </label>
+                        <input
+                        type={showPassword ? "text" : "password"} // Toggle the input type based on showPassword state
+                        className="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Please Enter your Password"
+                        value={password}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                        }}
+                        />
                   </div>
                   <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" />
-                    <label className="form-check-label">Show Password</label>
+                        <input
+                        type="checkbox"
+                        className="form-check-input"
+                        checked={showPassword}
+                        onChange={() => setShowPassword(!showPassword)}
+                        />
+                        <label className="form-check-label">Show Password</label>
                   </div>
                   <div className="text-center">
-                    <button
-                      className="btn w-100"
-                      id="button-login"
-                      onClick={handleLogin}
-                    >
-                      Login
-                    </button>
+                        <button
+                        className="btn w-100"
+                        id="button-login"
+                        onClick={handleLogin}
+                        >
+                        Login
+                        </button>
                   </div>
                 </form>
               </div>

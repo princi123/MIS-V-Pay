@@ -22,7 +22,6 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
           <b className="gray-color">(In Lakhs)</b>
         </h5>
       </div>
-
       <div className="col-md-3" />
       <div className="col-md-12">
         <table className="mt-3 table small border">
@@ -71,7 +70,6 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
                   <td className="text-end" id="total">
                     {formatNumberToIndianFormat(parseFloat(summary.NTOTAL))}
                   </td>
-
                 </tr>
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
@@ -95,5 +93,5 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
     </div>
   );
 };
-
 export default NetSalesTable;
+
