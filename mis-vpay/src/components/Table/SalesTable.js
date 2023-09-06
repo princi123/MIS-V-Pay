@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./Table-CSS/SalesTable.css";
-import RedemptionTable from "./RedemptionTable";
-import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
 const SalesTable = ({
   transaction_summary_report,
@@ -146,22 +144,6 @@ const SalesTable = ({
                       ))}
                     </tbody>
                   </table>
-                  <RedemptionTable
-                    transaction_summary_report={transaction_summary_report}
-                    startDate={startDate}
-                    endDate={endDate}
-                    assetClass={assetClass}
-                    select_type={select_type}
-                    formatNumberToIndianFormat={formatNumberToIndianFormat}
-                  />
-                  <NetSalesTable
-                    transaction_summary_report={transaction_summary_report}
-                    startDate={startDate}
-                    endDate={endDate}
-                    assetClass={assetClass}
-                    select_type={select_type}
-                    formatNumberToIndianFormat={formatNumberToIndianFormat}
-                  />
                 </div>
               </div>
             </div>

@@ -10,6 +10,7 @@ const RegionApi = (queryParams) => {
         const response = await fetch(API_REGION.DATA(queryParams));
         const data = await response.json();
         setTransactionSummaryReportRegion(data);
+        
       } catch (error) {
         console.error("Error fetching transaction data", error);
       }
@@ -18,6 +19,7 @@ const RegionApi = (queryParams) => {
   }, [queryParams]);
 
   return transaction_summary_report_region;
+  
 };
 
 export default RegionApi;

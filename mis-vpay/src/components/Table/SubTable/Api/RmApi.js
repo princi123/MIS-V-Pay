@@ -10,6 +10,7 @@ const RmApi = (queryParams) => {
         const response = await fetch(API_RM.DATA(queryParams));
         const data = await response.json();
         setTransactionSummaryReportRm(data);
+        
       } catch (error) {
         console.error("Error fetching transaction data", error);
       }

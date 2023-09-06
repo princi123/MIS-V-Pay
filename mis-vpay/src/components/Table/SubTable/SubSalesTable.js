@@ -37,13 +37,11 @@ const SubSalesTable = ({
   };
   useEffect(() => {
     setSubSalesData({
-      pzone,
-      startDate,
-      endDate,
-      select_type,
-      assetClass,
+    transaction_summary_report_region
+  
     });
-  }, [pzone, startDate, endDate, select_type, assetClass, setSubSalesData]);
+    console.log(transaction_summary_report_region,"regionregion")
+  }, [ setSubSalesData,transaction_summary_report_region]);
 
   return (
     <div className="new-component container-fluid p-0">

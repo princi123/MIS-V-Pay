@@ -8,7 +8,6 @@ import msg from "../Assets/images/msg_icon.png";
 import calender from "../Assets/images/date-time_icon.png";
 import SideBar from "../Shared/SideBar";
 import Navbar from "../Shared/Navbar";
-import SalesTable from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
 import ScheduleModal from "../Shared/Modal/ScheduleModal";
 import Loading from "./Loading";
@@ -18,11 +17,14 @@ import "react-toastify/dist/ReactToastify.css";
 import SchemeApi from "./RetailApi/SchemeApi";
 import { ExportToCSV } from "./RetailApi/ExportToCSV";
 import { useSalesData } from "../Table/SubTable/SalesDataContext";
-
+import SalesTable from "../Table/SalesTable";
+import RedemptionTable from "../Table/RedemptionTable";
+import NetSalesTable from "../Table/NetSalesTable";
 const Retail_Transaction = ({ headers }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { subSalesData } = useSalesData();
-  // const fileName = "Zone";
+  const [transformedData, setTransformedData] = useState([]);
+
   const {
     hide,
     startDate,
@@ -63,8 +65,9 @@ const Retail_Transaction = ({ headers }) => {
   };
 
   const handleExcelButtonClick = () => {
-    console.log(subSalesData,"subdata")
-    ExportToCSV(subSalesData, "Region_wise_Report")
+    setTransformedData(subSalesData);
+    console.log(transformedData, "subdata");
+    ExportToCSV(transformedData, "Region_wise_Report");
   };
 
   return (
@@ -191,7 +194,10 @@ const Retail_Transaction = ({ headers }) => {
                       <div />
                       <div className="col-md-2 " style={{ marginTop: "30px" }}>
                         <p className="rcorners">
-                          <button onClick={handleExcelButtonClick} className="border-0">
+                          <button
+                            onClick={handleExcelButtonClick}
+                            className="border-0"
+                          >
                             <img src={excel} alt="excelicon" />
                           </button>
                           | <img src={pdf} alt="pdficon" />|{" "}
@@ -228,14 +234,44 @@ const Retail_Transaction = ({ headers }) => {
                     </div>
                   ) : (
                     hide && (
-                      <SalesTable
-                        transaction_summary_report={transaction_summary_report}
-                        startDate={startDate}
-                        endDate={endDate}
-                        assetClass={assetClass}
-                        select_type={select_type}
-                        formatNumberToIndianFormat={formatNumberToIndianFormat}
-                      />
+                      <>
+                        <SalesTable
+                          transaction_summary_report={
+                            transaction_summary_report
+                          }
+                          startDate={startDate}
+                          endDate={endDate}
+                          assetClass={assetClass}
+                          select_type={select_type}
+                          formatNumberToIndianFormat={
+                            formatNumberToIndianFormat
+                          }
+                        />
+                        <RedemptionTable
+                          transaction_summary_report={
+                            transaction_summary_report
+                          }
+                          startDate={startDate}
+                          endDate={endDate}
+                          assetClass={assetClass}
+                          select_type={select_type}
+                          formatNumberToIndianFormat={
+                            formatNumberToIndianFormat
+                          }
+                        />
+                        <NetSalesTable
+                          transaction_summary_report={
+                            transaction_summary_report
+                          }
+                          startDate={startDate}
+                          endDate={endDate}
+                          assetClass={assetClass}
+                          select_type={select_type}
+                          formatNumberToIndianFormat={
+                            formatNumberToIndianFormat
+                          }
+                        />
+                      </>
                     )
                   )}
                 </div>
