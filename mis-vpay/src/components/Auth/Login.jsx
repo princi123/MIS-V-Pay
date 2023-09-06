@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
-    e.preventDefault();
+    e.preventDefault();    
     Api.post(API_LOGIN.DATA, { p_emp_id, password })
     .then((response) => {
       if (response.status >= 200 && response.status < 300) {

@@ -3,6 +3,7 @@ import { API_SUMMARY_TRANSACTION } from "../../../Constant/apiConstant";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Navigate, useNavigate } from "react-router-dom";
+import axiosInstance from "../../../Constant/apiConstant";
 
 const Api = ({headers}) => {
   const [hide, setHide] = useState(false);
@@ -36,14 +37,14 @@ const Api = ({headers}) => {
      
         setLoading(true);
       
-      const response = await fetch(
+      const response = await axiosInstance.get(
         API_SUMMARY_TRANSACTION.DATA(queryParams),
         {
           method: "GET",
-          headers: headers, 
         }
       );
-      const data = await response.json();
+      const data = response.data;
+      // const data = await response.json();
       setTransactionSummaryReport(data);
       setLoading(false)
       setHide(true)

@@ -8,13 +8,20 @@ import Profile from "../Assets/images/profile.svg";
 import logout from "../Assets/images/logout icon.png";
 import { useNavigate } from "react-router-dom";
 import { removeEmpIdCookie, removeAuthTokenCookie } from "../Auth/Cookie";
+import axiosInstance from "../../Constant/apiConstant";
 
 const Navbar = ({ onToggle }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    delete axiosInstance.defaults.headers.common["emp_id"];
+    delete axiosInstance.defaults.headers.common["Authorization"];
+
+    localStorage.removeItem('emp_id');
+    localStorage.removeItem('token');
     removeEmpIdCookie();
     removeAuthTokenCookie();
+
     navigate("/");
   };
 

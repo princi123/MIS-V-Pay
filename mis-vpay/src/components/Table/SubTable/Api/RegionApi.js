@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { API_REGION } from "../../../../Constant/apiConstant";
+import axiosInstance from "../../../../Constant/apiConstant";
+
 
 const RegionApi = (queryParams) => {
   const[transaction_summary_report_region, setTransactionSummaryReportRegion] = useState([]);
@@ -7,8 +9,9 @@ const RegionApi = (queryParams) => {
   useEffect(() => {
     const fetchTransactionData = async () => {
       try {
-        const response = await fetch(API_REGION.DATA(queryParams));
-        const data = await response.json();
+        const response = await axiosInstance.get(API_REGION.DATA(queryParams));
+        const data = response.data;
+        // const data = await response.json();
         setTransactionSummaryReportRegion(data);
       } catch (error) {
         console.error("Error fetching transaction data", error);

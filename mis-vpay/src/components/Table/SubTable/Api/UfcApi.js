@@ -1,5 +1,6 @@
 import{useEffect, useState} from 'react'
 import { API_UFC } from '../../../../Constant/apiConstant';
+import axiosInstance from '../../../../Constant/apiConstant';
 
 const UfcApi = (queryParams) => {
   const[transaction_summary_report_ufc, setTransactionSummaryReportUfc] = useState([]);
@@ -7,8 +8,9 @@ const UfcApi = (queryParams) => {
   useEffect(() => {
     const fetchUfcData = async () => {
       try {
-        const response = await fetch(API_UFC.DATA(queryParams));
-        const data = await response.json();
+        const response = await axiosInstance.get(API_UFC.DATA(queryParams));
+        const data = response.data;
+        // const data = await response.json();
         setTransactionSummaryReportUfc(data);
       } catch (error) {
         console.error("Error fetching transaction data", error);
