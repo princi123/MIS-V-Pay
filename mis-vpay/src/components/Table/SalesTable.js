@@ -3,10 +3,17 @@ import "./Table-CSS/SalesTable.css";
 import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
+import Loader from './Loader';
+
 
 const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
+  const [isLoading, setIsLoading] = useState(false);
   const handleButtonClick = (index) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
     if (index === clickedIndex) {
       setClickedIndex(-1);
     } else {
@@ -78,9 +85,14 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                               <button
                                 className="textlink"
                                 onClick={() => handleButtonClick(index)}
+                                disabled={isLoading}
                               >
                                 <b>{summary.ZONE}</b>
                               </button>
+                              {isLoading && <div className="text-center mt-4">
+                      <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
+                      <Loader   className="loder"/>
+                    </div>}
                             </td>
                             <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SEQUITY))}</td>
                             <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SHYBRID))}</td>

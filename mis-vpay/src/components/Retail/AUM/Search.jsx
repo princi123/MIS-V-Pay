@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import "../AUM/Search.css";
 import Navbar from "../../Shared/Navbar";
-import SideBar from "../../Shared/SideBar";
+import SideBar from "../../Shared/SideBar/SideBar";
 import Aum from "./Aum";
 
 const Search = () => {
@@ -22,11 +22,6 @@ const Search = () => {
       console.error("Error fetching data:", error);
     }
   };
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
   return (
     <div className="container-fluid p-0 home-main ">
       <Navbar onToggle={toggleSidebar} />
