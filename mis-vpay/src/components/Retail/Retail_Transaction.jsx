@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Retail.css";
-import excel from "../Assets/images/excel_icon.png";
 import pdf from "../Assets/images/pdf_icon.png";
 import msg from "../Assets/images/msg_icon.png";
 import calender from "../Assets/images/date-time_icon.png";
@@ -14,7 +13,9 @@ import Api from "./RetailApi/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchemeApi from "./RetailApi/SchemeApi";
-
+import RedemptionTable from "../Table/RedemptionTable";
+import NetSalesTable from "../Table/NetSalesTable";
+import { ExcelToExport } from "./ExcelToExport";
 const Retail_Transaction = ({ headers }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const {
@@ -180,8 +181,8 @@ const Retail_Transaction = ({ headers }) => {
                       <div />
                       <div className="col-md-2 " style={{ marginTop: "30px" }}>
                         <p className="rcorners">
-                          <img src={excel} alt="excelicon" /> |{" "}
-                          <img src={pdf} alt="pdficon" />|{" "}
+                         <ExcelToExport/>
+                          | <img src={pdf} alt="pdficon" />|{" "}
                           <img src={msg} alt="msgicon" /> |{" "}
                           <img
                             id="myImg"
@@ -215,14 +216,44 @@ const Retail_Transaction = ({ headers }) => {
                     </div>
                   ) : (
                     hide && (
-                      <SalesTable
-                        transaction_summary_report={transaction_summary_report}
-                        startDate={startDate}
-                        endDate={endDate}
-                        assetClass={assetClass}
-                        select_type={select_type}
-                        formatNumberToIndianFormat={formatNumberToIndianFormat}
-                      />
+                      <>
+                        <SalesTable
+                          transaction_summary_report={
+                            transaction_summary_report
+                          }
+                          startDate={startDate}
+                          endDate={endDate}
+                          assetClass={assetClass}
+                          select_type={select_type}
+                          formatNumberToIndianFormat={
+                            formatNumberToIndianFormat
+                          }
+                        />
+                        <RedemptionTable
+                          transaction_summary_report={
+                            transaction_summary_report
+                          }
+                          startDate={startDate}
+                          endDate={endDate}
+                          assetClass={assetClass}
+                          select_type={select_type}
+                          formatNumberToIndianFormat={
+                            formatNumberToIndianFormat
+                          }
+                        />
+                        <NetSalesTable
+                          transaction_summary_report={
+                            transaction_summary_report
+                          }
+                          startDate={startDate}
+                          endDate={endDate}
+                          assetClass={assetClass}
+                          select_type={select_type}
+                          formatNumberToIndianFormat={
+                            formatNumberToIndianFormat
+                          }
+                        />
+                      </>
                     )
                   )}
                 </div>

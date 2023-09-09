@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import "./Table-CSS/SalesTable.css";
-import RedemptionTable from "./RedemptionTable";
-import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
 
-const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {
+const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass,formatNumberToIndianFormat}) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
@@ -45,7 +43,7 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                 </div>
                 <div className="col-md-3" />
                 <div className="col-md-12">
-                  <table className="table small border">
+                  <table className="table small border" id="table1">
                     <thead>
                       <tr className="bgcolorBlue text-white">
                         <th scope="col">ZONE</th>
@@ -77,7 +75,8 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                             <td>
                               <button
                                 className="textlink"
-                                onClick={() => handleButtonClick(index)}
+                                onClick={() => handleButtonClick(index)   
+                                } 
                               >
                                 <b>{summary.ZONE}</b>
                               </button>
@@ -110,22 +109,6 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                       ))}
                     </tbody>
                   </table>
-                  <RedemptionTable
-                    transaction_summary_report={transaction_summary_report}
-                    startDate={startDate}
-                    endDate={endDate}
-                    assetClass={assetClass}
-                    select_type={select_type}
-                    formatNumberToIndianFormat={formatNumberToIndianFormat}
-                  />
-                  <NetSalesTable
-                    transaction_summary_report={transaction_summary_report}
-                    startDate={startDate}
-                    endDate={endDate}
-                    assetClass={assetClass}
-                    select_type={select_type}
-                    formatNumberToIndianFormat={formatNumberToIndianFormat}
-                  />
                 </div>
               </div>
             </div>
