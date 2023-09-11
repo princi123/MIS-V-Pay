@@ -40,7 +40,7 @@ const SubSalesTable = ({
       <div className="row mt-2 bg-white">
         <div className="head">
           <h4>
-            <b className="black-color">Sales</b>
+            <b className="black-color"> {pzone} Data</b>
           </h4>
 
           <h5>

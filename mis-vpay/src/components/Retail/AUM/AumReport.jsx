@@ -4,7 +4,7 @@ import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar";
 
 const AumReport = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);

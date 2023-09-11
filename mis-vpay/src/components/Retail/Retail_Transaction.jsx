@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SchemeApi from "./RetailApi/SchemeApi";
 
 const Retail_Transaction = ({ headers }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const {
     hide,
     startDate,

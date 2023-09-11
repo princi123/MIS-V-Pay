@@ -8,15 +8,18 @@ import { usePeriodApi } from "../RetailApi/AUM_Api";
 
 
 const Search = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [hide, setHide] = useState(false);
   const aumDetails = useAUMApi();
   const aumPeriod = usePeriodApi();
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   const SearchOnClick = (e) => {
-    console.log(aumDetails)
-    console.log(aumPeriod)
-   
     setHide(true);
   };
  
