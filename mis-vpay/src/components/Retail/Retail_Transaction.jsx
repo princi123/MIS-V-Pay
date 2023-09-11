@@ -16,8 +16,11 @@ import SchemeApi from "./RetailApi/SchemeApi";
 import RedemptionTable from "../Table/RedemptionTable";
 import NetSalesTable from "../Table/NetSalesTable";
 import { ExcelToExport } from "./ExcelToExport";
+import { usePDF } from 'react-to-pdf';
+
 const Retail_Transaction = ({ headers }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
   const {
     hide,
     startDate,
@@ -56,6 +59,13 @@ const Retail_Transaction = ({ headers }) => {
       setEndDate(newEndDate);
     }
   };
+
+  // const generatePDF = () => {
+  //   const report = new JsPDF('portrait','pt','a4');
+  //   report.html(document.querySelector('#report')).then(() => {
+  //       report.save('report.pdf');
+  //   });
+  // }
 
   return (
     <>
@@ -182,7 +192,7 @@ const Retail_Transaction = ({ headers }) => {
                       <div className="col-md-2 " style={{ marginTop: "30px" }}>
                         <p className="rcorners">
                          <ExcelToExport/>
-                          | <img src={pdf} alt="pdficon" />|{" "}
+                          |<button onClick={() => toPDF()} className="border-0"><img src={pdf} alt="pdficon" /></button> |{" "}
                           <img src={msg} alt="msgicon" /> |{" "}
                           <img
                             id="myImg"
@@ -216,7 +226,7 @@ const Retail_Transaction = ({ headers }) => {
                     </div>
                   ) : (
                     hide && (
-                      <>
+                      <div ref={targetRef}>
                         <SalesTable
                           transaction_summary_report={
                             transaction_summary_report
@@ -253,7 +263,7 @@ const Retail_Transaction = ({ headers }) => {
                             formatNumberToIndianFormat
                           }
                         />
-                      </>
+                      </div>
                     )
                   )}
                 </div>
