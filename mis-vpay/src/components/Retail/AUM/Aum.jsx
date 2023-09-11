@@ -92,6 +92,7 @@ const Aum = () => {
 
   return (
     <>
+     
       <div className="container-fluid ">
         <div className="card" style={{ paddingLeft: "10px" }}>
           <div

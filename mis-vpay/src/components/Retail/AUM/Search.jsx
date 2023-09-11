@@ -1,35 +1,34 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import "../AUM/Search.css";
 import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar";
 import Aum from "./Aum";
+import { useAUMApi } from "../RetailApi/AUM_Api";
+import { usePeriodApi } from "../RetailApi/AUM_Api";
+
 
 const Search = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  
+  const [hide, setHide] = useState(false);
+  const aumDetails = useAUMApi();
+  const aumPeriod = usePeriodApi();
+
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
-  // Replace 'fetchDataFromApi' with the actual function to fetch data from your API.
 
-  const fetchDataFromApi = async () => {
-    try {
-      const response = await fetch("your_api_endpoint_here");
-      const data = await response.json();
-      setSearchResults(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+  const SearchOnClick = (e) => {
+    setHide(true);
   };
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+ 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
   return (
-    <div className="container-fluid p-0 home-main ">
+    <div className="container-fluid p-0 home-main">
       <Navbar onToggle={toggleSidebar} />
       <div className="d-flex">
         <SideBar isOpen={sidebarOpen} />
@@ -41,7 +40,7 @@ const Search = () => {
               </div>
               <div className="d-flex justify-content-center mb-5 mt-5">
                 <div className="col-md-8 d-flex">
-                  <div className="col-md-6 ">
+                  <div className="col-md-6">
                     <label style={{ paddingLeft: "10px" }}>
                       {" "}
                       <b>Select Period</b>
@@ -69,7 +68,7 @@ const Search = () => {
                 </div>
               </div>
             </div>
-            <Aum />
+            {hide ? <Aum /> : ""}
           </div>
         </div>
       </div>

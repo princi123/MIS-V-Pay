@@ -207,7 +207,7 @@ const Retail_Transaction = ({ headers }) => {
               </div>
               <ScheduleModal />
               <>
-                <div className="Table">
+                <div className="Table" >
                   {loading ? (
                     <div className="text-center mt-4">
                       <i className="fas fa-spinner fa-spin fa-2x"></i>{" "}
