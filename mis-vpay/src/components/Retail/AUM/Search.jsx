@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../AUM/Search.css";
 import Navbar from "../../Shared/Navbar";
-import SideBar from "../../Shared/SideBar";
+import SideBar from "../../Shared/SideBar/SideBar"
 import Aum from "./Aum";
 import { useAUMApi } from "../RetailApi/AUM_Api";
 import { usePeriodApi } from "../RetailApi/AUM_Api";
@@ -22,11 +22,6 @@ const Search = () => {
   const SearchOnClick = (e) => {
     setHide(true);
   };
- 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
   return (
     <div className="container-fluid p-0 home-main">
       <Navbar onToggle={toggleSidebar} />

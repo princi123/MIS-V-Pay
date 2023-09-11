@@ -12,3 +12,7 @@
     color: gray;
     margin-left: 20px;
   }
+  .sharp-font {
+    font-family: 'YourSharpFont', sans-serif;
+    font-weight: 100;
+  }

@@ -49,17 +49,17 @@ const TableRowWithRedemption = ({
               <tr style={{ backgroundColor: "#dee2e69c" }}>
                 <td>
                   <button className="textlink">
-                    <b>{rm.UFC_CODE}</b>
+                    <b className="sharp-font">{rm.UFC_CODE}</b>
                   </button>
                 </td>
                 <td>
                   <button className="textlink">
-                    <b>{rm.UFC_NAME}</b>
+                    <b className="sharp-font">{rm.UFC_NAME}</b>
                   </button>
                 </td>
                 <td>
                   <button className="textlink">
-                    <b>{rm.RMCODE}</b>
+                    <b className="sharp-font">{rm.RMCODE}</b>
                   </button>
                 </td>
                 <td >{rm.RMNAME}</td>
