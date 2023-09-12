@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from 'react';
 import "../Assets/css/navbar.css";
 import logo from "../Assets/images/logo.svg";
 import hambuger from "../Assets/images/hamburger.svg";
@@ -17,6 +18,22 @@ const Navbar = ({ onToggle }) => {
     removeAuthTokenCookie();
     navigate("/");
   };
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []); 
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  };
+  const formattedDateTime = currentDateTime.toLocaleString(undefined, options);
 
   return (
     <>
@@ -66,7 +83,7 @@ const Navbar = ({ onToggle }) => {
               </div>
               <div className="col-md-3" id="nav-fifth">
                 <ul className="list-unstyled m-0">
-                  <li id="nav-admin" className="gap-2">
+                  <li id="nav-admin">
                     <img
                       src={Profile}
                       alt="..."
@@ -74,9 +91,9 @@ const Navbar = ({ onToggle }) => {
                       height="25%"
                       className="mt-4"
                     />
-                    <div className="mt-3 w-100">
+                    <div className="m-2 w-100">
                       <h5 className="nav-heading">Role : Admin</h5>
-                      <p>21 June 2023, 16:40</p>
+                      <p>{formattedDateTime}</p>
                     </div>
                   </li>
                 </ul>

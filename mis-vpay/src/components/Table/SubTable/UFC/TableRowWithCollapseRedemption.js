@@ -77,7 +77,7 @@ const TableRowWithCollapseRedemption = ({
                       className="textlink"
                       onClick={() => handleButtonClick(index)}
                     >
-                      <b>{ufc.UFC_CODE}</b>
+                      <b className="sharp-font">{ufc.UFC_CODE}</b>
                     </button>
                   </td>
                   <td >{ufc.UFC_NAME}</td>

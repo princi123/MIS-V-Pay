@@ -61,7 +61,7 @@ const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass
                     className="textlink"
                     onClick={() => handleButtonClick(index)}
                   >
-                    <b>{summary.REGION_NAME}</b>
+                    <b className="sharp-font">{summary.REGION_NAME}</b>
                   </button>
                 </td>
                 <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.REQUITY))}</td>
