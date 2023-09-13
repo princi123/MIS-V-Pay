@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import SubNetSalesTable from "./SubTable/SubNetSalesTable";
+import Loader from './Loader';
 
 const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleButtonClick = (index) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
     if (index === clickedIndex) {
       setClickedIndex(-1); 
     } else {
@@ -53,13 +59,15 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
             {transaction_summary_report.map((summary, index) => (
               <React.Fragment key={index}>
                 <tr>
-                  <td>
+                <td>
                     <button
                       className="textlink"
                       onClick={() => handleButtonClick(index)}
+                      disabled={isLoading}
                     >
                       <b className="sharp-font">{summary.ZONE}</b>
                     </button>
+                    {isLoading && <Loader />}
                   </td>
                   <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NEQUITY))}</td>
                   <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NHYBRID))}</td>
@@ -93,5 +101,5 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
     </div>
   );
 };
-export default NetSalesTable;
 
+export default NetSalesTable;

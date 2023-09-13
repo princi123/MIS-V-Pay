@@ -1,14 +1,9 @@
 import React, { useMemo, useState } from "react";
 import UfcApi from "../Api/UfcApi";
 import TableRowWithNetSales from "../RMWISE/TableRowWithNetSales";
+import Loader from "../../Loader";
 
-const TableRowWithCollapseNetSales = ({
-  pzone,
-  startDate,
-  endDate,
-  select_type,
-  region_name,formatNumberToIndianFormat
-}) => {
+const TableRowWithCollapseNetSales = ({ pzone, startDate, endDate, select_type, region_name, formatNumberToIndianFormat, }) => {
   const queryParams = useMemo(() => {
     const formattedStartDate = startDate.split("-").reverse().join("/");
     const formattedEndDate = endDate.split("-").reverse().join("/");
@@ -23,12 +18,15 @@ const TableRowWithCollapseNetSales = ({
       region_name: region_name,
     });
   }, [startDate, endDate, region_name, select_type, pzone]);
-
   const transaction_summary_report_ufc = UfcApi(queryParams);
 
   const [clickedIndex, setClickedIndex] = useState(-1);
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleButtonClick = (index) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
     if (index === clickedIndex) {
       setClickedIndex(-1);
     } else {
@@ -67,7 +65,6 @@ const TableRowWithCollapseNetSales = ({
               </th>
             </tr>
           </thead>
-
           <tbody style={{ backgroundColor: "#8080805c" }}>
             {transaction_summary_report_ufc.map((ufc, index) => (
               <React.Fragment key={index}>
@@ -76,36 +73,59 @@ const TableRowWithCollapseNetSales = ({
                     <button
                       className="textlink"
                       onClick={() => handleButtonClick(index)}
+                      disabled={isLoading}
                     >
                       <b className="sharp-font">{ufc.UFC_CODE}</b>
                     </button>
+                    {isLoading && (
+                      <div className="text-center mt-4">
+                        <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
+                        <Loader className="loder" />
+                      </div>
+                    )}
                   </td>
-
                   <td>{ufc.UFC_NAME}</td>
-                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NEQUITY))}</td>
-                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NHYBRID))}</td>
-                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NARBITRAGE))}</td>
-                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NPASSIVE))}</td>
-                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NFIXED_INCOME))}</td>
-                  <td className="text-end">{formatNumberToIndianFormat(parseFloat(ufc.NCASH))}</td>
-                  <td className="text-end" style={{ backgroundColor: "#8080805c" }}>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(ufc.NEQUITY))}
+                  </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(ufc.NHYBRID))}
+                  </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(ufc.NARBITRAGE))}
+                  </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(ufc.NPASSIVE))}
+                  </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(ufc.NFIXED_INCOME))}
+                  </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(ufc.NCASH))}
+                  </td>
+                  <td
+                    className="text-end"
+                    style={{ backgroundColor: "#8080805c" }}
+                  >
                     <b>{formatNumberToIndianFormat(parseFloat(ufc.NTOTAL))}</b>
                   </td>
-
                 </tr>
-
                 {clickedIndex === index && (
                   <tr key={`subtable-${index}`}>
                     <td colSpan="9" className="p-0">
-                      {clickedIndex === index && <TableRowWithNetSales
-                        startDate={startDate}
-                        endDate={endDate}
-                        select_type={select_type}
-                        pzone={pzone}
-                        region_name={region_name}
-                        ufc_code={ufc.UFC_CODE}
-                        formatNumberToIndianFormat={formatNumberToIndianFormat}
-                        />}
+                      {clickedIndex === index && (
+                        <TableRowWithNetSales
+                          startDate={startDate}
+                          endDate={endDate}
+                          select_type={select_type}
+                          pzone={pzone}
+                          region_name={region_name}
+                          ufc_code={ufc.UFC_CODE}
+                          formatNumberToIndianFormat={
+                            formatNumberToIndianFormat
+                          }
+                        />
+                      )}
                     </td>
                   </tr>
                 )}
