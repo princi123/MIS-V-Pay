@@ -60,7 +60,7 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass,f
                       className="textlink"
                       onClick={() => handleButtonClick(index)}
                     >
-                      <b>{summary.REGION_NAME}</b>
+                      <b className="sharp-font">{summary.REGION_NAME}</b>
                     </button>
                   </td>
                   <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NEQUITY))}</td>
