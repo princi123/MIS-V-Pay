@@ -1,14 +1,42 @@
 import React, { useState } from "react";
 import SubNetSalesTable from "./SubTable/SubNetSalesTable";
 
-const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_type, assetClass,formatNumberToIndianFormat }) => {
+const NetSalesTable = ({ transaction_summary_report, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
+  const [sortOrder, setSortOrder] = useState({ column: null, order: 'asc' });
+
+  const handleHeaderClick = (column) => {
+    const order = sortOrder.column === column && sortOrder.order === 'asc' ? 'desc' : 'asc';
+    setSortOrder({ column, order });
+  };
+
+  const sortedData = [...transaction_summary_report].sort((a, b) => {
+    const columnA = a[sortOrder.column] || "";
+    const columnB = b[sortOrder.column] || "";
+    if (sortOrder.order === 'asc') {
+      if (sortOrder.column === 'ZONE') {
+        return columnA.localeCompare(columnB);
+      } else if (sortOrder.column === 'NEQUITY' || sortOrder.column === 'NHYBRID' ||
+                 sortOrder.column === 'NARBITRAGE' || sortOrder.column === 'NPASSIVE' ||
+                 sortOrder.column === 'NFIXED_INCOME' || sortOrder.column === 'NCASH') {
+        return parseFloat(columnA) - parseFloat(columnB);
+      }
+    } else if (sortOrder.order === 'desc') {
+      if (sortOrder.column === 'ZONE') {
+        return columnB.localeCompare(columnA);
+      } else if (sortOrder.column === 'NEQUITY' || sortOrder.column === 'NHYBRID' ||
+                 sortOrder.column === 'NARBITRAGE' || sortOrder.column === 'NPASSIVE' ||
+                 sortOrder.column === 'NFIXED_INCOME' || sortOrder.column === 'NCASH') {
+        return parseFloat(columnB) - parseFloat(columnA);
+      }
+    }
+  });
 
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
-      setClickedIndex(-1); 
+      setClickedIndex(-1);
     } else {
-      setClickedIndex(index); 
+      setClickedIndex(index);
     }
   };
 
@@ -27,30 +55,18 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
         <table className="mt-3 table small border">
           <thead>
             <tr className="bgcolorBlue text-white">
-              <th scope="col">ZONE</th>
-              <th scope="col" className="text-end">
-                Equity
-              </th>
-              <th scope="col" className="text-end">
-                Hybrid
-              </th>
-              <th scope="col" className="text-end">
-                Arbitrage
-              </th>
-              <th scope="col" className="text-end">
-                Passive(ex-Debt)
-              </th>
-              <th scope="col" className="text-end">
-                Fixed Income
-              </th>
-              <th scope="col" className="text-end">
-                Cash{" "}
-              </th>
+              <th scope="col" onClick={() => handleHeaderClick('ZONE')}>ZONE</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('NEQUITY')}>Equity</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('NHYBRID')}>Hybrid</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('NARBITRAGE')}>Arbitrage</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('NPASSIVE')}>Passive(ex-Debt)</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('NFIXED_INCOME')}>Fixed Income</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('NCASH')}> Cash{" "}</th>
               <th scope="col" className="text-end">Total</th>
             </tr>
           </thead>
           <tbody>
-            {transaction_summary_report.map((summary, index) => (
+            {sortedData.map((summary, index) => (
               <React.Fragment key={index}>
                 <tr>
                   <td>
@@ -94,4 +110,3 @@ const NetSalesTable = ({ transaction_summary_report,startDate, endDate, select_t
   );
 };
 export default NetSalesTable;
-

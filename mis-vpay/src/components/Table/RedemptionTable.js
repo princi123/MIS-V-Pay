@@ -11,6 +11,35 @@ const RedemptionTable = ({
   formatNumberToIndianFormat
 }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
+  const [sortOrder, setSortOrder] = useState({ column: null, order: 'asc' });
+
+  const handleHeaderClick = (column) => {
+    const order = sortOrder.column === column && sortOrder.order === 'asc' ? 'desc' : 'asc';
+    setSortOrder({ column, order });
+  };
+
+  const sortedData = [...transaction_summary_report].sort((a, b) => {
+    const columnA = a[sortOrder.column] || "";
+    const columnB = b[sortOrder.column] || "";
+    if (sortOrder.order === 'asc') {
+      if (sortOrder.column === 'ZONE') {
+        return columnA.localeCompare(columnB);
+      } else if (sortOrder.column === 'REQUITY' || sortOrder.column === 'RHYBRID' ||
+        sortOrder.column === 'RARBITRAGE' || sortOrder.column === 'RPASSIVE' ||
+        sortOrder.column === 'RFIXED_INCOME' || sortOrder.column === 'RCASH') {
+        return parseFloat(columnA) - parseFloat(columnB);
+      }
+    } else if (sortOrder.order === 'desc') {
+      if (sortOrder.column === 'ZONE') {
+        return columnB.localeCompare(columnA);
+      } else if (sortOrder.column === 'REQUITY' || sortOrder.column === 'RHYBRID' ||
+        sortOrder.column === 'RARBITRAGE' || sortOrder.column === 'RPASSIVE' ||
+        sortOrder.column === 'RFIXED_INCOME' || sortOrder.column === 'RCASH') {
+        return parseFloat(columnB) - parseFloat(columnA);
+      }
+    }
+  });
+
   const handleButtonClick = (index) => {
     if (index === clickedIndex) {
       setClickedIndex(-1);
@@ -34,30 +63,18 @@ const RedemptionTable = ({
         <table className="mt-3 table small border">
           <thead>
             <tr className="bgcolorBlue text-white">
-              <th scope="col">ZONE</th>
-              <th scope="col" className="text-end">
-                Equity
-              </th>
-              <th scope="col" className="text-end">
-                Hybrid
-              </th>
-              <th scope="col" className="text-end">
-                Arbitrage
-              </th>
-              <th scope="col" className="text-end">
-                Passive(ex-Debt)
-              </th>
-              <th scope="col" className="text-end">
-                Fixed Income
-              </th>
-              <th scope="col" className="text-end">
-                Cash{" "}
-              </th>
+              <th scope="col" onClick={() => handleHeaderClick('ZONE')}>ZONE</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('REQUITY')}>Equity</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('RHYBRID')}>Hybrid</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('RARBITRAGE')}>Arbitrage</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('RPASSIVE')}>Passive(ex-Debt)</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('RFIXED_INCOME')}>Fixed Income</th>
+              <th scope="col" className="text-end" onClick={() => handleHeaderClick('RCASH')}> Cash{" "}</th>
               <th scope="col" className="text-end">Total</th>
             </tr>
           </thead>
           <tbody>
-            {transaction_summary_report.map((summary, index) => (
+            {sortedData.map((summary, index) => (
               <React.Fragment key={index}>
                 <tr>
                   <td>
@@ -101,4 +118,3 @@ const RedemptionTable = ({
   );
 };
 export default RedemptionTable;
-

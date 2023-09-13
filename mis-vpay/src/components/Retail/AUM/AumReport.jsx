@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./AumReport.css";
 import Navbar from "../../Shared/Navbar";
-import SideBar from "../../Shared/SideBar";
+import SideBar from "../../Shared/SideBar/SideBar";
 
 const AumReport = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
