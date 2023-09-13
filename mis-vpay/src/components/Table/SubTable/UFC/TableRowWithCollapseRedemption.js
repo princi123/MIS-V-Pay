@@ -39,7 +39,7 @@ const TableRowWithCollapseRedemption = ({
   return (
     <>
       <div className="new-component container-fluid ">
-        <table className="mt-3 table" >
+        <table className="mt-3 table nested-table" >
           <thead style={{ backgroundColor: "#4C6072",color:"white" }}>
             <tr className="">
               <th scope="col">UFC code</th>

@@ -3,62 +3,36 @@ import excel from "../Assets/images/excel_icon.png";
 
 export const ExcelToExport = () => {
   const exportToExcel = () => {
-    const workbook = XLSX.utils.book_new();
+    const mainTable1 = document.getElementById('table1');
+    const mainTable2 = document.getElementById('table2');
+    const mainTable3 = document.getElementById('table3');
+    const wb = XLSX.utils.book_new();
 
-    // Sales Table
-    const SalesData = document.getElementById("table1");
-    const table1Data = Array.from(SalesData.querySelectorAll("tr")).map((row) =>
-      Array.from(row.querySelectorAll("td, th")).map((cell) => cell.textContent)
-    );
+    const processTable = (table, sheetName) => {
+      const tableCopy = table.cloneNode(true);
+      const nestedTables = tableCopy.querySelectorAll('.nested-table');
+      nestedTables.forEach((nestedTable) => {
+        nestedTable.remove();
+      });
 
-    // Redemption Table
-    const RedemptionData = document.getElementById("table2");
-    const table2Data = Array.from(RedemptionData.querySelectorAll("tr")).map(
-      (row) =>
-        Array.from(row.querySelectorAll("td, th")).map(
-          (cell) => cell.textContent
-        )
-    );
+      const sheet = XLSX.utils.table_to_sheet(tableCopy);
+      XLSX.utils.book_append_sheet(wb, sheet, sheetName);
 
-    // NetSales Table
-    const NetSalesData = document.getElementById("table3");
-    const table3Data = Array.from(NetSalesData.querySelectorAll("tr")).map(
-      (row) =>
-        Array.from(row.querySelectorAll("td, th")).map(
-          (cell) => cell.textContent
-        )
-    );
+      nestedTables.forEach((nestedTable, index) => {
+        const nestedSheetName = `${sheetName}-Nested${index + 1}`;
+        processTable(nestedTable, nestedSheetName);
+      });
+    };
 
-    const table1Worksheet = XLSX.utils.aoa_to_sheet(table1Data);
-    XLSX.utils.book_append_sheet(workbook, table1Worksheet, "SalesData");
+    processTable(mainTable1, 'Sales Table');
+    processTable(mainTable2, 'Redemption Table');
+    processTable(mainTable3, 'NetSales Table');
 
-    const table2Worksheet = XLSX.utils.aoa_to_sheet(table2Data);
-    XLSX.utils.book_append_sheet(workbook, table2Worksheet, "RedemptionData");
-
-    const table3Worksheet = XLSX.utils.aoa_to_sheet(table3Data);
-    XLSX.utils.book_append_sheet(workbook, table3Worksheet, "NetSalesData");
-
-    XLSX.write(workbook, { bookType: "xlsx", type: "array" });
-
-    const blob = new Blob(
-      [XLSX.write(workbook, { bookType: "xlsx", type: "array" })],
-      {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      }
-    );
-
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "SummaryTransactionReport.xlsx";
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
+    XLSX.writeFile(wb, 'Retail_summary_report.xlsx');
   };
-
   return (
     <button onClick={exportToExcel} className="border-0">
-      <img src={excel} alt="excelicon" />{" "}
+      <img src={excel} alt="excelicon" />
     </button>
   );
 };

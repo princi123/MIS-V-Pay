@@ -92,6 +92,7 @@ const Aum = () => {
 
   return (
     <>
+     
       <div className="container-fluid ">
         <div className="card" style={{ paddingLeft: "10px" }}>
           <div
@@ -122,7 +123,7 @@ const Aum = () => {
           </div>
         </div>
         <div className="col-md-12 d-flex justify-content-center"></div>
-        <table className="table table-bordered table-striped">
+        <table className="table table-bordered">
           <thead className="Aum-Head">
             <tr className="mid">
               <th rowSpan="4" className="headtbl" style={{ lineHeight: "4" }}>

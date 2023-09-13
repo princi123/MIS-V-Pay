@@ -19,8 +19,8 @@ import { ExcelToExport } from "./ExcelToExport";
 import { usePDF } from 'react-to-pdf';
 
 const Retail_Transaction = ({ headers }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { toPDF, targetRef } = usePDF({filename: 'SummaryTransactionReport.pdf'});
   const {
     hide,
     startDate,
@@ -59,13 +59,6 @@ const Retail_Transaction = ({ headers }) => {
       setEndDate(newEndDate);
     }
   };
-
-  // const generatePDF = () => {
-  //   const report = new JsPDF('portrait','pt','a4');
-  //   report.html(document.querySelector('#report')).then(() => {
-  //       report.save('report.pdf');
-  //   });
-  // }
 
   return (
     <>
@@ -218,7 +211,7 @@ const Retail_Transaction = ({ headers }) => {
               </div>
               <ScheduleModal />
               <>
-                <div className="Table">
+                <div className="Table" >
                   {loading ? (
                     <div className="text-center mt-4">
                       <i className="fas fa-spinner fa-spin fa-2x"></i>{" "}

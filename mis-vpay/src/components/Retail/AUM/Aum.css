@@ -1,5 +1,5 @@
-.mid {
-  text-align: center;
+.mid{
+  text-align: center;  
 }
 
 .BgcolorOrange {
@@ -8,22 +8,22 @@
   background-color: #EE8B3A;
 }
 
-.sub {
+.sub{
   text-align: center;
 }
 
-.headline1 {
-  background-color: #352d94;
+.headline1{
+  background-color: #352D94;
   color: white;
   text-align: center;
 }
 
-.headtbl {
+.headtbl{
   line-height: 2;
 }
 
-.Aum-Head {
-  background-color: #352d94;
+.Aum-Head{
+  background-color: #352D94;
   color: white;
   padding-bottom: 10px;
 }

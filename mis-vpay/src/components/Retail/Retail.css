@@ -20,3 +20,10 @@
   margin-top: 31px;
 }
 
+.rcorners{
+  border-radius: 8px;
+  border: 2px solid rgba(53, 45, 148, 0.30);
+  padding: 7px;
+  width: 155px;
+  height: 41px
+}

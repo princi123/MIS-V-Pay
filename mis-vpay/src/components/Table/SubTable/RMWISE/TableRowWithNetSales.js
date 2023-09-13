@@ -27,7 +27,7 @@ const TableRowWithNetSales = ({
   return (
     <>
       <div className="new-component container-fluid ">
-      <table className="mt-3 table"  >
+      <table className="mt-3 table nested-table"  >
           <thead style={{ backgroundColor: "rgb(58 94 147 / 98%)",color:"white" }} >
             <tr className="">
               <th scope="col">UFC Code</th>

@@ -40,7 +40,7 @@ const SubSalesTable = ({
       <div className="row mt-2 bg-white">
         <div className="head">
           <h4>
-            <b className="black-color">Sales</b>
+            <b className="black-color"> {pzone} Data</b>
           </h4>
 
           <h5>
@@ -49,7 +49,7 @@ const SubSalesTable = ({
         </div>
       </div>
 
-      <table className="mt-3 table" id="subtable1" style={{ backgroundColor: "white",border:"2px solid",borderColor:"#EE8B3A" , borderBottomColor: "white" }}>
+      <table className="mt-3 table nested-table" id="subSalesTable" style={{ backgroundColor: "white",border:"2px solid",borderColor:"#EE8B3A" , borderBottomColor: "white" }}>
         <thead>
           <tr className="colorwhite BgcolorOrange">
             <th scope="col">REGION</th>
