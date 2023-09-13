@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Retail.css";
-import pdf from "../Assets/images/pdf_icon.png";
 import msg from "../Assets/images/msg_icon.png";
 import calender from "../Assets/images/date-time_icon.png";
 import SideBar from "../Shared/SideBar/SideBar";
@@ -16,11 +15,10 @@ import SchemeApi from "./RetailApi/SchemeApi";
 import RedemptionTable from "../Table/RedemptionTable";
 import NetSalesTable from "../Table/NetSalesTable";
 import { ExcelToExport } from "./ExcelToExport";
-import { usePDF } from 'react-to-pdf';
+import ExportToPdf from "./ExportToPdf";
 
 const Retail_Transaction = ({ headers }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const { toPDF, targetRef } = usePDF({filename: 'SummaryTransactionReport.pdf'});
   const {
     hide,
     startDate,
@@ -185,7 +183,7 @@ const Retail_Transaction = ({ headers }) => {
                       <div className="col-md-2 " style={{ marginTop: "30px" }}>
                         <p className="rcorners">
                          <ExcelToExport/>
-                          |<button onClick={() => toPDF()} className="border-0"><img src={pdf} alt="pdficon" /></button> |{" "}
+                           |<ExportToPdf/>|
                           <img src={msg} alt="msgicon" /> |{" "}
                           <img
                             id="myImg"
@@ -219,7 +217,7 @@ const Retail_Transaction = ({ headers }) => {
                     </div>
                   ) : (
                     hide && (
-                      <div ref={targetRef}>
+                      <div >
                         <SalesTable
                           transaction_summary_report={
                             transaction_summary_report
