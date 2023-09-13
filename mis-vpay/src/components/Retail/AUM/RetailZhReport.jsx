@@ -3,99 +3,25 @@ import "./RetailZhReport.css";
 import { Link } from "react-router-dom";
 import SideBar from "../../Shared/SideBar/SideBar";
 import Navbar from "../../Shared/Navbar";
-const data = [
-  {
-    SrNo: 1,
-    Zone: "EAST",
-    Region: "B&ND KOLKATA",
-    TotalAUM: 1000000,
-    AUM: {
-      Equity: 400000,
-      Hybrid: 200000,
-      Arbitrage: 100000,
-      Passive: 150000,
-      "Fixed Income": 100000,
-      Cash: 50000,
-    },
-  },
-  {
-    SrNo: 1,
-    Zone: "EAST",
-    Region: "BIHAR",
-    TotalAUM: 1000000,
-    AUM: {
-      Equity: 400000,
-      Hybrid: 200000,
-      Arbitrage: 100000,
-      Passive: 150000,
-      "Fixed Income": 100000,
-      Cash: 50000,
-    },
-  },
-  {
-    SrNo: 1,
-    Zone: "EAST",
-    Region: "KOLK",
-    TotalAUM: 1000000,
-    AUM: {
-      Equity: 400000,
-      Hybrid: 200000,
-      Arbitrage: 100000,
-      Passive: 150000,
-      "Fixed Income": 100000,
-      Cash: 50000,
-    },
-  },
-  {
-    SrNo: 1,
-    Zone: "EAST",
-    Region: "NORT EAST",
-    TotalAUM: 1000000,
-    AUM: {
-      Equity: 400000,
-      Hybrid: 200000,
-      Arbitrage: 100000,
-      Passive: 150000,
-      "Fixed Income": 100000,
-      Cash: 50000,
-    },
-  },
-  {
-    SrNo: 1,
-    Zone: "EAST",
-    Region: "ORISSA & JHARKHAND",
-    TotalAUM: 1000000,
-    AUM: {
-      Equity: 400000,
-      Hybrid: 200000,
-      Arbitrage: 100000,
-      Passive: 150000,
-      "Fixed Income": 100000,
-      Cash: 50000,
-    },
-  },
-  {
-    SrNo: 1,
-    Zone: "EAST",
-    Region: "WEST BENGAL",
-    TotalAUM: 1000000,
-    AUM: {
-      Equity: 400000,
-      Hybrid: 200000,
-      Arbitrage: 100000,
-      Passive: 150000,
-      "Fixed Income": 100000,
-      Cash: 50000,
-    },
-  },
-];
+import { useAUMApi } from "../RetailApi/AUM_Api";
 
 const RetailZhReport = () => {
+  const aumRegion = useAUMApi();
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
+  const formatNumberToIndianFormat = (number) => {
+    if (typeof number !== "number") {
+      return number;
+    }
+  
+    const parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  };
+
   return (
     <div>
       <div className="container-fluid p-0 home-main">
@@ -152,6 +78,9 @@ const RetailZhReport = () => {
                       Region
                     </th>
                     <th rowSpan="2" className="headtable">
+                      Region Code
+                    </th>
+                    <th rowSpan="2" className="headtable">
                       Total AUM
                     </th>
                     <th colSpan="6">AUM</th>
@@ -166,34 +95,26 @@ const RetailZhReport = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((item) => (
+                  {aumRegion.map((item) => (
                     <>
                       <tr key={item.SrNo}>
-                        <td>{item.Zone}</td>
+                        <td>{item.ZONE}</td>
                         <td>
-                          <Link to="/Aumreport">{item.Region}</Link>
+                          <Link to="/Aumreport">{item.REGION_NAME}</Link>
                         </td>
-                        <td className="forright">{item.TotalAUM}</td>
-                        <td className="forright">{item.AUM.Equity}</td>
-                        <td className="forright">{item.AUM.Hybrid}</td>
-                        <td className="forright">{item.AUM.Arbitrage}</td>
-                        <td className="forright">{item.AUM.Passive}</td>
-                        <td className="forright">{item.AUM["Fixed Income"]}</td>
-                        <td className="forright">{item.AUM.Cash}</td>
+                        <td className="forright">{item.REGION_CODE}</td>
+                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.TOTAL_AUM))}</td>
+                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.EQUITY_AUM))}</td>
+                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.HYBRID_AUM))}</td>
+                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.ARBITRAGE_AUM))}</td>
+                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.PASSIVE_AUM))}</td>
+                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.FIXED_INCOME_AUM))}</td>
+                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.CASH_AUM))}</td>
+
                       </tr>
                     </>
                   ))}
-                  <tr className="total">
-                    <td className="forright">Total</td>
-                    <td></td>
-                    <td className="forright">200</td>
-                    <td className="forright">200</td>
-                    <td className="forright">200</td>
-                    <td className="forright">2000</td>
-                    <td className="forright">2000</td>
-                    <td className="forright">200000</td>
-                    <td className="forright">2000</td>
-                  </tr>
+                 
                 </tbody>
               </table>
             </div>
