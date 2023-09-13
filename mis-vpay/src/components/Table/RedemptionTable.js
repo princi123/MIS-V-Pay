@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import "./Table-CSS/RedemptionTable.css";
 import SubRedemptionTable from "./SubTable/SubRedemptionTable";
+import Loader from './Loader';
 
-const RedemptionTable = ({
-  transaction_summary_report,
-  startDate,
-  endDate,
-  select_type,
-  assetClass,
-  formatNumberToIndianFormat
-}) => {
+const RedemptionTable = ({ transaction_summary_report, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [sortOrder, setSortOrder] = useState({ column: null, order: 'asc' });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleHeaderClick = (column) => {
     const order = sortOrder.column === column && sortOrder.order === 'asc' ? 'desc' : 'asc';
@@ -40,7 +35,12 @@ const RedemptionTable = ({
     }
   });
 
+ 
   const handleButtonClick = (index) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
     if (index === clickedIndex) {
       setClickedIndex(-1);
     } else {
@@ -60,7 +60,7 @@ const RedemptionTable = ({
       </div>
       <div className="col-md-3" />
       <div className="col-md-12">
-        <table className="mt-3 table small border">
+        <table className="mt-3 table small border" id="table2">
           <thead>
             <tr className="bgcolorBlue text-white">
               <th scope="col" onClick={() => handleHeaderClick('ZONE')}>ZONE</th>
@@ -81,9 +81,11 @@ const RedemptionTable = ({
                     <button
                       className="textlink"
                       onClick={() => handleButtonClick(index)}
+                      disabled={isLoading}
                     >
                       <b className="sharp-font">{summary.ZONE}</b>
                     </button>
+                    {isLoading && <Loader />}
                   </td>
                   <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.REQUITY))}</td>
                   <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RHYBRID))}</td>

@@ -13,6 +13,7 @@ const Search = () => {
   const [hide, setHide] = useState(false);
   const aumDetails = useAUMApi();
   const aumPeriod = usePeriodApi();
+
   const SearchOnClick = (e) => {
     setHide(true);
   };

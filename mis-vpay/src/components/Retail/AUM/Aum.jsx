@@ -1,95 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Aum.css";
+import { usePeriodApi } from "../RetailApi/AUM_Api";
+
 
 const Aum = () => {
-  const data = [
-    {
-      Zone: "E-ARN ",
-      TotalAUM: 1000000,
-      AUM: {
-        Equity: 400000,
-        Hybrid: 200000,
-        Arbitrage: 100000,
-        Passive: 150000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      TotalAUM: 1200000,
-      AUM: {
-        Equity: 450000,
-        Hybrid: 180000,
-        Arbitrage: 90000,
-        Passive: 160000,
-        "Fixed Income": 110000,
-        Cash: 60000,
-      },
-    },
-    {
-      Zone: "FINTECH",
-      TotalAUM: 1200000,
-      AUM: {
-        Equity: 450000,
-        Hybrid: 180000,
-        Arbitrage: 90000,
-        Passive: 160000,
-        "Fixed Income": 110000,
-        Cash: 60000,
-      },
-    },
-    {
-      Zone: "GULF",
-      TotalAUM: 1200000,
-      AUM: {
-        Equity: 450000,
-        Hybrid: 180000,
-        Arbitrage: 90000,
-        Passive: 160000,
-        "Fixed Income": 110000,
-        Cash: 60000,
-      },
-    },
-    {
-      Zone: "NORTH",
-      TotalAUM: 1200000,
-      AUM: {
-        Equity: 450000,
-        Hybrid: 180000,
-        Arbitrage: 90000,
-        Passive: 160000,
-        "Fixed Income": 110000,
-        Cash: 60000,
-      },
-    },
-    {
-      Zone: "NO MAPPING",
-      TotalAUM: 1200000,
-      AUM: {
-        Equity: 450000,
-        Hybrid: 180000,
-        Arbitrage: 90000,
-        Passive: 160000,
-        "Fixed Income": 110000,
-        Cash: 60000,
-      },
-    },
-    {
-      Zone: "SOUTH",
-      TotalAUM: 1200000,
-      AUM: {
-        Equity: 450000,
-        Hybrid: 180000,
-        Arbitrage: 90000,
-        Passive: 160000,
-        "Fixed Income": 110000,
-        Cash: 60000,
-      },
-    },
-  ];
-
+  const aumPeriod = usePeriodApi();
+  const formatNumberToIndianFormat = (number) => {
+    if (typeof number !== "number") {
+      return number;
+    }
+  
+    const parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  };
   return (
     <>
      
@@ -144,34 +69,23 @@ const Aum = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
+            {aumPeriod.map((item) => (
               <tr key={item.Zone}>
                 <td>
                   <Link className="textlink" to="/RetailZoneReport">
-                    {item.Zone}
+                    {item.ZONE}
                   </Link>
                 </td>
-                <td className="forright">{item.TotalAUM}</td>
-                <td className="forright">{item.AUM.Equity}</td>
-                <td className="forright">{item.AUM.Hybrid}</td>
-                <td className="forright">{item.AUM.Arbitrage}</td>
-                <td className="forright">{item.AUM.Passive}</td>
-                <td className="forright">{item.AUM["Fixed Income"]}</td>
-                <td className="forright">{item.AUM.Cash}</td>
+                <td className="forright">{formatNumberToIndianFormat(parseFloat(item.TOTAL_AUM))}</td>
+                <td className="forright">{formatNumberToIndianFormat(parseFloat(item.EQUITY_AUM))}</td>
+                <td className="forright">{formatNumberToIndianFormat(parseFloat(item.HYBRID_AUM))}</td>
+                <td className="forright">{formatNumberToIndianFormat(parseFloat(item.ARBITRAGE_AUM))}</td>
+                <td className="forright">{formatNumberToIndianFormat(parseFloat(item.PASSIVE_AUM))}</td>
+                <td className="forright">{formatNumberToIndianFormat(parseFloat(item.FIXED_INCOME_AUM))}</td>
+                <td className="forright">{formatNumberToIndianFormat(parseFloat(item.CASH_AUM))}</td>
               </tr>
             ))}
-            <tr className="total">
-              <td colSpan={1} className="forright">
-                Total
-              </td>
-              <td className="forright">2000</td>
-              <td className="forright">2000</td>
-              <td className="forright">2000</td>
-              <td className="forright">20000</td>
-              <td className="forright">21000</td>
-              <td className="forright">20000</td>
-              <td className="forright">200000</td>
-            </tr>
+            
           </tbody>
         </table>
       </div>

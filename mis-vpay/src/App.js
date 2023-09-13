@@ -20,9 +20,7 @@ function App() {
         <Route path='/RetailZoneReport' element={<RetailZhReport/>}/>
         <Route path='/Aumreport' element={<AumReport/>}/>
       </Routes>
-    </BrowserRouter>  
-      
-        
+    </BrowserRouter>         
     </div>
   );
 }
