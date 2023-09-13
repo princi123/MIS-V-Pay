@@ -3,9 +3,38 @@ import "./Table-CSS/SalesTable.css";
 import SubSalesTable from "./SubTable/SubSalesTable";
 import Loader from "./Loader";
 
-const SalesTable = ({ transaction_summary_report, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat, }) => {
+const SalesTable = ({ transaction_summary_report, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
+  const [sortOrder, setSortOrder] = useState({ column: null, order: 'asc' });
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleHeaderClick = (column) => {
+    const order = sortOrder.column === column && sortOrder.order === 'asc' ? 'desc' : 'asc';
+    setSortOrder({ column, order });
+  };
+
+  const sortedData = [...transaction_summary_report].sort((a, b) => {
+    const columnA = a[sortOrder.column] || "";
+    const columnB = b[sortOrder.column] || "";
+    if (sortOrder.order === 'asc') {
+      if (sortOrder.column === 'ZONE') {
+        return columnA.localeCompare(columnB);
+      } else if (sortOrder.column === 'SEQUITY' || sortOrder.column === 'SHYBRID' ||
+                 sortOrder.column === 'SARBITRAGE' || sortOrder.column === 'SPASSIVE' ||
+                 sortOrder.column === 'SFIXED_INCOME' || sortOrder.column === 'SCASH') {
+        return parseFloat(columnA) - parseFloat(columnB);
+      }
+    } else if (sortOrder.order === 'desc') {
+      if (sortOrder.column === 'ZONE') {
+        return columnB.localeCompare(columnA);
+      } else if (sortOrder.column === 'SEQUITY' || sortOrder.column === 'SHYBRID' ||
+                 sortOrder.column === 'SARBITRAGE' || sortOrder.column === 'SPASSIVE' ||
+                 sortOrder.column === 'SFIXED_INCOME' || sortOrder.column === 'SCASH') {
+        return parseFloat(columnB) - parseFloat(columnA);
+      }
+    }
+  });
+
   const handleButtonClick = (index) => {
     setIsLoading(true);
     setTimeout(() => {
@@ -17,6 +46,7 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
       setClickedIndex(index);
     }
   };
+  
   return (
     <>
       <div className="container-fluid">
@@ -52,32 +82,18 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
                   <table className="table small border" id="table1">
                     <thead>
                       <tr className="bgcolorBlue text-white">
-                        <th scope="col">ZONE</th>
-                        <th scope="col" className="text-end">
-                          Equity
-                        </th>
-                        <th scope="col" className="text-end">
-                          Hybrid
-                        </th>
-                        <th scope="col" className="text-end">
-                          Arbitrage
-                        </th>
-                        <th scope="col" className="text-end">
-                          Passive(ex-Debt)
-                        </th>
-                        <th scope="col" className="text-end">
-                          Fixed Income
-                        </th>
-                        <th scope="col" className="text-end">
-                          Cash{" "}
-                        </th>
-                        <th scope="col" className="text-end">
-                          Total
-                        </th>
+                        <th scope="col" onClick={() => handleHeaderClick('ZONE')}>ZONE</th>
+                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SEQUITY')}>Equity</th>
+                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SHYBRID')}>Hybrid</th>
+                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SARBITRAGE')}>Arbitrage</th>
+                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SPASSIVE')}>Passive(ex-Debt)</th>
+                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SFIXED_INCOME')}>Fixed Income</th>
+                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SCASH')}> Cash{" "}</th>
+                        <th scope="col" className="text-end">Total</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {transaction_summary_report.map((summary, index) => (
+                    <tbody >
+                      {sortedData.map((summary, index) => (
                         <React.Fragment key={index}>
                           <tr>
                             <td>
@@ -160,5 +176,4 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
     </>
   );
 };
-
 export default SalesTable;

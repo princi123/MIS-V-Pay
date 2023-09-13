@@ -113,5 +113,4 @@ const AumReport = () => {
     </>
   );
 };
-
 export default AumReport;

@@ -48,7 +48,7 @@ const Search = () => {
                       marginTop: "19px",
                       padding: "10px 10px 10px 10px",
                     }}>
-                    <button className="BgcolorOrange btn" onClick={SearchOnClick} style={{ marginRight: "5px", padding: "11px" }}>
+                    <button className="BgcolorOrange btn" style={{ marginRight: "5px", padding: "11px" }} onClick={SearchOnClick}>
                       Search
                     </button>
                     <button className="BgcolorOrange btn" style={{ marginRight: "5px", padding: "11px" }}>
@@ -65,5 +65,4 @@ const Search = () => {
     </div>
   );
 };
-
 export default Search;
