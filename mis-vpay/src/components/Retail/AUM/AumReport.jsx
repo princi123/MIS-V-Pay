@@ -2,219 +2,17 @@ import React, { useState } from "react";
 import "./AumReport.css";
 import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar/SideBar";
+import { useAUMApi } from "../RetailApi/AUM_Api";
+
 
 const AumReport = () => {
+  const aumRegion = useAUMApi();
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
-  const data = [
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC001",
-      UFC: "UFC One",
-      RMCode: "RM001",
-      RMName: "John Doe",
-      TotalAUM: 1000000,
-      AUM: {
-        Equity: 400000,
-        Hybrid: 200000,
-        Arbitrage: 100000,
-        Passive: 150000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-    {
-      Zone: "EAST",
-      Region: "NORTH EAST",
-      UFCCode: "UFC002",
-      UFC: "UFC Two",
-      RMCode: "RM002",
-      RMName: "Jane hvf mh",
-      TotalAUM: 800000,
-      AUM: {
-        Equity: 300000,
-        Hybrid: 150000,
-        Arbitrage: 80000,
-        Passive: 120000,
-        "Fixed Income": 100000,
-        Cash: 50000,
-      },
-    },
-  ];
+
 
   return (
     <>
@@ -290,15 +88,15 @@ const AumReport = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((item) => (
+                    {aumRegion.map((item) => (
                       <tr key={item.SrNo}>
-                        <td className="forleft">{item.Zone}</td>
-                        <td className="forleft">{item.Region}</td>
+                        <td className="forleft">{item.ZONE}</td>
+                        <td className="forleft">{item.REGION_NAME}</td>
                         <td className="forleft">{item.UFCCode}</td>
                         <td className="forleft">{item.UFC}</td>
                         <td className="forleft">{item.RMCode}</td>
                         <td className="forleft">{item.RMName}</td>
-                        <td className="forright">{item.TotalAUM}</td>
+                        <td className="forright">{item.TOTAL_AUM}</td>
                         <td className="forright">{item.AUM.Equity}</td>
                         <td className="forright">{item.AUM.Hybrid}</td>
                         <td className="forright">{item.AUM.Arbitrage}</td>
