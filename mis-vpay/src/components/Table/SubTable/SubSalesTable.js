@@ -46,7 +46,7 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, for
         </div>
       </div>
       <table
-        className="mt-3 table"
+        className="mt-3 table nested-table"
         style={{
           backgroundColor: "white",
           border: "2px solid",

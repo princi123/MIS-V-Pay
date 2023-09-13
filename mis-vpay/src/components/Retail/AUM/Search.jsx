@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "../AUM/Search.css";
 import Navbar from "../../Shared/Navbar";
-import SideBar from "../../Shared/SideBar/SideBar"
+import SideBar from "../../Shared/SideBar/SideBar";
 import Aum from "./Aum";
 import { useAUMApi } from "../RetailApi/AUM_Api";
 import { usePeriodApi } from "../RetailApi/AUM_Api";
-
 
 const Search = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -14,10 +13,6 @@ const Search = () => {
   const [hide, setHide] = useState(false);
   const aumDetails = useAUMApi();
   const aumPeriod = usePeriodApi();
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
 
   const SearchOnClick = (e) => {
     setHide(true);
@@ -53,7 +48,7 @@ const Search = () => {
                       marginTop: "19px",
                       padding: "10px 10px 10px 10px",
                     }}>
-                    <button className="BgcolorOrange btn" style={{ marginRight: "5px", padding: "11px" }}>
+                    <button className="BgcolorOrange btn" onClick={SearchOnClick} style={{ marginRight: "5px", padding: "11px" }}>
                       Search
                     </button>
                     <button className="BgcolorOrange btn" style={{ marginRight: "5px", padding: "11px" }}>
