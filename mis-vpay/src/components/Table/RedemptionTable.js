@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import "./Table-CSS/RedemptionTable.css";
 import SubRedemptionTable from "./SubTable/SubRedemptionTable";
+import Loader from './Loader';
 
-const RedemptionTable = ({
-  transaction_summary_report,
-  startDate,
-  endDate,
-  select_type,
-  assetClass,
-  formatNumberToIndianFormat
-}) => {
+const RedemptionTable = ({ transaction_summary_report, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
+  const [isLoading, setIsLoading] = useState(false);
   const handleButtonClick = (index) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
     if (index === clickedIndex) {
       setClickedIndex(-1);
     } else {
@@ -64,9 +63,11 @@ const RedemptionTable = ({
                     <button
                       className="textlink"
                       onClick={() => handleButtonClick(index)}
+                      disabled={isLoading}
                     >
                       <b className="sharp-font">{summary.ZONE}</b>
                     </button>
+                    {isLoading && <Loader />}
                   </td>
                   <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.REQUITY))}</td>
                   <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.RHYBRID))}</td>
@@ -100,5 +101,5 @@ const RedemptionTable = ({
     </div>
   );
 };
-export default RedemptionTable;
 
+export default RedemptionTable;
