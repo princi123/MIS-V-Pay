@@ -4,7 +4,6 @@ import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar/SideBar";
 import { useAUMApi } from "../RetailApi/AUM_Api";
 
-
 const AumReport = () => {
   const aumRegion = useAUMApi();
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -12,8 +11,7 @@ const AumReport = () => {
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
-
-
+  
   return (
     <>
       <div className="container-fluid p-0 home-main">

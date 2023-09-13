@@ -78,7 +78,7 @@ const SalesTable = ({ transaction_summary_report,startDate, endDate, select_type
                                 onClick={() => handleButtonClick(index)   
                                 } 
                               >
-                                <b>{summary.ZONE}</b>
+                                <b className="sharp-font">{summary.ZONE}</b>
                               </button>
                             </td>
                             <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SEQUITY))}</td>
