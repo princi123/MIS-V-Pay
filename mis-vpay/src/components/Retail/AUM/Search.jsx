@@ -16,11 +16,6 @@ const Search = () => {
   const SearchOnClick = (e) => {
     setHide(true);
   };
- 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
   return (
     <div className="container-fluid p-0 home-main">
       <Navbar onToggle={toggleSidebar} />
