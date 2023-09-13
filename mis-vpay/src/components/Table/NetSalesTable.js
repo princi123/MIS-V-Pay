@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import SubNetSalesTable from "./SubTable/SubNetSalesTable";
+import Loader from './Loader';
 
 const NetSalesTable = ({ transaction_summary_report, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [sortOrder, setSortOrder] = useState({ column: null, order: 'asc' });
-
+  const [isLoading, setIsLoading] = useState(false);
+  
   const handleHeaderClick = (column) => {
     const order = sortOrder.column === column && sortOrder.order === 'asc' ? 'desc' : 'asc';
     setSortOrder({ column, order });
@@ -33,6 +35,10 @@ const NetSalesTable = ({ transaction_summary_report, startDate, endDate, select_
   });
 
   const handleButtonClick = (index) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
     if (index === clickedIndex) {
       setClickedIndex(-1);
     } else {
@@ -69,13 +75,15 @@ const NetSalesTable = ({ transaction_summary_report, startDate, endDate, select_
             {sortedData.map((summary, index) => (
               <React.Fragment key={index}>
                 <tr>
-                  <td>
+                <td>
                     <button
                       className="textlink"
                       onClick={() => handleButtonClick(index)}
+                      disabled={isLoading}
                     >
                       <b className="sharp-font">{summary.ZONE}</b>
                     </button>
+                    {isLoading && <Loader />}
                   </td>
                   <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NEQUITY))}</td>
                   <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.NHYBRID))}</td>

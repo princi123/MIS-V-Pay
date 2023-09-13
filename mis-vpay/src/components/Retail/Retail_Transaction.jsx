@@ -9,7 +9,7 @@ import Navbar from "../Shared/Navbar";
 import SalesTable from "../Table/SalesTable";
 import datetime from "../Assets/images/Vector (Stroke).png";
 import ScheduleModal from "../Shared/Modal/ScheduleModal";
-import Loading from "./Loading";
+import LoaderSearch from "../Table/SubTable/LoaderSearch";
 import Api from "./RetailApi/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -211,7 +211,7 @@ const Retail_Transaction = ({ headers }) => {
                   {loading ? (
                     <div className="text-center mt-4">
                       <i className="fas fa-spinner fa-spin fa-2x"></i>{" "}
-                      <Loading />
+                      <LoaderSearch />
                     </div>
                   ) : (
                     hide && (

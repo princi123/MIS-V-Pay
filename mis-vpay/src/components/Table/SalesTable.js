@@ -3,11 +3,13 @@ import "./Table-CSS/SalesTable.css";
 import RedemptionTable from "./RedemptionTable";
 import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
+import Loader from "./Loader";
 
 const SalesTable = ({ transaction_summary_report, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [sortOrder, setSortOrder] = useState({ column: null, order: 'asc' });
-
+    const [isLoading, setIsLoading] = useState(false);
+  
   const handleHeaderClick = (column) => {
     const order = sortOrder.column === column && sortOrder.order === 'asc' ? 'desc' : 'asc';
     setSortOrder({ column, order });
@@ -36,6 +38,10 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
   });
 
   const handleButtonClick = (index) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
     if (index === clickedIndex) {
       setClickedIndex(-1);
     } else {
@@ -96,18 +102,51 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
                               <button
                                 className="textlink"
                                 onClick={() => handleButtonClick(index)}
+                                disabled={isLoading}
                               >
                                 <b className="sharp-font">{summary.ZONE}</b>
                               </button>
+                              {isLoading && (
+                                <div className="text-center mt-4">
+                                  <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
+                                  <Loader className="loder" />
+                                </div>
+                              )}
                             </td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SEQUITY))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SHYBRID))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SARBITRAGE))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SPASSIVE))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SFIXED_INCOME))}</td>
-                            <td className="text-end">{formatNumberToIndianFormat(parseFloat(summary.SCASH))}</td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SEQUITY)
+                              )}
+                            </td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SHYBRID)
+                              )}
+                            </td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SARBITRAGE)
+                              )}
+                            </td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SPASSIVE)
+                              )}
+                            </td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SFIXED_INCOME)
+                              )}
+                            </td>
+                            <td className="text-end">
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.SCASH)
+                              )}
+                            </td>
                             <td className="text-end color-biege" id="total">
-                              {formatNumberToIndianFormat(parseFloat(summary.STOTAL))}
+                              {formatNumberToIndianFormat(
+                                parseFloat(summary.STOTAL)
+                              )}
                             </td>
                           </tr>
                           {clickedIndex === index && (
@@ -119,7 +158,9 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
                                   endDate={endDate}
                                   assetClass={assetClass}
                                   select_type={select_type}
-                                  formatNumberToIndianFormat={formatNumberToIndianFormat}
+                                  formatNumberToIndianFormat={
+                                    formatNumberToIndianFormat
+                                  }
                                 />
                               </td>
                             </tr>
@@ -154,4 +195,3 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
   );
 };
 export default SalesTable;
-
