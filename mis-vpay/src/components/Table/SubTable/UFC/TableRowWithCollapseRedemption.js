@@ -37,8 +37,8 @@ const TableRowWithCollapseRedemption = ({ pzone, startDate, endDate, select_type
   return (
     <>
       <div className="new-component container-fluid ">
-        <table className="mt-3 table">
-          <thead style={{ backgroundColor: "#4C6072", color: "white" }}>
+        <table className="mt-3 table nested-table" >
+          <thead style={{ backgroundColor: "#4C6072",color:"white" }}>
             <tr className="">
               <th scope="col">UFC code</th>
               <th scope="col">UFC</th>

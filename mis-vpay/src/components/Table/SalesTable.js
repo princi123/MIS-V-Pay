@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./Table-CSS/SalesTable.css";
-import RedemptionTable from "./RedemptionTable";
-import NetSalesTable from "./NetSalesTable";
 import SubSalesTable from "./SubTable/SubSalesTable";
 import Loader from "./Loader";
 
@@ -81,7 +79,7 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
                 </div>
                 <div className="col-md-3" />
                 <div className="col-md-12">
-                  <table className="table small border">
+                  <table className="table small border" id="table1">
                     <thead>
                       <tr className="bgcolorBlue text-white">
                         <th scope="col" onClick={() => handleHeaderClick('ZONE')}>ZONE</th>
@@ -169,22 +167,6 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
                       ))}
                     </tbody>
                   </table>
-                  <RedemptionTable
-                    transaction_summary_report={transaction_summary_report}
-                    startDate={startDate}
-                    endDate={endDate}
-                    assetClass={assetClass}
-                    select_type={select_type}
-                    formatNumberToIndianFormat={formatNumberToIndianFormat}
-                  />
-                  <NetSalesTable
-                    transaction_summary_report={transaction_summary_report}
-                    startDate={startDate}
-                    endDate={endDate}
-                    assetClass={assetClass}
-                    select_type={select_type}
-                    formatNumberToIndianFormat={formatNumberToIndianFormat}
-                  />
                 </div>
               </div>
             </div>
