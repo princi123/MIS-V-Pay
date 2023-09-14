@@ -30,7 +30,7 @@ const Aum = () => {
                 <b className="gray-color">(In Lakhs)</b>
               </h5>
             </div>
-            <div className="col-md-2 list-group">
+            {/* <div className="col-md-2 list-group">
               <p className="theader">
                 <b>All India Region Wise</b>
               </p>
@@ -44,11 +44,11 @@ const Aum = () => {
               <p className="theader">
                 <b>All India RM Wise </b>
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="col-md-12 d-flex justify-content-center"></div>
-        <table className="table table-bordered">
+        <table className="table table-bordered active" id="AUM">
           <thead className="Aum-Head">
             <tr className="mid">
               <th rowSpan="4" className="headtbl" style={{ lineHeight: "4" }}>

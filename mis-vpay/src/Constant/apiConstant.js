@@ -33,3 +33,7 @@ export const API_AUM_period = {
     DATA: `${API}/aum`,
 };
 
+export const API_AUM_ufc = {
+    DATA: `${API}/aum_ufc`,
+};
+

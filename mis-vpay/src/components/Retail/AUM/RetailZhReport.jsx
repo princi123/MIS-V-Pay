@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import SideBar from "../../Shared/SideBar/SideBar";
 import Navbar from "../../Shared/Navbar";
 import { useAUMApi } from "../RetailApi/AUM_Api";
+import excel from "../../Assets/images/excel_icon.png";
+import { ExportToExcel } from "./ExportToExcel";
+import ExportToPDF from "./ExportToPDF";
 
 const RetailZhReport = () => {
   const aumRegion = useAUMApi();
@@ -16,11 +19,15 @@ const RetailZhReport = () => {
     if (typeof number !== "number") {
       return number;
     }
-  
+
     const parts = number.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
   };
+
+  const handleExport = ()=>{
+    ExportToExcel(aumRegion, "AUM Region Report");
+  }
 
   return (
     <div>
@@ -38,7 +45,12 @@ const RetailZhReport = () => {
                 <b>RETAIL ZH/RH/RM REGION REPORT </b>
               </h5>
               <div className="col-md-12 col-md-12 d-flex justify-content-end">
-                <button className="btn bg-info export">Export</button>
+                <p className="icon">
+                  <button onClick={handleExport} className="border-0">
+                    <img src={excel} alt="excelicon" />
+                  </button>|
+                  <ExportToPDF/>
+                </p>
               </div>
               <br />
               <div style={{ paddingLeft: "10px" }}>
@@ -51,7 +63,7 @@ const RetailZhReport = () => {
                       <b className="gray-color">(In Lakhs)</b>
                     </h5>
                   </div>
-                  <div className="col-md-2 list-group">
+                  {/* <div className="col-md-2 list-group">
                     <p className="theader">
                       <b>All India Region Wise</b>
                     </p>
@@ -65,20 +77,14 @@ const RetailZhReport = () => {
                     <p className="theader">
                       <b>All India RM Wise </b>
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
-              <table className="table table-bordered ">
+              <table className="table table-bordered active" id="REGION">
                 <thead className="bgcolorBlue text-white mainhead">
                   <tr className="mid ">
                     <th rowSpan="4" className="headtable">
                       Zone
-                    </th>
-                    <th rowSpan="2" className="headtable">
-                      Region
-                    </th>
-                    <th rowSpan="2" className="headtable">
-                      Region Code
                     </th>
                     <th rowSpan="2" className="headtable">
                       Total AUM
@@ -99,22 +105,44 @@ const RetailZhReport = () => {
                     <>
                       <tr key={item.SrNo}>
                         <td>{item.ZONE}</td>
-                        <td>
-                          <Link to="/Aumreport">{item.REGION_NAME}</Link>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.TOTAL_AUM)
+                          )}
                         </td>
-                        <td className="forright">{item.REGION_CODE}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.TOTAL_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.EQUITY_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.HYBRID_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.ARBITRAGE_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.PASSIVE_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.FIXED_INCOME_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.CASH_AUM))}</td>
-
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.EQUITY_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.HYBRID_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.ARBITRAGE_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.PASSIVE_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.FIXED_INCOME_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.CASH_AUM)
+                          )}
+                        </td>
                       </tr>
                     </>
                   ))}
-                 
                 </tbody>
               </table>
             </div>
