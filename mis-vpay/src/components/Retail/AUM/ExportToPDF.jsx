@@ -9,7 +9,7 @@ const ExportToPDF = () => {
     pdf.autoTable({
       html: table,
       filename: fileName,
-      margin: { top: 40, bottom: 40, right: 40, left: 40 },
+      margin: { top: 40, bottom: 30, right: 30, left: 30 },
       styles: {
         font: "Arial",
         fontSize: 10,

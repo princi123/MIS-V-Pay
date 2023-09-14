@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../AUM/Search.css";
 import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar/SideBar";
@@ -9,26 +9,40 @@ import pdf from "../../Assets/images/pdf_icon.png";
 import excel from "../../Assets/images/excel_icon.png";
 import { ExportToExcel } from "./ExportToExcel";
 import ExportToPDF from "./ExportToPDF";
+import LoaderSearch from "../../Table/SubTable/LoaderSearch";
 const Search = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [hide, setHide] = useState(false);
   const aumDetails = useAUMApi();
   const aumPeriod = usePeriodApi();
 
-  const SearchOnClick = (e) => {
-    setHide(true);
-  };
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+
   const handleExport=()=>{
     ExportToExcel(aumPeriod, "AUM Report")
   }
-
+  const SearchOnClick = async (e) => {
+    setLoading(true);
+    try {
+      const data = await fetchData();
+      setSearchResults(data);
+      setHide(true);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const fetchData = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+  };
   return (
     <div className="container-fluid p-0 home-main">
       <Navbar onToggle={toggleSidebar} />
@@ -72,7 +86,11 @@ const Search = () => {
                 </div>
               </div>
             </div>
-            {hide ? <Aum /> : ""}
+            {loading ? (
+              <div><LoaderSearch/></div>
+            ) : (
+              hide && <Aum />
+            )}
           </div>
         </div>
       </div>

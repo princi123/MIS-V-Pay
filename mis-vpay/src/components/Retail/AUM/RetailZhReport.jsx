@@ -7,11 +7,12 @@ import { useAUMApi } from "../RetailApi/AUM_Api";
 import excel from "../../Assets/images/excel_icon.png";
 import { ExportToExcel } from "./ExportToExcel";
 import ExportToPDF from "./ExportToPDF";
+import LoaderSearch from "../../Table/SubTable/LoaderSearch";
 
 const RetailZhReport = () => {
   const aumRegion = useAUMApi();
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
+  const [loading, setLoading] = useState(false);
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -30,6 +31,7 @@ const RetailZhReport = () => {
   };
 
   return (
+
     <div>
       <div className="container-fluid p-0 home-main">
         <Navbar onToggle={toggleSidebar} />
@@ -81,6 +83,11 @@ const RetailZhReport = () => {
                   </div> */}
                 </div>
               </div>
+              {loading ? (
+              <div><LoaderSearch/></div>
+            ) : (
+              
+           
               <table className="table table-bordered active" id="REGION">
                 <thead className="bgcolorBlue text-white mainhead">
                   <tr className="mid ">
@@ -149,7 +156,7 @@ const RetailZhReport = () => {
                     </>
                   ))}
                 </tbody>
-              </table>
+              </table> )}
             </div>
           </div>
         </div>

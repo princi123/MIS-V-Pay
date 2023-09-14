@@ -14,7 +14,7 @@ class AumUfcService
           columns.each_with_index do |column, idx|
             ufc_row[column.name.upcase] = row[idx]
           end
-          ufc_report << aum_row
+          ufc_report << ufc_row
        end
        out_cursor.close
        cursor.close

@@ -58,7 +58,7 @@ const AumReport = () => {
                         <b className="gray-color">(In Lakhs)</b>
                       </h5>
                     </div>
-                    <div className="col-md-2 list-group">
+                    {/* <div className="col-md-2 list-group">
                       <p className="theader">
                         <b>All India Region Wise</b>
                       </p>
@@ -72,18 +72,20 @@ const AumReport = () => {
                       <p className="theader">
                         <b>All India RM Wise </b>
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
+
                 <table className="table table-bordered p-1 active" id="UFC">
                   <thead className="Bgcolor">
                     <tr className="mid ">
                       <th rowSpan="2">Zone</th>
                       <th rowSpan="2">Region</th>
+                      {/* <th rowSpan="2">Region Code</th> */}
                       <th rowSpan="2">UFC Code</th>
                       <th rowSpan="2">UFC</th>
-                      <th rowSpan="2">RM Code</th>
-                      <th rowSpan="2">RM Name</th>
+                      <th rowSpan="2">Employee ID</th>
+                      <th rowSpan="2">Employee Name</th>
                       <th rowSpan="2">Total AUM</th>
                       <th colSpan="6">AUM</th>
                     </tr>
@@ -101,17 +103,18 @@ const AumReport = () => {
                       <tr key={item.SrNo}>
                         <td className="forleft">{item.ZONE}</td>
                         <td className="forleft">{item.REGION_NAME}</td>
-                        <td className="forleft">{item.UFCCode}</td>
-                        <td className="forleft">{item.UFC}</td>
-                        <td className="forleft">{item.RMCode}</td>
-                        <td className="forleft">{item.RMName}</td>
+                        {/* <td className="forleft">{item.REGION_CODE}</td> */}
+                        <td className="forleft">{item.UFC_CODE}</td>
+                        <td className="forleft">{item.UFC_NAME}</td>
+                        <td className="forleft">{item.EMPLID}</td>
+                        <td className="forleft">{item.EMP_NAME}</td>
                         <td className="forright">{item.TOTAL_AUM}</td>
-                        <td className="forright">{item.AUM.Equity}</td>
-                        <td className="forright">{item.AUM.Hybrid}</td>
-                        <td className="forright">{item.AUM.Arbitrage}</td>
-                        <td className="forright">{item.AUM.Passive}</td>
-                        <td className="forright">{item.AUM["Fixed Income"]}</td>
-                        <td className="forright">{item.AUM.Cash}</td>
+                        <td className="forright">{item.EQUITY_AUM}</td>
+                        <td className="forright">{item.HYBRID_AUM}</td>
+                        <td className="forright">{item.ARBITRAGE_AUM}</td>
+                        <td className="forright">{item.PASSIVE_AUM}</td>
+                        <td className="forright">{item.FIXED_INCOME_AUM}</td>
+                        <td className="forright">{item.CASH_AUM}</td>
                       </tr>
                     ))}
                   </tbody>

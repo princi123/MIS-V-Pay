@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Aum.css";
 import { usePeriodApi } from "../RetailApi/AUM_Api";
-
+import LoaderSearch from "../../Table/SubTable/LoaderSearch";
 
 const Aum = () => {
   const aumPeriod = usePeriodApi();
+  const [loading, setLoading] = useState(false);
   const formatNumberToIndianFormat = (number) => {
     if (typeof number !== "number") {
       return number;
@@ -15,6 +16,7 @@ const Aum = () => {
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
   };
+
   return (
     <>
      
