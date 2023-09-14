@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import pdf from "../../Assets/images/pdf_icon.png";
@@ -27,21 +27,19 @@ const ExportToPDF = () => {
     pdf.save(fileName + ".pdf");
   };
   
-  
-
   const pdfExport = () => {
     const AUM = document.getElementById("AUM");
     const REGION = document.getElementById("REGION");
+    const UFC = document.getElementById("UFC");
   
     if (AUM && AUM.className.includes("active")) {
       generatePdf(AUM, "AUMReport");
     } else if (REGION && REGION.className.includes("active")) {
       generatePdf(REGION, "RegionReport");
+    }else if (UFC && UFC.className.includes("active")) {
+      generatePdf(UFC, "UfcReport");
     }
   };
-  
-  
-
 
   return (
     <button onClick={pdfExport}  className="border-0">

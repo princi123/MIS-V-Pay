@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import "./AumReport.css";
 import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar/SideBar";
-import { useAUMApi } from "../RetailApi/AUM_Api";
-
+import { useUfc } from "../RetailApi/AUM_Api";
+import ExportToPDF from "./ExportToPDF";
+import excel from "../../Assets/images/excel_icon.png";
+import { ExportToExcel } from "./ExportToExcel";
 const AumReport = () => {
-  const aumRegion = useAUMApi();
+  const aumUfc = useUfc();
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
+
+  const handleExport =()=>{
+    ExportToExcel(aumUfc, "UFC report")
+  }
   
   return (
     <>
@@ -30,7 +36,12 @@ const AumReport = () => {
               </div>
               <div className="col-md-12 d-flex mt-3 justify-content-end p-2">
                 <div className="d-flex">
-                  <button className="btn btn-info">Export</button>
+                <p className="icon">
+                  <button onClick={handleExport} className="border-0">
+                    <img src={excel} alt="excelicon" />
+                  </button>|
+                  <ExportToPDF/>
+                </p>
                 </div>
               </div>
               <div className="container-fluid ">
@@ -64,7 +75,7 @@ const AumReport = () => {
                     </div>
                   </div>
                 </div>
-                <table className="table table-bordered p-1">
+                <table className="table table-bordered p-1 active" id="UFC">
                   <thead className="Bgcolor">
                     <tr className="mid ">
                       <th rowSpan="2">Zone</th>
@@ -86,7 +97,7 @@ const AumReport = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {aumRegion.map((item) => (
+                    {aumUfc.map((item) => (
                       <tr key={item.SrNo}>
                         <td className="forleft">{item.ZONE}</td>
                         <td className="forleft">{item.REGION_NAME}</td>

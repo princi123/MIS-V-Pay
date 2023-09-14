@@ -25,9 +25,9 @@ const RetailZhReport = () => {
     return parts.join(".");
   };
 
-  const handleExport = ()=>{
+  const handleExport = () => {
     ExportToExcel(aumRegion, "AUM Region Report");
-  }
+  };
 
   return (
     <div>
@@ -48,8 +48,9 @@ const RetailZhReport = () => {
                 <p className="icon">
                   <button onClick={handleExport} className="border-0">
                     <img src={excel} alt="excelicon" />
-                  </button>|
-                  <ExportToPDF/>
+                  </button>
+                  |
+                  <ExportToPDF />
                 </p>
               </div>
               <br />
@@ -104,7 +105,11 @@ const RetailZhReport = () => {
                   {aumRegion.map((item) => (
                     <>
                       <tr key={item.SrNo}>
-                        <td>{item.ZONE}</td>
+                        <td>
+                          <Link to="/Aumreport" className="unline">
+                            {item.ZONE}
+                          </Link>
+                        </td>
                         <td className="forright">
                           {formatNumberToIndianFormat(
                             parseFloat(item.TOTAL_AUM)
