@@ -1,22 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../AUM/Search.css";
 import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar/SideBar";
 import Aum from "./Aum";
 import { useAUMApi } from "../RetailApi/AUM_Api";
 import { usePeriodApi } from "../RetailApi/AUM_Api";
+import LoaderSearch from "../../Table/SubTable/LoaderSearch";
 
 const Search = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [hide, setHide] = useState(false);
+  const [loading, setLoading] = useState(false);
   const aumDetails = useAUMApi();
   const aumPeriod = usePeriodApi();
 
-  const SearchOnClick = (e) => {
-    setHide(true);
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
   };
+
+  const SearchOnClick = async (e) => {
+    setLoading(true);
+    try {
+      const data = await fetchData();
+      setSearchResults(data);
+      setHide(true);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const fetchData = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    //return someData;
+  };
+
   return (
     <div className="container-fluid p-0 home-main">
       <Navbar onToggle={toggleSidebar} />
@@ -58,7 +78,11 @@ const Search = () => {
                 </div>
               </div>
             </div>
-            {hide ? <Aum /> : ""}
+            {loading ? (
+              <div><LoaderSearch/></div>
+            ) : (
+              hide && <Aum />
+            )}
           </div>
         </div>
       </div>
