@@ -50,10 +50,10 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
   return (
     <>
       <div className="container-fluid">
-        <div className="d-flex">
+        <div>
           <div>
             <div>
-              <div className="row mt-4 mr-4 ">
+              <div className="row mt-4 mr-4 p-2">
                 <div className="col-md-3 d-flex">
                   <h4>
                     <b>SALES</b>
@@ -62,23 +62,23 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
                     <b className="gray-color">(In Lakhs)</b>
                   </h5>
                 </div>
-                <div className="col-md-2 list-group">
+                {/* <div className="col-md-3 list-group">
                   <p className="theader">
                     <b>All India Region Wise</b>
                   </p>
                 </div>
-                <div className="col-md-2">
+                <div className="col-md-3">
                   <p className="theader">
                     <b>All India UFC Wise </b>
                   </p>
                 </div>
-                <div className="col-md-2">
+                <div className="col-md-3">
                   <p className="theader">
                     <b>All India RM Wise </b>
                   </p>
-                </div>
+                </div> */}
                 <div className="col-md-3" />
-                <div className="col-md-12">
+                <div className="col-md-12 p-0">
                   <table className="table small border" id="table1">
                     <thead>
                       <tr className="bgcolorBlue text-white">

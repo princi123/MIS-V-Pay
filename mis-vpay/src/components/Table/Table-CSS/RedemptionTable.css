@@ -1,6 +1,7 @@
 .head {
     display: flex;
     align-items: center;
+    margin-left: 21px;
   }
 
   .head h4,
