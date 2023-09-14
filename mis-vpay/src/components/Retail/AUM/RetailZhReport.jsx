@@ -10,9 +10,8 @@ import ExportToPDF from "./ExportToPDF";
 import LoaderSearch from "../../Table/SubTable/LoaderSearch";
 
 const RetailZhReport = () => {
-  const aumRegion = useAUMApi();
+  const { aum_details, loading } = useAUMApi();
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [loading, setLoading] = useState(false);
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -27,11 +26,10 @@ const RetailZhReport = () => {
   };
 
   const handleExport = () => {
-    ExportToExcel(aumRegion, "AUM Region Report");
+    ExportToExcel(aum_details, "AUM Region Report");
   };
 
   return (
-
     <div>
       <div className="container-fluid p-0 home-main">
         <Navbar onToggle={toggleSidebar} />
@@ -56,17 +54,22 @@ const RetailZhReport = () => {
                 </p>
               </div>
               <br />
-              <div style={{ paddingLeft: "10px" }}>
-                <div className=" d-flex" style={{ paddingLeft: "10px" }}>
-                  <div className="col-md-3 d-flex">
-                    <h4>
-                      <b>SALES</b>
-                    </h4>
-                    <h5>
-                      <b className="gray-color">(In Lakhs)</b>
-                    </h5>
-                  </div>
-                  {/* <div className="col-md-2 list-group">
+              {loading ? (
+                <div>
+                  <LoaderSearch />
+                </div>
+              ) : (
+                <div style={{ paddingLeft: "10px" }}>
+                  <div className=" d-flex" style={{ paddingLeft: "10px" }}>
+                    <div className="col-md-3 d-flex">
+                      <h4>
+                        <b>SALES</b>
+                      </h4>
+                      <h5>
+                        <b className="gray-color">(In Lakhs)</b>
+                      </h5>
+                    </div>
+                    {/* <div className="col-md-2 list-group">
                     <p className="theader">
                       <b>All India Region Wise</b>
                     </p>
@@ -81,17 +84,14 @@ const RetailZhReport = () => {
                       <b>All India RM Wise </b>
                     </p>
                   </div> */}
+                  </div>
                 </div>
-              </div>
-              {loading ? (
-              <div><LoaderSearch/></div>
-            ) : (
-              
-           
+              )}
+              {!loading && (
               <table className="table table-bordered active" id="REGION">
                 <thead className="bgcolorBlue text-white mainhead">
                   <tr className="mid ">
-                    <th rowSpan="4" className="headtable">
+                    <th rowSpan="2" className="headtable">
                       Zone
                     </th>
                     <th rowSpan="2" className="headtable">
@@ -109,7 +109,7 @@ const RetailZhReport = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {aumRegion.map((item) => (
+                  {aum_details.map((item) => (
                     <>
                       <tr key={item.SrNo}>
                         <td>
@@ -156,7 +156,8 @@ const RetailZhReport = () => {
                     </>
                   ))}
                 </tbody>
-              </table> )}
+              </table>
+              )}
             </div>
           </div>
         </div>

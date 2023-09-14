@@ -5,7 +5,7 @@ import pdf from "../../Assets/images/pdf_icon.png";
 
 const ExportToPDF = () => {
   const generatePdf = (table, fileName) => {
-    const pdf = new jsPDF("p", "pt", "letter");
+    const pdf = new jsPDF("l", "pt", "A4");
     pdf.autoTable({
       html: table,
       filename: fileName,
@@ -16,8 +16,8 @@ const ExportToPDF = () => {
         textColor: [0, 0, 255],
       },
       headerStyles: {
-        fillColor: false, // Set the background color to false
-        textColor: [0, 0, 255], // Set the text color to blue (RGB value)
+        fillColor: [51, 122, 183], 
+        textColor: 255,
         fontSize: 12,
       },
       bodyStyles: {
