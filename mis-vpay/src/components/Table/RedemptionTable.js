@@ -59,7 +59,7 @@ const RedemptionTable = ({ transaction_summary_report, startDate, endDate, selec
         </h5>
       </div>
       <div className="col-md-3" />
-      <div className="col-md-12">
+      <div className="col-md-12 p-2">
         <table className="mt-3 table small border" id="table2">
           <thead>
             <tr className="bgcolorBlue text-white">

@@ -35,7 +35,7 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, for
 
   return (
     <div className="new-component container-fluid p-0">
-      <div className="row mt-2 bg-white">
+      <div className="row mt-2 ">
         <div className="head">
           <h4>
             <b className="black-color"> {pzone} Data</b>

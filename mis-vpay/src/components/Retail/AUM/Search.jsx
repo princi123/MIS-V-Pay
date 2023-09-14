@@ -14,6 +14,10 @@ const Search = () => {
   const aumDetails = useAUMApi();
   const aumPeriod = usePeriodApi();
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   const SearchOnClick = (e) => {
     setHide(true);
   };
