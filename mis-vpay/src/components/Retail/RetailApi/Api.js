@@ -58,13 +58,9 @@ const Api = ({headers}) => {
   const togglehide = async () => {
     try {
       await fetchTransactionSummary();
-
       setHide(true);
     } catch (error) {
       setHide(false);
-
-      console.log(hide, "hide");
-
       toast.error("Please fill all the fields");
     }
   };
