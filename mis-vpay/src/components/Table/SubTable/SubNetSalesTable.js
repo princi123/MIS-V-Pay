@@ -37,7 +37,7 @@ const SubNetSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, 
       <div className="row mt-2 bg-white">
         <div className="head">
           <h4>
-            <b className="black-color">Net Sales</b>
+            <b className="black-color">{pzone} Data</b>
           </h4>
           <h5>
             <b className="gray-color">(In Lakhs)</b>
