@@ -11,13 +11,18 @@ import LoaderSearch from "../Table/SubTable/LoaderSearch";
 import Api from "./RetailApi/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SchemeApi from "./RetailApi/SchemeApi";
+import { Scheme } from "../Retail/RetailApi/AUM_Api";
 import RedemptionTable from "../Table/RedemptionTable";
 import NetSalesTable from "../Table/NetSalesTable";
 import { ExcelToExport } from "./ExcelToExport";
 import ExportToPdf from "./ExportToPdf";
+import Filter from "./Filter";
+import DropDown from "./DropDown" 
 
 const Retail_Transaction = ({ headers }) => {
+  const { scheme_details } = Scheme();
+
+  console.log(scheme_details);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const {
     hide,
@@ -34,7 +39,6 @@ const Retail_Transaction = ({ headers }) => {
     setStartDate,
     formatNumberToIndianFormat,
   } = Api({ headers });
-  const { scheme_details } = SchemeApi();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -94,8 +98,8 @@ const Retail_Transaction = ({ headers }) => {
                     </h5>
                   </button>
                   <div>
-                    <div className="col-lg-12 d-flex justify-content-lg-between mt-5 ">
-                      <div className="form-group col-md-3">
+                    <div className="col-lg-12 d-flex justify-content-around mt-5 ">
+                      <div className="form-group col-md-2">
                         <label
                           className="form-lables"
                           style={{ marginRight: "5px" }}
@@ -111,7 +115,7 @@ const Retail_Transaction = ({ headers }) => {
                           onChange={handleStartDateChange}
                         />
                       </div>
-                      <div className="form-group col-md-3">
+                      <div className="form-group col-md-2">
                         <label
                           className="form-lables"
                           style={{ marginRight: "5px" }}
@@ -127,24 +131,24 @@ const Retail_Transaction = ({ headers }) => {
                           onChange={handleEndDateChange}
                         />
                       </div>
-                      {/* <div className="form-group col-md-2">
-                      <label className="form-lables">
-                        <b>Asset Class</b>
-                      </label>
-                      <select
-                        name=""
-                        id="ab"
-                        className="form-select form-control mt-2"
-                        value={assetClass}
-                        onChange={(e) => setAssetClass(e.target.value)}
-                      >
-                        <option value="">All </option>
-                        <option value="">Arbitrage </option>
-                        <option value="">Cash </option>
-                        <option value="">Equity </option>
-                        <option value="">Fixed Income</option>
-                      </select>
-                    </div> */}
+                      <div className="form-group col-md-2">
+                        <label className="form-lables">
+                          <b>Asset Class</b>
+                        </label>
+                        <select
+                          name=""
+                          id="ab"
+                          className="form-select form-control mt-2"
+                          value={assetClass}
+                          onChange={(e) => setAssetClass(e.target.value)}
+                        >
+                          <option value="">All </option>
+                          <option value="">Arbitrage </option>
+                          <option value="">Cash </option>
+                          <option value="">Equity </option>
+                          <option value="">Fixed Income</option>
+                        </select>
+                      </div>
                       <div className="form-group col-md-2">
                         <label className="form-lables">
                           <b> Select Type</b>
@@ -161,29 +165,40 @@ const Retail_Transaction = ({ headers }) => {
                           <option value="grosssales">GROSS SALES </option>
                         </select>
                       </div>
-                      {/* <Filter />
-                    <DropDown /> */}
-                      {/* <div className="form-group col-md-2 mt-3">
-                      <label className="form-lables">
-                        <b> Scheme</b>
-                      </label>
-                      <select
-                        name=""
-                        id="ab"
-                        className="form-select form-control mt-2"
-                      >
-                        {scheme_details.map((scheme) => (
-                          <option value="" key={scheme.SCHEME}>
-                            {scheme.SCHEME}
-                          </option>
-                        ))}
-                      </select>
-                    </div> */}
+                     
+                  
+                      <div className="form-group col-md-2 m-md-0 mt-3">
+                        <label className="form-lables">
+                          <b> Scheme</b>
+                        </label>
+                        {
+                          <select
+                          name=""
+                          id="ab"
+                            className="form-select form-control mt-2"
+                          >
+                            {scheme_details.map((item) => (
+                              <option key={item.SCHEME}>{item.SCHEME}</option>
+                            ))}
+                          </select>
+                        }
+                      </div>
                       <div />
-                      <div className="col-md-2 " style={{ marginTop: "30px" }}>
+                    </div>
+                    <div className="d-flex">
+                    <div  className="col-md-4 d-flex justify-content-between ">
+                      <Filter />
+                      <DropDown />
+                       
+                    </div>
+                    <div className="col-md-4">
+
+                    </div>
+                    <div className="col-md-4 d-flex justify-content-around mt-5">
+                    <div className="col-md-2 ">
                         <p className="rcorners">
-                         <ExcelToExport/>
-                           |<ExportToPdf/>|
+                          <ExcelToExport  />
+                          |<ExportToPdf />|
                           <img src={msg} alt="msgicon" /> |{" "}
                           <img
                             id="myImg"
@@ -194,8 +209,7 @@ const Retail_Transaction = ({ headers }) => {
                           />
                         </p>
                       </div>
-
-                      <div className="col-md-1 " style={{ marginTop: "31px" }}>
+                      <div className="col-md-2 ">
                         <button
                           className="btn  BgcolorOrange "
                           onClick={togglehide}
@@ -204,12 +218,13 @@ const Retail_Transaction = ({ headers }) => {
                         </button>
                       </div>
                     </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <ScheduleModal />
               <>
-                <div className="Table" >
+                <div className="Table">
                   {loading ? (
                     <div className="text-center mt-4">
                       <i className="fas fa-spinner fa-spin fa-2x"></i>{" "}
@@ -217,7 +232,7 @@ const Retail_Transaction = ({ headers }) => {
                     </div>
                   ) : (
                     hide && (
-                      <div >
+                      <div>
                         <SalesTable
                           transaction_summary_report={
                             transaction_summary_report
@@ -266,5 +281,4 @@ const Retail_Transaction = ({ headers }) => {
     </>
   );
 };
-
 export default Retail_Transaction;
