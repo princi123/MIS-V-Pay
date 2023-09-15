@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { API_AUM_Region, API_AUM_UFC } from '../../../Constant/apiConstant';
 import {API_AUM_period} from '../../../Constant/apiConstant';
-
+import { API_SCHEME_DETAILS } from '../../../Constant/apiConstant';
 
 export const useAUMApi = () => {
   const [aum_details, setAumDetails] = useState([]);
@@ -67,5 +67,25 @@ export const useUfc = () => {
   return {aum_ufc,loading};
 };
 
+export const Scheme =()=>{
+
+  const [scheme_details, setSchemeDetails] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+     
+      try {
+        const response = await fetch(API_SCHEME_DETAILS.DATA);
+        const data = await response.json();
+        setSchemeDetails(data);
+        console.log(scheme_details,"aaaa")
+      } catch (error) {
+        console.error("Error fetching AUM details", error);
+      }
+    };
+    fetchData();
+  }, []);
+  return {scheme_details};
+
+}
  
  

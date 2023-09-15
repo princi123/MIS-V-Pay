@@ -24,11 +24,12 @@ const Filter = () => {
   };
 
   return (
-    <div className="form-group col-md-2">
+    <div className="form-group mt-5 ">
       <label>
         <img src={filter} alt="filter" />
         <b> Select Table</b>
       </label>
+      <br/>
       <div className={`custom-dropdown ${isOpen ? "active" : ""}`}>
         <button
           className="form-control dropdown-toggle mt-2"
