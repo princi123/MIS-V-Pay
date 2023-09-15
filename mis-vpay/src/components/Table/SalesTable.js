@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Table-CSS/SalesTable.css";
 import SubSalesTable from "./SubTable/SubSalesTable";
 import Loader from "./Loader";
-import { Link } from "react-router-dom";
 
 const SalesTable = ({
   transaction_summary_report,
@@ -83,25 +82,14 @@ const SalesTable = ({
                 </div>
                 <div className="col-md-2 list-group">
                   <p className="theader">
-                  <Link className="textlink" to="/RegionWise">
-                  <b>All India Region Wise</b>
-                  </Link>
-                    
+                    {/* <b>All India Region Wise</b> */}
                   </p>
                 </div>
                 <div className="col-md-2">
-                  <p className="theader">
-                  <Link className="textlink" to="/UfcWise">
-                  <b>All India UFC Wise </b>
-                  </Link>
-                    </p>
+                  <p className="theader">{/* <b>All India UFC Wise </b> */}</p>
                 </div>
                 <div className="col-md-2">
-                  <p className="theader">
-                  <Link className="textlink" to="/RmWise">
-                  <b>All India RM Wise </b>
-                  </Link>
-                    </p>
+                  <p className="theader">{/* <b>All India RM Wise </b> */}</p>
                 </div>
                 <div className="col-md-3" />
                 <div className="col-md-12">
