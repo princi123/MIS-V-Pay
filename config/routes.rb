@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :aum
       resources :aum_regions
       resources :aum_ufc
+      resources :aum_dropdown
     end
   end
 end

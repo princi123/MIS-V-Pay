@@ -9,10 +9,11 @@ const DropDown = () => {
   };
 
   return (
-    <div className="form-group col-md-2 mt-3">
+    <div className="form-group  mt-5">
       <label htmlFor="">
         <b>Select Column</b>
       </label>
+      <br/>
       <div className="dropdown">
         <div className="custom-dropdown">
           <button

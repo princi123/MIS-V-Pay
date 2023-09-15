@@ -1,12 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import "./Aum.css";
-import { usePeriodApi } from "../RetailApi/AUM_Api";
 import LoaderSearch from "../../Table/SubTable/LoaderSearch";
 
-const Aum = () => {
-  const { aum_period, loading } = usePeriodApi();
-
+const Aum = ({aum_period, loading, report_period}) => {
+const navigate = useNavigate();
   const formatNumberToIndianFormat = (number) => {
     if (typeof number !== "number") {
       return number;
@@ -17,6 +15,10 @@ const Aum = () => {
     return parts.join(".");
   };
 
+  const handleZoneClick = (zone) => {
+    navigate(`/AumRegionReport/${zone}/${report_period}`);
+  };
+  
   return (
     <div className="container-fluid">
       {loading ? (
@@ -63,9 +65,12 @@ const Aum = () => {
             {aum_period.map((item) => (
               <tr key={item.ZONE}>
                 <td>
-                  <Link className="textlink" to="/RetailZoneReport">
+                <button
+                    className="textlink"
+                    onClick={() => handleZoneClick(item.ZONE)}
+                  >
                     {item.ZONE}
-                  </Link>
+                  </button>
                 </td>
                 <td className="forright">
                   {formatNumberToIndianFormat(parseFloat(item.TOTAL_AUM))}

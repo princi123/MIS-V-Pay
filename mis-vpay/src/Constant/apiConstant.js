@@ -25,15 +25,20 @@ export const API_RM = {
     DATA: (queryParams) => `${API}/rm_summary_transactions?${queryParams}`,
 };
 
-export const API_AUM_Region = {
-    DATA:  `${API}/aum_regions`,
+export const API_AUM_DROPDOWN = {
+    DATA: `${API}/aum_dropdown`,
 };
 
 export const API_AUM_period = {
-    DATA: `${API}/aum`,
+    DATA: (queryParams) => `${API}/aum?${queryParams}`,
+};
+
+export const API_AUM_Region = {
+    DATA: (queryParams) => `${API}/aum_regions?${queryParams}`,
 };
 
 export const API_AUM_UFC = {
-    DATA: `${API}/aum_ufc`,
+    DATA: (queryParams) => `${API}/aum_ufc?${queryParams}`,
 };
+
 
