@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./AumReport.css";
+import React, { useMemo, useState } from "react";
+import "./AumUfcReport.css";
 import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar/SideBar";
 import { useUfc } from "../RetailApi/AUM_Api";
@@ -7,8 +7,19 @@ import ExportToPDF from "./ExportToPDF";
 import excel from "../../Assets/images/excel_icon.png";
 import { ExportToExcel } from "./ExportToExcel";
 import LoaderSearch from "../../Table/SubTable/LoaderSearch";
-const AumReport = () => {
-  const { aum_ufc, loading } = useUfc();
+import { useParams } from "react-router-dom";
+const AumUfcReport = () => {
+  const { zone, report_period, region_code } = useParams();
+  const queryParams = useMemo(
+    () => ({
+      zone: zone,
+      report_period: report_period,
+      region_code: region_code,
+    }),
+    [zone, report_period, region_code]
+  );
+  const queryParamsString = new URLSearchParams(queryParams).toString();
+  const { aum_ufc, loading } = useUfc(queryParamsString);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -137,4 +148,4 @@ const AumReport = () => {
     </>
   );
 };
-export default AumReport;
+export default AumUfcReport;

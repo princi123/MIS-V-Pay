@@ -1,16 +1,37 @@
-import { useState, useEffect } from 'react';
-import { API_AUM_Region, API_AUM_UFC } from '../../../Constant/apiConstant';
+import { useState, useEffect, useMemo } from 'react';
+import { API_AUM_DROPDOWN, API_AUM_Region, API_AUM_UFC } from '../../../Constant/apiConstant';
 import {API_AUM_period} from '../../../Constant/apiConstant';
 
-
-export const useAUMApi = () => {
-  const [aum_details, setAumDetails] = useState([]);
+export const AumDropdownApi = () => {
+  const [aum_dropdown, setAumDropdown] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const response = await fetch(API_AUM_Region.DATA);
+        const response = await fetch(API_AUM_DROPDOWN.DATA);
+        const data = await response.json();
+        setAumDropdown(data);
+        setLoading(false)
+      } catch (error) {
+        console.error("Error fetching AUM details", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  return {aum_dropdown, loading}
+}
+
+export const useAUMApi = (queryParams) => {
+  const [aum_details, setAumDetails] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true)
+      try {
+        const response = await fetch(API_AUM_Region.DATA(queryParams));
         const data = await response.json();
         setAumDetails(data);
         setLoading(false)
@@ -28,11 +49,15 @@ export const useAUMApi = () => {
 export const usePeriodApi = () => {
   const [aum_period, setAumPeriod] = useState([]);
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
+  const [report_period, setReportPeriod] = useState("");
+  const queryParams = new URLSearchParams({
+    report_period: report_period,
+  })
+
     const fetchData = async () => {
       setLoading(true)
       try {
-        const response = await fetch(API_AUM_period.DATA);
+        const response = await fetch(API_AUM_period.DATA(queryParams));
         const data = await response.json();
         setAumPeriod(data)
         setLoading(false)
@@ -41,20 +66,19 @@ export const usePeriodApi = () => {
       }
     };
 
-    fetchData();
-  }, []);
 
-  return{ aum_period, loading};
+  return{ aum_period, loading, fetchData, report_period, setReportPeriod};
 };
 
-export const useUfc = () => {
+
+export const useUfc = (queryParams) => {
   const [aum_ufc, setAumUfc] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const response = await fetch(API_AUM_UFC.DATA);
+        const response = await fetch(API_AUM_UFC.DATA(queryParams));
         const data = await response.json();
         setAumUfc(data);
         setLoading(false)

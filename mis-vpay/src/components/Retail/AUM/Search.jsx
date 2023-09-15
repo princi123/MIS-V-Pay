@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "../AUM/Search.css";
 import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar/SideBar";
 import Aum from "./Aum";
-import { usePeriodApi } from "../RetailApi/AUM_Api";
+import { AumDropdownApi, usePeriodApi } from "../RetailApi/AUM_Api";
 import excel from "../../Assets/images/excel_icon.png";
 import { ExportToExcel } from "./ExportToExcel";
 import ExportToPDF from "./ExportToPDF";
+
 const Search = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [hide, setHide] = useState(false);
-
-  const { aum_period } = usePeriodApi();
+  const { aum_period, loading, report_period, setReportPeriod, fetchData } =
+    usePeriodApi();
+  const { aum_dropdown } = AumDropdownApi();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -20,8 +22,14 @@ const Search = () => {
   const handleExport = () => {
     ExportToExcel(aum_period, "AUM Report");
   };
+
   const SearchOnClick = async (e) => {
-    setHide(true);
+    try {
+      await fetchData();
+      setHide(true);
+    } catch (error) {
+      setHide(false);
+    }
   };
 
   return (
@@ -44,11 +52,19 @@ const Search = () => {
                       {" "}
                       <b>Select Period</b>
                     </label>
-                    <select className="form-select m-2">
+                    <select
+                      className="form-select m-2"
+                      value={report_period}
+                      onChange={(e) => {
+                        setReportPeriod(e.target.value); // Update report_period when an option is selected
+                      }}
+                    >
                       <option value="">Select an option</option>
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
+                      {aum_dropdown.map((aum) => (
+                        <option value={aum.PERIOD_CODE} key={aum.PERIOD_CODE}>
+                          {aum.PERIOD_DESC}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className="d-flex mx-3">
@@ -74,11 +90,12 @@ const Search = () => {
                 </div>
               </div>
             </div>
-            {hide && <Aum />}
+            {hide && <Aum aum_period={aum_period} loading={loading} report_period={report_period} />}
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default Search;
