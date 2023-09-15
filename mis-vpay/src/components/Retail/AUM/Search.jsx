@@ -1,32 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../AUM/Search.css";
 import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar/SideBar";
 import Aum from "./Aum";
-import { useAUMApi } from "../RetailApi/AUM_Api";
 import { usePeriodApi } from "../RetailApi/AUM_Api";
-
+import excel from "../../Assets/images/excel_icon.png";
+import { ExportToExcel } from "./ExportToExcel";
+import ExportToPDF from "./ExportToPDF";
 const Search = () => {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [hide, setHide] = useState(false);
-  const aumDetails = useAUMApi();
-  const aumPeriod = usePeriodApi();
+
+  const { aum_period } = usePeriodApi();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  const SearchOnClick = (e) => {
+  const handleExport = () => {
+    ExportToExcel(aum_period, "AUM Report");
+  };
+  const SearchOnClick = async (e) => {
     setHide(true);
   };
+
   return (
     <div className="container-fluid p-0 home-main">
       <Navbar onToggle={toggleSidebar} />
       <div className="d-flex">
         <SideBar isOpen={sidebarOpen} />
-        <div className={` ${sidebarOpen ? "dashboard-closed" : "dashboard-full"}`}>
+        <div
+          className={` ${sidebarOpen ? "dashboard-closed" : "dashboard-full"}`}
+        >
           <div className="bg-white card m-4" style={{ borderRadius: "10px" }}>
             <div className="col-md-12">
               <div className="headline pt-4" style={{ paddingLeft: "20px" }}>
@@ -46,23 +51,30 @@ const Search = () => {
                       <option value="option3">Option 3</option>
                     </select>
                   </div>
-                  <div
-                    style={{
-                      marginLeft: "10px",
-                      marginTop: "19px",
-                      padding: "10px 10px 10px 10px",
-                    }}>
-                    <button className="BgcolorOrange btn" style={{ marginRight: "5px", padding: "11px" }} onClick={SearchOnClick}>
-                      Search
-                    </button>
-                    <button className="BgcolorOrange btn" style={{ marginRight: "5px", padding: "11px" }}>
-                      Export
-                    </button>
+                  <div className="d-flex mx-3">
+                    <div className="col-md-6" style={{ marginTop: "30px" }}>
+                      <button
+                        className="BgcolorOrange btn"
+                        style={{ marginRight: "5px", padding: "11px" }}
+                        onClick={SearchOnClick}
+                      >
+                        Search
+                      </button>
+                    </div>
+                    <div className="col-md-6  " style={{ marginTop: "30px" }}>
+                      <p className="icon">
+                        <button onClick={handleExport} className="border-0">
+                          <img src={excel} alt="excelicon" />
+                        </button>
+                        |
+                        <ExportToPDF />
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            {hide ? <Aum /> : ""}
+            {hide && <Aum />}
           </div>
         </div>
       </div>

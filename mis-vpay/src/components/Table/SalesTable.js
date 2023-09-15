@@ -3,33 +3,51 @@ import "./Table-CSS/SalesTable.css";
 import SubSalesTable from "./SubTable/SubSalesTable";
 import Loader from "./Loader";
 
-const SalesTable = ({ transaction_summary_report, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat }) => {
+const SalesTable = ({
+  transaction_summary_report,
+  startDate,
+  endDate,
+  select_type,
+  assetClass,
+  formatNumberToIndianFormat,
+}) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
-  const [sortOrder, setSortOrder] = useState({ column: null, order: 'asc' });
+  const [sortOrder, setSortOrder] = useState({ column: null, order: "asc" });
   const [isLoading, setIsLoading] = useState(false);
 
   const handleHeaderClick = (column) => {
-    const order = sortOrder.column === column && sortOrder.order === 'asc' ? 'desc' : 'asc';
+    const order =
+      sortOrder.column === column && sortOrder.order === "asc" ? "desc" : "asc";
     setSortOrder({ column, order });
   };
 
   const sortedData = [...transaction_summary_report].sort((a, b) => {
     const columnA = a[sortOrder.column] || "";
     const columnB = b[sortOrder.column] || "";
-    if (sortOrder.order === 'asc') {
-      if (sortOrder.column === 'ZONE') {
+    if (sortOrder.order === "asc") {
+      if (sortOrder.column === "ZONE") {
         return columnA.localeCompare(columnB);
-      } else if (sortOrder.column === 'SEQUITY' || sortOrder.column === 'SHYBRID' ||
-                 sortOrder.column === 'SARBITRAGE' || sortOrder.column === 'SPASSIVE' ||
-                 sortOrder.column === 'SFIXED_INCOME' || sortOrder.column === 'SCASH') {
+      } else if (
+        sortOrder.column === "SEQUITY" ||
+        sortOrder.column === "SHYBRID" ||
+        sortOrder.column === "SARBITRAGE" ||
+        sortOrder.column === "SPASSIVE" ||
+        sortOrder.column === "SFIXED_INCOME" ||
+        sortOrder.column === "SCASH"
+      ) {
         return parseFloat(columnA) - parseFloat(columnB);
       }
-    } else if (sortOrder.order === 'desc') {
-      if (sortOrder.column === 'ZONE') {
+    } else if (sortOrder.order === "desc") {
+      if (sortOrder.column === "ZONE") {
         return columnB.localeCompare(columnA);
-      } else if (sortOrder.column === 'SEQUITY' || sortOrder.column === 'SHYBRID' ||
-                 sortOrder.column === 'SARBITRAGE' || sortOrder.column === 'SPASSIVE' ||
-                 sortOrder.column === 'SFIXED_INCOME' || sortOrder.column === 'SCASH') {
+      } else if (
+        sortOrder.column === "SEQUITY" ||
+        sortOrder.column === "SHYBRID" ||
+        sortOrder.column === "SARBITRAGE" ||
+        sortOrder.column === "SPASSIVE" ||
+        sortOrder.column === "SFIXED_INCOME" ||
+        sortOrder.column === "SCASH"
+      ) {
         return parseFloat(columnB) - parseFloat(columnA);
       }
     }
@@ -46,14 +64,14 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
       setClickedIndex(index);
     }
   };
-  
+
   return (
     <>
       <div className="container-fluid">
-        <div>
+        <div className="">
           <div>
             <div>
-              <div className="row mt-4 mr-4 p-2">
+              <div className="row mt-4 mr-4 ">
                 <div className="col-md-3 d-flex">
                   <h4>
                     <b>SALES</b>
@@ -62,37 +80,77 @@ const SalesTable = ({ transaction_summary_report, startDate, endDate, select_typ
                     <b className="gray-color">(In Lakhs)</b>
                   </h5>
                 </div>
-                {/* <div className="col-md-3 list-group">
+                <div className="col-md-2 list-group">
                   <p className="theader">
-                    <b>All India Region Wise</b>
+                    {/* <b>All India Region Wise</b> */}
                   </p>
                 </div>
-                <div className="col-md-3">
-                  <p className="theader">
-                    <b>All India UFC Wise </b>
-                  </p>
+                <div className="col-md-2">
+                  <p className="theader">{/* <b>All India UFC Wise </b> */}</p>
                 </div>
-                <div className="col-md-3">
-                  <p className="theader">
-                    <b>All India RM Wise </b>
-                  </p>
-                </div> */}
+                <div className="col-md-2">
+                  <p className="theader">{/* <b>All India RM Wise </b> */}</p>
+                </div>
                 <div className="col-md-3" />
-                <div className="col-md-12 p-0">
+                <div className="col-md-12">
                   <table className="table small border" id="table1">
                     <thead>
                       <tr className="bgcolorBlue text-white">
-                        <th scope="col" onClick={() => handleHeaderClick('ZONE')}>ZONE</th>
-                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SEQUITY')}>Equity</th>
-                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SHYBRID')}>Hybrid</th>
-                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SARBITRAGE')}>Arbitrage</th>
-                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SPASSIVE')}>Passive(ex-Debt)</th>
-                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SFIXED_INCOME')}>Fixed Income</th>
-                        <th scope="col" className="text-end" onClick={() => handleHeaderClick('SCASH')}> Cash{" "}</th>
-                        <th scope="col" className="text-end">Total</th>
+                        <th
+                          scope="col"
+                          onClick={() => handleHeaderClick("ZONE")}
+                        >
+                          ZONE
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-end"
+                          onClick={() => handleHeaderClick("SEQUITY")}
+                        >
+                          Equity
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-end"
+                          onClick={() => handleHeaderClick("SHYBRID")}
+                        >
+                          Hybrid
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-end"
+                          onClick={() => handleHeaderClick("SARBITRAGE")}
+                        >
+                          Arbitrage
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-end"
+                          onClick={() => handleHeaderClick("SPASSIVE")}
+                        >
+                          Passive(ex-Debt)
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-end"
+                          onClick={() => handleHeaderClick("SFIXED_INCOME")}
+                        >
+                          Fixed Income
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-end"
+                          onClick={() => handleHeaderClick("SCASH")}
+                        >
+                          {" "}
+                          Cash{" "}
+                        </th>
+                        <th scope="col" className="text-end">
+                          Total
+                        </th>
                       </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                       {sortedData.map((summary, index) => (
                         <React.Fragment key={index}>
                           <tr>

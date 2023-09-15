@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :rm_summary_transactions
       resources :aum
       resources :aum_regions
+      resources :aum_ufc
     end
   end
 end

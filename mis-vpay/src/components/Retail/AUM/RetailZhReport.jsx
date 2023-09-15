@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import SideBar from "../../Shared/SideBar/SideBar";
 import Navbar from "../../Shared/Navbar";
 import { useAUMApi } from "../RetailApi/AUM_Api";
+import excel from "../../Assets/images/excel_icon.png";
+import { ExportToExcel } from "./ExportToExcel";
+import ExportToPDF from "./ExportToPDF";
+import LoaderSearch from "../../Table/SubTable/LoaderSearch";
 
 const RetailZhReport = () => {
-  const aumRegion = useAUMApi();
+  const { aum_details, loading } = useAUMApi();
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -16,10 +19,14 @@ const RetailZhReport = () => {
     if (typeof number !== "number") {
       return number;
     }
-  
+
     const parts = number.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
+  };
+
+  const handleExport = () => {
+    ExportToExcel(aum_details, "AUM Region Report");
   };
 
   return (
@@ -38,20 +45,31 @@ const RetailZhReport = () => {
                 <b>RETAIL ZH/RH/RM REGION REPORT </b>
               </h5>
               <div className="col-md-12 col-md-12 d-flex justify-content-end">
-                <button className="btn bg-info export">Export</button>
+                <p className="icon">
+                  <button onClick={handleExport} className="border-0">
+                    <img src={excel} alt="excelicon" />
+                  </button>
+                  |
+                  <ExportToPDF />
+                </p>
               </div>
               <br />
-              <div style={{ paddingLeft: "10px" }}>
-                <div className=" d-flex" style={{ paddingLeft: "10px" }}>
-                  <div className="col-md-3 d-flex">
-                    <h4>
-                      <b>SALES</b>
-                    </h4>
-                    <h5>
-                      <b className="gray-color">(In Lakhs)</b>
-                    </h5>
-                  </div>
-                  <div className="col-md-2 list-group">
+              {loading ? (
+                <div>
+                  <LoaderSearch />
+                </div>
+              ) : (
+                <div style={{ paddingLeft: "10px" }}>
+                  <div className=" d-flex" style={{ paddingLeft: "10px" }}>
+                    <div className="col-md-3 d-flex">
+                      <h4>
+                        <b>SALES</b>
+                      </h4>
+                      <h5>
+                        <b className="gray-color">(In Lakhs)</b>
+                      </h5>
+                    </div>
+                    {/* <div className="col-md-2 list-group">
                     <p className="theader">
                       <b>All India Region Wise</b>
                     </p>
@@ -65,20 +83,16 @@ const RetailZhReport = () => {
                     <p className="theader">
                       <b>All India RM Wise </b>
                     </p>
+                  </div> */}
                   </div>
                 </div>
-              </div>
-              <table className="table table-bordered ">
+              )}
+              {!loading && (
+              <table className="table table-bordered active" id="REGION">
                 <thead className="bgcolorBlue text-white mainhead">
                   <tr className="mid ">
-                    <th rowSpan="4" className="headtable">
+                    <th rowSpan="2" className="headtable">
                       Zone
-                    </th>
-                    <th rowSpan="2" className="headtable">
-                      Region
-                    </th>
-                    <th rowSpan="2" className="headtable">
-                      Region Code
                     </th>
                     <th rowSpan="2" className="headtable">
                       Total AUM
@@ -95,28 +109,55 @@ const RetailZhReport = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {aumRegion.map((item) => (
+                  {aum_details.map((item) => (
                     <>
                       <tr key={item.SrNo}>
-                        <td>{item.ZONE}</td>
                         <td>
-                          <Link to="/Aumreport">{item.REGION_NAME}</Link>
+                          <Link to="/Aumreport" className="unline">
+                            {item.ZONE}
+                          </Link>
                         </td>
-                        <td className="forright">{item.REGION_CODE}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.TOTAL_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.EQUITY_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.HYBRID_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.ARBITRAGE_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.PASSIVE_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.FIXED_INCOME_AUM))}</td>
-                        <td className="forright">{formatNumberToIndianFormat(parseFloat(item.CASH_AUM))}</td>
-
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.TOTAL_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.EQUITY_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.HYBRID_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.ARBITRAGE_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.PASSIVE_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.FIXED_INCOME_AUM)
+                          )}
+                        </td>
+                        <td className="forright">
+                          {formatNumberToIndianFormat(
+                            parseFloat(item.CASH_AUM)
+                          )}
+                        </td>
                       </tr>
                     </>
                   ))}
-                 
                 </tbody>
               </table>
+              )}
             </div>
           </div>
         </div>
