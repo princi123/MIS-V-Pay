@@ -26,7 +26,7 @@ const navigate = useNavigate();
           <LoaderSearch />
         </div>
       ) : (
-        <div className="card" style={{ paddingLeft: "10px" }}>
+        <div style={{ paddingLeft: "10px" }}>
           <div className="d-flex" style={{ paddingLeft: "10px", paddingBottom: "10px" }}>
             <div className="col-md-3 d-flex">
               <h4>

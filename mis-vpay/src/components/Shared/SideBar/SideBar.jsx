@@ -110,7 +110,7 @@ const SideBar = ({ isOpen }) => {
                             <span
                               className={`sidebar ${isOpen ? "" : "closed"}`}
                               style={{
-                                marginLeft: "21px",
+                                marginLeft: "25px",
                                 marginRight: "11px",
                               }}
                             >
@@ -120,6 +120,9 @@ const SideBar = ({ isOpen }) => {
                           <button id="sub-accor">
                             <span
                               className={`sidebar ${isOpen ? "" : "closed"}`}
+                              style={{
+                                marginLeft: "25px"
+                              }}
                             >
                               ARN Transaction Reports
                             </span>
@@ -195,7 +198,7 @@ const SideBar = ({ isOpen }) => {
                             <span
                               className={`sidebar ${isOpen ? "" : "closed"}`}
                               style={{
-                                marginLeft: "61px",
+                                marginLeft: "51px",
                                 marginRight: "59px",
                               }}
                             >
@@ -206,7 +209,7 @@ const SideBar = ({ isOpen }) => {
                             <span
                               className={`sidebar ${isOpen ? "" : "closed"}`}
                               style={{
-                                marginLeft: "41px",
+                                marginLeft: "36px",
                                 marginRight: "39px",
                               }}
                             >
@@ -217,7 +220,7 @@ const SideBar = ({ isOpen }) => {
                             <span
                               className={`sidebar ${isOpen ? "" : "closed"}`}
                               style={{
-                                marginLeft: "39px",
+                                marginLeft: "34px",
                                 marginRight: "25px",
                               }}
                             >
@@ -228,7 +231,7 @@ const SideBar = ({ isOpen }) => {
                             <span
                               className={`sidebar ${isOpen ? "" : "closed"}`}
                               style={{
-                                marginLeft: "35px",
+                                marginLeft: "30px",
                                 marginRight: "38px",
                               }}
                             >
@@ -239,7 +242,7 @@ const SideBar = ({ isOpen }) => {
                             <span
                               className={`sidebar ${isOpen ? "" : "closed"}`}
                               style={{
-                                marginLeft: "41px",
+                                marginLeft: "28px",
                                 marginRight: "39px",
                               }}
                             >
@@ -249,7 +252,7 @@ const SideBar = ({ isOpen }) => {
                           <button id="sub-accor">
                             <span
                               className={`sidebar ${isOpen ? "" : "closed"}`}
-                              style={{ marginLeft: "-15px" }}
+                              style={{ marginLeft: "-22px" }}
                             >
                               Multicity ARMWise Scheme Report{" "}
                             </span>
