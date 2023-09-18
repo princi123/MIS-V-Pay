@@ -13,3 +13,12 @@
   background-color: #352d94;
   line-height: 1;
 }
+
+.dashboard{
+  width: 100%;
+}
+
+.table-container{
+  width: 100%;
+  padding: 10px;
+}

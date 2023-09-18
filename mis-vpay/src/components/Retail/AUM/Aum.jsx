@@ -1,15 +1,26 @@
-import React from "react";
-import {  useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Aum.css";
 import LoaderSearch from "../../Table/SubTable/LoaderSearch";
 
-const Aum = ({aum_period, loading, report_period}) => {
-const navigate = useNavigate();
+const Aum = ({ aum_period, loading, report_period }) => {
+  const navigate = useNavigate();
+  const [sortBy, setSortBy] = useState(null);
+  const [sortDirection, setSortDirection] = useState("asc");
+
+  const handleSort = (column) => {
+    if (sortBy === column) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(column);
+      setSortDirection(column === "ZONE" ? "asc" : "desc");
+    }
+  };
+
   const formatNumberToIndianFormat = (number) => {
     if (typeof number !== "number") {
       return number;
     }
-
     const parts = number.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
@@ -18,7 +29,27 @@ const navigate = useNavigate();
   const handleZoneClick = (zone) => {
     navigate(`/AumRegionReport/${zone}/${report_period}`);
   };
-  
+
+  const sortedData = [...aum_period].sort((a, b) => {
+    if (sortBy === null) return 0;
+    let aValue = a[sortBy];
+    let bValue = b[sortBy];
+
+    if (sortBy === "ZONE") {
+      aValue = aValue.toLowerCase();
+      bValue = bValue.toLowerCase();
+    } else {
+      aValue = parseFloat(aValue);
+      bValue = parseFloat(bValue);
+    }
+
+    if (sortDirection === "asc") {
+      return aValue < bValue ? -1 : 1;
+    } else {
+      return aValue > bValue ? -1 : 1;
+    }
+  });
+
   return (
     <div className="container-fluid">
       {loading ? (
@@ -26,8 +57,11 @@ const navigate = useNavigate();
           <LoaderSearch />
         </div>
       ) : (
-        <div className="card" style={{ paddingLeft: "10px" }}>
-          <div className="d-flex" style={{ paddingLeft: "10px", paddingBottom: "10px" }}>
+        <div style={{ paddingLeft: "10px" }}>
+          <div
+            className="d-flex"
+            style={{ paddingLeft: "10px", paddingBottom: "10px" }}
+          >
             <div className="col-md-3 d-flex">
               <h4>
                 <b>SALES</b>
@@ -39,36 +73,44 @@ const navigate = useNavigate();
           </div>
         </div>
       )}
-
       {!loading && (
         <table className="table table-bordered active" id="AUM">
           <thead className="Aum-Head">
             <tr className="mid">
-              <th rowSpan="2"  style={{ lineHeight: "4" }}>
-                Zone
+              <th rowSpan="2" style={{ lineHeight: "4" }} onClick={() => handleSort("ZONE")}>               
+                  Zone
               </th>
-              <th rowSpan="2"  style={{ lineHeight: "4" }}>
-                Total AUM
+              <th rowSpan="2" style={{ lineHeight: "4" }} onClick={() => handleSort("TOTAL_AUM")}>
+                  Total AUM
               </th>
               <th colSpan="6">AUM</th>
             </tr>
             <tr>
-              <th className="forright">Equity</th>
-              <th className="forright">Hybrid</th>
-              <th className="forright">Arbitrage</th>
-              <th className="forright">Passive</th>
-              <th className="forright">Fixed Income</th>
-              <th className="forright">Cash</th>
+              <th className="forright" onClick={() => handleSort("EQUITY_AUM")}>
+                  Equity
+              </th>
+              <th className="forright" onClick={() => handleSort("HYBRID_AUM")}>
+                 Hybrid
+              </th>
+              <th className="forright" onClick={() => handleSort("ARBITRAGE_AUM")}>
+                 Arbitrage
+              </th>
+              <th className="forright" onClick={() => handleSort("PASSIVE_AUM")}>
+                  Passive
+              </th>
+              <th className="forright" onClick={() => handleSort("FIXED_INCOME_AUM")}>
+                  Fixed Income
+              </th>
+              <th className="forright" onClick={() => handleSort("CASH_AUM")}>
+                  Cash
+              </th>
             </tr>
           </thead>
           <tbody>
-            {aum_period.map((item) => (
+            {sortedData.map((item) => (
               <tr key={item.ZONE}>
                 <td>
-                <button
-                    className="textlink"
-                    onClick={() => handleZoneClick(item.ZONE)}
-                  >
+                  <button className="textlink" onClick={() => handleZoneClick(item.ZONE)}>
                     {item.ZONE}
                   </button>
                 </td>
@@ -88,7 +130,9 @@ const navigate = useNavigate();
                   {formatNumberToIndianFormat(parseFloat(item.PASSIVE_AUM))}
                 </td>
                 <td className="forright">
-                  {formatNumberToIndianFormat(parseFloat(item.FIXED_INCOME_AUM))}
+                  {formatNumberToIndianFormat(
+                    parseFloat(item.FIXED_INCOME_AUM)
+                  )}
                 </td>
                 <td className="forright">
                   {formatNumberToIndianFormat(parseFloat(item.CASH_AUM))}
@@ -101,5 +145,4 @@ const navigate = useNavigate();
     </div>
   );
 };
-
 export default Aum;

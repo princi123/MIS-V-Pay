@@ -7,10 +7,12 @@ import { AumDropdownApi, usePeriodApi } from "../RetailApi/AUM_Api";
 import excel from "../../Assets/images/excel_icon.png";
 import { ExportToExcel } from "./ExportToExcel";
 import ExportToPDF from "./ExportToPDF";
+import LoaderSearch from "../../Table/SubTable/LoaderSearch";
 
 const Search = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [hide, setHide] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { aum_period, loading, report_period, setReportPeriod, fetchData } =
     usePeriodApi();
   const { aum_dropdown } = AumDropdownApi();
@@ -24,6 +26,10 @@ const Search = () => {
   };
 
   const SearchOnClick = async (e) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
     try {
       await fetchData();
       setHide(true);
@@ -71,11 +77,18 @@ const Search = () => {
                     <div className="col-md-6" style={{ marginTop: "30px" }}>
                       <button
                         className="BgcolorOrange btn"
-                        style={{ marginRight: "5px", padding: "11px" }}
+                        style={{ marginRight: "5px"}}
                         onClick={SearchOnClick}
+                        disabled={isLoading || !report_period}
                       >
-                        Search
+                        <b>Search</b>
                       </button>
+                      {isLoading && (
+                                <div className="text-center mt-4">
+                                  <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
+                                  <LoaderSearch/>
+                                </div>
+                              )}
                     </div>
                     <div className="col-md-6  " style={{ marginTop: "30px" }}>
                       <p className="icon">
@@ -97,5 +110,4 @@ const Search = () => {
     </div>
   );
 };
-
 export default Search;
