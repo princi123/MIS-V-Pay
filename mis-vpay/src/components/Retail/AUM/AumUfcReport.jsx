@@ -8,6 +8,7 @@ import excel from "../../Assets/images/excel_icon.png";
 import { ExportToExcel } from "./ExportToExcel";
 import LoaderSearch from "../../Table/SubTable/LoaderSearch";
 import { useParams } from "react-router-dom";
+
 const AumUfcReport = () => {
   const { zone, report_period, region_code } = useParams();
   const queryParams = useMemo(
@@ -21,9 +22,48 @@ const AumUfcReport = () => {
   const queryParamsString = new URLSearchParams(queryParams).toString();
   const { aum_ufc, loading } = useUfc(queryParamsString);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sortBy, setSortBy] = useState(null);
+  const [sortDirection, setSortDirection] = useState("asc");
+
+  const handleSort = (column) => {
+    if (sortBy === column) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(column);
+      setSortDirection(column === "EMP_NAME" ? "asc" : "desc");
+    }
+  };
+
+  const sortedData = [...aum_ufc].sort((a, b) => {
+    if (sortBy === null) return 0;
+    let aValue = a[sortBy];
+    let bValue = b[sortBy];
+
+    if (sortBy === "UFC_CODE" || sortBy === "UFC_NAME" || sortBy === "EMP_NAME" || sortBy ==="EMPLID") {
+      aValue = aValue !== null ? aValue.toLowerCase() : "";
+      bValue = bValue !== null ? bValue.toLowerCase() : "";
+    } else {
+      aValue = parseFloat(aValue);
+      bValue = parseFloat(bValue);
+    }
+
+    if (sortDirection === "asc") {
+      return aValue < bValue ? -1 : 1;
+    } else {
+      return aValue > bValue ? -1 : 1;
+    }
+  });
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+  const formatNumberToIndianFormat = (number) => {
+    if (typeof number !== "number") {
+      return number;
+    }
+    const parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
   };
 
   const handleExport = () => {
@@ -103,52 +143,76 @@ const AumUfcReport = () => {
                             <th rowSpan="2">Zone</th>
                             <th rowSpan="2">Region</th>
                             <th rowSpan="2">Region Code</th>
-                            <th rowSpan="2">UFC Code</th>
-                            <th rowSpan="2">UFC</th>
-                            <th rowSpan="2">Employee ID</th>
-                            <th rowSpan="2">Employee Name</th>
-                            <th rowSpan="2">Total AUM</th>
+                            <th rowSpan="2" onClick={() => handleSort("UFC_CODE")}>UFC Code</th>
+                            <th rowSpan="2" onClick={() => handleSort("UFC_NAME")}>UFC</th>
+                            <th rowSpan="2" onClick={() => handleSort("EMPLID")}>Employee ID</th>
+                            <th rowSpan="2" onClick={() => handleSort("EMP_NAME")}>Employee Name</th>
+                            <th rowSpan="2" onClick={() => handleSort("TOTAL_AUM")}>Total AUM</th>
                             <th colSpan="6">AUM</th>
                           </tr>
                           <tr>
-                            <th className="forright">Equity</th>
-                            <th className="forright">Hybrid</th>
-                            <th className="forright">Arbitrage</th>
-                            <th className="forright">Passive(ex-Debt)</th>
-                            <th className="forright">Fixed Income</th>
-                            <th className="forright">Cash</th>
+                            <th className="forright" onClick={() => handleSort("EQUITY_AUM")}>Equity</th>
+                            <th className="forright" onClick={() => handleSort("HYBRID_AUM")}>Hybrid</th>
+                            <th className="forright" onClick={() => handleSort("ARBITRAGE_AUM")}>Arbitrage</th>
+                            <th className="forright" onClick={() => handleSort("PASSIVE_AUM")}>Passive(ex-Debt)</th>
+                            <th className="forright" onClick={() => handleSort("FIXED_INCOME_AUM")}>Fixed Income</th>
+                            <th className="forright" onClick={() => handleSort("CASH_AUM")}>Cash</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {aum_ufc.map((item) => (
-                            <tr key={item.SrNo}>
+                          {sortedData.map((item) => (
+                            <tr key={item.ZONE}>
                               <td className="forleft">{item.ZONE}</td>
                               <td className="forleft">{item.REGION_NAME}</td>
                               <td className="forleft">{item.REGION_CODE}</td>
                               <td className="forleft">{item.UFC_CODE}</td>
                               <td className="forleft">{item.UFC_NAME}</td>
-                              <td className="forleft">{item.EMPLID}</td>
+                              <td className="forleft">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(item.EMPLID)
+                                )}</td>
                               <td className="forleft">{item.EMP_NAME}</td>
-                              <td className="forright">{item.TOTAL_AUM}</td>
-                              <td className="forright">{item.EQUITY_AUM}</td>
-                              <td className="forright">{item.HYBRID_AUM}</td>
-                              <td className="forright">{item.ARBITRAGE_AUM}</td>
-                              <td className="forright">{item.PASSIVE_AUM}</td>
-                              <td className="forright">{item.FIXED_INCOME_AUM}</td>
-                              <td className="forright">{item.CASH_AUM}</td>
+                              <td className="forright">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(item.TOTAL_AUM)
+                                )}</td>
+                              <td className="forright">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(item.EQUITY_AUM)
+                                )}</td>
+                              <td className="forright">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(item.HYBRID_AUM)
+                                )}</td>
+                              <td className="forright">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(item.ARBITRAGE_AUM)
+                                )}</td>
+                              <td className="forright">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(item.PASSIVE_AUM)
+                                )}</td>
+                              <td className="forright">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(item.FIXED_INCOME_AUM)
+                                )}</td>
+                              <td className="forright">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(item.CASH_AUM)
+                                )}</td>
                             </tr>
                           ))}
                         </tbody>
                       </table>
                     </div>
-                  </div>  
-                )}
                   </div>
-            </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </>
-      );
+      </div>
+    </>
+  );
 };
-      export default AumUfcReport;
+export default AumUfcReport;

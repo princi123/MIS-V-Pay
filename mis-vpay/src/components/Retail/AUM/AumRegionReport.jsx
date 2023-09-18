@@ -23,6 +23,38 @@ const AumRegionReport = () => {
   const queryParamsString = new URLSearchParams(queryParams).toString();
   const { aum_details, loading } = useAUMApi(queryParamsString);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sortBy, setSortBy] = useState(null);
+  const [sortDirection, setSortDirection] = useState("asc");
+
+  const handleSort = (column) => {
+    if (sortBy === column) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(column);
+      setSortDirection(column === "REGION_CODE" ? "asc" : "desc");
+    }
+  };
+
+  const sortedData = [...aum_details].sort((a, b) => {
+    if (sortBy === null) return 0;
+    let aValue = a[sortBy];
+    let bValue = b[sortBy];
+
+    if (sortBy === "REGION_CODE" || sortBy === "REGION_NAME") {
+      aValue = aValue.toLowerCase();
+      bValue = bValue.toLowerCase();
+    } else {
+      aValue = parseFloat(aValue);
+      bValue = parseFloat(bValue);
+    }
+
+    if (sortDirection === "asc") {
+      return aValue < bValue ? -1 : 1;
+    } else {
+      return aValue > bValue ? -1 : 1;
+    }
+  });
+
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -30,7 +62,6 @@ const AumRegionReport = () => {
     if (typeof number !== "number") {
       return number;
     }
-
     const parts = number.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
@@ -40,7 +71,7 @@ const AumRegionReport = () => {
     ExportToExcel(aum_details, "AUM Region Report");
   };
 
-  const handleRegionClick =(region_code)=>{
+  const handleRegionClick = (region_code) => {
     navigate(`/AumUfcReport/${zone}/${report_period}/${region_code}`)
   }
 
@@ -51,9 +82,8 @@ const AumRegionReport = () => {
         <div className="d-flex">
           <SideBar isOpen={sidebarOpen} />
           <div
-            className={` ${
-              sidebarOpen ? "dashboard-closed" : "dashboard-full"
-            }`}
+            className={` ${sidebarOpen ? "dashboard-closed" : "dashboard-full"
+              }`}
           >
             <div className="card p-2 m-4">
               <h5 className="headline p-2">
@@ -85,20 +115,20 @@ const AumRegionReport = () => {
                       </h5>
                     </div>
                     <div className="col-md-2 list-group">
-                    <p className="theader">
-                      <b>All India Region Wise</b>
-                    </p>
-                  </div>
-                  <div className="col-md-2">
-                    <p className="theader">
-                      <b>All India UFC Wise </b>
-                    </p>
-                  </div>
-                  <div className="col-md-2">
-                    <p className="theader">
-                      <b>All India RM Wise </b>
-                    </p>
-                  </div>
+                      <p className="theader">
+                        <b>All India Region Wise</b>
+                      </p>
+                    </div>
+                    <div className="col-md-2">
+                      <p className="theader">
+                        <b>All India UFC Wise </b>
+                      </p>
+                    </div>
+                    <div className="col-md-2">
+                      <p className="theader">
+                        <b>All India RM Wise </b>
+                      </p>
+                    </div>
                   </div>
                 </div>
               )}
@@ -109,34 +139,34 @@ const AumRegionReport = () => {
                       <th rowSpan="2" className="headtable">
                         Zone
                       </th>
-                      <th rowSpan="2" className="headtable">
-                          Region code
+                      <th rowSpan="2" className="headtable" onClick={() => handleSort("REGION_CODE")}>
+                        Region code
                       </th>
-                      <th rowSpan="2" className="headtable">
-                          Region Name
+                      <th rowSpan="2" className="headtable" onClick={() => handleSort("REGION_NAME")}>
+                        Region Name
                       </th>
-                      <th rowSpan="2" className="headtable">
+                      <th rowSpan="2" className="headtable" onClick={() => handleSort("TOTAL_AUM")}>
                         Total AUM
                       </th>
                       <th colSpan="6">AUM</th>
                     </tr>
                     <tr>
-                      <th className="forright">Equity</th>
-                      <th className="forright">Hybrid</th>
-                      <th className="forright">Arbitrage</th>
-                      <th className="forright">Passive</th>
-                      <th className="forright">Fixed Income</th>
-                      <th className="forright">Cash</th>
+                      <th className="forright" onClick={() => handleSort("EQUITY_AUM")}>Equity</th>
+                      <th className="forright" onClick={() => handleSort("HYBRID_AUM")}>Hybrid</th>
+                      <th className="forright" onClick={() => handleSort("ARBITRAGE_AUM")}>Arbitrage</th>
+                      <th className="forright" onClick={() => handleSort("PASSIVE_AUM")}>Passive</th>
+                      <th className="forright" onClick={() => handleSort("FIXED_INCOME_AUM")}>Fixed Income</th>
+                      <th className="forright" onClick={() => handleSort("CASH_AUM")}>Cash</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {aum_details.map((item) => (
+                    {sortedData.map((item) => (
                       <>
-                        <tr key={item.SrNo}>
+                        <tr key={item.ZONE}>
                           <td>{item.ZONE}</td>
                           <td>
-                          <button
-                              className="btn "
+                            <button
+                              className="textlink "
                               onClick={() => handleRegionClick(item.REGION_CODE)}
                             >
                               {item.REGION_CODE}
@@ -191,5 +221,4 @@ const AumRegionReport = () => {
     </div>
   );
 };
-
 export default AumRegionReport;
