@@ -10,6 +10,9 @@ import UfcWise from './components/Table/All-Wise-Table/UfcWise';
 import RmWise from './components/Table/All-Wise-Table/RmWise';
 import AumRegionReport from './components/Retail/AUM/AumRegionReport';
 import AumUfcReport from './components/Retail/AUM/AumUfcReport';
+import Manage_user from './components/UserModule/Manage_user';
+import Employee_details from './components/UserModule/Employee_details';
+
 function App() {
   return (
     <div className="App">
@@ -25,7 +28,8 @@ function App() {
         <Route path='/RmWise' element={<RmWise/>}/>
         <Route path='/AumRegionReport/:zone/:report_period' element={<AumRegionReport/>}/>
         <Route path="/AumUfcReport/:zone/:report_period/:region_code" element={<AumUfcReport />} />
-
+        <Route path='/manageuser' element={<Manage_user/>}/>
+        <Route path='/employeedetails' element={<Employee_details/>}/>
       </Routes>
     </BrowserRouter>         
     </div>
