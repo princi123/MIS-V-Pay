@@ -4,7 +4,14 @@ import RegionApi from "./Api/RegionApi";
 import Loader from "../Loader";
 import TableRowWithCollapseRedemption from "./UFC/TableRowWithCollapseRedemption";
 
-const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat, }) => {
+const SubRedemptionTable = ({
+  pzone,
+  startDate,
+  endDate,
+  select_type,
+  assetClass,
+  formatNumberToIndianFormat,
+}) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,6 +39,14 @@ const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass
       setClickedIndex(index);
     }
   };
+
+  let totalEquity = 0;
+  let totalHybrid = 0;
+  let totalArbitrage = 0;
+  let totalPassive = 0;
+  let totalFixedIncome = 0;
+  let totalCash = 0;
+  let grandTotal = 0;
 
   return (
     <div className="new-component container-fluid p-0">
@@ -81,67 +96,107 @@ const SubRedemptionTable = ({ pzone, startDate, endDate, select_type, assetClass
           </tr>
         </thead>
         <tbody style={{ backgroundColor: "#DDD" }}>
-          {transaction_summary_report_region.map((summary, index) => (
-            <React.Fragment key={index}>
-              <tr>
-                <td>
-                  <button
-                    className="textlink"
-                    onClick={() => handleButtonClick(index)}
-                    disabled={isLoading}
-                  >
-                    <b className="sharp-font">{summary.REGION_NAME}</b>
-                  </button>
-                  {isLoading && (
-                    <div className="text-center mt-4">
-                      <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
-                      <Loader className="loder" />
-                    </div>
-                  )}
-                </td>
-                <td className="text-end">
-                  {formatNumberToIndianFormat(parseFloat(summary.REQUITY))}
-                </td>
-                <td className="text-end">
-                  {formatNumberToIndianFormat(parseFloat(summary.RHYBRID))}
-                </td>
-                <td className="text-end">
-                  {formatNumberToIndianFormat(parseFloat(summary.RARBITRAGE))}
-                </td>
-                <td className="text-end">
-                  {formatNumberToIndianFormat(parseFloat(summary.RPASSIVE))}
-                </td>
-                <td className="text-end">
-                  {formatNumberToIndianFormat(
-                    parseFloat(summary.RFIXED_INCOME)
-                  )}
-                </td>
-                <td className="text-end">
-                  {formatNumberToIndianFormat(parseFloat(summary.RCASH))}
-                </td>
-                <td className="text-end" id="total">
-                  {formatNumberToIndianFormat(parseFloat(summary.RTOTAL))}
-                </td>
-              </tr>
-              {clickedIndex === index && (
-                <tr key={`subtable-${index}`}>
-                  <td colSpan="8" className="p-0">
-                    {clickedIndex === index && (
-                      <TableRowWithCollapseRedemption
-                        region_name={summary.REGION_NAME}
-                        startDate={startDate}
-                        endDate={endDate}
-                        assetClass={assetClass}
-                        select_type={select_type}
-                        pzone={pzone}
-                        formatNumberToIndianFormat={formatNumberToIndianFormat}
-                      />
+          {transaction_summary_report_region.map((summary, index) => {
+            totalEquity += parseFloat(summary.REQUITY);
+            totalHybrid += parseFloat(summary.RHYBRID);
+            totalArbitrage += parseFloat(summary.RARBITRAGE);
+            totalPassive += parseFloat(summary.RPASSIVE);
+            totalFixedIncome += parseFloat(summary.RFIXED_INCOME);
+            totalCash += parseFloat(summary.RCASH);
+            grandTotal += parseFloat(summary.RTOTAL);
+
+            return (
+              <React.Fragment key={index}>
+                <tr>
+                  <td>
+                    <button
+                      className="textlink"
+                      onClick={() => handleButtonClick(index)}
+                      disabled={isLoading}
+                    >
+                      <b className="sharp-font">{summary.REGION_NAME}</b>
+                    </button>
+                    {isLoading && (
+                      <div className="text-center mt-4">
+                        <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
+                        <Loader className="loder" />
+                      </div>
                     )}
                   </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(summary.REQUITY))}
+                  </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(summary.RHYBRID))}
+                  </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(summary.RARBITRAGE))}
+                  </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(summary.RPASSIVE))}
+                  </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(
+                      parseFloat(summary.RFIXED_INCOME)
+                    )}
+                  </td>
+                  <td className="text-end">
+                    {formatNumberToIndianFormat(parseFloat(summary.RCASH))}
+                  </td>
+                  <td className="text-end" id="total">
+                    {formatNumberToIndianFormat(parseFloat(summary.RTOTAL))}
+                  </td>
                 </tr>
+                {clickedIndex === index && (
+                  <tr key={`subtable-${index}`}>
+                    <td colSpan="8" className="p-0">
+                      {clickedIndex === index && (
+                        <TableRowWithCollapseRedemption
+                          region_name={summary.REGION_NAME}
+                          startDate={startDate}
+                          endDate={endDate}
+                          assetClass={assetClass}
+                          select_type={select_type}
+                          pzone={pzone}
+                          formatNumberToIndianFormat={
+                            formatNumberToIndianFormat
+                          }
+                        />
+                      )}
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
+            );
+          })}
+          <tr className="colorwhite BgcolorOrange">
+            <td>TOTAL</td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalEquity.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalHybrid.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(
+                parseFloat(totalArbitrage.toFixed(2))
               )}
-            </React.Fragment>
-          ))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalPassive.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(
+                parseFloat(totalFixedIncome.toFixed(2))
+              )}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalCash.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(grandTotal.toFixed(2)))}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

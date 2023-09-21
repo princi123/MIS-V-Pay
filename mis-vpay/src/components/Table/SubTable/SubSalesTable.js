@@ -4,7 +4,14 @@ import RegionApi from "./Api/RegionApi";
 import TableRowWithCollapse from "./UFC/TableRowWithCollapse";
 import Loader from "../Loader";
 
-const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat, }) => {
+const SubSalesTable = ({
+  pzone,
+  startDate,
+  endDate,
+  select_type,
+  assetClass,
+  formatNumberToIndianFormat,
+}) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,6 +39,14 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, for
       setClickedIndex(index);
     }
   };
+
+  let totalEquity = 0;
+  let totalHybrid = 0;
+  let totalArbitrage = 0;
+  let totalPassive = 0;
+  let totalFixedIncome = 0;
+  let totalCash = 0;
+  let grandTotal = 0;
 
   return (
     <div className="new-component container-fluid p-0">
@@ -81,8 +96,15 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, for
           </tr>
         </thead>
         <tbody style={{ backgroundColor: "#DADADA" }}>
-          {Array.isArray(transaction_summary_report_region) ? (
-            transaction_summary_report_region.map((summary, index) => (
+          {transaction_summary_report_region.map((summary, index) => {
+            totalEquity += parseFloat(summary.SEQUITY);
+            totalHybrid += parseFloat(summary.SHYBRID);
+            totalArbitrage += parseFloat(summary.SARBITRAGE);
+            totalPassive += parseFloat(summary.SPASSIVE);
+            totalFixedIncome += parseFloat(summary.SFIXED_INCOME);
+            totalCash += parseFloat(summary.SCASH);
+            grandTotal += parseFloat(summary.STOTAL);
+            return (
               <React.Fragment key={index}>
                 <tr>
                   <td>
@@ -144,12 +166,36 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, for
                   </tr>
                 )}
               </React.Fragment>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="8">Loading data...</td>
-            </tr>
-          )}
+            );
+          })}
+          <tr className="colorwhite BgcolorOrange">
+            <td>TOTAL</td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalEquity.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalHybrid.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(
+                parseFloat(totalArbitrage.toFixed(2))
+              )}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalPassive.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(
+                parseFloat(totalFixedIncome.toFixed(2))
+              )}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalCash.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(grandTotal.toFixed(2)))}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

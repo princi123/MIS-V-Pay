@@ -1,46 +1,51 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Navbar from "../../Shared/Navbar";
 import SideBar from "../../Shared/SideBar/SideBar";
 import ExportToPDF from "../../Retail/AUM/ExportToPDF";
 import excel from "../../Assets/images/excel_icon.png";
+import { useRMApi } from "../../Retail/RetailApi/Link_api";
+import { Link, useParams } from "react-router-dom";
+import RmWiseNetsales from "./RmWiseNetsales";
+import RmWiseRedemption from "./RmWiseRedemption";
+import { ExportPdfRegion } from "./ExportPdfRegion";
+import { ExportExcelRM } from "./ExportExcel";
 
 const RmWise = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { startDate, endDate, select_type } = useParams();
+  const formattedStartDate = startDate.split("-").reverse().join("/");
+  const formattedEndDate = endDate.split("-").reverse().join("/");
+  const queryParams = useMemo(() => {
+    return {
+      start_date: formattedStartDate,
+      end_date: formattedEndDate,
+      select_type: select_type,
+    };
+  }, [formattedStartDate, formattedEndDate, select_type]);
 
+  const queryParamsString = new URLSearchParams(queryParams).toString();
+  const { rm, loading } = useRMApi(queryParamsString);
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
-  const data = [
-    {
-      ufcCode: "UFC1",
-      ufcName: "UFC One",
-      rmCode: "RM101",
-      rmName: "RM One",
-      funcRole: "Role 1",
-      equity: 100000,
-      hybrid: 75000,
-      arbitrage: 25000,
-      passive: 50000,
-      fixedIncome: 80000,
-      cash: 30000,
-      total: 285000,
-    },
-    {
-      ufcCode: "UFC2",
-      ufcName: "UFC Two",
-      rmCode: "RM102",
-      rmName: "RM Two",
-      funcRole: "Role 2",
-      equity: 90000,
-      hybrid: 70000,
-      arbitrage: 22000,
-      passive: 48000,
-      fixedIncome: 75000,
-      cash: 28000,
-      total: 263000,
-    },
-    // Add more data as needed
-  ];
+
+  let totalEquity = 0;
+  let totalHybrid = 0;
+  let totalArbitrage = 0;
+  let totalPassive = 0;
+  let totalFixedIncome = 0;
+  let totalCash = 0;
+  let grandTotal = 0;
+
+  const formatNumberToIndianFormat = (number) => {
+    if (typeof number !== "number") {
+      return number;
+    }
+
+    const parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  };
 
   return (
     <div className="new-component container-fluid">
@@ -61,17 +66,29 @@ const RmWise = () => {
                     <b className="gray-color">(In Lakhs)</b>
                   </h5>
                 </div>
-                <div className="col-md-12 d-flex justify-content-end m-0" style={{ marginTop: "30px" }}>
-                      <p className="icon">
-                        <button className="border-0">
-                          <img src={excel} alt="excelicon" />
-                        </button>
-                        |
-                        <ExportToPDF/>
-                      </p>
-                  </div>
+                <div
+                  className="col-md-12 d-flex justify-content-between "
+                  style={{ marginTop: "30px" }}
+                >
+                  <Link
+                    to="/Transaction"
+                    className="btn"
+                    style={{
+                      backgroundColor: "rgb(58 94 147 / 98%)",
+                      color: "white",
+                      height: "fit-content",
+                    }}
+                  >
+                    back
+                  </Link>
+                  <p className="icon">
+                  <ExportExcelRM/>
+                    |
+                    <ExportPdfRegion />
+                  </p>
+                </div>
               </div>
-              <table className="mt-3 table nested-table">
+              <table className="mt-3 table active" id="rm1" style={{ fontSize: 14 }}>
                 <thead
                   style={{
                     backgroundColor: "rgb(58 94 147 / 98%)",
@@ -108,24 +125,118 @@ const RmWise = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.ufcCode}</td>
-                      <td>{item.ufcName}</td>
-                      <td>{item.rmCode}</td>
-                      <td>{item.rmName}</td>
-                      <td>{item.funcRole}</td>
-                      <td className="text-end">{item.equity}</td>
-                      <td className="text-end">{item.hybrid}</td>
-                      <td className="text-end">{item.arbitrage}</td>
-                      <td className="text-end">{item.passive}</td>
-                      <td className="text-end">{item.fixedIncome}</td>
-                      <td className="text-end">{item.cash}</td>
-                      <td className="text-end">{item.total}</td>
-                    </tr>
-                  ))}
+                  {rm.map((rm, index) => {
+                    totalEquity += parseFloat(rm.SEQUITY);
+                    totalHybrid += parseFloat(rm.SHYBRID);
+                    totalArbitrage += parseFloat(rm.SARBITRAGE);
+                    totalPassive += parseFloat(rm.SPASSIVE);
+                    totalFixedIncome += parseFloat(rm.SFIXED_INCOME);
+                    totalCash += parseFloat(rm.SCASH);
+                    grandTotal += parseFloat(rm.STOTAL);
+                    return (
+                      <tr key={index}>
+                        <td>{rm.UFC_CODE}</td>
+                        <td>{rm.UFC_NAME}</td>
+                        <td>{rm.RMCODE}</td>
+                        <td>{rm.RMNAME}</td>
+                        <td>{rm.FUNCROLE}</td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(rm.REQUITY).toFixed(2)
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(rm.RHYBRID).toFixed(2)
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(rm.RARBITRAGE).toFixed(2)
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(rm.RPASSIVE).toFixed(2)
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(rm.RFIXED_INCOME).toFixed(2)
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(rm.RCASH).toFixed(2)
+                          )}
+                        </td>
+                        <td className="text-end" id="total">
+                          {formatNumberToIndianFormat(
+                            parseFloat(rm.RTOTAL).toFixed(2)
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                  <tr
+                    style={{
+                      backgroundColor: "rgb(58 94 147 / 98%)",
+                      color: "white",
+                    }}
+                  >
+                    <td>TOTAL</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(
+                        parseFloat(totalEquity.toFixed(2))
+                      )}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(
+                        parseFloat(totalHybrid.toFixed(2))
+                      )}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(
+                        parseFloat(totalArbitrage.toFixed(2))
+                      )}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(
+                        parseFloat(totalPassive.toFixed(2))
+                      )}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(
+                        parseFloat(totalFixedIncome.toFixed(2))
+                      )}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(
+                        parseFloat(totalCash.toFixed(2))
+                      )}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(
+                        parseFloat(grandTotal.toFixed(2))
+                      )}
+                    </td>
+                  </tr>
                 </tbody>
               </table>
+              <RmWiseNetsales
+                formatNumberToIndianFormat={formatNumberToIndianFormat}
+                rm={rm}
+                loading={loading}
+              />
+              <RmWiseRedemption
+                formatNumberToIndianFormat={formatNumberToIndianFormat}
+                rm={rm}
+                loading={loading}
+              />
             </div>
           </div>
         </div>

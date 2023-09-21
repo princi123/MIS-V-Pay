@@ -3,6 +3,7 @@ import "./Table-CSS/SalesTable.css";
 import SubSalesTable from "./SubTable/SubSalesTable";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SalesTable = ({
   transaction_summary_report,
@@ -15,6 +16,15 @@ const SalesTable = ({
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [sortOrder, setSortOrder] = useState({ column: null, order: "asc" });
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  let totalEquity = 0;
+  let totalHybrid = 0;
+  let totalArbitrage = 0;
+  let totalPassive = 0;
+  let totalFixedIncome = 0;
+  let totalCash = 0;
+  let grandTotal = 0;
 
   const handleHeaderClick = (column) => {
     const order =
@@ -65,6 +75,15 @@ const SalesTable = ({
       setClickedIndex(index);
     }
   };
+  const handleRegion = () => {
+    navigate(`/RegionWiseSales/${startDate}/${endDate}/${select_type}`);
+  };
+  const handleUfc = () => {
+    navigate(`/UfcWise/${startDate}/${endDate}/${select_type}`);
+  };
+  const handleRM = () => {
+    navigate(`/RmWise/${startDate}/${endDate}/${select_type}`);
+  };
 
   return (
     <>
@@ -83,25 +102,24 @@ const SalesTable = ({
                 </div>
                 <div className="col-md-2 list-group">
                   <p className="theader">
-                  <Link className="textlink" to="/RegionWise">
-                  <b>All India Region Wise</b>
-                  </Link>
-                    
+                    <button className=" btn textlink" onClick={handleRegion}>
+                      <b>All India Region Wise</b>
+                    </button>
                   </p>
                 </div>
                 <div className="col-md-2">
                   <p className="theader">
-                  <Link className="textlink" to="/UfcWise">
-                  <b>All India UFC Wise </b>
-                  </Link>
-                    </p>
+                    <button className=" btn textlink" onClick={handleUfc}>
+                      <b>All India UFC Wise </b>
+                    </button>
+                  </p>
                 </div>
                 <div className="col-md-2">
                   <p className="theader">
-                  <Link className="textlink" to="/RmWise">
-                  <b>All India RM Wise </b>
-                  </Link>
-                    </p>
+                    <button className=" btn textlink" onClick={handleRM}>
+                      <b>All India RM Wise </b>
+                    </button>
+                  </p>
                 </div>
                 <div className="col-md-3" />
                 <div className="col-md-12">
@@ -163,78 +181,126 @@ const SalesTable = ({
                       </tr>
                     </thead>
                     <tbody>
-                      {sortedData.map((summary, index) => (
-                        <React.Fragment key={index}>
-                          <tr>
-                            <td>
-                              <button
-                                className="textlink"
-                                onClick={() => handleButtonClick(index)}
-                                disabled={isLoading}
-                              >
-                                <b className="sharp-font">{summary.ZONE}</b>
-                              </button>
-                              {isLoading && (
-                                <div className="text-center mt-4">
-                                  <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
-                                  <Loader className="loder" />
-                                </div>
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SEQUITY)
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SHYBRID)
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SARBITRAGE)
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SPASSIVE)
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SFIXED_INCOME)
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SCASH)
-                              )}
-                            </td>
-                            <td className="text-end color-biege" id="total">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.STOTAL)
-                              )}
-                            </td>
-                          </tr>
-                          {clickedIndex === index && (
-                            <tr key={`subtable-${index}`}>
-                              <td colSpan="8" className="p-0">
-                                <SubSalesTable
-                                  pzone={summary.ZONE}
-                                  startDate={startDate}
-                                  endDate={endDate}
-                                  assetClass={assetClass}
-                                  select_type={select_type}
-                                  formatNumberToIndianFormat={
-                                    formatNumberToIndianFormat
-                                  }
-                                />
+                      {sortedData.map((summary, index) => {
+                        totalEquity += parseFloat(summary.SEQUITY);
+                        totalHybrid += parseFloat(summary.SHYBRID);
+                        totalArbitrage += parseFloat(summary.SARBITRAGE);
+                        totalPassive += parseFloat(summary.SPASSIVE);
+                        totalFixedIncome += parseFloat(summary.SFIXED_INCOME);
+                        totalCash += parseFloat(summary.SCASH);
+                        grandTotal += parseFloat(summary.STOTAL);
+
+                        return (
+                          <React.Fragment key={index}>
+                            <tr>
+                              <td>
+                                <button
+                                  className="textlink"
+                                  onClick={() => handleButtonClick(index)}
+                                  disabled={isLoading}
+                                >
+                                  <b className="sharp-font">{summary.ZONE}</b>
+                                </button>
+                                {isLoading && (
+                                  <div className="text-center mt-4">
+                                    <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
+                                    <Loader className="loder" />
+                                  </div>
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SEQUITY)
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SHYBRID)
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SARBITRAGE)
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SPASSIVE)
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SFIXED_INCOME)
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SCASH)
+                                )}
+                              </td>
+                              <td className="text-end color-biege" id="total">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.STOTAL)
+                                )}
                               </td>
                             </tr>
+                            {clickedIndex === index && (
+                              <tr key={`subtable-${index}`}>
+                                <td colSpan="8" className="p-0">
+                                  <SubSalesTable
+                                    pzone={summary.ZONE}
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                    assetClass={assetClass}
+                                    select_type={select_type}
+                                    formatNumberToIndianFormat={
+                                      formatNumberToIndianFormat
+                                    }
+                                  />
+                                </td>
+                              </tr>
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
+                      <tr className="bgcolorBlue text-white">
+                        <td>TOTAL</td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalEquity.toFixed(2))
                           )}
-                        </React.Fragment>
-                      ))}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalHybrid.toFixed(2))
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalArbitrage.toFixed(2))
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalPassive.toFixed(2))
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalFixedIncome.toFixed(2))
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalCash.toFixed(2))
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(grandTotal.toFixed(2))
+                          )}
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -246,4 +312,5 @@ const SalesTable = ({
     </>
   );
 };
+
 export default SalesTable;
