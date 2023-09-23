@@ -1,7 +1,7 @@
-class  AumDropdownService
+class ManageUserReportingRoleDropdownService
   def self.get_dropdown_details
     conn = OCI8.new('MISVPAY', 'MISVPAY@123', '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=103.12.1.155)(PORT=1521))(CONNECT_DATA=(SID=xe)))')
-    cursor = conn.parse('BEGIN GET_AUM_SELECT_PERIOD_DROP_DOWN_DATA(:get_all_data); END;')
+    cursor = conn.parse('BEGIN GET_MANAGE_USER_REPORTING_ROLES_DROPDOWN(:get_all_data); END;')
     cursor.bind_param(':get_all_data', nil, OCI8::Cursor)
     cursor.exec
     dropdown_data = []
@@ -21,4 +21,4 @@ class  AumDropdownService
     conn.logoff
     dropdown_data
   end
-end  
+end

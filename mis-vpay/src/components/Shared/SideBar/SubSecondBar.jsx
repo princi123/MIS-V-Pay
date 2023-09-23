@@ -40,7 +40,7 @@ const SubSecondBar = ({ isOpen }) => {
         </Link>
       </div>
       <div className="card" id="main-side-card">
-        <Link className="side-link">
+        <Link  to="/manageuser" className="side-link">
           <div className="side-home">
             <img src={Manager_user} alt="home" className=" side-img p-1" />
             <span className={`sidebar ${isOpen ? "" : "closed"}`}>

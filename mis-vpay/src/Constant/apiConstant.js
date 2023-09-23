@@ -41,4 +41,22 @@ export const API_AUM_UFC = {
     DATA: (queryParams) => `${API}/aum_ufc?${queryParams}`,
 };
 
+export const API_MANAGE_USER_CHANNEL_CODE_DROPDOWN = {
+    DATA: (queryParams) => `${API}/manage_user_channel_code_dropdown?${queryParams}`,
+};
 
+export const API_MANAGE_USER_REPORTING_ROLE_DROPDOWN= {
+    DATA: `${API}/manage_user_reporting_role_dropdown`,
+};
+
+export const API_MANAGE_USER_POWER_USER_DROPDOWN= {
+    DATA: `${API}/manage_user_power_user_dropdown`,
+};
+
+export const API_MANAGE_USER_FUNCTIONAL_ROLE_DROPDOWN= {
+    DATA: `${API}/manage_user_functional_role_dropdown`,
+};
+
+export const API_MANAGE_USER_CITY_DROPDOWN= {
+    DATA: (queryParams) => `${API}/manage_user_city_dropdown?${queryParams}`
+};

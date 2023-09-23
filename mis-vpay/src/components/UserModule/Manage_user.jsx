@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import SideBar from "../Shared/SideBar/SideBar";
 import Navbar from "../Shared/Navbar";
 import "../UserModule/Manage_user.css";
+import { Link } from "react-router-dom";
+import {Usermodulechannelcodedropdown} from "./Usermoduleapi";
+
 
 const Manage_user = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
+  const queryParams = new URLSearchParams({
+    valid_upto: "30-DEC-9999"
+  })
+  const { channel_code } = Usermodulechannelcodedropdown(queryParams);
 
   return (
     <>
@@ -37,12 +44,9 @@ const Manage_user = () => {
                     <label><b>Channel Code</b></label>
                     <select class="form-select">
                       <option>Select</option>
-                      <option value="">PSUC</option>
-                      <option value="">INST</option>
-                      <option value="">SIP</option>
-                      <option value="">PRDCT</option>
-                      <option value="">UTIMF</option>
-                      <option value="">RTL</option>
+                      {channel_code.map((item)=>
+                    <option >{item.CHANNEL_CODE}</option>
+                  )} 
                     </select>
                   </div>
                 </div>
@@ -76,11 +80,11 @@ const Manage_user = () => {
               </div>
               <div className="col-md-12 d-flex justify-content-around mb-5 mt-5">
                 <div className="col-md-8"></div>
-                <div col-md-3>
+                <div >
                   <button type="btn" className="btn1"><b>Search</b></button>
                 </div>
-                <div col-md-3>
-                  <button type="btn" className="btn1"><b>Add New Record</b></button>
+                <div className="mt-2">
+                  <Link to="/employeedetails" className="btn1"><b>Add New Record</b></Link>
                 </div>
                 {/* <div col-md-2>
                   <button type="btn" className="btn1"><b>Login As User</b></button>
