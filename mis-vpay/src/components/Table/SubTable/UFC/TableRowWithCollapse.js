@@ -1,31 +1,9 @@
-import React, { useMemo, useState } from "react";
-import UfcApi from "../Api/UfcApi";
+import React, { useState } from "react";
+
 import TableRowWithSales from "../RMWISE/TableRowWithSales";
 import Loader from "../../Loader";
 
-const TableRowWithCollapse = ({
-  pzone,
-  startDate,
-  endDate,
-  select_type,
-  region_name,
-  formatNumberToIndianFormat,
-}) => {
-  const queryParams = useMemo(() => {
-    const formattedStartDate = startDate.split("-").reverse().join("/");
-    const formattedEndDate = endDate.split("-").reverse().join("/");
-    return new URLSearchParams({
-      start_date: formattedStartDate,
-      end_date: formattedEndDate,
-      asset_class: 1,
-      select_type: select_type,
-      employee_code: 2941,
-      p_zone: pzone,
-      region_name: region_name,
-    });
-  }, [startDate, endDate, region_name, select_type, pzone]);
-  const transaction_summary_report_ufc = UfcApi(queryParams);
-
+const TableRowWithCollapse = ({transaction_summary_report,formatNumberToIndianFormat}) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(false);
   const handleButtonClick = (index) => {
@@ -80,7 +58,7 @@ const TableRowWithCollapse = ({
             </tr>
           </thead>
           <tbody style={{ backgroundColor: "#8080805c" }}>
-            {transaction_summary_report_ufc.map((ufc, index) => {
+            {transaction_summary_report.map((ufc, index) => {
               totalEquity += parseFloat(ufc.SEQUITY);
               totalHybrid += parseFloat(ufc.SHYBRID);
               totalArbitrage += parseFloat(ufc.SARBITRAGE);
@@ -142,12 +120,7 @@ const TableRowWithCollapse = ({
                       <td colSpan="9" className="p-0">
                         {clickedIndex === index && (
                           <TableRowWithSales
-                            startDate={startDate}
-                            endDate={endDate}
-                            select_type={select_type}
-                            pzone={pzone}
-                            region_name={region_name}
-                            ufc_code={ufc.UFC_CODE}
+transaction_summary_report={transaction_summary_report}
                             formatNumberToIndianFormat={
                               formatNumberToIndianFormat
                             }

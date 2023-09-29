@@ -5,16 +5,8 @@ import Loader from "./Loader";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const SalesTable = ({
-  transaction_summary_report,
-  startDate,
-  endDate,
-  select_type,
-  assetClass,
-  formatNumberToIndianFormat,
-}) => {
+const SalesTable = ({transaction_summary_report,formatNumberToIndianFormat}) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
-  const [sortOrder, setSortOrder] = useState({ column: null, order: "asc" });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -26,44 +18,6 @@ const SalesTable = ({
   let totalCash = 0;
   let grandTotal = 0;
 
-  const handleHeaderClick = (column) => {
-    const order =
-      sortOrder.column === column && sortOrder.order === "asc" ? "desc" : "asc";
-    setSortOrder({ column, order });
-  };
-
-  const sortedData = [...transaction_summary_report].sort((a, b) => {
-    const columnA = a[sortOrder.column] || "";
-    const columnB = b[sortOrder.column] || "";
-    if (sortOrder.order === "asc") {
-      if (sortOrder.column === "ZONE") {
-        return columnA.localeCompare(columnB);
-      } else if (
-        sortOrder.column === "SEQUITY" ||
-        sortOrder.column === "SHYBRID" ||
-        sortOrder.column === "SARBITRAGE" ||
-        sortOrder.column === "SPASSIVE" ||
-        sortOrder.column === "SFIXED_INCOME" ||
-        sortOrder.column === "SCASH"
-      ) {
-        return parseFloat(columnA) - parseFloat(columnB);
-      }
-    } else if (sortOrder.order === "desc") {
-      if (sortOrder.column === "ZONE") {
-        return columnB.localeCompare(columnA);
-      } else if (
-        sortOrder.column === "SEQUITY" ||
-        sortOrder.column === "SHYBRID" ||
-        sortOrder.column === "SARBITRAGE" ||
-        sortOrder.column === "SPASSIVE" ||
-        sortOrder.column === "SFIXED_INCOME" ||
-        sortOrder.column === "SCASH"
-      ) {
-        return parseFloat(columnB) - parseFloat(columnA);
-      }
-    }
-  });
-
   const handleButtonClick = (index) => {
     setIsLoading(true);
     setTimeout(() => {
@@ -74,15 +28,6 @@ const SalesTable = ({
     } else {
       setClickedIndex(index);
     }
-  };
-  const handleRegion = () => {
-    navigate(`/RegionWiseSales/${startDate}/${endDate}/${select_type}`);
-  };
-  const handleUfc = () => {
-    navigate(`/UfcWise/${startDate}/${endDate}/${select_type}`);
-  };
-  const handleRM = () => {
-    navigate(`/RmWise/${startDate}/${endDate}/${select_type}`);
   };
 
   return (
@@ -102,21 +47,21 @@ const SalesTable = ({
                 </div>
                 <div className="col-md-2 list-group">
                   <p className="theader">
-                    <button className=" btn textlink" onClick={handleRegion}>
+                    <button className=" btn textlink" >
                       <b>All India Region Wise</b>
                     </button>
                   </p>
                 </div>
                 <div className="col-md-2">
                   <p className="theader">
-                    <button className=" btn textlink" onClick={handleUfc}>
+                    <button className=" btn textlink" >
                       <b>All India UFC Wise </b>
                     </button>
                   </p>
                 </div>
                 <div className="col-md-2">
                   <p className="theader">
-                    <button className=" btn textlink" onClick={handleRM}>
+                    <button className=" btn textlink">
                       <b>All India RM Wise </b>
                     </button>
                   </p>
@@ -128,49 +73,48 @@ const SalesTable = ({
                       <tr className="bgcolorBlue text-white">
                         <th
                           scope="col"
-                          onClick={() => handleHeaderClick("ZONE")}
                         >
                           ZONE
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SEQUITY")}
+                          
                         >
                           Equity
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SHYBRID")}
+                         
                         >
                           Hybrid
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SARBITRAGE")}
+                         
                         >
                           Arbitrage
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SPASSIVE")}
+                         
                         >
                           Passive(ex-Debt)
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SFIXED_INCOME")}
+                         
                         >
                           Fixed Income
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SCASH")}
+                          
                         >
                           {" "}
                           Cash{" "}
@@ -181,7 +125,7 @@ const SalesTable = ({
                       </tr>
                     </thead>
                     <tbody>
-                      {sortedData.map((summary, index) => {
+                      {transaction_summary_report.map((summary, index) => {
                         totalEquity += parseFloat(summary.SEQUITY);
                         totalHybrid += parseFloat(summary.SHYBRID);
                         totalArbitrage += parseFloat(summary.SARBITRAGE);
@@ -248,11 +192,7 @@ const SalesTable = ({
                               <tr key={`subtable-${index}`}>
                                 <td colSpan="8" className="p-0">
                                   <SubSalesTable
-                                    pzone={summary.ZONE}
-                                    startDate={startDate}
-                                    endDate={endDate}
-                                    assetClass={assetClass}
-                                    select_type={select_type}
+                                    transaction_summary_report={transaction_summary_report}
                                     formatNumberToIndianFormat={
                                       formatNumberToIndianFormat
                                     }

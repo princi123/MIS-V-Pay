@@ -35,19 +35,7 @@ const Retail_Transaction = ({ headers }) => {
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const {
-    hide,
-    startDate,
-    endDate,
-    assetClass,
-    select_type,
-    transaction_summary_report,
-    loading,
-    togglehide,
-    setAssetClass,
-    setEndDate,
-    setSelectType,
-    setStartDate,
-    formatNumberToIndianFormat,
+    hide,startDate, endDate, setStartDate, setEndDate,transaction_summary_report,loading,togglehide,select_type, setSelectType,setHide,setLoading,formatNumberToIndianFormat
   } = Api({ headers });
 
   const toggleSidebar = () => {
@@ -149,8 +137,6 @@ const Retail_Transaction = ({ headers }) => {
                           name=""
                           id="ab"
                           className="form-select form-control mt-2"
-                          value={assetClass}
-                          onChange={(e) => setAssetClass(e.target.value)}
                         >
                           <option value="">All </option>
                           <option value="">Arbitrage </option>
@@ -171,8 +157,8 @@ const Retail_Transaction = ({ headers }) => {
                           onChange={(e) => setSelectType(e.target.value)}
                         >
                           <option>Choose Select Type </option>
-                          <option value="netsales">NET SALES </option>
-                          <option value="grosssales">GROSS SALES </option>
+                          <option value="NETSALES">NET SALES </option>
+                          <option value="GROSSSALES">GROSS SALES </option>
                         </select>
                       </div>
 
@@ -239,10 +225,6 @@ const Retail_Transaction = ({ headers }) => {
                           transaction_summary_report={
                             transaction_summary_report
                           }
-                          startDate={startDate}
-                          endDate={endDate}
-                          assetClass={assetClass}
-                          select_type={select_type}
                           formatNumberToIndianFormat={
                             formatNumberToIndianFormat
                           }
@@ -251,10 +233,6 @@ const Retail_Transaction = ({ headers }) => {
                           transaction_summary_report={
                             transaction_summary_report
                           }
-                          startDate={startDate}
-                          endDate={endDate}
-                          assetClass={assetClass}
-                          select_type={select_type}
                           formatNumberToIndianFormat={
                             formatNumberToIndianFormat
                           }
@@ -263,10 +241,6 @@ const Retail_Transaction = ({ headers }) => {
                           transaction_summary_report={
                             transaction_summary_report
                           }
-                          startDate={startDate}
-                          endDate={endDate}
-                          assetClass={assetClass}
-                          select_type={select_type}
                           formatNumberToIndianFormat={
                             formatNumberToIndianFormat
                           }

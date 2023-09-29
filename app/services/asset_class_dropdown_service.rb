@@ -1,8 +1,7 @@
 class AssetClassDropdownService
     def self.get_assetclass_details(asset_class)
     conn = OCI8.new('MISVPAY', 'MISVPAY@123', '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=103.12.1.155)(PORT=1521))(CONNECT_DATA=(SID=xe)))')
-      cursor = conn.parse('BEGIN SP_MISVPAY_SCHEME_DROPDOWN_AS_A_ASSET_CLASS(:p_asset_class, :get_all_data); END;')
-      cursor.bind_param(':p_asset_class', asset_class, String)
+      cursor = conn.parse('BEGIN GET_Asset_Class_DROP_DOWN_DATA( :get_all_data); END;')
       cursor.bind_param(':get_all_data', nil, OCI8::Cursor)
       cursor.exec
       assetclass_data = []

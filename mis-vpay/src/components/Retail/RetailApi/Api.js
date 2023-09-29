@@ -6,10 +6,19 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const Api = ({headers}) => {
   const [hide, setHide] = useState(false);
+  const[employee_id, setEmployeeId] = useState("");
+  const[emprole, setEmpRole]= useState("");
+  const[quarter, setQuarter]= useState("");
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState()
   const [select_type, setSelectType] = useState("");
-  const [assetClass, setAssetClass] = useState();
+  const [scheme_code, setSchemeCode]= useState("");
+  const [channel, setChannel]= useState("");
+  const [zone, setZone]= useState("");
+  const [region, setRegion]= useState("");
+  const [ufc, setUfc]= useState("");
+  const [rm, setRm] = useState("");
+  const [common_report, setCommonReport]= useState("");
   const [transaction_summary_report, setTransactionSummaryReport] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate =useNavigate();
@@ -20,11 +29,19 @@ const Api = ({headers}) => {
       const formattedEndDate = endDate.split("-").reverse().join("/");
 
       const queryParams = new URLSearchParams({
+        employee_id: '1234',
+        emprole: 'ADMIN',
+        quarter: '202324Q2',
         start_date: formattedStartDate,
         end_date: formattedEndDate,
-        asset_class: 1,
         select_type: select_type,
-        employee_code: 2941,
+        scheme_code: 'nill',
+        channel: 'RTL',
+        zone: '',
+        region: 'BIHR',
+        ufc: 'nill',
+        rm: 'nill',
+        common_report: 'REGIONWISE'
       });
       if(startDate>endDate)
       {
@@ -47,7 +64,7 @@ const Api = ({headers}) => {
       setTransactionSummaryReport(data);
       setLoading(false)
       setHide(true)
-    
+    console.log(transaction_summary_report);
       }
     } catch (error) {
       console.error("error fetching transaction summary data", error);
@@ -75,8 +92,7 @@ const Api = ({headers}) => {
   };
 
   return{
-    hide,startDate, endDate, select_type,assetClass,transaction_summary_report,loading,
-    togglehide,setAssetClass,setEndDate,setHide,setLoading,setSelectType,setStartDate,formatNumberToIndianFormat
+    hide,startDate, endDate, setStartDate, setEndDate,select_type, setSelectType, transaction_summary_report,loading,togglehide,setHide,setLoading,formatNumberToIndianFormat
   }
   
 }
