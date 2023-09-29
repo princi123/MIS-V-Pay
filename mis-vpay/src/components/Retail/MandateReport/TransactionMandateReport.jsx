@@ -3,8 +3,8 @@ import SideBar from "../../Shared/SideBar/SideBar";
 import Navbar from "../../Shared/Navbar";
 import "./TransactionMandateReport.css"
 // import SalesTable from "../Table/SalesTable";
-// import LoaderSearch from "../Table/SubTable/LoaderSearch";
-// import Api from "./RetailApi/Api";
+import LoaderSearch from "../../Table/SubTable/LoaderSearch";
+// import Api from "../RetailApi/Api";
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Scheme } from "../RetailApi/AUM_Api"; 
@@ -12,12 +12,18 @@ import { Scheme } from "../RetailApi/AUM_Api";
 // import NetSalesTable from "../Table/NetSalesTable";
 import { ExcelToExport } from "../ExcelToExport";
 import ExportToPdf from "../ExportToPdf";
+import MandateTable from './MandateTable';
 
 const TransactionMandateReport = () => {
   const { scheme_details } = Scheme();
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
   
+  // const {
+  //   hide,
+  //   loading,
+  // } = Api();
+
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -166,20 +172,12 @@ const TransactionMandateReport = () => {
                       <LoaderSearch />
                     </div>
                   ) : (
-                    hide && (
+                    hide && ( */}
                       <div>
-                        <SalesTable
-                         
-                        />
-                        <RedemptionTable
-                      
-                        />
-                        <NetSalesTable
-                          
-                        />
+                        <MandateTable/>
                       </div>
-                    )
-                  )} */}
+                  {/* //   ) */}
+                  {/* // )} */}
                 </div>
               </>
             </div>
