@@ -23,7 +23,7 @@ function App() {
         <Route path='/RegionWise' element={<RegionWise/>}/>
         <Route path='/UfcWise' element={<UfcWise/>}/>
         <Route path='/RmWise' element={<RmWise/>}/>
-        <Route path='/AumRegionReport/:zone/:report_period' element={<AumRegionReport/>}/>
+        <Route path='/AumRegionReport' element={<AumRegionReport/>}/>
         <Route path="/AumUfcReport/:zone/:report_period/:region_code" element={<AumUfcReport />} />
 
       </Routes>
