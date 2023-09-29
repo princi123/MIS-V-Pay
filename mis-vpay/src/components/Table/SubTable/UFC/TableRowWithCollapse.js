@@ -1,24 +1,9 @@
-import React, { useMemo, useState } from "react";
-import UfcApi from "../Api/UfcApi";
+import React, { useState } from "react";
+
 import TableRowWithSales from "../RMWISE/TableRowWithSales";
 import Loader from "../../Loader";
 
-const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type, region_name, formatNumberToIndianFormat, }) => {
-  const queryParams = useMemo(() => {
-    const formattedStartDate = startDate.split("-").reverse().join("/");
-    const formattedEndDate = endDate.split("-").reverse().join("/");
-    return new URLSearchParams({
-      start_date: formattedStartDate,
-      end_date: formattedEndDate,
-      asset_class: 1,
-      select_type: select_type,
-      employee_code: 2941,
-      p_zone: pzone,
-      region_name: region_name,
-    });
-  }, [startDate, endDate, region_name, select_type, pzone]);
-  const transaction_summary_report_ufc = UfcApi(queryParams);
-
+const TableRowWithCollapse = ({transaction_summary_report,formatNumberToIndianFormat}) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(false);
   const handleButtonClick = (index) => {
@@ -33,11 +18,19 @@ const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type, region_n
     }
   };
 
+  let totalEquity = 0;
+  let totalHybrid = 0;
+  let totalArbitrage = 0;
+  let totalPassive = 0;
+  let totalFixedIncome = 0;
+  let totalCash = 0;
+  let grandTotal = 0;
+
   return (
     <>
       <div className="new-component container-fluid ">
-        <table className="mt-3 table nested-table" >
-          <thead style={{ backgroundColor: "#4C6072",color:"white" }}>
+        <table className="mt-3 table nested-table">
+          <thead style={{ backgroundColor: "#4C6072", color: "white" }}>
             <tr className="">
               <th scope="col">UFC code</th>
               <th scope="col">UFC</th>
@@ -65,71 +58,111 @@ const TableRowWithCollapse = ({ pzone, startDate, endDate, select_type, region_n
             </tr>
           </thead>
           <tbody style={{ backgroundColor: "#8080805c" }}>
-            {transaction_summary_report_ufc.map((ufc, index) => (
-              <React.Fragment key={index}>
-                <tr>
-                  <td>
-                    <button
-                      className="textlink"
-                      onClick={() => handleButtonClick(index)}
-                      disabled={isLoading}
-                    >
-                      <b className="sharp-font">{ufc.UFC_CODE}</b>
-                    </button>
-                    {isLoading && (
-                      <div className="text-center mt-4">
-                        <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
-                        <Loader className="loder" />
-                      </div>
-                    )}
-                  </td>
-                  <td>{ufc.UFC_NAME}</td>
-                  <td className="text-end">
-                    {formatNumberToIndianFormat(parseFloat(ufc.SEQUITY))}
-                  </td>
-                  <td className="text-end">
-                    {formatNumberToIndianFormat(parseFloat(ufc.SHYBRID))}
-                  </td>
-                  <td className="text-end">
-                    {formatNumberToIndianFormat(parseFloat(ufc.SARBITRAGE))}
-                  </td>
-                  <td className="text-end">
-                    {formatNumberToIndianFormat(parseFloat(ufc.SPASSIVE))}
-                  </td>
-                  <td className="text-end">
-                    {formatNumberToIndianFormat(parseFloat(ufc.SFIXED_INCOME))}
-                  </td>
-                  <td className="text-end">
-                    {formatNumberToIndianFormat(parseFloat(ufc.SCASH))}
-                  </td>
-                  <td
-                    className="text-end"
-                    style={{ backgroundColor: "#8080805c" }}
-                  >
-                    <b>{formatNumberToIndianFormat(parseFloat(ufc.STOTAL))}</b>
-                  </td>
-                </tr>
-                {clickedIndex === index && (
-                  <tr key={`subtable-${index}`}>
-                    <td colSpan="9" className="p-0">
-                      {clickedIndex === index && (
-                        <TableRowWithSales
-                          startDate={startDate}
-                          endDate={endDate}
-                          select_type={select_type}
-                          pzone={pzone}
-                          region_name={region_name}
-                          ufc_code={ufc.UFC_CODE}
-                          formatNumberToIndianFormat={
-                            formatNumberToIndianFormat
-                          }
-                        />
+            {transaction_summary_report.map((ufc, index) => {
+              totalEquity += parseFloat(ufc.SEQUITY);
+              totalHybrid += parseFloat(ufc.SHYBRID);
+              totalArbitrage += parseFloat(ufc.SARBITRAGE);
+              totalPassive += parseFloat(ufc.SPASSIVE);
+              totalFixedIncome += parseFloat(ufc.SFIXED_INCOME);
+              totalCash += parseFloat(ufc.SCASH);
+              grandTotal += parseFloat(ufc.STOTAL);
+
+              return (
+                <React.Fragment key={index}>
+                  <tr>
+                    <td>
+                      <button
+                        className="textlink"
+                        onClick={() => handleButtonClick(index)}
+                        disabled={isLoading}
+                      >
+                        <b className="sharp-font">{ufc.UFC_CODE}</b>
+                      </button>
+                      {isLoading && (
+                        <div className="text-center mt-4">
+                          <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
+                          <Loader className="loder" />
+                        </div>
                       )}
                     </td>
+                    <td>{ufc.UFC_NAME}</td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(parseFloat(ufc.SEQUITY))}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(parseFloat(ufc.SHYBRID))}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(parseFloat(ufc.SARBITRAGE))}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(parseFloat(ufc.SPASSIVE))}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(
+                        parseFloat(ufc.SFIXED_INCOME)
+                      )}
+                    </td>
+                    <td className="text-end">
+                      {formatNumberToIndianFormat(parseFloat(ufc.SCASH))}
+                    </td>
+                    <td
+                      className="text-end"
+                      style={{ backgroundColor: "#8080805c" }}
+                    >
+                      <b>
+                        {formatNumberToIndianFormat(parseFloat(ufc.STOTAL))}
+                      </b>
+                    </td>
                   </tr>
+                  {clickedIndex === index && (
+                    <tr key={`subtable-${index}`}>
+                      <td colSpan="9" className="p-0">
+                        {clickedIndex === index && (
+                          <TableRowWithSales
+transaction_summary_report={transaction_summary_report}
+                            formatNumberToIndianFormat={
+                              formatNumberToIndianFormat
+                            }
+                          />
+                        )}
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              );
+            })}
+            <tr style={{ backgroundColor: "#4C6072", color: "white" }}>
+              <td>TOTAL</td>
+              <td></td>
+              <td className="text-end">
+                {formatNumberToIndianFormat(parseFloat(totalEquity.toFixed(2)))}
+              </td>
+              <td className="text-end">
+                {formatNumberToIndianFormat(parseFloat(totalHybrid.toFixed(2)))}
+              </td>
+              <td className="text-end">
+                {formatNumberToIndianFormat(
+                  parseFloat(totalArbitrage.toFixed(2))
                 )}
-              </React.Fragment>
-            ))}
+              </td>
+              <td className="text-end">
+                {formatNumberToIndianFormat(
+                  parseFloat(totalPassive.toFixed(2))
+                )}
+              </td>
+              <td className="text-end">
+                {formatNumberToIndianFormat(
+                  parseFloat(totalFixedIncome.toFixed(2))
+                )}
+              </td>
+              <td className="text-end">
+                {formatNumberToIndianFormat(parseFloat(totalCash.toFixed(2)))}
+              </td>
+              <td className="text-end">
+                {formatNumberToIndianFormat(parseFloat(grandTotal.toFixed(2)))}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

@@ -1,26 +1,12 @@
 import React, { useState, useMemo } from "react";
 import "./SubTable-CSS/SubSalesTable.css";
-import RegionApi from "./Api/RegionApi";
 import TableRowWithCollapse from "./UFC/TableRowWithCollapse";
 import Loader from "../Loader";
 
-const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, formatNumberToIndianFormat, }) => {
+const SubSalesTable = ({transaction_summary_report,formatNumberToIndianFormat}) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(false);
 
-  const queryParams = useMemo(() => {
-    const formattedStartDate = startDate.split("-").reverse().join("/");
-    const formattedEndDate = endDate.split("-").reverse().join("/");
-    return new URLSearchParams({
-      start_date: formattedStartDate,
-      end_date: formattedEndDate,
-      asset_class: assetClass,
-      select_type: select_type,
-      employee_code: 2941,
-      p_zone: pzone,
-    });
-  }, [startDate, endDate, assetClass, select_type, pzone]);
-  const transaction_summary_report_region = RegionApi(queryParams);
   const handleButtonClick = (index) => {
     setIsLoading(true);
     setTimeout(() => {
@@ -33,12 +19,20 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, for
     }
   };
 
+  let totalEquity = 0;
+  let totalHybrid = 0;
+  let totalArbitrage = 0;
+  let totalPassive = 0;
+  let totalFixedIncome = 0;
+  let totalCash = 0;
+  let grandTotal = 0;
+
   return (
     <div className="new-component container-fluid p-0">
       <div className="row mt-2 ">
         <div className="head">
           <h4>
-            <b className="black-color"> {pzone} Data</b>
+            <b className="black-color"> Data</b>
           </h4>
           <h5>
             <b className="gray-color">(In Lakhs)</b>
@@ -81,8 +75,15 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, for
           </tr>
         </thead>
         <tbody style={{ backgroundColor: "#DADADA" }}>
-          {Array.isArray(transaction_summary_report_region) ? (
-            transaction_summary_report_region.map((summary, index) => (
+          {transaction_summary_report.map((summary, index) => {
+            totalEquity += parseFloat(summary.SEQUITY);
+            totalHybrid += parseFloat(summary.SHYBRID);
+            totalArbitrage += parseFloat(summary.SARBITRAGE);
+            totalPassive += parseFloat(summary.SPASSIVE);
+            totalFixedIncome += parseFloat(summary.SFIXED_INCOME);
+            totalCash += parseFloat(summary.SCASH);
+            grandTotal += parseFloat(summary.STOTAL);
+            return (
               <React.Fragment key={index}>
                 <tr>
                   <td>
@@ -129,12 +130,7 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, for
                     <td colSpan="8" className="p-0">
                       {clickedIndex === index && (
                         <TableRowWithCollapse
-                          region_name={summary.REGION_NAME}
-                          startDate={startDate}
-                          endDate={endDate}
-                          assetClass={assetClass}
-                          select_type={select_type}
-                          pzone={pzone}
+                          transaction_summary_report={transaction_summary_report}
                           formatNumberToIndianFormat={
                             formatNumberToIndianFormat
                           }
@@ -144,12 +140,36 @@ const SubSalesTable = ({ pzone, startDate, endDate, select_type, assetClass, for
                   </tr>
                 )}
               </React.Fragment>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="8">Loading data...</td>
-            </tr>
-          )}
+            );
+          })}
+          <tr className="colorwhite BgcolorOrange">
+            <td>TOTAL</td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalEquity.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalHybrid.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(
+                parseFloat(totalArbitrage.toFixed(2))
+              )}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalPassive.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(
+                parseFloat(totalFixedIncome.toFixed(2))
+              )}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(totalCash.toFixed(2)))}
+            </td>
+            <td className="text-end">
+              {formatNumberToIndianFormat(parseFloat(grandTotal.toFixed(2)))}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

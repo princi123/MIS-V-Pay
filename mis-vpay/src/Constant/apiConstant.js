@@ -41,4 +41,14 @@ export const API_AUM_UFC = {
     DATA: (queryParams) => `${API}/aum_ufc?${queryParams}`,
 };
 
+export const API_ALL_REGION_RETAIL = {
+    DATA: (queryParams) => `${API}/all_region_retail?${queryParams}`,
+};
 
+export const API_ALL_UFC_RETAIL = {
+    DATA: (queryParams) => `${API}/all_ufc_retail?${queryParams}`,
+};
+
+export const API_ALL_RM_RETAIL = {
+    DATA: (queryParams) => `${API}/all_rm_retail?${queryParams}`,
+};

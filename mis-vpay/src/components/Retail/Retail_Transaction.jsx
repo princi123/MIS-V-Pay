@@ -17,27 +17,25 @@ import NetSalesTable from "../Table/NetSalesTable";
 import { ExcelToExport } from "./ExcelToExport";
 import ExportToPdf from "./ExportToPdf";
 import Filter from "./Filter";
-import DropDown from "./DropDown" 
-
+import DropDown from "./DropDown";
+import Multiselect from "multiselect-react-dropdown";
 const Retail_Transaction = ({ headers }) => {
   const { scheme_details } = Scheme();
+  const [selectedSchemes, setSelectedSchemes] = useState([]);
+  const options = scheme_details.map((item) => ({
+    name: item.SCHEME,
+    id: item.ID,
+  }));
+  const functionToHandleSelect = (selectedList, selectedItem) => {
+    setSelectedSchemes(selectedList);
+  };
+  const functionToHandleRemove = (selectedList, removedItem) => {
+    setSelectedSchemes(selectedList);
+  };
 
-  console.log(scheme_details);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const {
-    hide,
-    startDate,
-    endDate,
-    assetClass,
-    select_type,
-    transaction_summary_report,
-    loading,
-    togglehide,
-    setAssetClass,
-    setEndDate,
-    setSelectType,
-    setStartDate,
-    formatNumberToIndianFormat,
+    hide,startDate, endDate, setStartDate, setEndDate,transaction_summary_report,loading,togglehide,select_type, setSelectType,setHide,setLoading,formatNumberToIndianFormat
   } = Api({ headers });
 
   const toggleSidebar = () => {
@@ -139,8 +137,6 @@ const Retail_Transaction = ({ headers }) => {
                           name=""
                           id="ab"
                           className="form-select form-control mt-2"
-                          value={assetClass}
-                          onChange={(e) => setAssetClass(e.target.value)}
                         >
                           <option value="">All </option>
                           <option value="">Arbitrage </option>
@@ -161,63 +157,55 @@ const Retail_Transaction = ({ headers }) => {
                           onChange={(e) => setSelectType(e.target.value)}
                         >
                           <option>Choose Select Type </option>
-                          <option value="netsales">NET SALES </option>
-                          <option value="grosssales">GROSS SALES </option>
+                          <option value="NETSALES">NET SALES </option>
+                          <option value="GROSSSALES">GROSS SALES </option>
                         </select>
                       </div>
-                     
-                  
+
                       <div className="form-group col-md-2 m-md-0 mt-3">
                         <label className="form-lables">
                           <b> Scheme</b>
                         </label>
-                        {
-                          <select
-                          name=""
-                          id="ab"
-                            className="form-select form-control mt-2"
-                          >
-                            {scheme_details.map((item) => (
-                              <option key={item.SCHEME}>{item.SCHEME}</option>
-                            ))}
-                          </select>
-                        }
+                        <Multiselect
+                          options={options}
+                          selectedValues={selectedSchemes} // Pass the selected schemes
+                          onSelect={functionToHandleSelect}
+                          onRemove={functionToHandleRemove}
+                          displayValue="name"
+                        />
                       </div>
                       <div />
                     </div>
                     <div className="d-flex">
-                    <div  className="col-md-4 d-flex justify-content-between ">
-                      <Filter />
-                      <DropDown />
-                       
-                    </div>
-                    <div className="col-md-4">
-
-                    </div>
-                    <div className="col-md-4 d-flex justify-content-around mt-5">
-                    <div className="col-md-2 ">
-                        <p className="rcorners">
-                          <ExcelToExport  />
-                          |<ExportToPdf />|
-                          <img src={msg} alt="msgicon" /> |{" "}
-                          <img
-                            id="myImg"
-                            src={calender}
-                            alt="calendericon"
-                            data-bs-toggle="modal"
-                            data-bs-target="#scheduleModal"
-                          />
-                        </p>
+                      <div className="col-md-4 d-flex justify-content-between ">
+                        <Filter />
+                        <DropDown />
                       </div>
-                      <div className="col-md-2 ">
-                        <button
-                          className="btn  BgcolorOrange "
-                          onClick={togglehide}
-                        >
-                          <b className="colorwhite"> Search</b>
-                        </button>
+                      <div className="col-md-4"></div>
+                      <div className="col-md-4 d-flex justify-content-around mt-5">
+                        <div className="col-md-2 ">
+                          <p className="exporttab">
+                            <ExcelToExport />
+                            |<ExportToPdf />|
+                            <img src={msg} alt="msgicon" /> |{" "}
+                            <img
+                              id="myImg"
+                              src={calender}
+                              alt="calendericon"
+                              data-bs-toggle="modal"
+                              data-bs-target="#scheduleModal"
+                            />
+                          </p>
+                        </div>
+                        <div className="col-md-2 ">
+                          <button
+                            className="btn  BgcolorOrange "
+                            onClick={togglehide}
+                          >
+                            <b className="colorwhite"> Search</b>
+                          </button>
+                        </div>
                       </div>
-                    </div>
                     </div>
                   </div>
                 </div>
@@ -237,10 +225,6 @@ const Retail_Transaction = ({ headers }) => {
                           transaction_summary_report={
                             transaction_summary_report
                           }
-                          startDate={startDate}
-                          endDate={endDate}
-                          assetClass={assetClass}
-                          select_type={select_type}
                           formatNumberToIndianFormat={
                             formatNumberToIndianFormat
                           }
@@ -249,10 +233,6 @@ const Retail_Transaction = ({ headers }) => {
                           transaction_summary_report={
                             transaction_summary_report
                           }
-                          startDate={startDate}
-                          endDate={endDate}
-                          assetClass={assetClass}
-                          select_type={select_type}
                           formatNumberToIndianFormat={
                             formatNumberToIndianFormat
                           }
@@ -261,10 +241,6 @@ const Retail_Transaction = ({ headers }) => {
                           transaction_summary_report={
                             transaction_summary_report
                           }
-                          startDate={startDate}
-                          endDate={endDate}
-                          assetClass={assetClass}
-                          select_type={select_type}
                           formatNumberToIndianFormat={
                             formatNumberToIndianFormat
                           }

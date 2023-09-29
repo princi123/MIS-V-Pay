@@ -3,56 +3,20 @@ import "./Table-CSS/SalesTable.css";
 import SubSalesTable from "./SubTable/SubSalesTable";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const SalesTable = ({
-  transaction_summary_report,
-  startDate,
-  endDate,
-  select_type,
-  assetClass,
-  formatNumberToIndianFormat,
-}) => {
+const SalesTable = ({transaction_summary_report,formatNumberToIndianFormat}) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
-  const [sortOrder, setSortOrder] = useState({ column: null, order: "asc" });
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleHeaderClick = (column) => {
-    const order =
-      sortOrder.column === column && sortOrder.order === "asc" ? "desc" : "asc";
-    setSortOrder({ column, order });
-  };
-
-  const sortedData = [...transaction_summary_report].sort((a, b) => {
-    const columnA = a[sortOrder.column] || "";
-    const columnB = b[sortOrder.column] || "";
-    if (sortOrder.order === "asc") {
-      if (sortOrder.column === "ZONE") {
-        return columnA.localeCompare(columnB);
-      } else if (
-        sortOrder.column === "SEQUITY" ||
-        sortOrder.column === "SHYBRID" ||
-        sortOrder.column === "SARBITRAGE" ||
-        sortOrder.column === "SPASSIVE" ||
-        sortOrder.column === "SFIXED_INCOME" ||
-        sortOrder.column === "SCASH"
-      ) {
-        return parseFloat(columnA) - parseFloat(columnB);
-      }
-    } else if (sortOrder.order === "desc") {
-      if (sortOrder.column === "ZONE") {
-        return columnB.localeCompare(columnA);
-      } else if (
-        sortOrder.column === "SEQUITY" ||
-        sortOrder.column === "SHYBRID" ||
-        sortOrder.column === "SARBITRAGE" ||
-        sortOrder.column === "SPASSIVE" ||
-        sortOrder.column === "SFIXED_INCOME" ||
-        sortOrder.column === "SCASH"
-      ) {
-        return parseFloat(columnB) - parseFloat(columnA);
-      }
-    }
-  });
+  let totalEquity = 0;
+  let totalHybrid = 0;
+  let totalArbitrage = 0;
+  let totalPassive = 0;
+  let totalFixedIncome = 0;
+  let totalCash = 0;
+  let grandTotal = 0;
 
   const handleButtonClick = (index) => {
     setIsLoading(true);
@@ -83,25 +47,24 @@ const SalesTable = ({
                 </div>
                 <div className="col-md-2 list-group">
                   <p className="theader">
-                  <Link className="textlink" to="/RegionWise">
-                  <b>All India Region Wise</b>
-                  </Link>
-                    
+                    <button className=" btn textlink" >
+                      <b>All India Region Wise</b>
+                    </button>
                   </p>
                 </div>
                 <div className="col-md-2">
                   <p className="theader">
-                  <Link className="textlink" to="/UfcWise">
-                  <b>All India UFC Wise </b>
-                  </Link>
-                    </p>
+                    <button className=" btn textlink" >
+                      <b>All India UFC Wise </b>
+                    </button>
+                  </p>
                 </div>
                 <div className="col-md-2">
                   <p className="theader">
-                  <Link className="textlink" to="/RmWise">
-                  <b>All India RM Wise </b>
-                  </Link>
-                    </p>
+                    <button className=" btn textlink">
+                      <b>All India RM Wise </b>
+                    </button>
+                  </p>
                 </div>
                 <div className="col-md-3" />
                 <div className="col-md-12">
@@ -110,49 +73,48 @@ const SalesTable = ({
                       <tr className="bgcolorBlue text-white">
                         <th
                           scope="col"
-                          onClick={() => handleHeaderClick("ZONE")}
                         >
                           ZONE
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SEQUITY")}
+                          
                         >
                           Equity
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SHYBRID")}
+                         
                         >
                           Hybrid
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SARBITRAGE")}
+                         
                         >
                           Arbitrage
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SPASSIVE")}
+                         
                         >
                           Passive(ex-Debt)
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SFIXED_INCOME")}
+                         
                         >
                           Fixed Income
                         </th>
                         <th
                           scope="col"
                           className="text-end"
-                          onClick={() => handleHeaderClick("SCASH")}
+                          
                         >
                           {" "}
                           Cash{" "}
@@ -163,78 +125,122 @@ const SalesTable = ({
                       </tr>
                     </thead>
                     <tbody>
-                      {sortedData.map((summary, index) => (
-                        <React.Fragment key={index}>
-                          <tr>
-                            <td>
-                              <button
-                                className="textlink"
-                                onClick={() => handleButtonClick(index)}
-                                disabled={isLoading}
-                              >
-                                <b className="sharp-font">{summary.ZONE}</b>
-                              </button>
-                              {isLoading && (
-                                <div className="text-center mt-4">
-                                  <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
-                                  <Loader className="loder" />
-                                </div>
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SEQUITY)
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SHYBRID)
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SARBITRAGE)
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SPASSIVE)
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SFIXED_INCOME)
-                              )}
-                            </td>
-                            <td className="text-end">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.SCASH)
-                              )}
-                            </td>
-                            <td className="text-end color-biege" id="total">
-                              {formatNumberToIndianFormat(
-                                parseFloat(summary.STOTAL)
-                              )}
-                            </td>
-                          </tr>
-                          {clickedIndex === index && (
-                            <tr key={`subtable-${index}`}>
-                              <td colSpan="8" className="p-0">
-                                <SubSalesTable
-                                  pzone={summary.ZONE}
-                                  startDate={startDate}
-                                  endDate={endDate}
-                                  assetClass={assetClass}
-                                  select_type={select_type}
-                                  formatNumberToIndianFormat={
-                                    formatNumberToIndianFormat
-                                  }
-                                />
+                      {transaction_summary_report.map((summary, index) => {
+                        totalEquity += parseFloat(summary.SEQUITY);
+                        totalHybrid += parseFloat(summary.SHYBRID);
+                        totalArbitrage += parseFloat(summary.SARBITRAGE);
+                        totalPassive += parseFloat(summary.SPASSIVE);
+                        totalFixedIncome += parseFloat(summary.SFIXED_INCOME);
+                        totalCash += parseFloat(summary.SCASH);
+                        grandTotal += parseFloat(summary.STOTAL);
+
+                        return (
+                          <React.Fragment key={index}>
+                            <tr>
+                              <td>
+                                <button
+                                  className="textlink"
+                                  onClick={() => handleButtonClick(index)}
+                                  disabled={isLoading}
+                                >
+                                  <b className="sharp-font">{summary.ZONE}</b>
+                                </button>
+                                {isLoading && (
+                                  <div className="text-center mt-4">
+                                    <i className="fas fa-spinner fa-spin fa-2x loder"></i>{" "}
+                                    <Loader className="loder" />
+                                  </div>
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SEQUITY)
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SHYBRID)
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SARBITRAGE)
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SPASSIVE)
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SFIXED_INCOME)
+                                )}
+                              </td>
+                              <td className="text-end">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.SCASH)
+                                )}
+                              </td>
+                              <td className="text-end color-biege" id="total">
+                                {formatNumberToIndianFormat(
+                                  parseFloat(summary.STOTAL)
+                                )}
                               </td>
                             </tr>
+                            {clickedIndex === index && (
+                              <tr key={`subtable-${index}`}>
+                                <td colSpan="8" className="p-0">
+                                  <SubSalesTable
+                                    transaction_summary_report={transaction_summary_report}
+                                    formatNumberToIndianFormat={
+                                      formatNumberToIndianFormat
+                                    }
+                                  />
+                                </td>
+                              </tr>
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
+                      <tr className="bgcolorBlue text-white">
+                        <td>TOTAL</td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalEquity.toFixed(2))
                           )}
-                        </React.Fragment>
-                      ))}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalHybrid.toFixed(2))
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalArbitrage.toFixed(2))
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalPassive.toFixed(2))
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalFixedIncome.toFixed(2))
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(totalCash.toFixed(2))
+                          )}
+                        </td>
+                        <td className="text-end">
+                          {formatNumberToIndianFormat(
+                            parseFloat(grandTotal.toFixed(2))
+                          )}
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -246,4 +252,5 @@ const SalesTable = ({
     </>
   );
 };
+
 export default SalesTable;
