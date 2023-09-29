@@ -10,6 +10,7 @@ import RmWise from './components/Table/All-Wise-Table/RmWise';
 import AumRegionReport from './components/Retail/AUM/AumRegionReport';
 import AumUfcReport from './components/Retail/AUM/AumUfcReport';
 import RegionWiseSales from './components/Table/All-Wise-Table/RegionWiseSales';
+import TransactionReport from './components/Retail/Report_Transaction';
 function App() {
   return (
     <div className="App">
@@ -25,7 +26,7 @@ function App() {
         <Route path='/RmWise/:startDate/:endDate/:select_type' element={<RmWise/>}/>
         <Route path='/AumRegionReport/:zone/:report_period' element={<AumRegionReport/>}/>
         <Route path="/AumUfcReport/:zone/:report_period/:region_code" element={<AumUfcReport />} />
-
+        <Route path='TransactionReport' element={<TransactionReport/>}/>
       </Routes>
     </BrowserRouter>         
     </div>
