@@ -1,7 +1,9 @@
-class  ManageUserChannelCodeDropdownService
-    def self.get_dropdown_details()
+class  ManageUserRegionDropdownService
+    def self.get_dropdown_details(channel_code,valid_upto)
       conn = OCI8.new('MISVPAY', 'MISVPAY@123', '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=103.12.1.155)(PORT=1521))(CONNECT_DATA=(SID=xe)))')
-      cursor = conn.parse('BEGIN sp_misvpay_manage_users_channel_code_dropdown(:get_all_data); END;')
+      cursor = conn.parse('BEGIN GET_MANAGE_USER_REGION_DROPDOWN( :p_channel_code,:p_valid_upto,:get_all_data); END;')
+      cursor.bind_param(':p_channel_code', channel_code, String)
+      cursor.bind_param(':p_valid_upto', valid_upto, String)
       cursor.bind_param(':get_all_data', nil, OCI8::Cursor)
       cursor.exec
       dropdown_data = []
@@ -22,3 +24,4 @@ class  ManageUserChannelCodeDropdownService
       dropdown_data
     end
   end  
+  

@@ -1,30 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
-import { API_MANAGE_USER_CHANNEL_CODE_DROPDOWN } from "../../Constant/apiConstant";
 import { API_MANAGE_USER_REPORTING_ROLE_DROPDOWN } from "../../Constant/apiConstant";
 import { API_MANAGE_USER_POWER_USER_DROPDOWN } from "../../Constant/apiConstant";
 import {API_MANAGE_USER_FUNCTIONAL_ROLE_DROPDOWN} from "../../Constant/apiConstant";
 import {API_MANAGE_USER_CITY_DROPDOWN} from "../../Constant/apiConstant";
 
-export const Usermodulechannelcodedropdown = () => {
-    const [channel_code, setChannel_code] = useState([]);
-    const queryParams = new URLSearchParams({
-        valid_upto: "30-DEC-9999"
-    })
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(API_MANAGE_USER_CHANNEL_CODE_DROPDOWN.DATA(queryParams));
-                const data = await response.json();
-                setChannel_code(data);
-            } catch (error) {
-                console.error("Error fetching AUM details", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-    return { channel_code };
-};
+// export const Usermodulechannelcodedropdown = () => {
+    
+//     return { channel_code };
+// };
 
 export const Usermodulereportingroledropdown = () => {
     const [reporting_role, setReporting_role] = useState([]);
@@ -93,9 +76,12 @@ export const Usermodulfunctionalroledropdown = () => {
                 console.error("Error fetching AUM details", error);
             }
         };
-
         fetchData();
     }, []);
     return { city };
 };
 
+// export const UsermoduleLocationdropdown = () => {
+  
+//   return { loaction};
+// };

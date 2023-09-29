@@ -42,7 +42,7 @@ export const API_AUM_UFC = {
 };
 
 export const API_MANAGE_USER_CHANNEL_CODE_DROPDOWN = {
-    DATA: (queryParams) => `${API}/manage_user_channel_code_dropdown?${queryParams}`,
+  DATA: `${API}/manage_user_channel_code_dropdown`,
 };
 
 export const API_MANAGE_USER_REPORTING_ROLE_DROPDOWN= {
@@ -60,3 +60,28 @@ export const API_MANAGE_USER_FUNCTIONAL_ROLE_DROPDOWN= {
 export const API_MANAGE_USER_CITY_DROPDOWN= {
     DATA: (queryParams) => `${API}/manage_user_city_dropdown?${queryParams}`
 };
+
+  export const API_MANAGE_USER_QUARTER_DROPDOWN= {
+    DATA: `${API}/manage_user_quarter_dropdown`,
+  };
+
+  export const API_MANAGE_EMPLOYEE_ROLE_DROPDOWN= {
+    DATA: (queryParams) => `${API}/manage_user_employee_role_dropdown?${queryParams}`
+};
+
+export const API_MANAGE_LOCATION_DROPDOWN= {
+  DATA: (queryParams) => `${API}/manage_user_location_dropdown?${queryParams}`
+};
+
+export const API_MANAGE_REGION_DROPDOWN= {
+    DATA: (queryParams) => `${API}/manage_user_region_dropdown?${queryParams}`
+  };
+
+  export const API_MANAGE_UFC_LOCATION_DROPDOWN= {
+    DATA: (queryParams) => `${API}/manage_user_ufc_location_dropdown?${queryParams}`
+  };
+  
+  export const API_MANAGE_USER_ZONE_DROPDOWN= {
+    DATA: (queryParams) => `${API}/manage_user_zone_dropdown?${queryParams}`
+  };
+  
