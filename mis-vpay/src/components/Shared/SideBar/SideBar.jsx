@@ -106,6 +106,20 @@ const SideBar = ({ isOpen }) => {
                               Transaction Summary Reports
                             </span>
                           </Link>
+                          <div className="accordion-body mt-2 p-0 pb-2 pt-2 text-center">
+                            <Link to="/MandateReport" id="sub-accor-active">
+                            {" "}
+                            <span
+                              className={`sidebar ${isOpen ? "" : "closed"}`}
+                              style={{
+                                marginLeft: "21px",
+                                marginRight: "11px",
+                              }}
+                            >
+                              Transaction Mandate Report
+                            </span>
+                            </Link>
+                          </div>
                           <button className="mt-2 p-0 pb-2 pt-2" id="sub-accor-active" >
                             <Link to="/TransactionReport" style={{ textDecoration: "none",color:"white" }} >
                               <span
